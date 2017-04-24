@@ -12,6 +12,7 @@
 		394602091EAD33DD00BAAC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394602071EAD33DD00BAAC4F /* Main.storyboard */; };
 		3946020B1EAD33DD00BAAC4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3946020A1EAD33DD00BAAC4F /* Assets.xcassets */; };
 		3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3946020C1EAD33DD00BAAC4F /* LaunchScreen.storyboard */; };
+		39D762DE1EADB2A8000ED44F /* FixerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D762DD1EADB2A8000ED44F /* FixerClient.swift */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		3946020A1EAD33DD00BAAC4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3946020D1EAD33DD00BAAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3946020F1EAD33DD00BAAC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39D762DD1EADB2A8000ED44F /* FixerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixerClient.swift; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 		394602021EAD33DD00BAAC4F /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				39D762DD1EADB2A8000ED44F /* FixerClient.swift */,
 				394602031EAD33DD00BAAC4F /* AppDelegate.swift */,
 				394602051EAD33DD00BAAC4F /* ViewController.swift */,
 				394602071EAD33DD00BAAC4F /* Main.storyboard */,
@@ -214,6 +217,7 @@
 			files = (
 				394602061EAD33DD00BAAC4F /* ViewController.swift in Sources */,
 				394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */,
+				39D762DE1EADB2A8000ED44F /* FixerClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +383,7 @@
 				394602141EAD33DD00BAAC4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
