@@ -10,12 +10,13 @@ import Foundation
 
 class FixerClient {
     
-    let urlString = "http://api.fixer.io/latest?base=USD"
+    let baseUrl = "https://api.fixer.io/latest?base="
     
     static let sharedInstance = FixerClient()
     
-    func getJSON(_ url: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
-        let nsURL = URL(string: url)!
+    func getJSON(home: String, destination: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
+        let urlString = baseUrl + home
+        let nsURL = URL(string: urlString)!
         let session = URLSession.shared
         let task = session.dataTask(with: nsURL, completionHandler: { data, response, error -> Void in
             if error != nil{
@@ -23,13 +24,17 @@ class FixerClient {
             }
             if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
-                
-                completionHandler(jsonData as AnyObject)
+                //print(jsonData)
+                if let rates = jsonData["rates"] as? [String:AnyObject] {
+                    completionHandler(rates[destination]!)
+                } else {
+                //print(jsonData["Results"] as? NSDictionary[destination])
+                completionHandler(1 as AnyObject)
+                }
             }
             session.invalidateAndCancel()
         })
         task.resume()
-        
     }
-    
 }
+
