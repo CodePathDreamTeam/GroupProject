@@ -20,6 +20,12 @@
                     <view key="view" contentMode="scaleToFill" id="d1k-rW-RKi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xRA-fM-Md7">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jzN-TS-t5J">
@@ -28,7 +34,15 @@
                                 <action selector="openHamburgerMenu:" destination="WfW-I3-Cvb" id="Rl7-TY-rQD"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="a0C-MC-3H7">
+                            <connections>
+                                <action selector="showARController:" destination="WfW-I3-Cvb" id="vTH-a1-DJU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="xRA-fM-Md7" id="lWG-xK-Yff"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcZ-hp-Qpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
