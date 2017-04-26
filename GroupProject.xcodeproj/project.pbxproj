@@ -14,6 +14,8 @@
 		3946020B1EAD33DD00BAAC4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3946020A1EAD33DD00BAAC4F /* Assets.xcassets */; };
 		3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3946020C1EAD33DD00BAAC4F /* LaunchScreen.storyboard */; };
 		396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAB1EB04729005657BB /* WeatherClient.swift */; };
+		396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396FDEAD1EB0549D005657BB /* MapKit.framework */; };
+		396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */; };
 		39D762DE1EADB2A8000ED44F /* FixerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D762DD1EADB2A8000ED44F /* FixerClient.swift */; };
 		39E225C61EAF0A8F0064C27F /* ChooseLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225C51EAF0A8F0064C27F /* ChooseLocation.storyboard */; };
 		39E225C81EAF0AFE0064C27F /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225C71EAF0AFE0064C27F /* Hamburger.storyboard */; };
@@ -62,6 +64,8 @@
 		3946020D1EAD33DD00BAAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3946020F1EAD33DD00BAAC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		396FDEAB1EB04729005657BB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
+		396FDEAD1EB0549D005657BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
 		39D762DD1EADB2A8000ED44F /* FixerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixerClient.swift; sourceTree = "<group>"; };
 		39E225C51EAF0A8F0064C27F /* ChooseLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseLocation.storyboard; sourceTree = "<group>"; };
 		39E225C71EAF0AFE0064C27F /* Hamburger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hamburger.storyboard; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */,
 				747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +159,7 @@
 			children = (
 				39E225ED1EAF1FEA0064C27F /* PlaceAnnotation.swift */,
 				39E225EF1EAF1FFB0064C27F /* Place.swift */,
+				396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 		EA426B46E4C08BE29D9CD7C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				396FDEAD1EB0549D005657BB /* MapKit.framework */,
 				A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */,
 			);
 			name = Frameworks;
@@ -420,6 +427,7 @@
 				39E225DE1EAF19D40064C27F /* PhotoJournalViewController.swift in Sources */,
 				39E225EA1EAF1A880064C27F /* TheWallViewController.swift in Sources */,
 				39E225CA1EAF0CC50064C27F /* HamburgerViewController.swift in Sources */,
+				396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
