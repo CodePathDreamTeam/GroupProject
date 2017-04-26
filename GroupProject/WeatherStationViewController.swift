@@ -16,16 +16,9 @@ class WeatherStationViewController: DashBaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        WeatherClient.sharedInstance.getForecasts(city: "LosAngeles", country: "us") {
-            (data, error) in
-            if error != nil {
-                print("error loading weather forecasts: \(error)")
-            }
-            if data != nil {
-                print("In WeatherStationViewController - response: \(data!)")
-                self.weatherForecasts = WeatherForecast.weatherForecastsWith(array: data?["list"] as! [NSDictionary])
-            }
-        }
+        WeatherClient.sharedInstance.getWeather(city: "LosAngeles", completionHandler: { (response) in
+            print(response)
+        })
     }
 
     override func didReceiveMemoryWarning() {

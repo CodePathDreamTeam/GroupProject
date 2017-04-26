@@ -13,22 +13,25 @@
         <scene sceneID="ZOn-Jr-L1F">
             <objects>
                 <viewController id="Eb9-l4-6GM" customClass="PhotoMapViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TXJ-iX-g8O"/>
-                        <viewControllerLayoutGuide type="bottom" id="YMt-TX-oEE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xdZ-M4-hP5">
+                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="MbJ-xn-X5u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </mapView>
                     <navigationItem key="navigationItem" id="M0C-9u-asQ">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="9P3-8K-YLX">
                             <connections>
                                 <action selector="openHamburgerMenu:" destination="Eb9-l4-6GM" id="0Ma-xy-Tny"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="z4U-bM-pMD">
+                            <connections>
+                                <action selector="openCameraButton:" destination="Eb9-l4-6GM" id="WpQ-sM-ubi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="MbJ-xn-X5u" id="9qi-cj-wpT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tb-8V-HSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

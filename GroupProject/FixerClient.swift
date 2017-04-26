@@ -14,7 +14,7 @@ class FixerClient {
     
     static let sharedInstance = FixerClient()
     
-    func getJSON(home: String, destination: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
+    func getRates(home: String, destination: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
         let urlString = baseUrl + home
         let nsURL = URL(string: urlString)!
         let session = URLSession.shared

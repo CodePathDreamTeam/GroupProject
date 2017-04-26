@@ -17,20 +17,20 @@ class HomeViewController: DashBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        FixerClient.sharedInstance.getJSON(home: "USD", destination: "JPY", completionHandler: {
-             rate in DispatchQueue.main.async {
+        
+        FixerClient.sharedInstance.getRates(home: "USD", destination: "JPY", completionHandler: {
+            rate in DispatchQueue.main.async {
                 self.rate = rate as! Double
                 self.homeCurrencyTF.text = "1"
                 self.destinationCurrencyTF.text = "\(self.rate!)"
             }
         })
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        WeatherClient.sharedInstance.getWeather(city: "hardcoded for now", completionHandler: {
+            weather in DispatchQueue.main.async {
+                print(weather)
+            }
+        })
     }
 }
 
