@@ -48,6 +48,9 @@
 		39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E225FF1EAF20330064C27F /* hdar_close@2x.png */; };
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
+		CB3E1BEF1EB04F09006AA2EB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3E1BEE1EB04F09006AA2EB /* WeatherClient.swift */; };
+		CB3E1BF11EB07197006AA2EB /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3E1BF01EB07197006AA2EB /* WeatherCell.swift */; };
+		CB3E1BF31EB07377006AA2EB /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3E1BF21EB07377006AA2EB /* WeatherForecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB3E1BEE1EB04F09006AA2EB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
+		CB3E1BF01EB07197006AA2EB /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		CB3E1BF21EB07377006AA2EB /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 			children = (
 				39D762DD1EADB2A8000ED44F /* FixerClient.swift */,
 				39E225EB1EAF1FC90064C27F /* PlaceLoader.swift */,
+				CB3E1BEE1EB04F09006AA2EB /* WeatherClient.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				39E225F11EAF20130064C27F /* AnnotationView.swift */,
+				CB3E1BF01EB07197006AA2EB /* WeatherCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -151,6 +159,7 @@
 			children = (
 				39E225ED1EAF1FEA0064C27F /* PlaceAnnotation.swift */,
 				39E225EF1EAF1FFB0064C27F /* Place.swift */,
+				CB3E1BF21EB07377006AA2EB /* WeatherForecast.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -402,10 +411,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3E1BF31EB07377006AA2EB /* WeatherForecast.swift in Sources */,
 				39E225EE1EAF1FEA0064C27F /* PlaceAnnotation.swift in Sources */,
 				39E225F21EAF20130064C27F /* AnnotationView.swift in Sources */,
 				39E225E81EAF1A7B0064C27F /* PhotoMapViewController.swift in Sources */,
 				394602061EAD33DD00BAAC4F /* LoginViewController.swift in Sources */,
+				CB3E1BF11EB07197006AA2EB /* WeatherCell.swift in Sources */,
 				39E225EC1EAF1FC90064C27F /* PlaceLoader.swift in Sources */,
 				39E225E61EAF1A6F0064C27F /* PoisViewController.swift in Sources */,
 				39E225D21EAF14DC0064C27F /* DashBaseViewController.swift in Sources */,
@@ -417,6 +428,7 @@
 				39E225DE1EAF19D40064C27F /* PhotoJournalViewController.swift in Sources */,
 				39E225EA1EAF1A880064C27F /* TheWallViewController.swift in Sources */,
 				39E225CA1EAF0CC50064C27F /* HamburgerViewController.swift in Sources */,
+				CB3E1BEF1EB04F09006AA2EB /* WeatherClient.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
@@ -551,6 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = GroupProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -565,6 +578,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = GroupProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
