@@ -18,6 +18,7 @@
 		3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */; };
 		3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */; };
 		3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */; };
+		3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */; };
 		396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAB1EB04729005657BB /* WeatherClient.swift */; };
 		396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396FDEAD1EB0549D005657BB /* MapKit.framework */; };
 		396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */; };
@@ -73,6 +74,7 @@
 		3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
+		3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		396FDEAB1EB04729005657BB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		396FDEAD1EB0549D005657BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				39E225E91EAF1A880064C27F /* TheWallViewController.swift */,
 				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
 				3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */,
+				3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
+				3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */,
 				3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
