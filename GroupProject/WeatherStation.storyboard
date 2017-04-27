@@ -75,8 +75,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="conditionsLabel" destination="Nb4-EA-lhK" id="Q6J-An-C4a"/>
                                             <outlet property="dayLabel" destination="Wl1-bA-4sR" id="HdX-WA-LL6"/>
-                                            <outlet property="forecastLabel" destination="Nb4-EA-lhK" id="ML8-iG-ra7"/>
                                             <outlet property="temperatureLabel" destination="UnO-2Q-PSl" id="JDz-eQ-b6O"/>
                                         </connections>
                                     </tableViewCell>
@@ -98,6 +98,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="r0c-6P-sTJ" id="chr-Gq-meb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CyH-JY-Qvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
