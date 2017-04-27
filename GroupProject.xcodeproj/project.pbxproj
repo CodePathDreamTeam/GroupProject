@@ -57,6 +57,8 @@
 		39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E225FF1EAF20330064C27F /* hdar_close@2x.png */; };
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
+		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
+		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +116,8 @@
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 		3920BEB11EAEE49A00DE76C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CBE20F271EB1CE0C0007776F /* WeatherCell.swift */,
 				39E225F11EAF20130064C27F /* AnnotationView.swift */,
 				3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */,
 			);
@@ -172,6 +177,7 @@
 		3920BEB21EAEE4A000DE76C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */,
 				39E225ED1EAF1FEA0064C27F /* PlaceAnnotation.swift */,
 				39E225EF1EAF1FFB0064C27F /* Place.swift */,
 				396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */,
@@ -449,6 +455,7 @@
 				39E225EA1EAF1A880064C27F /* TheWallViewController.swift in Sources */,
 				39E225CA1EAF0CC50064C27F /* HamburgerViewController.swift in Sources */,
 				396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */,
+				CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
 				3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */,
@@ -459,6 +466,7 @@
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
+				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
 				39E226031EAF20330064C27F /* ARConfiguration.swift in Sources */,
 				39D762DE1EADB2A8000ED44F /* FixerClient.swift in Sources */,
@@ -587,6 +595,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = GroupProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,6 +610,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
 				INFOPLIST_FILE = GroupProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
