@@ -20,9 +20,9 @@ class HomeViewController: DashBaseViewController {
         
         FixerClient.sharedInstance.getRates(home: "USD", destination: "JPY", completionHandler: {
             rate in DispatchQueue.main.async {
-                self.rate = rate as! Double
-                self.homeCurrencyTF.text = "1"
-                self.destinationCurrencyTF.text = "\(self.rate!)"
+//                self.rate = rate as! Double
+//                self.homeCurrencyTF.text = "1"
+//                self.destinationCurrencyTF.text = "\(self.rate!)"
             }
         })
         

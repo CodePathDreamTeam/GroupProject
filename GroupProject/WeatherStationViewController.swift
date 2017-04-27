@@ -16,8 +16,10 @@ class WeatherStationViewController: DashBaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        WeatherClient.sharedInstance.getWeather(city: "LosAngeles", completionHandler: { (response) in
-            print(response)
+        WeatherClient.sharedInstance.getForecast10Day(city: "San_Francisco", completionHandler: { (response) in
+            if let weatherForecasts = response as? [WeatherForecast] {
+                print("it worked!")
+            }
         })
     }
 
