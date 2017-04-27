@@ -65,6 +65,11 @@
                                 <action selector="openHamburgerMenu:" destination="gpp-4Q-KiQ" id="HHN-BV-Vh5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="74e-Wu-d5O">
+                            <connections>
+                                <segue destination="Mlj-rR-98B" kind="presentation" id="054-em-KgD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="destinationCurrencyTF" destination="TEq-ew-X9C" id="L79-3k-Y45"/>
@@ -74,6 +79,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfQ-kw-T9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="860" y="87.706146926536732"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="wi6-Nx-zs8">
+            <objects>
+                <viewController id="EKI-7W-kRx" customClass="SettingsViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bdT-WE-DLa"/>
+                        <viewControllerLayoutGuide type="bottom" id="JF8-l6-aXe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8IH-fs-mby">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1kN-iV-Klf">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ozt-iI-X3W">
+                            <connections>
+                                <action selector="onCancelButton:" destination="EKI-7W-kRx" id="mlU-0J-Yb9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="76N-Pa-nOw"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2O-Wv-1HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3292" y="87.706146926536732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8vE-QC-dvB">
@@ -92,6 +123,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fok-WT-gSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="87.706146926536732"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0wX-N9-8nw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mlj-rR-98B" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1TP-Pz-G7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EKI-7W-kRx" kind="relationship" relationship="rootViewController" id="bBH-41-ws0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQc-1b-zqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2352.8000000000002" y="87.706146926536732"/>
         </scene>
     </scenes>
 </document>

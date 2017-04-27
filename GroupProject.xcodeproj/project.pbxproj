@@ -13,6 +13,12 @@
 		394602091EAD33DD00BAAC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394602071EAD33DD00BAAC4F /* Main.storyboard */; };
 		3946020B1EAD33DD00BAAC4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3946020A1EAD33DD00BAAC4F /* Assets.xcassets */; };
 		3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3946020C1EAD33DD00BAAC4F /* LaunchScreen.storyboard */; };
+		3954F5DA1EB1BD8400C234F2 /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3954F5D91EB1BD8400C234F2 /* Todo.storyboard */; };
+		3954F5DC1EB1BDC500C234F2 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */; };
+		3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */; };
+		3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */; };
+		3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */; };
+		3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */; };
 		396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAB1EB04729005657BB /* WeatherClient.swift */; };
 		396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396FDEAD1EB0549D005657BB /* MapKit.framework */; };
 		396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */; };
@@ -66,6 +72,12 @@
 		3946020A1EAD33DD00BAAC4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3946020D1EAD33DD00BAAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3946020F1EAD33DD00BAAC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3954F5D91EB1BD8400C234F2 /* Todo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Todo.storyboard; sourceTree = "<group>"; };
+		3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
+		3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		396FDEAB1EB04729005657BB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		396FDEAD1EB0549D005657BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
@@ -148,6 +160,8 @@
 				39E225E51EAF1A6F0064C27F /* PoisViewController.swift */,
 				39E225E91EAF1A880064C27F /* TheWallViewController.swift */,
 				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
+				3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */,
+				3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -157,6 +171,7 @@
 			children = (
 				39E225F11EAF20130064C27F /* AnnotationView.swift */,
 				CB3E1BF01EB07197006AA2EB /* WeatherCell.swift */,
+				3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -168,6 +183,8 @@
 				39E225EF1EAF1FFB0064C27F /* Place.swift */,
 				CB3E1BF21EB07377006AA2EB /* WeatherForecast.swift */,
 				396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */,
+				3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */,
+				3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -185,6 +202,7 @@
 				39E225DF1EAF1A140064C27F /* Pois.storyboard */,
 				39E225E31EAF1A5F0064C27F /* TheWall.storyboard */,
 				39E225D31EAF15540064C27F /* WeatherStation.storyboard */,
+				3954F5D91EB1BD8400C234F2 /* Todo.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -361,6 +379,7 @@
 				39E225CE1EAF13480064C27F /* Home.storyboard in Resources */,
 				39E225C61EAF0A8F0064C27F /* ChooseLocation.storyboard in Resources */,
 				39E226071EAF20330064C27F /* DebugMapViewController.xib in Resources */,
+				3954F5DA1EB1BD8400C234F2 /* Todo.storyboard in Resources */,
 				394602091EAD33DD00BAAC4F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,11 +446,13 @@
 				394602061EAD33DD00BAAC4F /* LoginViewController.swift in Sources */,
 				CB3E1BF11EB07197006AA2EB /* WeatherCell.swift in Sources */,
 				39E225EC1EAF1FC90064C27F /* PlaceLoader.swift in Sources */,
+				3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */,
 				39E225E61EAF1A6F0064C27F /* PoisViewController.swift in Sources */,
 				39E225D21EAF14DC0064C27F /* DashBaseViewController.swift in Sources */,
 				39E225CC1EAF0EA40064C27F /* MenuViewController.swift in Sources */,
 				39E225D61EAF159A0064C27F /* WeatherStationViewController.swift in Sources */,
 				39E226041EAF20330064C27F /* ARTrackingManager.swift in Sources */,
+				3954F5DC1EB1BDC500C234F2 /* TodoViewController.swift in Sources */,
 				394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */,
 				39E225F01EAF1FFB0064C27F /* Place.swift in Sources */,
 				39E225DE1EAF19D40064C27F /* PhotoJournalViewController.swift in Sources */,
@@ -440,10 +461,13 @@
 				396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
+				3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */,
+				3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
 				39E225DA1EAF19560064C27F /* FinancesViewController.swift in Sources */,
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
+				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
 				39E226031EAF20330064C27F /* ARConfiguration.swift in Sources */,
