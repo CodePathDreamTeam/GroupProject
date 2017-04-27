@@ -13,6 +13,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var homeNavController: UINavigationController!
+    private var todoNavController: UINavigationController!
     private var financesNaveController: UINavigationController!
     private var weatherStationNavController: UINavigationController!
     private var photoJournalNavController: UINavigationController!
@@ -23,7 +24,7 @@ class MenuViewController: UIViewController {
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
-    let titles = ["Home","Finances","Weather Station","Photo Journal","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
+    let titles = ["Home","To-Do","Finances","Weather Station","Photo Journal","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
 
     
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class MenuViewController: UIViewController {
         tableView.dataSource = self
         
         let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        let todoStoryboard = UIStoryboard(name: "Todo", bundle: nil)
         let financesStoryboard = UIStoryboard(name: "Finances", bundle: nil)
         let weatherStationStoryboard = UIStoryboard(name: "WeatherStation", bundle: nil)
         let photoJournalStoryboard = UIStoryboard(name: "PhotoJournal", bundle: nil)
@@ -41,6 +43,7 @@ class MenuViewController: UIViewController {
         let theWallStoryboard = UIStoryboard(name: "TheWall", bundle: nil)
 
         homeNavController = homeStoryboard.instantiateInitialViewController() as! UINavigationController
+        todoNavController = todoStoryboard.instantiateInitialViewController() as! UINavigationController
         financesNaveController = financesStoryboard.instantiateInitialViewController() as! UINavigationController
         weatherStationNavController = weatherStationStoryboard.instantiateInitialViewController() as! UINavigationController
         photoJournalNavController = photoJournalStoryboard.instantiateInitialViewController() as! UINavigationController
@@ -49,6 +52,7 @@ class MenuViewController: UIViewController {
         theWallNavController = theWallStoryboard.instantiateInitialViewController() as! UINavigationController
 
         viewControllers.append(homeNavController)
+        viewControllers.append(todoNavController)
         viewControllers.append(financesNaveController)
         viewControllers.append(weatherStationNavController)
         viewControllers.append(photoJournalNavController)
