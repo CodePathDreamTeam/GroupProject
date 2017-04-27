@@ -11,8 +11,8 @@ import UIKit
 class WeatherForecast: NSObject {
 
     var day: String?
-    var tempHigh: Int?
-    var tempLow: Int?
+    var tempHigh: String?
+    var tempLow: String?
     var conditions: String?
     var rawDictionary: NSDictionary?
     
@@ -21,10 +21,10 @@ class WeatherForecast: NSObject {
             day = date["weekday"] as? String
         }
         if let high = dictionary["high"] as? NSDictionary {
-            tempHigh = high["fahrenheit"] as? Int
+            tempHigh = high["fahrenheit"] as? String
         }
         if let low = dictionary["low"] as? NSDictionary {
-            tempLow = low["fahrenheit"] as? Int
+            tempLow = low["fahrenheit"] as? String
         }
         conditions = dictionary["conditions"] as? String
         rawDictionary = dictionary

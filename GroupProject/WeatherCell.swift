@@ -11,10 +11,16 @@ import UIKit
 class WeatherCell: UITableViewCell {
 
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var forecastLabel: UILabel!
+    @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    var forecast: NSDictionary?
+    var weatherForecast: WeatherForecast? {
+        didSet {
+            dayLabel.text = weatherForecast?.day
+            conditionsLabel.text = weatherForecast?.conditions
+            temperatureLabel.text = weatherForecast?.tempHigh
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
