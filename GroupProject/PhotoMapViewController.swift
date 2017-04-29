@@ -8,14 +8,31 @@
 
 import UIKit
 import MapKit
+import CoreData
+
 
 class PhotoMapViewController: DashBaseViewController {
+    
+    var photos: [NSManagedObject] = []
 
     @IBOutlet var mapView: MKMapView!
     var myImage: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photos")
+        do {
+            photos = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
 
         mapView.delegate = self
 
@@ -49,15 +66,32 @@ class PhotoMapViewController: DashBaseViewController {
         })
         self.present(alert, animated: true, completion: nil)
 
-
-        
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            print("Camera is available 📸")
-//        } else {
-//            print("Camera 🚫 available so we will use photo library instead")
-//        }
         
     }
+    
+    func save(name: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Photos",
+                                                in: managedContext)!
+        
+        let photo = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        photo.setValue(name, forKeyPath: "name")
+        
+        do {
+            try managedContext.save()
+            photos.append(photo)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tagSegue" {
