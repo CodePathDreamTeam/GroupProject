@@ -7,4 +7,7 @@ target 'GroupProject' do
 
   # Pods for GroupProject
 
+    pod 'AFNetworking', '~> 3.0'
+
+
 end

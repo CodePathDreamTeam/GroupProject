@@ -6,10 +6,11 @@
 //  Copyright © 2017 Brandon Aubrey. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import MapKit
 import CoreData
-
+import AssetsLibrary
 
 class PhotoMapViewController: DashBaseViewController {
     
@@ -17,6 +18,7 @@ class PhotoMapViewController: DashBaseViewController {
 
     @IBOutlet var mapView: MKMapView!
     var myImage: UIImage!
+    var imgURL: NSURL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class PhotoMapViewController: DashBaseViewController {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photos")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
         do {
             photos = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
@@ -58,15 +60,15 @@ class PhotoMapViewController: DashBaseViewController {
             vc.sourceType = .camera
             self.present(vc, animated: true, completion: nil)
 
-
         })
+        
         alert.addAction(UIAlertAction(title: "Photo Roll", style: .default) { action in
+            vc.allowsEditing = false
             vc.sourceType = .photoLibrary
             self.present(vc, animated: true, completion: nil)
         })
-        self.present(alert, animated: true, completion: nil)
-
         
+        self.present(alert, animated: true, completion: nil)
     }
     
     func save(name: String) {
@@ -92,18 +94,16 @@ class PhotoMapViewController: DashBaseViewController {
         }
     }
 
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "tagSegue" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       /* if segue.identifier == "tagSegue" {
             let vc = segue.destination as! LocationsViewController
             vc.delegate = self
-        }
+        }*/
         if segue.identifier == "fullImageSegue" {
             let vc = segue.destination as! FullImageViewController
-            vc.image = myImage
+            vc.imgURL = imgURL
         }
-    }*/
-
+    }
 }
 
 
@@ -112,17 +112,38 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+       /* if let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL{
+            let assetLibrary = ALAssetsLibrary()
+            assetLibrary.asset(for: imageUrl as URL! , resultBlock: { (asset: ALAsset!) -> Void in
+                if let actualAsset = asset as ALAsset? {
+                    let assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
+                    let iref = assetRep.fullResolutionImage().takeUnretainedValue()
+                    let image = UIImage(CGImage: iref)
+                    let controller = CropViewController(image: image)
+                    controller.delegate = self
+                    picker.presentViewController(controller, animated: true, completion: nil)
+                }
+            }, failureBlock: { (error) -> Void in
+            })
+        }*/
+        
+        
+        /*
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
+        print(imageURL)
         myImage = originalImage
         
         let annotation = PhotoAnnotation()
 
+        //change to current location
         let locationCoordinate = CLLocationCoordinate2D(latitude: 37.783333, longitude: -122.416667)
         annotation.coordinate = locationCoordinate
         annotation.photo = myImage
-        mapView.addAnnotation(annotation)
+        annotation.photoURL = imageURL
+        mapView.addAnnotation(annotation)*/
         
         dismiss(animated: true, completion: nil)
     }
@@ -152,7 +173,13 @@ extension PhotoMapViewController: MKMapViewDelegate {
         resizeRenderImageView.layer.borderWidth = 3.0
         resizeRenderImageView.contentMode = UIViewContentMode.scaleAspectFill
         
-        resizeRenderImageView.image = (annotation as? PhotoAnnotation)?.photo
+//        let imageUrl = (annotation as? PhotoAnnotation)?.photoURL
+//        
+//        if let data = NSData(contentsOfURL: imageUrl as! URL) {
+//            resizeRenderImageView.image = UIImage(data: data)
+//        }
+        
+        resizeRenderImageView.image = myImage// setImageWith((annotation as? PhotoAnnotation)?.photoURL as! URL)
         
         UIGraphicsBeginImageContext(resizeRenderImageView.frame.size)
         resizeRenderImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -165,20 +192,27 @@ extension PhotoMapViewController: MKMapViewDelegate {
         
         return annotationView
     }
+            
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let photoAnnotation = view.annotation as! PhotoAnnotation
         
-
-        //myImage = photoAnnotation.photo
-        //self.performSegue(withIdentifier: "fullImageSegue", sender: self)
+        myImage = photoAnnotation.photo
+        imgURL = photoAnnotation.photoURL
+        self.performSegue(withIdentifier: "fullImageSegue", sender: self)
     }
     
+    func savePhoto(view: MKAnnotationView) {
+        print(view.annotation?.coordinate.latitude)
+        print(view.annotation?.coordinate.longitude)
+        
+    }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         switch newState {
         case .starting:
             view.dragState = .dragging
         case .ending, .canceling:
+            savePhoto(view: view)
             view.dragState = .none
         default: break
         }

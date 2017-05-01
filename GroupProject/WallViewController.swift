@@ -186,27 +186,12 @@ class WallViewController: UIViewController {
         
         if hitResult.first != nil {
             
-//            let storyboard = UIStoryboard(name: "TheWall", bundle: nil)
-//            
-//            if let viewController = storyboard.instantiateViewController(withIdentifier: "WallNav") as? UINavigationController {
-//                self.present(viewController, animated: true, completion: nil)
-//            }
 
             performSegue(withIdentifier: "wallSegue", sender: self)
             
-            print("fatality!")
-            
-            //      target.itemNode?.runAction(SCNAction.sequence([SCNAction.wait(duration: 0.5), SCNAction.removeFromParentNode(), SCNAction.hide()]))
-            //      let sequence = SCNAction.sequence(
-            //        [SCNAction.move(to: target.itemNode!.position, duration: 0.5),
-            //          SCNAction.wait(duration: 3.5),
-            //          SCNAction.run({_ in
-            //            self.delegate?.viewController(controller: self, tappedTarget: self.target)
-            //          })])
-            //      emitterNode.runAction(sequence)
+
         } else {
-            print("nono")
-            //emitterNode.runAction(SCNAction.move(to: SCNVector3(x: 0, y: 0, z: -30), duration: 0.5))
+            print("no touch zone")
         }
     }
 }

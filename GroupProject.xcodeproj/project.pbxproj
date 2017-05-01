@@ -26,6 +26,7 @@
 		3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */; };
 		3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */; };
 		3958077D1EB441F000EAE714 /* PhotoMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */; };
+		3958077F1EB6D57500EAE714 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3958077E1EB6D57500EAE714 /* FullImageViewController.swift */; };
 		396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAB1EB04729005657BB /* WeatherClient.swift */; };
 		396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396FDEAD1EB0549D005657BB /* MapKit.framework */; };
 		396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */; };
@@ -91,6 +92,7 @@
 		3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
 		3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3958077C1EB441F000EAE714 /* PhotoMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoMap.xcdatamodel; sourceTree = "<group>"; };
+		3958077E1EB6D57500EAE714 /* FullImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 		396FDEAB1EB04729005657BB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		396FDEAD1EB0549D005657BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */,
 				3909F0BD1EB3017800029E44 /* WallViewController.swift */,
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
+				3958077E1EB6D57500EAE714 /* FullImageViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				39E225E81EAF1A7B0064C27F /* PhotoMapViewController.swift in Sources */,
 				394602061EAD33DD00BAAC4F /* LoginViewController.swift in Sources */,
 				39E225EC1EAF1FC90064C27F /* PlaceLoader.swift in Sources */,
+				3958077F1EB6D57500EAE714 /* FullImageViewController.swift in Sources */,
 				3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */,
 				39E225E61EAF1A6F0064C27F /* PoisViewController.swift in Sources */,
 				39E225D21EAF14DC0064C27F /* DashBaseViewController.swift in Sources */,
