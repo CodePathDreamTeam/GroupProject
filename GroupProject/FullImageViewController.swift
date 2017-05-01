@@ -11,10 +11,6 @@ import Photos
 
 class FullImageViewController: UIViewController {
     
-    var url = NSURL() // url = "assets-library://asset/asset.JPG?id=46811D66-DBB4-46D9-BBA2-0CF0D58FC7AD&ext=JPG" got it from another scene
-    var asset = PHPhotoLibrary()
-    var tempImage = UIImage()
-    
     @IBOutlet weak var imgView: UIImageView!
     var imgURL: NSURL!
 

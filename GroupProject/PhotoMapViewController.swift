@@ -14,6 +14,8 @@ import Photos
 
 class PhotoMapViewController: DashBaseViewController {
     
+    let context = (UIApplication.shared.delegate as! AppDelegate)
+    let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var photos: [NSManagedObject] = []
 
     @IBOutlet var mapView: MKMapView!
@@ -23,30 +25,14 @@ class PhotoMapViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
-        do {
-            photos = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-
         mapView.delegate = self
-
         let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667),
                                               MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(sfRegion, animated: false)
-
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        loadFromCoreData()
     }
     
     @IBAction func openCameraButton(_ sender: UIBarButtonItem) {
@@ -71,29 +57,6 @@ class PhotoMapViewController: DashBaseViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func save(name: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Photos",
-                                                in: managedContext)!
-        
-        let photo = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        photo.setValue(name, forKeyPath: "name")
-        
-        do {
-            try managedContext.save()
-            photos.append(photo)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        /* if segue.identifier == "tagSegue" {
             let vc = segue.destination as! LocationsViewController
@@ -104,9 +67,50 @@ class PhotoMapViewController: DashBaseViewController {
             vc.imgURL = imgURL
         }
     }
+    
+    func loadFromCoreData() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
+        do {
+            //let test = try managedContext.fetch(fetchRequest)
+
+            let photos = try managedContext.fetch(fetchRequest)
+            
+            for photo in photos {
+                
+                let imageURL = photo.value(forKey: "photoURLString")
+                let annotation = PhotoAnnotation()
+                
+                let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees, longitude: photo.value(forKey: "photoLongitude") as! CLLocationDegrees)
+                annotation.coordinate = locationCoordinate
+                
+                let assetURL = URL(string: imageURL as! String)
+                
+                if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL!], options: nil).firstObject {
+                    
+                    PHImageManager.default().requestImage(for: asset,
+                                                          targetSize: CGSize(width: 45, height: 45),
+                                                          contentMode: .aspectFill,
+                                                          options: nil,
+                                                          resultHandler: { (result, info) ->Void in
+                                                            
+                                                            self.myImage = result!
+                                                            
+                                                            annotation.photo = result!
+                    })
+                }
+                annotation.photoURL = NSURL(string: imageURL as! String)
+                savePhoto(view: annotation)
+                mapView.addAnnotation(annotation)
+                
+                
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+
+        
+    }
 }
-
-
 
 extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -123,7 +127,11 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
         
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
             
-            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 45, height: 45), contentMode: .aspectFill, options: nil, resultHandler: { (result, info) ->Void in
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize(width: 45, height: 45),
+                                                  contentMode: .aspectFill,
+                                                  options: nil,
+                                                  resultHandler: { (result, info) ->Void in
                 
                 self.myImage = result!
                 
@@ -131,6 +139,7 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
             })
         }
         annotation.photoURL = imageURL
+        savePhoto(view: annotation)
         mapView.addAnnotation(annotation)
         
         dismiss(animated: true, completion: nil)
@@ -184,17 +193,46 @@ extension PhotoMapViewController: MKMapViewDelegate {
         self.performSegue(withIdentifier: "fullImageSegue", sender: self)
     }
     
-    func savePhoto(view: MKAnnotationView) {
-        print(view.annotation?.coordinate.latitude)
-        print(view.annotation?.coordinate.longitude)
+    func updatePhoto(view: PhotoAnnotation) {
         
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
+        let predicate = NSPredicate(format: "photoURLString = '\(view.photoURL.absoluteString!)'")
+        fetchRequest.predicate = predicate
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            if test.count == 1 {
+                let objectUpdate = test[0]
+                objectUpdate.setValue(view.coordinate.latitude, forKey: "photoLatitude")
+                objectUpdate.setValue(view.coordinate.latitude, forKey: "photoLongitude")
+                do {
+                    try context.saveContext()
+                }
+                catch {
+                    print(error)
+                }
+            }
+        }
+        catch {
+            print(error)
+        }
     }
+    
+    func savePhoto(view: PhotoAnnotation) {
+        
+        let photo = Photo(context: managedContext)
+        photo.photoLatitude = view.coordinate.latitude
+        photo.photoLongitude = view.coordinate.longitude
+        photo.photoURLString = view.photoURL.absoluteString
+        
+        context.saveContext()
+    }
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         switch newState {
         case .starting:
             view.dragState = .dragging
         case .ending, .canceling:
-            savePhoto(view: view)
+            updatePhoto(view: view.annotation as! PhotoAnnotation)
             view.dragState = .none
         default: break
         }
