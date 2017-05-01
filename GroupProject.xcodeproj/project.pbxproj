@@ -14,6 +14,10 @@
 		3909F0C41EB3028100029E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3909F0C31EB3028100029E44 /* art.scnassets */; };
 		3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */; };
 		3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */; };
+		39452CEB1EB6BE2E00DE9080 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */; };
+		39452CEE1EB6BEC700DE9080 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 39452CED1EB6BEC700DE9080 /* tessdata */; };
+		39452CF01EB6BF6900DE9080 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CEF1EB6BF6900DE9080 /* CoreImage.framework */; };
+		39452CF21EB6BFB100DE9080 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CF11EB6BFB100DE9080 /* libstdc++.6.0.9.tbd */; };
 		394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394602031EAD33DD00BAAC4F /* AppDelegate.swift */; };
 		394602061EAD33DD00BAAC4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394602051EAD33DD00BAAC4F /* LoginViewController.swift */; };
 		394602091EAD33DD00BAAC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394602071EAD33DD00BAAC4F /* Main.storyboard */; };
@@ -77,6 +81,11 @@
 		3909F0C31EB3028100029E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteOnWallViewController.swift; sourceTree = "<group>"; };
 		3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
+		39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
+		39452CED1EB6BEC700DE9080 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		39452CEF1EB6BF6900DE9080 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		39452CF11EB6BFB100DE9080 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		39452CF31EB6C03100DE9080 /* GroupProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		394602001EAD33DD00BAAC4F /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		394602031EAD33DD00BAAC4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		394602051EAD33DD00BAAC4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +148,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39452CF21EB6BFB100DE9080 /* libstdc++.6.0.9.tbd in Frameworks */,
+				39452CF01EB6BF6900DE9080 /* CoreImage.framework in Frameworks */,
 				396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */,
+				39452CEB1EB6BE2E00DE9080 /* TesseractOCR.framework in Frameworks */,
 				747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +214,7 @@
 				3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */,
 				3909F0BF1EB301C600029E44 /* ARItem.swift */,
 				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
+				3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -220,8 +233,20 @@
 				39E225E31EAF1A5F0064C27F /* TheWall.storyboard */,
 				39E225D31EAF15540064C27F /* WeatherStation.storyboard */,
 				3954F5D91EB1BD8400C234F2 /* Todo.storyboard */,
+				3946020C1EAD33DD00BAAC4F /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		39452CEC1EB6BE4800DE9080 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				39452CED1EB6BEC700DE9080 /* tessdata */,
+				3909F0C31EB3028100029E44 /* art.scnassets */,
+				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
+				3946020F1EAD33DD00BAAC4F /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		394601F71EAD33DD00BAAC4F = {
@@ -245,18 +270,15 @@
 		394602021EAD33DD00BAAC4F /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				394602031EAD33DD00BAAC4F /* AppDelegate.swift */,
 				3920BEB21EAEE4A000DE76C1 /* Model */,
 				3920BEB11EAEE49A00DE76C1 /* View */,
 				3920BEB01EAEE49300DE76C1 /* Controller */,
 				3920BEB31EAF09B300DE76C1 /* Storyboards */,
 				3920BEAF1EAEE48700DE76C1 /* API */,
 				39E225F31EAF20330064C27F /* HDAugmentedReality */,
-				394602031EAD33DD00BAAC4F /* AppDelegate.swift */,
-				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
-				3909F0C31EB3028100029E44 /* art.scnassets */,
-				3946020C1EAD33DD00BAAC4F /* LaunchScreen.storyboard */,
-				3946020F1EAD33DD00BAAC4F /* Info.plist */,
-				3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */,
+				39452CEC1EB6BE4800DE9080 /* Supporting Files */,
+				39452CF31EB6C03100DE9080 /* GroupProject-Bridging-Header.h */,
 			);
 			path = GroupProject;
 			sourceTree = "<group>";
@@ -314,6 +336,9 @@
 		EA426B46E4C08BE29D9CD7C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39452CF11EB6BFB100DE9080 /* libstdc++.6.0.9.tbd */,
+				39452CEF1EB6BF6900DE9080 /* CoreImage.framework */,
+				39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */,
 				396FDEAD1EB0549D005657BB /* MapKit.framework */,
 				A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */,
 			);
@@ -356,6 +381,7 @@
 					394601FF1EAD33DD00BAAC4F = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 68W2B53UFP;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -395,6 +421,7 @@
 				3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */,
 				39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */,
 				39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */,
+				39452CEE1EB6BEC700DE9080 /* tessdata in Resources */,
 				3946020B1EAD33DD00BAAC4F /* Assets.xcassets in Resources */,
 				39E225CE1EAF13480064C27F /* Home.storyboard in Resources */,
 				39E225C61EAF0A8F0064C27F /* ChooseLocation.storyboard in Resources */,
@@ -621,12 +648,22 @@
 			baseConfigurationReference = 0D7A177C130AF460D21FD878 /* Pods-GroupProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GroupProject/GroupProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -636,12 +673,21 @@
 			baseConfigurationReference = 861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 68W2B53UFP;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GroupProject/GroupProject-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
