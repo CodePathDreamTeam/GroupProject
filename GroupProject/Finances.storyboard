@@ -20,7 +20,19 @@
                     <view key="view" contentMode="scaleToFill" id="PU6-jU-7I1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-Hb-IW9">
+                                <rect key="frame" x="143.5" y="72" width="87.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iqb-Hb-IW9" firstAttribute="top" secondItem="FWS-91-ASm" secondAttribute="bottom" constant="8" id="Ui4-mT-oyJ"/>
+                            <constraint firstItem="iqb-Hb-IW9" firstAttribute="centerX" secondItem="PU6-jU-7I1" secondAttribute="centerX" id="vNf-yL-Gmj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jnr-ex-5Pv">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="Rdu-Sl-mwa">
@@ -28,7 +40,15 @@
                                 <action selector="openHamburgerMenu:" destination="kU4-Oe-HOg" id="t9L-Nn-fqe"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Import" id="wjQ-A6-RRG">
+                            <connections>
+                                <action selector="importImage:" destination="kU4-Oe-HOg" id="e3z-DA-MMv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="importTextLabel" destination="iqb-Hb-IW9" id="jGZ-wJ-Rn7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuq-07-q4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
