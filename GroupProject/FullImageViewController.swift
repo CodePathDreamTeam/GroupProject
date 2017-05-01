@@ -8,7 +8,6 @@
 
 import UIKit
 import Photos
-import AFNetworking
 
 class FullImageViewController: UIViewController {
     
@@ -22,9 +21,13 @@ class FullImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let assetURL = imgURL as URL
         
-        
-
+        if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: imgView.frame.maxX, height: imgView.frame.maxY), contentMode: .aspectFill, options: nil, resultHandler: { (result, info) ->Void in
+                self.imgView.image = result!
+            })
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -32,20 +35,4 @@ class FullImageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-  /*  func getUIImagefromAsseturl (url: NSURL) {
-        
-        asset. (url, resultBlock: { asset in
-            if let ast = asset {
-                let assetRep = ast.defaultRepresentation()
-                let iref = assetRep.fullResolutionImage().takeUnretainedValue()
-                let image = UIImage(CGImage: iref)
-                dispatch_async(dispatch_get_main_queue(), {
-                    // ...Update UI with image here
-                })
-            }
-        }, failureBlock: { error in
-            print("Error: \(error)")
-        })
-    }*/
 }

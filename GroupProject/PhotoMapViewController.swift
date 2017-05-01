@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 import CoreData
-import AssetsLibrary
+import Photos
 
 class PhotoMapViewController: DashBaseViewController {
     
@@ -112,38 +112,26 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-       /* if let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL{
-            let assetLibrary = ALAssetsLibrary()
-            assetLibrary.asset(for: imageUrl as URL! , resultBlock: { (asset: ALAsset!) -> Void in
-                if let actualAsset = asset as ALAsset? {
-                    let assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
-                    let iref = assetRep.fullResolutionImage().takeUnretainedValue()
-                    let image = UIImage(CGImage: iref)
-                    let controller = CropViewController(image: image)
-                    controller.delegate = self
-                    picker.presentViewController(controller, animated: true, completion: nil)
-                }
-            }, failureBlock: { (error) -> Void in
-            })
-        }*/
-        
-        
-        /*
-        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        
-        print(imageURL)
-        myImage = originalImage
-        
         let annotation = PhotoAnnotation()
-
+        
         //change to current location
+        
         let locationCoordinate = CLLocationCoordinate2D(latitude: 37.783333, longitude: -122.416667)
         annotation.coordinate = locationCoordinate
-        annotation.photo = myImage
+        let assetURL = imageURL as URL
+        
+        if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
+            
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 45, height: 45), contentMode: .aspectFill, options: nil, resultHandler: { (result, info) ->Void in
+                
+                self.myImage = result!
+                
+                annotation.photo = result!
+            })
+        }
         annotation.photoURL = imageURL
-        mapView.addAnnotation(annotation)*/
+        mapView.addAnnotation(annotation)
         
         dismiss(animated: true, completion: nil)
     }
@@ -172,12 +160,6 @@ extension PhotoMapViewController: MKMapViewDelegate {
         resizeRenderImageView.layer.borderColor = UIColor.white.cgColor
         resizeRenderImageView.layer.borderWidth = 3.0
         resizeRenderImageView.contentMode = UIViewContentMode.scaleAspectFill
-        
-//        let imageUrl = (annotation as? PhotoAnnotation)?.photoURL
-//        
-//        if let data = NSData(contentsOfURL: imageUrl as! URL) {
-//            resizeRenderImageView.image = UIImage(data: data)
-//        }
         
         resizeRenderImageView.image = myImage// setImageWith((annotation as? PhotoAnnotation)?.photoURL as! URL)
         
