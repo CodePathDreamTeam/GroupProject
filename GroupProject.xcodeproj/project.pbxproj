@@ -663,7 +663,10 @@
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-lstdc++";
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GroupProject/GroupProject-Bridging-Header.h";
@@ -688,7 +691,10 @@
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-lstdc++";
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrandonAubrey.GroupProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GroupProject/GroupProject-Bridging-Header.h";
