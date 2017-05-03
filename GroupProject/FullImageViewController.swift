@@ -20,7 +20,12 @@ class FullImageViewController: UIViewController {
         let assetURL = imgURL as URL
         
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
-            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: imgView.frame.maxX, height: imgView.frame.maxY), contentMode: .aspectFill, options: nil, resultHandler: { (result, info) ->Void in
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize(width: imgView.frame.maxX,
+                                                                     height: imgView.frame.maxY),
+                                                  contentMode: .aspectFill,
+                                                  options: nil,
+                                                  resultHandler: { (result, info) ->Void in
                 self.imgView.image = result!
             })
         }

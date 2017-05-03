@@ -25,14 +25,12 @@ class PhotoMapViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadFromCoreData()
+        
         mapView.delegate = self
         let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667),
                                               MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(sfRegion, animated: false)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        loadFromCoreData()
     }
     
     @IBAction func openCameraButton(_ sender: UIBarButtonItem) {
@@ -80,7 +78,8 @@ class PhotoMapViewController: DashBaseViewController {
                 let imageURL = photo.value(forKey: "photoURLString")
                 let annotation = PhotoAnnotation()
                 
-                let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees, longitude: photo.value(forKey: "photoLongitude") as! CLLocationDegrees)
+                let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees,
+                                                                longitude: photo.value(forKey: "photoLongitude") as! CLLocationDegrees)
                 annotation.coordinate = locationCoordinate
                 
                 let assetURL = URL(string: imageURL as! String)
@@ -99,16 +98,12 @@ class PhotoMapViewController: DashBaseViewController {
                     })
                 }
                 annotation.photoURL = NSURL(string: imageURL as! String)
-                savePhoto(view: annotation)
                 mapView.addAnnotation(annotation)
-                
                 
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-
-        
     }
 }
 
@@ -203,7 +198,7 @@ extension PhotoMapViewController: MKMapViewDelegate {
             if test.count == 1 {
                 let objectUpdate = test[0]
                 objectUpdate.setValue(view.coordinate.latitude, forKey: "photoLatitude")
-                objectUpdate.setValue(view.coordinate.latitude, forKey: "photoLongitude")
+                objectUpdate.setValue(view.coordinate.longitude, forKey: "photoLongitude")
                 do {
                     try context.saveContext()
                 }

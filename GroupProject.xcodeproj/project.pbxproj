@@ -46,8 +46,6 @@
 		39E225D61EAF159A0064C27F /* WeatherStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */; };
 		39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225D71EAF192F0064C27F /* Finances.storyboard */; };
 		39E225DA1EAF19560064C27F /* FinancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E225D91EAF19560064C27F /* FinancesViewController.swift */; };
-		39E225DC1EAF19B40064C27F /* PhotoJournal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225DB1EAF19B40064C27F /* PhotoJournal.storyboard */; };
-		39E225DE1EAF19D40064C27F /* PhotoJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E225DD1EAF19D40064C27F /* PhotoJournalViewController.swift */; };
 		39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225DF1EAF1A140064C27F /* Pois.storyboard */; };
 		39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225E11EAF1A4C0064C27F /* PhotoMap.storyboard */; };
 		39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E225E31EAF1A5F0064C27F /* TheWall.storyboard */; };
@@ -117,8 +115,6 @@
 		39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationViewController.swift; sourceTree = "<group>"; };
 		39E225D71EAF192F0064C27F /* Finances.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Finances.storyboard; sourceTree = "<group>"; };
 		39E225D91EAF19560064C27F /* FinancesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancesViewController.swift; sourceTree = "<group>"; };
-		39E225DB1EAF19B40064C27F /* PhotoJournal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoJournal.storyboard; sourceTree = "<group>"; };
-		39E225DD1EAF19D40064C27F /* PhotoJournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoJournalViewController.swift; sourceTree = "<group>"; };
 		39E225DF1EAF1A140064C27F /* Pois.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pois.storyboard; sourceTree = "<group>"; };
 		39E225E11EAF1A4C0064C27F /* PhotoMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoMap.storyboard; sourceTree = "<group>"; };
 		39E225E31EAF1A5F0064C27F /* TheWall.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TheWall.storyboard; sourceTree = "<group>"; };
@@ -181,7 +177,6 @@
 				39E225CF1EAF135A0064C27F /* HomeViewController.swift */,
 				394602051EAD33DD00BAAC4F /* LoginViewController.swift */,
 				39E225CB1EAF0EA40064C27F /* MenuViewController.swift */,
-				39E225DD1EAF19D40064C27F /* PhotoJournalViewController.swift */,
 				39E225E71EAF1A7B0064C27F /* PhotoMapViewController.swift */,
 				39E225E51EAF1A6F0064C27F /* PoisViewController.swift */,
 				39E225E91EAF1A880064C27F /* TheWallViewController.swift */,
@@ -230,7 +225,6 @@
 				39E225C71EAF0AFE0064C27F /* Hamburger.storyboard */,
 				39E225CD1EAF13480064C27F /* Home.storyboard */,
 				394602071EAD33DD00BAAC4F /* Main.storyboard */,
-				39E225DB1EAF19B40064C27F /* PhotoJournal.storyboard */,
 				39E225E11EAF1A4C0064C27F /* PhotoMap.storyboard */,
 				39E225DF1EAF1A140064C27F /* Pois.storyboard */,
 				39E225E31EAF1A5F0064C27F /* TheWall.storyboard */,
@@ -412,7 +406,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39E225DC1EAF19B40064C27F /* PhotoJournal.storyboard in Resources */,
 				3909F0C41EB3028100029E44 /* art.scnassets in Resources */,
 				39E225D41EAF15540064C27F /* WeatherStation.storyboard in Resources */,
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
@@ -505,7 +498,6 @@
 				3954F5DC1EB1BDC500C234F2 /* TodoViewController.swift in Sources */,
 				394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */,
 				39E225F01EAF1FFB0064C27F /* Place.swift in Sources */,
-				39E225DE1EAF19D40064C27F /* PhotoJournalViewController.swift in Sources */,
 				39E225EA1EAF1A880064C27F /* TheWallViewController.swift in Sources */,
 				39E225CA1EAF0CC50064C27F /* HamburgerViewController.swift in Sources */,
 				396FDEB01EB05931005657BB /* PhotoAnnotation.swift in Sources */,
