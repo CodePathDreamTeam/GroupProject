@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyj-G8-c4B">
-                                <rect key="frame" x="49" y="127" width="111" height="48"/>
+                                <rect key="frame" x="51" y="162" width="111" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -82,11 +82,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21215 Burbank Blvd, Woodland Hills, CA 91367" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp6-lp-TRJ">
+                                <rect key="frame" x="30" y="92" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Cp6-lp-TRJ" secondAttribute="trailing" constant="30" id="2ww-ee-7rX"/>
                             <constraint firstItem="r0c-6P-sTJ" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" id="6hD-ke-EHU"/>
                             <constraint firstItem="xId-ae-Syh" firstAttribute="top" secondItem="r0c-6P-sTJ" secondAttribute="bottom" id="Ew0-eG-uk3"/>
+                            <constraint firstItem="Cp6-lp-TRJ" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="30" id="jVY-MN-O5K"/>
+                            <constraint firstItem="Cp6-lp-TRJ" firstAttribute="top" secondItem="SDb-ky-oTd" secondAttribute="bottom" constant="28" id="xtw-b3-NZy"/>
                             <constraint firstItem="r0c-6P-sTJ" firstAttribute="top" secondItem="SDb-ky-oTd" secondAttribute="bottom" constant="243" id="yiO-TT-Fuq"/>
                             <constraint firstAttribute="trailing" secondItem="r0c-6P-sTJ" secondAttribute="trailing" id="ykc-FL-sq5"/>
                         </constraints>
@@ -99,6 +108,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationLabel" destination="Cp6-lp-TRJ" id="gmC-f4-swy"/>
                         <outlet property="tableView" destination="r0c-6P-sTJ" id="chr-Gq-meb"/>
                     </connections>
                 </viewController>

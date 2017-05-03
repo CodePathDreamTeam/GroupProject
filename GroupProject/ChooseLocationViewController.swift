@@ -53,15 +53,19 @@ extension ChooseLocationViewController: GMSAutocompleteViewControllerDelegate {
         print("Place address:  \(place.formattedAddress)")
         print("Place attributions: \(place.attributions)")
         print("Place coordinates: \(place.coordinate)")
-        print("Place latitude: \(place.coordinate.latitude)")
+        print("Place: \(place)")
         
         let defaults = UserDefaults.standard
         defaults.set("\(place.coordinate.latitude)", forKey: "latitude")
         defaults.set("\(place.coordinate.longitude)", forKey: "longitude")
+        if let address = place.formattedAddress {
+            defaults.set("\(address)", forKey: "address")
+        }
         defaults.synchronize()
         dismiss(animated: true, completion: nil)
         print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
         print("defaults[longitude]: \(defaults.object(forKey: "longitude") as? String)")
+        print("defaults[address]: \(defaults.object(forKey: "address") as? String)")
         
     }
     

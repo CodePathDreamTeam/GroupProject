@@ -10,7 +10,9 @@ import UIKit
 
 class WeatherStationViewController: DashBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     var weatherForecasts: [WeatherForecast]?
     
     override func viewDidLoad() {
@@ -29,11 +31,17 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
         }
         print("coordinates: \(defaultsLatitude), \(defaultsLongitude)")
         WeatherClient.sharedInstance.getForecast10Day(latitude: defaultsLatitude!, longitude: defaultsLongitude!,completionHandler: { (response) in
-            if let weatherForecasts = response as? [WeatherForecast] {
-                self.weatherForecasts = weatherForecasts
-                print("it worked!")
-                self.tableView.reloadData()
+            DispatchQueue.main.async {
+                if let weatherForecasts = response as? [WeatherForecast] {
+                    self.weatherForecasts = weatherForecasts
+                    print("it worked!")
+                    if let location = defaults.string(forKey: "address") {
+                        self.locationLabel.text = location
+                    }
+                    self.tableView.reloadData()
+                }
             }
+            
         })
         
     }
