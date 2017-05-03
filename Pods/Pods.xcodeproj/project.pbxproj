@@ -61,9 +61,10 @@
 		8ECD70F7D2DCD2B812966B1F92EE2D8F /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				ED1904FE3228F5567E423FA5A8F781BB /* Pods-GroupProject */,
+				5310B2D48E4FFDA9F94DE4E6FEF38AAE /* AFNetworkReachabilityManager.h */,
+				7D98A60403E8E4C6067A167707103CCC /* AFNetworkReachabilityManager.m */,
 			);
-			name = "Targets Support Files";
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -98,6 +99,28 @@
 			);
 			name = "Pods-GroupProject";
 			path = "Target Support Files/Pods-GroupProject";
+			sourceTree = "<group>";
+		};
+		F036DF90C5BD190154CA15990100ED6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E97BF7BCC73882CD1DF0BB7C4075A /* GooglePlaces.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7C77B1D04A3C0C72E2BA392575EBED3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A40C6D27A6F47336A7F873F83301134C /* AFNetworking.modulemap */,
+				54BB169E9DAD3927862F8DF9BEA16444 /* AFNetworking.xcconfig */,
+				4122DD95183C0FBCD93611B1CF5A02BC /* AFNetworking-dummy.m */,
+				6D72F2C1DEABA8BEEA791A4082F6D787 /* AFNetworking-prefix.pch */,
+				7CF5532BDD09C65F4DEF8737B2CEA1A0 /* AFNetworking-umbrella.h */,
+				11377A18C396D17DD9B5C323DFD14AA6 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AFNetworking";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
