@@ -24,7 +24,7 @@ class MenuViewController: UIViewController {
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
     let titles = ["Home","To-Do","Finances","Weather Station","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
-
+    let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "home")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,9 @@ class MenuViewController: UIViewController {
         viewControllers.append(theWallNavController)
         
         hamburgerViewController.contentViewController = homeNavController
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,8 +80,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+//        cell.textLabel?.text = titles[indexPath.row]
+        cell.cellLabel?.text = titles[indexPath.row]
+        cell.iconImageView?.image = icons[indexPath.row]
         
         return cell
     }

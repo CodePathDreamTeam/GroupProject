@@ -68,6 +68,8 @@
 		39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E225FF1EAF20330064C27F /* hdar_close@2x.png */; };
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
+		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
+		CB6CC3471EBB910400351372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6CC3461EBB910400351372 /* Assets.xcassets */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
 /* End PBXBuildFile section */
@@ -139,6 +141,8 @@
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		CB6CC3461EBB910400351372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GroupProject/Assets.xcassets; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +204,7 @@
 				CBE20F271EB1CE0C0007776F /* WeatherCell.swift */,
 				39E225F11EAF20130064C27F /* AnnotationView.swift */,
 				3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */,
+				CB6CC3441EBB8D9F00351372 /* MenuCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 		394601F71EAD33DD00BAAC4F = {
 			isa = PBXGroup;
 			children = (
+				CB6CC3461EBB910400351372 /* Assets.xcassets */,
 				394602021EAD33DD00BAAC4F /* GroupProject */,
 				394602011EAD33DD00BAAC4F /* Products */,
 				4E99EA5F587885EEA8717B46 /* Pods */,
@@ -420,6 +426,7 @@
 				3909F0C41EB3028100029E44 /* art.scnassets in Resources */,
 				39E225D41EAF15540064C27F /* WeatherStation.storyboard in Resources */,
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
+				CB6CC3471EBB910400351372 /* Assets.xcassets in Resources */,
 				39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */,
 				39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */,
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
@@ -525,6 +532,7 @@
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
 				39E225DA1EAF19560064C27F /* FinancesViewController.swift in Sources */,
+				CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */,
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
