@@ -20,6 +20,7 @@ class MenuViewController: UIViewController {
     private var photoMapNavController: UINavigationController!
     private var theWallNavController: UINavigationController!
 
+    @IBOutlet weak var greetingLabel: UILabel!
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
@@ -60,6 +61,8 @@ class MenuViewController: UIViewController {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        greetingLabel.layer.cornerRadius = 8.0
     }
     
     override func didReceiveMemoryWarning() {
