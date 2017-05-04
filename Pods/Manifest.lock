@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
   - GoogleMaps (2.2.0):
     - GoogleMaps/Maps (= 2.2.0)
   - GoogleMaps/Base (2.2.0)
@@ -27,16 +30,18 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - Charts
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
 
-PODFILE CHECKSUM: 01a48edd622fd2c6f4e9a2869285a56190cc2555
+PODFILE CHECKSUM: 28d2868f0c788aa538278124c729081a70370024
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.2.0

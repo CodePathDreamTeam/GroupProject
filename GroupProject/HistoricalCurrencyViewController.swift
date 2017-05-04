@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Charts
 
 class HistoricalCurrencyViewController: UIViewController {
     
-    @IBOutlet weak var chartView: UIView!
+    @IBOutlet weak var chartView: LineChartView!
 
     var sourceCurrency: String!
     var targetCurrency: String!
