@@ -115,7 +115,35 @@
                     <view key="view" contentMode="scaleToFill" id="8IH-fs-mby">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leland" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3N-54-8ki">
+                                <rect key="frame" x="20" y="119" width="335" height="52"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="onEditingNameDidEnd:" destination="EKI-7W-kRx" eventType="editingDidEnd" id="40f-e3-84H"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Aa-zN-jvQ">
+                                <rect key="frame" x="33" y="174" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="8Aa-zN-jvQ" firstAttribute="leading" secondItem="8IH-fs-mby" secondAttribute="leading" constant="33" id="3IB-TH-1qq"/>
+                            <constraint firstItem="8Aa-zN-jvQ" firstAttribute="top" secondItem="O3N-54-8ki" secondAttribute="bottom" constant="3" id="P0x-qQ-Brb"/>
+                            <constraint firstAttribute="trailing" secondItem="O3N-54-8ki" secondAttribute="trailing" constant="20" id="pYm-k5-s5L"/>
+                            <constraint firstItem="O3N-54-8ki" firstAttribute="top" secondItem="bdT-WE-DLa" secondAttribute="bottom" constant="55" id="vPZ-dS-zDo"/>
+                            <constraint firstItem="O3N-54-8ki" firstAttribute="leading" secondItem="8IH-fs-mby" secondAttribute="leading" constant="20" id="wzv-Fo-sIv"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xAb-wJ-xbb" appends="YES" id="aZI-N5-70y"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="1kN-iV-Klf">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="ozt-iI-X3W">
@@ -123,10 +151,22 @@
                                 <action selector="onCancelButton:" destination="EKI-7W-kRx" id="mlU-0J-Yb9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="76N-Pa-nOw"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="76N-Pa-nOw">
+                            <connections>
+                                <action selector="onSaveButton:" destination="EKI-7W-kRx" id="WMM-k3-zfX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="O3N-54-8ki" id="Acf-w9-aGl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2O-Wv-1HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xAb-wJ-xbb">
+                    <connections>
+                        <action selector="onTap:" destination="EKI-7W-kRx" id="RKJ-AC-hcr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3292" y="87.706146926536732"/>
         </scene>
@@ -135,7 +175,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-oF-C21" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xYR-fH-u8I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xYR-fH-u8I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -153,7 +193,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mlj-rR-98B" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1TP-Pz-G7m">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1TP-Pz-G7m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
