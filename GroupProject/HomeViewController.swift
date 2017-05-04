@@ -20,14 +20,20 @@ class HomeViewController: DashBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        FixerClient.sharedInstance.getRates(home: "USD", destination: "JPY", completionHandler: {
-            rate in DispatchQueue.main.async {
-                self.rate = rate as! Double
-                self.homeCurrencyTF.text = "1"
-                self.destinationCurrencyTF.text = "\(self.rate!)"
+
+        FixerClient.shared.getCurrencyRate(for: "JPY", relativeTo: "USD") {[weak self] (result) in
+
+            DispatchQueue.main.async {
+                if result.isSuccess {
+                    self?.rate = result.value
+                    self?.homeCurrencyTF.text = "1"
+                    self?.destinationCurrencyTF.text = "\(result.value!)"
+                } else {
+                    // Display UI alert, if needed...
+                    print("error: \(String(describing: result.error?.localizedDescription))")
+                }
             }
-        })
+        }
         
         let defaults = UserDefaults.standard
         var latitude = defaults.string(forKey: "latitude")
