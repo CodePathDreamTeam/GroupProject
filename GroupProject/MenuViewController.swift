@@ -62,7 +62,8 @@ class MenuViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        greetingLabel.layer.cornerRadius = 8.0
+        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
+        greetingLabel.text = "Greetings, \(savedName)!"
     }
     
     override func didReceiveMemoryWarning() {

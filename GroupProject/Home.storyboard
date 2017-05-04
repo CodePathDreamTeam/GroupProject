@@ -116,6 +116,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Aa-zN-jvQ">
+                                <rect key="frame" x="33" y="174" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leland" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3N-54-8ki">
                                 <rect key="frame" x="20" y="119" width="335" height="52"/>
                                 <nil key="textColor"/>
@@ -125,19 +131,31 @@
                                     <action selector="onEditingNameDidEnd:" destination="EKI-7W-kRx" eventType="editingDidEnd" id="40f-e3-84H"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Aa-zN-jvQ">
-                                <rect key="frame" x="33" y="174" width="45" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBP-3K-rW2">
+                                <rect key="frame" x="68" y="214" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="LIJ-dw-iZb"/>
+                                    <constraint firstAttribute="height" constant="240" id="j35-jo-uHI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGF-l3-BrR">
+                                <rect key="frame" x="134" y="484" width="108" height="30"/>
+                                <state key="normal" title="Upload A Photo"/>
+                                <connections>
+                                    <action selector="onUploadPhotoButton:" destination="EKI-7W-kRx" eventType="touchUpInside" id="1f1-Ia-Tuf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8Aa-zN-jvQ" firstAttribute="leading" secondItem="8IH-fs-mby" secondAttribute="leading" constant="33" id="3IB-TH-1qq"/>
+                            <constraint firstItem="hBP-3K-rW2" firstAttribute="centerX" secondItem="8IH-fs-mby" secondAttribute="centerX" id="Hwq-hV-iVv"/>
                             <constraint firstItem="8Aa-zN-jvQ" firstAttribute="top" secondItem="O3N-54-8ki" secondAttribute="bottom" constant="3" id="P0x-qQ-Brb"/>
+                            <constraint firstItem="hBP-3K-rW2" firstAttribute="centerY" secondItem="8IH-fs-mby" secondAttribute="centerY" id="eDK-Kl-MkY"/>
+                            <constraint firstItem="EGF-l3-BrR" firstAttribute="centerX" secondItem="8IH-fs-mby" secondAttribute="centerX" id="frf-Ed-MCF"/>
                             <constraint firstAttribute="trailing" secondItem="O3N-54-8ki" secondAttribute="trailing" constant="20" id="pYm-k5-s5L"/>
+                            <constraint firstItem="EGF-l3-BrR" firstAttribute="top" secondItem="hBP-3K-rW2" secondAttribute="bottom" constant="30" id="qAK-8Q-cy1"/>
                             <constraint firstItem="O3N-54-8ki" firstAttribute="top" secondItem="bdT-WE-DLa" secondAttribute="bottom" constant="55" id="vPZ-dS-zDo"/>
                             <constraint firstItem="O3N-54-8ki" firstAttribute="leading" secondItem="8IH-fs-mby" secondAttribute="leading" constant="20" id="wzv-Fo-sIv"/>
                         </constraints>
@@ -159,6 +177,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="O3N-54-8ki" id="Acf-w9-aGl"/>
+                        <outlet property="photoImageView" destination="hBP-3K-rW2" id="qsg-NO-oC4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2O-Wv-1HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
