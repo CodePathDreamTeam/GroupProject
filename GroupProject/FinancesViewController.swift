@@ -104,6 +104,15 @@ class FinancesViewController: DashBaseViewController {
         activityIndicator = nil
     }
 
+    // MARK: Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HistoricalCurrencyView" {
+            let destination = segue.destination as! HistoricalCurrencyViewController
+            destination.sourceCurrency = "USD"
+            destination.targetCurrency = "JPY"
+        }
+    }
 }
 
 extension FinancesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
