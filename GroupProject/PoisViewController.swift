@@ -73,8 +73,8 @@ extension PoisViewController: CLLocationManagerDelegate{
                     startedLoadingPOIs = true
                     
                     let loader = PlacesLoader()
-                    loader.loadPOIS(location: location, radius: 1000) { placesDict, error in
-                        if let dict = placesDict {
+                    loader.loadPOIS(location: location, radius: 1000) {[weak self] (placesDict) in
+                        if let dict = placesDict.value {
                             guard let placesArray = dict.object(forKey: "results") as? [NSDictionary] else { return }
                             
                             for placeDict in placesArray {
@@ -88,13 +88,14 @@ extension PoisViewController: CLLocationManagerDelegate{
                                 
                                 let place = Place(location: location, reference: reference, name: name, address: address)
                                 
-                                self.places.append(place)
+                                self?.places.append(place)
                                 
                                 let annotation = PlaceAnnotation(location: place.location!.coordinate, title: place.placeName)
                                 
                                 DispatchQueue.main.sync {
-                                    self.mapView.addAnnotation(annotation)
+                                    self?.mapView.addAnnotation(annotation)
                                 }
+                                
                             }
                         }
                     }
@@ -120,13 +121,13 @@ extension PoisViewController: AnnotationViewDelegate {
         
         if let annotation = annotationView.annotation as? Place {
             let placesLoader = PlacesLoader()
-            placesLoader.loadDetailInformation(forPlace: annotation) { resultDict, error in
+            placesLoader.loadDetailInformation(forPlace: annotation) { [weak self] (resultDict)  in
                 
-                if let infoDict = resultDict?.object(forKey: "result") as? NSDictionary {
+                if let infoDict = resultDict.value?.object(forKey: "result") as? NSDictionary {
                     annotation.phoneNumber = infoDict.object(forKey: "formatted_phone_number") as? String
                     annotation.website = infoDict.object(forKey: "website") as? String
                     
-                    self.showInfoView(forPlace: annotation)
+                    self?.showInfoView(forPlace: annotation)
                 }
             }
         }

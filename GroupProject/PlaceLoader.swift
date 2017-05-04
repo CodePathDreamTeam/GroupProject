@@ -13,7 +13,7 @@ struct PlacesLoader {
     let apiURL = "https://maps.googleapis.com/maps/api/place/"
     let apiKey = "AIzaSyC11OQ4loHbjXLhOaQl-zXJWDPPGbLcgts"
     
-    func loadPOIS(location: CLLocation, radius: Int = 30, handler: @escaping (NSDictionary?, NSError?) -> Void) {
+    func loadPOIS(location: CLLocation, radius: Int = 30, completionHandler: @escaping ((Result<NSDictionary>) -> Void))  {
         print("Load pois")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
@@ -24,21 +24,18 @@ struct PlacesLoader {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let dataTask = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error)
+                completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    print(data!)
-                    
                     do {
                         let responseObject = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         guard let responseDict = responseObject as? NSDictionary else {
                             return
                         }
-                        
-                        handler(responseDict, nil)
+                        completionHandler(Result.success(responseDict))
                         
                     } catch let error as NSError {
-                        handler(nil, error)
+                        completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
                     }
                 }
             }
@@ -47,7 +44,7 @@ struct PlacesLoader {
         dataTask.resume()
     }
     
-    func loadDetailInformation(forPlace: Place, handler: @escaping (NSDictionary?, NSError?) -> Void) {
+    func loadDetailInformation(forPlace: Place, completionHandler: @escaping ((Result<NSDictionary>) -> Void)) {
         
         let uri = apiURL + "details/json?reference=\(forPlace.reference)&sensor=true&key=\(apiKey)"
         
@@ -55,27 +52,23 @@ struct PlacesLoader {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let dataTask = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error)
+                completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    print(data!)
                     
                     do {
                         let responseObject = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         guard let responseDict = responseObject as? NSDictionary else {
                             return
                         }
-                        
-                        handler(responseDict, nil)
+                        completionHandler(Result.success(responseDict))//  responseDict, nil)
                         
                     } catch let error as NSError {
-                        handler(nil, error)
+                        completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
                     }
                 }
             }
         }
-        
         dataTask.resume()
-        
     }
 }

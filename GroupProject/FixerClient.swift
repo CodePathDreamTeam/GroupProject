@@ -33,11 +33,9 @@ class FixerClient {
                 } else {
                     completionHandler(Result.failure(APIError.InvalidData))
                 }
-
             } else {
                 completionHandler(Result.failure(APIError.DataUnavailable))
             }
-
             session.invalidateAndCancel()
         })
         task.resume()

@@ -6,7 +6,11 @@ target 'GroupProject' do
   use_frameworks!
 
   # Pods for GroupProject
-
+  pod 'AFNetworking', '~> 3.0'
+  
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
 
 end
