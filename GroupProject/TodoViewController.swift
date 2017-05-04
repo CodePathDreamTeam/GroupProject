@@ -9,29 +9,29 @@
 import Foundation
 import UIKit
 
-class TodoViewController: DashBaseViewController, UITableViewDataSource, UITableViewDelegate, TableViewCellDelegate {
+class TodoViewController: DashBaseViewController, TableViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     var toDoItems = [ToDoItem]()
     let pinchRecognizer = UIPinchGestureRecognizer()
+    let kRowHeight: CGFloat = 50.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pinchRecognizer.addTarget(self, action: #selector(TodoViewController.handlePinch(_:)))
         tableView.addGestureRecognizer(pinchRecognizer)
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.black
+        //tableView.separatorStyle = .none
+        //tableView.backgroundColor = UIColor.black
         tableView.rowHeight = 50
         
         if toDoItems.count > 0 {
             return
         }
+        
         toDoItems.append(ToDoItem(text: "task 1"))
         toDoItems.append(ToDoItem(text: "task 2"))
         toDoItems.append(ToDoItem(text: "task 3"))
@@ -44,119 +44,6 @@ class TodoViewController: DashBaseViewController, UITableViewDataSource, UITable
         toDoItems.append(ToDoItem(text: "task 10"))
         toDoItems.append(ToDoItem(text: "task 11"))
         toDoItems.append(ToDoItem(text: "task 12"))
-    }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDoItems.count
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        cell.selectionStyle = .none
-        cell.textLabel?.backgroundColor = UIColor.clear
-        let item = toDoItems[indexPath.row]
-        //            cell.textLabel?.text = item.text
-        cell.delegate = self
-        cell.toDoItem = item
-        return cell
-    }
-    
-    func cellDidBeginEditing(_ editingCell: TableViewCell) {
-        let editingOffset = tableView.contentOffset.y - editingCell.frame.origin.y as CGFloat
-        let visibleCells = tableView.visibleCells as! [TableViewCell]
-        for cell in visibleCells {
-            UIView.animate(withDuration: 0.3, animations: {() in
-                cell.transform = CGAffineTransform(translationX: 0, y: editingOffset)
-                if cell !== editingCell {
-                    cell.alpha = 0.3
-                }
-            })
-        }
-    }
-    
-    func cellDidEndEditing(_ editingCell: TableViewCell) {
-        let visibleCells = tableView.visibleCells as! [TableViewCell]
-        for cell: TableViewCell in visibleCells {
-            UIView.animate(withDuration: 0.3, animations: {() in
-                cell.transform = .identity
-                if cell !== editingCell {
-                    cell.alpha = 1.0
-                }
-            })
-        }
-        if editingCell.toDoItem!.text == "" {
-            toDoItemDeleted(editingCell.toDoItem!)
-        }
-    }
-    
-    func toDoItemDeleted(_ toDoItem: ToDoItem) {
-        // could use this to get index when Swift Array indexOfObject works
-        // let index = toDoItems.indexOfObject(toDoItem)
-        // in the meantime, scan the array to find index of item to delete
-        var index = 0
-        for i in 0..<toDoItems.count {
-            if toDoItems[i] === toDoItem {  // note: === not ==
-                index = i
-                break
-            }
-        }
-        // could removeAtIndex in the loop but keep it here for when indexOfObject works
-        toDoItems.remove(at: index)
-        
-        // loop over the visible cells to animate delete
-        let visibleCells = tableView.visibleCells as! [TableViewCell]
-        let lastView = visibleCells[visibleCells.count - 1] as TableViewCell
-        var delay = 0.0
-        var startAnimating = false
-        for i in 0..<visibleCells.count {
-            let cell = visibleCells[i]
-            if startAnimating {
-                UIView.animate(withDuration: 0.3, delay: delay, options: [],
-                               animations: {() in
-                                cell.frame = cell.frame.offsetBy(dx: 0.0, dy: -cell.frame.size.height)},
-                               completion: {(finished: Bool) in if (cell == lastView) {
-                                self.tableView.reloadData()
-                                }
-                }
-                )
-                delay += 0.03
-            }
-            if cell.toDoItem === toDoItem {
-                startAnimating = true
-                cell.isHidden = true
-            }
-        }
-        
-        // use the UITableView to animate the removal of this row
-        tableView.beginUpdates()
-        let indexPathForRow = IndexPath(row: index, section: 0)
-        tableView.deleteRows(at: [indexPathForRow], with: .fade)
-        tableView.endUpdates()
-    }
-    // MARK: - Table view delegate
-    
-    func colorForIndex(_ index: Int) -> UIColor {
-        let itemCount = toDoItems.count - 1
-        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-    }
-    
-    let kRowHeight: CGFloat = 50.0
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return kRowHeight
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
-                   forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = colorForIndex(indexPath.row)
     }
     
     // MARK: - pinch-to-add methods
@@ -363,6 +250,131 @@ class TodoViewController: DashBaseViewController, UITableViewDataSource, UITable
                 break
             }
         }
+    }
+}
+
+extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Table view data source
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return toDoItems.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        cell.selectionStyle = .none
+        cell.textLabel?.backgroundColor = UIColor.clear
+        let item = toDoItems[indexPath.row]
+        //            cell.textLabel?.text = item.text
+        cell.delegate = self
+        cell.toDoItem = item
+        return cell
+    }
+    
+    func cellDidBeginEditing(_ editingCell: TableViewCell) {
+        let editingOffset = tableView.contentOffset.y - editingCell.frame.origin.y as CGFloat
+        let visibleCells = tableView.visibleCells as! [TableViewCell]
+        for cell in visibleCells {
+            UIView.animate(withDuration: 0.3, animations: {() in
+                cell.transform = CGAffineTransform(translationX: 0, y: editingOffset)
+                if cell !== editingCell {
+                    cell.alpha = 0.3
+                }
+            })
+        }
+    }
+    
+    func cellDidEndEditing(_ editingCell: TableViewCell) {
+        let visibleCells = tableView.visibleCells as! [TableViewCell]
+        for cell: TableViewCell in visibleCells {
+            UIView.animate(withDuration: 0.3, animations: {() in
+                cell.transform = .identity
+                if cell !== editingCell {
+                    cell.alpha = 1.0
+                }
+            })
+        }
+        if editingCell.toDoItem!.text == "" {
+            toDoItemDeleted(editingCell.toDoItem!)
+        }
+    }
+    
+    func toDoItemDeleted(_ toDoItem: ToDoItem) {
+        // could use this to get index when Swift Array indexOfObject works
+        // let index = toDoItems.indexOfObject(toDoItem)
+        // in the meantime, scan the array to find index of item to delete
+        var index = 0
+        for i in 0..<toDoItems.count {
+            if toDoItems[i] === toDoItem {  // note: === not ==
+                index = i
+                break
+            }
+        }
+        // could removeAtIndex in the loop but keep it here for when indexOfObject works
+        toDoItems.remove(at: index)
+        
+        // loop over the visible cells to animate delete
+        let visibleCells = tableView.visibleCells as! [TableViewCell]
+        let lastView = visibleCells[visibleCells.count - 1] as TableViewCell
+        var delay = 0.0
+        var startAnimating = false
+        for i in 0..<visibleCells.count {
+            let cell = visibleCells[i]
+            if startAnimating {
+                UIView.animate(withDuration: 0.3, delay: delay, options: [],
+                               animations: {() in
+                                cell.frame = cell.frame.offsetBy(dx: 0.0, dy: -cell.frame.size.height)},
+                               completion: {(finished: Bool) in if (cell == lastView) {
+                                self.tableView.reloadData()
+                                }
+                }
+                )
+                delay += 0.03
+            }
+            if cell.toDoItem === toDoItem {
+                startAnimating = true
+                cell.isHidden = true
+            }
+        }
+        
+        // use the UITableView to animate the removal of this row
+        tableView.beginUpdates()
+        let indexPathForRow = IndexPath(row: index, section: 0)
+        tableView.deleteRows(at: [indexPathForRow], with: .fade)
+        tableView.endUpdates()
+    }
+    
+    func moveToBottom(_ toDoItem: ToDoItem) {
+        var index = 0
+        for i in 0..<toDoItems.count {
+            if toDoItems[i] === toDoItem {  // note: === not ==
+                index = i
+                break
+            }
+        }
+        toDoItems.remove(at: index)
+        toDoItems.append(toDoItem)
+        tableView.reloadData()
+        
+    }
+    // MARK: - Table view delegate
+    
+    func colorForIndex(_ index: Int) -> UIColor {
+        let itemCount = toDoItems.count - 1
+        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return kRowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = colorForIndex(indexPath.row)
     }
 }
 

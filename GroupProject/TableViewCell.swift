@@ -13,10 +13,13 @@ import QuartzCore
 protocol TableViewCellDelegate {
     // indicates that the given item has been deleted
     func toDoItemDeleted(_ todoItem: ToDoItem)
+    // move finished item to bottom
+    func moveToBottom(_ toDoItem: ToDoItem)
     // Indicates that the edit process has begun for the given cell
     func cellDidBeginEditing(_ editingCell: TableViewCell)
     // Indicates that the edit process has committed for the given cell
     func cellDidEndEditing(_ editingCell: TableViewCell)
+    
 }
 
 class TableViewCell: UITableViewCell, UITextFieldDelegate {
@@ -149,6 +152,7 @@ class TableViewCell: UITableViewCell, UITextFieldDelegate {
             } else if completeOnDragRelease {
                 if toDoItem != nil {
                     toDoItem!.completed = true
+                    delegate!.moveToBottom(toDoItem!)
                 }
                 label.strikeThrough = true
                 itemCompleteLayer.isHidden = false
