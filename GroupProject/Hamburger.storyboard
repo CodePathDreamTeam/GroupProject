@@ -118,17 +118,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjk-wl-V0t">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSq-mW-dti">
-                                        <rect key="frame" x="40" y="38" width="62" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Traveler!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSq-mW-dti">
+                                        <rect key="frame" x="16" y="17" width="158" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="J1V-ae-p2z">
+                                        <rect key="frame" x="127.5" y="60" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="SbA-4j-YNi"/>
+                                            <constraint firstAttribute="width" constant="120" id="TGT-DL-4vN"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="J1V-ae-p2z" firstAttribute="centerX" secondItem="sjk-wl-V0t" secondAttribute="centerX" id="Ijw-cw-ehc"/>
+                                    <constraint firstAttribute="bottom" secondItem="J1V-ae-p2z" secondAttribute="bottom" constant="20" id="YEG-jV-VX1"/>
+                                    <constraint firstItem="fSq-mW-dti" firstAttribute="leading" secondItem="sjk-wl-V0t" secondAttribute="leading" constant="16" id="dj1-EL-d98"/>
                                     <constraint firstAttribute="height" constant="200" id="gEA-oH-068"/>
+                                    <constraint firstItem="fSq-mW-dti" firstAttribute="top" secondItem="sjk-wl-V0t" secondAttribute="top" constant="17" id="kp0-Zu-KNO"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -152,4 +162,7 @@
             <point key="canvasLocation" x="-53.600000000000001" y="867.61619190404804"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="240" height="240"/>
+    </resources>
 </document>
