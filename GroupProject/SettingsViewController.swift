@@ -10,9 +10,17 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let userDefaults = UserDefaults.standard
+        if let savedName = userDefaults.string(forKey: "name") {
+            nameTextField.text = savedName
+        } else {
+            nameTextField.text = ""
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +32,23 @@ class SettingsViewController: UIViewController {
     @IBAction func onCancelButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onSaveButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    @IBAction func onEditingNameDidEnd(_ sender: Any) {
+        let newName = nameTextField.text
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(newName, forKey: "name")
+        userDefaults.synchronize()
+        print("New saved Name: \(userDefaults.string(forKey: "name"))")
+    }
+    
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(false)
+    }
+    
     /*
     // MARK: - Navigation
 

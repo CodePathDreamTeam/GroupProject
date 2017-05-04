@@ -16,16 +16,16 @@ class MenuViewController: UIViewController {
     private var todoNavController: UINavigationController!
     private var financesNaveController: UINavigationController!
     private var weatherStationNavController: UINavigationController!
-    private var photoJournalNavController: UINavigationController!
     private var poisNavController: UINavigationController!
     private var photoMapNavController: UINavigationController!
     private var theWallNavController: UINavigationController!
 
+    @IBOutlet weak var greetingLabel: UILabel!
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
-    let titles = ["Home","To-Do","Finances","Weather Station","Photo Journal","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
-
+    let titles = ["Home","To-Do","Finances","Weather Station","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
+    let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "checkbox"),#imageLiteral(resourceName: "calculator"),#imageLiteral(resourceName: "weather"),#imageLiteral(resourceName: "pin"),#imageLiteral(resourceName: "camera"),#imageLiteral(resourceName: "message")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,6 @@ class MenuViewController: UIViewController {
         let todoStoryboard = UIStoryboard(name: "Todo", bundle: nil)
         let financesStoryboard = UIStoryboard(name: "Finances", bundle: nil)
         let weatherStationStoryboard = UIStoryboard(name: "WeatherStation", bundle: nil)
-        let photoJournalStoryboard = UIStoryboard(name: "PhotoJournal", bundle: nil)
         let poisStoryboard = UIStoryboard(name: "Pois", bundle: nil)
         let photoMapStoryboard = UIStoryboard(name: "PhotoMap", bundle: nil)
         let theWallStoryboard = UIStoryboard(name: "TheWall", bundle: nil)
@@ -46,7 +45,6 @@ class MenuViewController: UIViewController {
         todoNavController = todoStoryboard.instantiateInitialViewController() as! UINavigationController
         financesNaveController = financesStoryboard.instantiateInitialViewController() as! UINavigationController
         weatherStationNavController = weatherStationStoryboard.instantiateInitialViewController() as! UINavigationController
-        photoJournalNavController = photoJournalStoryboard.instantiateInitialViewController() as! UINavigationController
         poisNavController = poisStoryboard.instantiateInitialViewController() as! UINavigationController
         photoMapNavController = photoMapStoryboard.instantiateInitialViewController() as! UINavigationController
         theWallNavController = theWallStoryboard.instantiateInitialViewController() as! UINavigationController
@@ -55,12 +53,16 @@ class MenuViewController: UIViewController {
         viewControllers.append(todoNavController)
         viewControllers.append(financesNaveController)
         viewControllers.append(weatherStationNavController)
-        viewControllers.append(photoJournalNavController)
         viewControllers.append(poisNavController)
         viewControllers.append(photoMapNavController)
         viewControllers.append(theWallNavController)
         
         hamburgerViewController.contentViewController = homeNavController
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        greetingLabel.layer.cornerRadius = 8.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,8 +83,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+//        cell.textLabel?.text = titles[indexPath.row]
+        cell.cellLabel?.text = titles[indexPath.row]
+        cell.iconImageView?.image = icons[indexPath.row]
         
         return cell
     }

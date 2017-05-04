@@ -10,7 +10,9 @@ import UIKit
 
 class WeatherStationViewController: DashBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     var weatherForecasts: [WeatherForecast]?
     
     override func viewDidLoad() {
@@ -19,17 +21,33 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
-        WeatherClient.sharedInstance.getForecast10Day(city: "San_Francisco", completionHandler: { (response) in
-            if let weatherForecasts = response as? [WeatherForecast] {
-                self.weatherForecasts = weatherForecasts
-                print("it worked!")
-                self.tableView.reloadData()
+        let defaults = UserDefaults.standard
+        var defaultsLatitude = defaults.string(forKey: "latitude")
+        var defaultsLongitude = defaults.string(forKey: "longitude")
+        if defaultsLatitude == nil || defaultsLongitude == nil {
+            print("Using default SF coordinates")
+            defaultsLatitude = "37.7749"
+            defaultsLongitude = "-122.4194"
+        }
+        print("coordinates: \(defaultsLatitude), \(defaultsLongitude)")
+        WeatherClient.sharedInstance.getForecast10Day(latitude: defaultsLatitude!, longitude: defaultsLongitude!,completionHandler: { (response) in
+            DispatchQueue.main.async {
+                if let weatherForecasts = response as? [WeatherForecast] {
+                    self.weatherForecasts = weatherForecasts
+                    print("it worked!")
+                    if let location = defaults.string(forKey: "address") {
+                        self.locationLabel.text = location
+                    }
+                    self.tableView.reloadData()
+                }
             }
+            
         })
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

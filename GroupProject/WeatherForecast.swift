@@ -11,6 +11,7 @@ import UIKit
 class WeatherForecast: NSObject {
 
     var day: String?
+    var tempCurr: String?
     var tempHigh: String?
     var tempLow: String?
     var conditions: String?
@@ -26,8 +27,16 @@ class WeatherForecast: NSObject {
         if let low = dictionary["low"] as? NSDictionary {
             tempLow = low["fahrenheit"] as? String
         }
-        conditions = dictionary["conditions"] as? String
+        if let cond = dictionary["conditions"] as? String {
+            conditions = cond
+        }
         rawDictionary = dictionary
+    }
+    
+    init(temp: String, weather: String){
+        tempCurr = temp
+        conditions = weather
+        
     }
     
     class func weatherForecastsWith(array: [NSDictionary]) -> [WeatherForecast]{

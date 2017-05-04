@@ -10,28 +10,34 @@ import Foundation
 
 class FixerClient {
     
-    let baseUrl = "https://api.fixer.io/latest?base="
+    let latestCurrencyRatesUrl = "https://api.fixer.io/latest"
     
-    static let sharedInstance = FixerClient()
+    static let shared = FixerClient()
     
-    func getRates(home: String, destination: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
-        let urlString = baseUrl + home
-        let nsURL = URL(string: urlString)!
+    func getCurrencyRate(for target: String, relativeTo source: String, completionHandler: @escaping ((Result<Double>) -> Void)) {
+
+        let urlStr = "\(latestCurrencyRatesUrl)?base=\(source)&symbols=\(target)"
+        let url = URL(string: urlStr)!
         let session = URLSession.shared
-        let task = session.dataTask(with: nsURL, completionHandler: { data, response, error -> Void in
-            if error != nil{
-                completionHandler(error as AnyObject)
-            }
-            if data != nil {
+        let task = session.dataTask(with: url, completionHandler: { data, response, error -> Void in
+
+            if error != nil {
+                completionHandler(Result.failure(APIError.RemoteError(error?.localizedDescription)))
+
+            } else if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
-                //print(jsonData)
-                if let rates = jsonData["rates"] as? [String:AnyObject] {
-                    completionHandler(rates[destination]!)
+
+                if let rates = jsonData["rates"] as? [String:AnyObject],
+                    let targetRate = rates[target] as? Double {
+                    completionHandler(Result.success(targetRate))
                 } else {
-                //print(jsonData["Results"] as? NSDictionary[destination])
-                completionHandler(1 as AnyObject)
+                    completionHandler(Result.failure(APIError.InvalidData))
                 }
+
+            } else {
+                completionHandler(Result.failure(APIError.DataUnavailable))
             }
+
             session.invalidateAndCancel()
         })
         task.resume()
