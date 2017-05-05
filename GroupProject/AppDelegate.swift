@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import GooglePlaces
-
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let parseConfig = ParseClientConfiguration { (ParseMutableClientConfiguration) in
+            
+            ParseMutableClientConfiguration.applicationId = "trippinAppID" //testparsebca
+            ParseMutableClientConfiguration.clientKey = "trippinMasterKey"//mykey
+            ParseMutableClientConfiguration.server = "http://trippincodepath.herokuapp.com/parse"//"http://testparsebca.herokuapp.com/parse"
+        }
+        
+        Parse.initialize(with: parseConfig)
         
         GMSPlacesClient.provideAPIKey("AIzaSyC11OQ4loHbjXLhOaQl-zXJWDPPGbLcgts")
         return true

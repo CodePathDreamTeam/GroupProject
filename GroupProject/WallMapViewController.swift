@@ -4,7 +4,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class WallMapViewController: UIViewController {
+class WallMapViewController: DashBaseViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     var targets = [ARItem]()
@@ -61,7 +61,7 @@ extension WallMapViewController: MKMapViewDelegate {
                         viewController.target = mapAnnotation.item
                         viewController.userLocation = mapView.userLocation.location!
                         selectedAnnotation = view.annotation
-                        self.present(viewController, animated: true, completion: nil)
+                        self.navigationController?.pushViewController(viewController, animated: true)
                     }
                 }
             }

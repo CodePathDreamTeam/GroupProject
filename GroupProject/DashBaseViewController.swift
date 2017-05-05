@@ -24,5 +24,4 @@ class DashBaseViewController: UIViewController {
     @IBAction func openHamburgerMenu(_ sender: UIBarButtonItem) {
         HamburgerViewController.sharedInstance.moveMenu()
     }
-
 }
