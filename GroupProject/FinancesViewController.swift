@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FinancesViewController: DashBaseViewController {
+class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var importTextLabel: UILabel!
 
@@ -18,6 +18,31 @@ class FinancesViewController: DashBaseViewController {
         super.viewDidLoad()
     }
 
+    // MARK: Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HistoricalCurrencyView" {
+            let destination = segue.destination as! ReceiptsViewController
+            destination.sourceCurrency = "USD"
+            destination.targetCurrency = "JPY"
+        }
+    }
+}
+
+extension FinancesViewController: UIImagePickerControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let scaledImage = scale(image: selectedPhoto, maxDimension: 640)
+
+        addActivityIndicator()
+
+        dismiss(animated:true, completion: {
+            self.performImageRecognition(scaledImage)
+        })
+    }
+
+    // Import currency amounts for conversion
     @IBAction func importImage(_ sender: AnyObject) {
         view.endEditing(true)
 
@@ -52,6 +77,7 @@ class FinancesViewController: DashBaseViewController {
         present(imagePickerActionSheet, animated: true, completion: nil)
     }
 
+    // Tesseract conversion of image to text
     func performImageRecognition(_ image: UIImage) {
 
         let tesseract = G8Tesseract()
@@ -68,6 +94,7 @@ class FinancesViewController: DashBaseViewController {
         removeActivityIndicator()
     }
 
+    // Scaling image for better recognition
     func scale(image: UIImage, maxDimension: CGFloat) -> UIImage {
 
         var scaledSize = CGSize(width: maxDimension, height: maxDimension)
@@ -91,6 +118,7 @@ class FinancesViewController: DashBaseViewController {
         return scaledImage
     }
 
+    // Activity Progress indicators while processing image
     func addActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: view.bounds)
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
@@ -102,29 +130,5 @@ class FinancesViewController: DashBaseViewController {
     func removeActivityIndicator() {
         activityIndicator.removeFromSuperview()
         activityIndicator = nil
-    }
-
-    // MARK: Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "HistoricalCurrencyView" {
-            let destination = segue.destination as! ReceiptsViewController
-            destination.sourceCurrency = "USD"
-            destination.targetCurrency = "JPY"
-        }
-    }
-}
-
-extension FinancesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let scaledImage = scale(image: selectedPhoto, maxDimension: 640)
-
-        addActivityIndicator()
-
-        dismiss(animated:true, completion: {
-            self.performImageRecognition(scaledImage)
-        })
     }
 }
