@@ -28,8 +28,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ll-fC-p2E">
-                                <rect key="frame" x="121" y="617" width="132" height="30"/>
-                                <state key="normal" title="Historical Currency"/>
+                                <rect key="frame" x="137" y="617" width="101" height="30"/>
+                                <state key="normal" title="Expense Chart"/>
                                 <connections>
                                     <segue destination="1XY-BB-bRN" kind="show" identifier="HistoricalCurrencyView" id="cLA-2w-yPQ"/>
                                 </connections>
@@ -75,7 +75,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-73-iRw" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-73-iRw" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,7 +96,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yzV-Bd-LK1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f2J-yB-v6t">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f2J-yB-v6t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

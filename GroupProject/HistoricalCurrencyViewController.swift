@@ -11,94 +11,75 @@ import Charts
 
 class HistoricalCurrencyViewController: UIViewController, ChartViewDelegate {
     
-    @IBOutlet weak var chartView: LineChartView!
+    @IBOutlet weak var chartView: PieChartView!
 
     var sourceCurrency: String!
     var targetCurrency: String!
+
+    let category = ["Food","Logistics","Entertainment","Misc."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Setup Chart View
         chartView.delegate = self
-        chartView.setViewPortOffsets(left: 0, top: 20, right: 0, bottom: 0)
-        chartView.backgroundColor = .white
-        chartView.chartDescription?.enabled = false
-        chartView.dragEnabled = true
-        chartView.setScaleEnabled(true)
-        chartView.pinchZoomEnabled = false
-        chartView.drawGridBackgroundEnabled = false
-        chartView.maxHighlightDistance = 300.0
-        chartView.xAxis.enabled = false
 
-        let yAxis = chartView.leftAxis
-        yAxis.labelFont = UIFont.boldSystemFont(ofSize: 12.0)
-        yAxis.setLabelCount(6, force: false)
-        yAxis.labelTextColor = .black
-        yAxis.labelPosition = .insideChart
-        yAxis.drawGridLinesEnabled = false
-        yAxis.axisLineColor = .black
+        let legend = chartView.legend
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = false
+        legend.xEntrySpace = 7.0
+        legend.yEntrySpace = 0.0
+        legend.yOffset = 0.0
 
-        chartView.rightAxis.enabled = true
-        chartView.legend.enabled = true
+        chartView.entryLabelColor = .white
+        chartView.entryLabelFont = UIFont.systemFont(ofSize: 12.0)
 
         // Need to be replaced with remote API call
-        setData(count: 20, range: 5)
+        setData(range: 5)
 
-        chartView.animate(xAxisDuration: 2.0)
+        // Animate and render chart
+        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeOutCirc)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    func setData(range: Double) {
 
-    func setData(count: Int, range: Double) {
+        var values = Array<PieChartDataEntry>()
 
-        var yVals1 = Array<ChartDataEntry>()
-
-        for i in 0..<count {
-            let val = Double(arc4random_uniform(UInt32(range + 1))) + 20.0
-            yVals1.append(ChartDataEntry(x: Double(i), y: val))
+        for i in 0..<category.count {
+            values.append(PieChartDataEntry(value: (Double(arc4random_uniform(UInt32(range))) + range/5), label: category[i]))
         }
 
-        let set1: LineChartDataSet!
+        let dataset = PieChartDataSet(values: values, label: "Trip Expenses")
 
-        if chartView.data != nil && chartView.data!.dataSetCount > 0 {
-            set1 = chartView.data?.dataSets.first as! LineChartDataSet
-            set1.values = yVals1
-            chartView.data?.notifyDataChanged()
-            chartView.notifyDataSetChanged()
-        } else {
-            set1 = LineChartDataSet(values: yVals1, label: "DataSet 1")
-            set1.mode = .linear
-            set1.drawCirclesEnabled = true
-            set1.drawValuesEnabled = true
-            set1.lineWidth = 1.8
-            set1.circleRadius = 4.0
-            set1.setCircleColor(.black)
-            set1.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
-            set1.setColor(.black)
-            set1.fillColor = .black
-            set1.fillAlpha = 1.0
-            set1.drawHorizontalHighlightIndicatorEnabled = false
+        dataset.drawIconsEnabled = false
+        dataset.sliceSpace = 2.0
+        dataset.iconsOffset = CGPoint(x: 0, y: 40)
 
-            let data = LineChartData(dataSet: set1)
-            data.setValueFont(UIFont.systemFont(ofSize: 9.0))
-            data.setDrawValues(false)
+        let colors = NSMutableArray()
+        colors.addObjects(from: ChartColorTemplates.vordiplom())
+        colors.addObjects(from: ChartColorTemplates.joyful())
+        colors.addObjects(from: ChartColorTemplates.colorful())
+        colors.addObjects(from: ChartColorTemplates.liberty())
+        colors.addObjects(from: ChartColorTemplates.pastel())
+        colors.addObjects(from: [UIColor(red: 51/255, green:181/255, blue:229/255, alpha:1)])
 
-            chartView.data = data
-        }
+        dataset.colors = colors as! [NSUIColor]
+
+        let data = PieChartData(dataSet: dataset)
+
+        let percentFormatter = NumberFormatter()
+        percentFormatter.numberStyle = .percent
+        percentFormatter.maximumFractionDigits = 1
+        percentFormatter.multiplier = 1.0
+        percentFormatter.percentSymbol = " %"
+
+        data.setValueFormatter(DefaultValueFormatter(formatter: percentFormatter))
+        data.setValueFont(UIFont.systemFont(ofSize: 11.0))
+        data.setValueTextColor(.black)
+
+        chartView.data = data
+        chartView.highlightValues(nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
