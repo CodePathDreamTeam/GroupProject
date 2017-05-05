@@ -22,15 +22,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-Hb-IW9">
-                                <rect key="frame" x="143.5" y="72" width="87.5" height="20.5"/>
+                                <rect key="frame" x="143.5" y="576.5" width="87.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ll-fC-p2E">
+                                <rect key="frame" x="137" y="617" width="101" height="30"/>
+                                <state key="normal" title="Expense Chart"/>
+                                <connections>
+                                    <segue destination="1XY-BB-bRN" kind="show" identifier="HistoricalCurrencyView" id="cLA-2w-yPQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iqb-Hb-IW9" firstAttribute="top" secondItem="FWS-91-ASm" secondAttribute="bottom" constant="8" id="Ui4-mT-oyJ"/>
+                            <constraint firstItem="Znz-Da-cAn" firstAttribute="top" secondItem="8ll-fC-p2E" secondAttribute="bottom" constant="20" id="2qo-25-ZHd"/>
+                            <constraint firstItem="8ll-fC-p2E" firstAttribute="centerX" secondItem="PU6-jU-7I1" secondAttribute="centerX" id="MZ4-bb-Gcu"/>
+                            <constraint firstItem="8ll-fC-p2E" firstAttribute="top" secondItem="iqb-Hb-IW9" secondAttribute="bottom" constant="20" id="bte-Vr-SLJ"/>
                             <constraint firstItem="iqb-Hb-IW9" firstAttribute="centerX" secondItem="PU6-jU-7I1" secondAttribute="centerX" id="vNf-yL-Gmj"/>
                         </constraints>
                     </view>
@@ -40,7 +49,7 @@
                                 <action selector="openHamburgerMenu:" destination="kU4-Oe-HOg" id="t9L-Nn-fqe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Import" id="wjQ-A6-RRG">
+                        <barButtonItem key="rightBarButtonItem" image="camera" id="wjQ-A6-RRG">
                             <connections>
                                 <action selector="importImage:" destination="kU4-Oe-HOg" id="e3z-DA-MMv"/>
                             </connections>
@@ -54,12 +63,40 @@
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="123.68815592203899"/>
         </scene>
+        <!--Receipts View Controller-->
+        <scene sceneID="xOH-jY-hUv">
+            <objects>
+                <viewController storyboardIdentifier="ReceiptsViewController" id="1XY-BB-bRN" customClass="ReceiptsViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dwv-Fu-BdV"/>
+                        <viewControllerLayoutGuide type="bottom" id="G2S-WD-O27"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Dj-QX-wIm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-73-iRw" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="7Ih-73-iRw" id="mYR-kw-5MU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ke-qP-NDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="123.68815592203899"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="CpS-eb-n1t">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yzV-Bd-LK1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f2J-yB-v6t">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="f2J-yB-v6t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -73,4 +110,7 @@
             <point key="canvasLocation" x="-50.399999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="35" height="35"/>
+    </resources>
 </document>

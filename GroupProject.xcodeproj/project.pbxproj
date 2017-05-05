@@ -67,6 +67,8 @@
 		39E226081EAF20330064C27F /* hdar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E225FE1EAF20330064C27F /* hdar_close.png */; };
 		39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E225FF1EAF20330064C27F /* hdar_close@2x.png */; };
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
+		39F84D721EBBED6F00BAE34F /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */; };
+		39F84D761EBC111400BAE34F /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D751EBC111400BAE34F /* Receipt.swift */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CB6CC3471EBB910400351372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6CC3461EBB910400351372 /* Assets.xcassets */; };
@@ -139,6 +141,8 @@
 		39E225FE1EAF20330064C27F /* hdar_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hdar_close.png; sourceTree = "<group>"; };
 		39E225FF1EAF20330064C27F /* hdar_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@2x.png"; sourceTree = "<group>"; };
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
+		39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsViewController.swift; sourceTree = "<group>"; };
+		39F84D751EBC111400BAE34F /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				3909F0BD1EB3017800029E44 /* WallViewController.swift */,
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
 				3958077E1EB6D57500EAE714 /* FullImageViewController.swift */,
+				39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				3909F0BF1EB301C600029E44 /* ARItem.swift */,
 				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
 				3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */,
+				39F84D751EBC111400BAE34F /* Receipt.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -490,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -513,6 +519,7 @@
 				39E225D61EAF159A0064C27F /* WeatherStationViewController.swift in Sources */,
 				39E226041EAF20330064C27F /* ARTrackingManager.swift in Sources */,
 				3909F0C21EB3020A00029E44 /* WallMapAnnotation.swift in Sources */,
+				39F84D721EBBED6F00BAE34F /* ReceiptsViewController.swift in Sources */,
 				3954F5DC1EB1BDC500C234F2 /* TodoViewController.swift in Sources */,
 				394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */,
 				39E225F01EAF1FFB0064C27F /* Place.swift in Sources */,
@@ -537,6 +544,7 @@
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
+				39F84D761EBC111400BAE34F /* Receipt.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
 				3958077D1EB441F000EAE714 /* PhotoMap.xcdatamodeld in Sources */,
 				39E226031EAF20330064C27F /* ARConfiguration.swift in Sources */,

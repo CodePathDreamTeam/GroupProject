@@ -7,21 +7,89 @@
 //
 
 import UIKit
+import Parse
 
 class WriteOnWallViewController: UIViewController {
-
+    
+    @IBOutlet weak var messageTF: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var messages = [PFObject]()
+    var currentLocation: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let query = PFQuery(className: currentLocation)
+        //query.whereKey(currentLocation, equalTo: currentLocation)
+        query.includeKey("text")
+        query.addDescendingOrder("createdAt")
+        query.findObjectsInBackground(){
+            (objects: [PFObject]?, error: Error?) -> Void in
+            
+            if error == nil {
+                // The find succeeded.
+                
+                self.messages = objects!
+                self.tableView.reloadData()
+                
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.localizedDescription)")
+            }
+        }
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func onBackButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onSendMessage(_ sender: UIButton) {
+        if messageTF.text == "" {
+            return
+        }
+        
+        let message = PFObject(className: currentLocation)
+        message["text"] = messageTF.text
+        //message["user"] = PFUser.current()
+        //message["location"] = currentLocation
+        message.saveInBackground {
+            (success: Bool, error: Error?) -> Void in
+            if (success) {
+                self.messages.insert(message, at: 0)
+                self.tableView.reloadData()
+                print("saved")
+                // The object has been saved.
+            } else {
+                print("not saved")
+                // There was a problem, check error.description
+            }
+        }
+    }
+}
+
+extension WriteOnWallViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell")
+        
+        cell?.textLabel?.text = messages[indexPath.row]["text"] as! String
+        if let user = messages[indexPath.row].createdAt as? String{
+            cell?.detailTextLabel?.text = user
+        }
+        return cell!
     }
 }
