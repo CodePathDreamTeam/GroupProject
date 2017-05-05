@@ -12,5 +12,6 @@ target 'GroupProject' do
   pod 'GooglePlacePicker'
   pod 'GoogleMaps'
   pod 'Charts'
+  pod 'Parse'
 
 end

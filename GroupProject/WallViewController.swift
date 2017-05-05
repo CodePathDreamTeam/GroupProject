@@ -172,24 +172,26 @@ class WallViewController: UIViewController {
         self.target.itemNode = node
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "wallSegue" {
+            let navController = segue.destination as! UINavigationController
+            let writeOn = navController.topViewController as! WriteOnWallViewController
+            writeOn.currentLocation = target.itemDescription
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //1
         let touch = touches.first!
         let location = touch.location(in: sceneView)
         let hitResult = sceneView.hitTest(location, options: nil)
-//        let fireBall = SCNParticleSystem(named: "Fireball.scnp", inDirectory: nil)
-//        
-//        let emitterNode = SCNNode()
-//        emitterNode.position = SCNVector3(x: 0, y: -5, z: 10)
-//        emitterNode.addParticleSystem(fireBall!)
-//        scene.rootNode.addChildNode(emitterNode)
         
         if hitResult.first != nil {
             
-
+            //target.itemDescription
+            
             performSegue(withIdentifier: "wallSegue", sender: self)
             
-
+            
         } else {
             print("no touch zone")
         }
