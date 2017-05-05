@@ -21,6 +21,7 @@ class WriteOnWallViewController: UIViewController {
         super.viewDidLoad()
         
         let query = PFQuery(className: currentLocation)
+        //query.whereKey(currentLocation, equalTo: currentLocation)
         query.includeKey("text")
         query.addDescendingOrder("createdAt")
         query.findObjectsInBackground(){
@@ -58,11 +59,13 @@ class WriteOnWallViewController: UIViewController {
         let message = PFObject(className: currentLocation)
         message["text"] = messageTF.text
         //message["user"] = PFUser.current()
-        message["location"] = currentLocation
+        //message["location"] = currentLocation
         message.saveInBackground {
             (success: Bool, error: Error?) -> Void in
             if (success) {
-                print("save")
+                self.messages.insert(message, at: 0)
+                self.tableView.reloadData()
+                print("saved")
                 // The object has been saved.
             } else {
                 print("not saved")
@@ -84,7 +87,7 @@ extension WriteOnWallViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell")
         
         cell?.textLabel?.text = messages[indexPath.row]["text"] as! String
-        if let user = messages[indexPath.row]["user"] as? String{
+        if let user = messages[indexPath.row].createdAt as? String{
             cell?.detailTextLabel?.text = user
         }
         return cell!
