@@ -1,5 +1,5 @@
 //
-//  HistoricalCurrencyViewController.swift
+//  ReceiptsViewController.swift
 //  GroupProject
 //
 //  Created by Nana on 5/4/17.
@@ -9,14 +9,12 @@
 import UIKit
 import Charts
 
-class HistoricalCurrencyViewController: UIViewController, ChartViewDelegate {
+class ReceiptsViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var chartView: PieChartView!
 
     var sourceCurrency: String!
     var targetCurrency: String!
-
-    let category = ["Food","Logistics","Entertainment","Misc."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +45,8 @@ class HistoricalCurrencyViewController: UIViewController, ChartViewDelegate {
 
         var values = Array<PieChartDataEntry>()
 
-        for i in 0..<category.count {
-            values.append(PieChartDataEntry(value: (Double(arc4random_uniform(UInt32(range))) + range/5), label: category[i]))
+        for i in 0..<ReceiptCategory.count {
+            values.append(PieChartDataEntry(value: (Double(arc4random_uniform(UInt32(range))) + range/5), label: ReceiptCategory.categoryNames[i]))
         }
 
         let dataset = PieChartDataSet(values: values, label: "Trip Expenses")

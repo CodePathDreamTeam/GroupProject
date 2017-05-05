@@ -108,7 +108,7 @@ class FinancesViewController: DashBaseViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HistoricalCurrencyView" {
-            let destination = segue.destination as! HistoricalCurrencyViewController
+            let destination = segue.destination as! ReceiptsViewController
             destination.sourceCurrency = "USD"
             destination.targetCurrency = "JPY"
         }

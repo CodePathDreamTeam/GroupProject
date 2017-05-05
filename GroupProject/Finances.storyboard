@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="123.68815592203899"/>
         </scene>
-        <!--Historical Currency View Controller-->
+        <!--Receipts View Controller-->
         <scene sceneID="xOH-jY-hUv">
             <objects>
-                <viewController storyboardIdentifier="HistoricalCurrencyViewController" id="1XY-BB-bRN" customClass="HistoricalCurrencyViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReceiptsViewController" id="1XY-BB-bRN" customClass="ReceiptsViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dwv-Fu-BdV"/>
                         <viewControllerLayoutGuide type="bottom" id="G2S-WD-O27"/>
