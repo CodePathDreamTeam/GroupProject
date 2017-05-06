@@ -13,6 +13,7 @@
 		3909F0C21EB3020A00029E44 /* WallMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */; };
 		3909F0C41EB3028100029E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3909F0C31EB3028100029E44 /* art.scnassets */; };
 		3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */; };
+		390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */; };
 		3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */; };
 		39452CEB1EB6BE2E00DE9080 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */; };
 		39452CEE1EB6BEC700DE9080 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 39452CED1EB6BEC700DE9080 /* tessdata */; };
@@ -71,7 +72,6 @@
 		39F84D761EBC111400BAE34F /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D751EBC111400BAE34F /* Receipt.swift */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
-		CB6CC3471EBB910400351372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6CC3461EBB910400351372 /* Assets.xcassets */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +84,7 @@
 		3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallMapAnnotation.swift; sourceTree = "<group>"; };
 		3909F0C31EB3028100029E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteOnWallViewController.swift; sourceTree = "<group>"; };
+		390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		39452CED1EB6BEC700DE9080 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
-		CB6CC3461EBB910400351372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GroupProject/Assets.xcassets; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,6 +226,7 @@
 				3909F0BF1EB301C600029E44 /* ARItem.swift */,
 				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
 				39F84D751EBC111400BAE34F /* Receipt.swift */,
+				390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */,
 				3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */,
 			);
 			name = Model;
@@ -263,7 +264,6 @@
 		394601F71EAD33DD00BAAC4F = {
 			isa = PBXGroup;
 			children = (
-				CB6CC3461EBB910400351372 /* Assets.xcassets */,
 				394602021EAD33DD00BAAC4F /* GroupProject */,
 				394602011EAD33DD00BAAC4F /* Products */,
 				4E99EA5F587885EEA8717B46 /* Pods */,
@@ -432,7 +432,6 @@
 				3909F0C41EB3028100029E44 /* art.scnassets in Resources */,
 				39E225D41EAF15540064C27F /* WeatherStation.storyboard in Resources */,
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
-				CB6CC3471EBB910400351372 /* Assets.xcassets in Resources */,
 				39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */,
 				39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */,
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
@@ -535,6 +534,7 @@
 				3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */,
 				3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */,
 				3909F0BC1EB3014C00029E44 /* WallMapViewController.swift in Sources */,
+				390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */,
 				39934DB51EBB0D3A00D54797 /* NetworkHelpers.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
