@@ -29,7 +29,7 @@
 		3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */; };
 		3954F5E21EB1BF1600C234F2 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */; };
 		3954F5E41EB1C4A300C234F2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */; };
-		3958077D1EB441F000EAE714 /* PhotoMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */; };
+		3958077D1EB441F000EAE714 /* CustomEntities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */; };
 		3958077F1EB6D57500EAE714 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3958077E1EB6D57500EAE714 /* FullImageViewController.swift */; };
 		396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396FDEAB1EB04729005657BB /* WeatherClient.swift */; };
 		396FDEAE1EB0549D005657BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396FDEAD1EB0549D005657BB /* MapKit.framework */; };
@@ -103,7 +103,7 @@
 		3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
 		3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		3958077C1EB441F000EAE714 /* PhotoMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoMap.xcdatamodel; sourceTree = "<group>"; };
+		3958077C1EB441F000EAE714 /* CustomEntities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CustomEntities.xcdatamodel; sourceTree = "<group>"; };
 		3958077E1EB6D57500EAE714 /* FullImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 		396FDEAB1EB04729005657BB /* WeatherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		396FDEAD1EB0549D005657BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -225,8 +225,8 @@
 				3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */,
 				3909F0BF1EB301C600029E44 /* ARItem.swift */,
 				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
-				3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */,
 				39F84D751EBC111400BAE34F /* Receipt.swift */,
+				3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -546,7 +546,7 @@
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
 				39F84D761EBC111400BAE34F /* Receipt.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
-				3958077D1EB441F000EAE714 /* PhotoMap.xcdatamodeld in Sources */,
+				3958077D1EB441F000EAE714 /* CustomEntities.xcdatamodeld in Sources */,
 				39E226031EAF20330064C27F /* ARConfiguration.swift in Sources */,
 				39D762DE1EADB2A8000ED44F /* FixerClient.swift in Sources */,
 			);
@@ -748,13 +748,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3958077B1EB441F000EAE714 /* PhotoMap.xcdatamodeld */ = {
+		3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3958077C1EB441F000EAE714 /* PhotoMap.xcdatamodel */,
+				3958077C1EB441F000EAE714 /* CustomEntities.xcdatamodel */,
 			);
-			currentVersion = 3958077C1EB441F000EAE714 /* PhotoMap.xcdatamodel */;
-			path = PhotoMap.xcdatamodeld;
+			currentVersion = 3958077C1EB441F000EAE714 /* CustomEntities.xcdatamodel */;
+			path = CustomEntities.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

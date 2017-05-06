@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
+    
+    var userPhoto: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class SettingsViewController: UIViewController {
             nameTextField.text = ""
         }
         // Do any additional setup after loading the view.
+        loadFromCoreData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +86,53 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         photoImageView.image = editedImage
         print("got the image")
         
+        self.update(photo: editedImage)
+        
         dismiss(animated: true, completion: nil)
+    }
+    
+    func update(photo: UIImage) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
+        do {
+            let fetchedPhotoData = try managedContext.fetch(fetchRequest)
+            for photoData in fetchedPhotoData {
+                managedContext.delete(photoData)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        let contextUserPhoto = UserPhoto(context: managedContext)
+        contextUserPhoto.photoImage  = (UIImagePNGRepresentation(photo)! as NSData)
+        
+        appDelegate.saveContext()
+        print("appDelegate.saveContext() for userPhoto")
+
+    }
+    
+    func loadFromCoreData() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
+        do {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchedPhotoData = try managedContext.fetch(fetchRequest)
+            print(fetchedPhotoData.count)
+            if let photoData = fetchedPhotoData[0] as? UserPhoto {
+                if let userPhotoData = photoData.photoImage as? Data {
+                    userPhoto = UIImage(data: userPhotoData)
+                    photoImageView.image = userPhoto
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }
