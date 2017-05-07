@@ -5,7 +5,7 @@
         <attribute name="photoLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="photoURLString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Receipt" representedClassName="Receipt" syncable="YES" codeGenerationType="class">
+    <entity name="Receipts" representedClassName="Receipts" syncable="YES" codeGenerationType="class">
         <attribute name="imageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="localCurrencyAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="localCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +18,7 @@
     </entity>
     <elements>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Receipts" positionX="-63" positionY="9" width="128" height="135"/>
         <element name="UserPhoto" positionX="-63" positionY="9" width="128" height="60"/>
-        <element name="Receipt" positionX="-63" positionY="9" width="128" height="135"/>
     </elements>
 </model>
