@@ -21,13 +21,15 @@ Optional user stories:
 
 How to use:
 
-
+[![GeoJournalGif.gif](https://gifyu.com/images/GeoJournalGif.gif)](https://gifyu.com/image/bHtx)
  
 Notes/Problems:
 
 
 
 Walkthrough of all user stories:
+
+Points Of Interest
 
 
 
