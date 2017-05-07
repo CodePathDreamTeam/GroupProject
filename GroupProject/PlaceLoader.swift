@@ -24,7 +24,7 @@ struct PlacesLoader {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let dataTask = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
+                completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
@@ -35,7 +35,7 @@ struct PlacesLoader {
                         completionHandler(Result.success(responseDict))
                         
                     } catch let error as NSError {
-                        completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
+                        completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
                     }
                 }
             }
@@ -52,7 +52,7 @@ struct PlacesLoader {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let dataTask = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
+                completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     
@@ -64,7 +64,7 @@ struct PlacesLoader {
                         completionHandler(Result.success(responseDict))//  responseDict, nil)
                         
                     } catch let error as NSError {
-                        completionHandler(Result.failure(APIError.RemoteError(error.localizedDescription)))
+                        completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
                     }
                 }
             }

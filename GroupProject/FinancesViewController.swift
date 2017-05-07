@@ -8,14 +8,118 @@
 
 import UIKit
 
-class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate {
+class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var sourceImageView: UIImageView!
+    @IBOutlet weak var sourceCurrencyCodeLabel: UILabel!
+    @IBOutlet weak var sourceCurrencyNameLabel: UILabel!
+    @IBOutlet weak var sourceAmountField: UITextField!
+
+    @IBOutlet weak var targetImageView: UIImageView!
+    @IBOutlet weak var targetCurrencyCodeLabel: UILabel!
+    @IBOutlet weak var targetCurrencyNameLabel: UILabel!
+    @IBOutlet weak var targetAmountField: UITextField!
+
+    // TODO: Temp outlet, to be removed.
     @IBOutlet weak var importTextLabel: UILabel!
 
-    var activityIndicator:UIActivityIndicatorView!
+    fileprivate var activityIndicator:UIActivityIndicatorView!
+
+    fileprivate var currencyConverterTimer = Timer()
+    fileprivate var currencyConverter: CurrencyConverter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // TODO: Setup source and target fields (right now its stubbed in the storyboard)
+        currencyConverter = CurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+        currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
+
+            DispatchQueue.main.async {
+                if result.isSuccess {
+                    self?.updateUI(isInteractive: false)
+                } else {
+                    // TODO: Throw UI alert
+                    // Display UI alert, if needed...
+                    print("error: \(String(describing: result.error?.localizedDescription))")
+                }
+            }
+        }
+    }
+
+    // MARK: View Updates
+
+    func updateUI(isInteractive: Bool) {
+
+        switch currencyConverter.conversionMode {
+
+        case .localToNative:
+            sourceImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
+            sourceCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
+            sourceCurrencyNameLabel.text = currencyConverter.localCurrencyName
+
+            if isInteractive == false {
+                sourceAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            }
+
+            targetImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
+            targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
+            targetCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
+            targetAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+
+        case .nativeToLocal:
+            sourceImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
+            sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
+            sourceCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
+
+            if isInteractive == false {
+                sourceAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+            }
+
+            targetImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
+            targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
+            targetCurrencyNameLabel.text = currencyConverter.localCurrencyName
+            targetAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+        }
+    }
+
+    // MARK: Action Methods
+
+    @IBAction func toggleSourceTargetCurrencies(_ sender: Any) {
+        // Toggle the conversion mode
+        currencyConverter.conversionMode.toggle()
+        // Update the UI
+        updateUI(isInteractive: false)
+    }
+
+    // UITextFieldDelegate
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if textField.text?.characters.count == 0 && string == "" {
+            textField.text = "1"
+        }
+
+        if textField == sourceAmountField {
+            currencyConverterTimer.invalidate()
+            currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
+                if let sourceAmountStr = textField.text, let sourceAmount = Double(sourceAmountStr) {
+                    DispatchQueue.main.async {
+                        switch self.currencyConverter.conversionMode {
+                        case .localToNative:
+                            self.currencyConverter.localCurrencyAmount = sourceAmount
+                        case .nativeToLocal:
+                            self.currencyConverter.nativeCurrencyAmount = sourceAmount
+                        }
+                        self.updateUI(isInteractive: true)
+                    }
+                }
+            })
+            return true
+
+        } else {
+            return false
+        }
     }
 
     // MARK: Navigation

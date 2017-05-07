@@ -10,7 +10,6 @@ import UIKit
 import GooglePlaces
 
 class ChooseLocationViewController: UIViewController {
-
     
     var placesClient: GMSPlacesClient!
     
@@ -26,7 +25,7 @@ class ChooseLocationViewController: UIViewController {
     }
     
     @IBAction func onStartButton(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Hamburger", bundle: nil)
+        /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let hamburgerViewController = HamburgerViewController.sharedInstance
         
         let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
@@ -34,7 +33,10 @@ class ChooseLocationViewController: UIViewController {
         menuViewController.hamburgerViewController = hamburgerViewController
         hamburgerViewController.menuViewController = menuViewController
         
-        present(hamburgerViewController, animated: true, completion: nil)
+        present(hamburgerViewController, animated: true, completion: nil)*/
+        
+        //defaults.set("my Location", forKey: "address")
+        self.dismiss(animated: true, completion: nil)
 
     }
     
@@ -55,7 +57,6 @@ extension ChooseLocationViewController: GMSAutocompleteViewControllerDelegate {
         print("Place coordinates: \(place.coordinate)")
         print("Place: \(place)")
         
-        let defaults = UserDefaults.standard
         defaults.set("\(place.coordinate.latitude)", forKey: "latitude")
         defaults.set("\(place.coordinate.longitude)", forKey: "longitude")
         if let address = place.formattedAddress {

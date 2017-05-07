@@ -165,7 +165,8 @@ class WallViewController: UIViewController {
         } else {
             enemy?.position = SCNVector3(x: 0, y: 0, z: 0)
         }
-        
+        // Reading from public effective user settings.
+
         let node = SCNNode()
         node.addChildNode(enemy!)
         node.name = "enemy"

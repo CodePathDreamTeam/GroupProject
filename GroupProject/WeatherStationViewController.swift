@@ -21,7 +21,6 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
-        let defaults = UserDefaults.standard
         var defaultsLatitude = defaults.string(forKey: "latitude")
         var defaultsLongitude = defaults.string(forKey: "longitude")
         if defaultsLatitude == nil || defaultsLongitude == nil {
