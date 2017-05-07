@@ -14,7 +14,6 @@ struct PlacesLoader {
     let apiKey = "AIzaSyC11OQ4loHbjXLhOaQl-zXJWDPPGbLcgts"
     
     func loadPOIS(location: CLLocation, radius: Int = 30, completionHandler: @escaping ((Result<NSDictionary>) -> Void))  {
-        print("Load pois")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         

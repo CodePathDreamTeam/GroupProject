@@ -9,23 +9,12 @@
 import UIKit
 import CoreData
 
-
-/*@objc protocol FiltersViewControllerDelegate {
-    @objc optional func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
-}*/
-
-protocol SettingsViewControllerDelegate {
-    func selectCurrentCountry()
-}
-
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
     var userPhoto: UIImage?
-    
-    var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +38,6 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onSaveButton(_ sender: Any) {
-        delegate?.selectCurrentCountry()
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -63,18 +51,6 @@ class SettingsViewController: UIViewController {
     @IBAction func onTap(_ sender: Any) {
         view.endEditing(false)
     }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -31,19 +31,10 @@ class TodoViewController: DashBaseViewController, TableViewCellDelegate {
         if toDoItems.count > 0 {
             return
         }
-        
-        toDoItems.append(ToDoItem(text: "task 1"))
-        toDoItems.append(ToDoItem(text: "task 2"))
-        toDoItems.append(ToDoItem(text: "task 3"))
-        toDoItems.append(ToDoItem(text: "task 4"))
-        toDoItems.append(ToDoItem(text: "task 5"))
-        toDoItems.append(ToDoItem(text: "task 6"))
-        toDoItems.append(ToDoItem(text: "task 7"))
-        toDoItems.append(ToDoItem(text: "task 8"))
-        toDoItems.append(ToDoItem(text: "task 9"))
-        toDoItems.append(ToDoItem(text: "task 10"))
-        toDoItems.append(ToDoItem(text: "task 11"))
-        toDoItems.append(ToDoItem(text: "task 12"))
+        toDoItems.append(ToDoItem(text: "Pull Down to add a new task"))
+        toDoItems.append(ToDoItem(text: "Push apart to inset a new task"))
+        toDoItems.append(ToDoItem(text: "Swipe Right to finish a task"))
+        toDoItems.append(ToDoItem(text: "Swipe left to delete a take"))
     }
     
     // MARK: - pinch-to-add methods
