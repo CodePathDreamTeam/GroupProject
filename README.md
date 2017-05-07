@@ -21,7 +21,7 @@ Optional user stories:
 
 How to use:
 
-[![GeoJournalGif.gif](https://gifyu.com/images/GeoJournalGif.gif)](https://gifyu.com/image/bHtx)
+[![PoisGif.gif](https://s29.postimg.org/ewoo9fy2v/Pois_Gif.gif)](https://postimg.org/image/nrpijymv7/)
  
 Notes/Problems:
 
