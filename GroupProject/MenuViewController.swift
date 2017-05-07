@@ -24,7 +24,7 @@ class MenuViewController: UIViewController {
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
-    let titles = ["Home","To-Do","Finances","Weather Station","Points of interest/Augmented","Save Photo with location Station","Virtual wall"]
+    let titles = ["Home","To-Do","Finances","Weather Station","Points of interest/Augmented","Save Photo with location Station","Geo Journal"]
     let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "checkbox"),#imageLiteral(resourceName: "calculator"),#imageLiteral(resourceName: "weather"),#imageLiteral(resourceName: "pin"),#imageLiteral(resourceName: "camera"),#imageLiteral(resourceName: "message")]
     
     override func viewDidLoad() {
