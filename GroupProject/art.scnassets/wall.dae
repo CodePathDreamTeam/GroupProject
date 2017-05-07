@@ -201,7 +201,7 @@
   <library_controllers/>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Cube_005" name="Cube_005" type="NODE">
+      <node id="wall" name="wall" type="NODE">
         <matrix sid="transform">0.4610609 0 0 -0.7199221 0 0.5722399 0 -0.7713213 0 0 0.5722399 1.491213 0 0 0 1</matrix>
         <instance_geometry url="#Cube_005-mesh" name="Cube_005">
           <bind_material>
