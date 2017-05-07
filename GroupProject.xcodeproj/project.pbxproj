@@ -70,7 +70,6 @@
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
 		39F84D721EBBED6F00BAE34F /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */; };
 		39F84D761EBC111400BAE34F /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D751EBC111400BAE34F /* Receipt.swift */; };
-		4C7D4ED91EBF8065001DD324 /* wallTest.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D4ED81EBF8065001DD324 /* wallTest.scnassets */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
@@ -145,7 +144,6 @@
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsViewController.swift; sourceTree = "<group>"; };
 		39F84D751EBC111400BAE34F /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
-		4C7D4ED81EBF8065001DD324 /* wallTest.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = wallTest.scnassets; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -255,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				39452CED1EB6BEC700DE9080 /* tessdata */,
-				4C7D4ED81EBF8065001DD324 /* wallTest.scnassets */,
 				3909F0C31EB3028100029E44 /* art.scnassets */,
 				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
 				3946020F1EAD33DD00BAAC4F /* Info.plist */,
@@ -441,7 +438,6 @@
 				39E225C81EAF0AFE0064C27F /* Main.storyboard in Resources */,
 				39E226081EAF20330064C27F /* hdar_close.png in Resources */,
 				3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */,
-				4C7D4ED91EBF8065001DD324 /* wallTest.scnassets in Resources */,
 				39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */,
 				39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */,
 				39452CEE1EB6BEC700DE9080 /* tessdata in Resources */,
