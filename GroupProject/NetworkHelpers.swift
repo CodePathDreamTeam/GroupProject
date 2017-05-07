@@ -62,7 +62,7 @@ enum Result<Value>: CustomDebugStringConvertible {
 enum APIError: Error {
     case InvalidData
     case DataUnavailable
-    case RemoteError(String?)
+    case ReasonableError(String?)
     
     var localizedDescription: String {
         switch self {
@@ -70,7 +70,7 @@ enum APIError: Error {
             return "Invalid data"
         case .DataUnavailable:
             return "Data not available"
-        case .RemoteError(let reason):
+        case .ReasonableError(let reason):
             return reason ?? "Unknown error"
         }
     }

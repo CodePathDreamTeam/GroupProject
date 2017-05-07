@@ -90,7 +90,6 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
         photoImageView.image = editedImage
@@ -102,47 +101,43 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
     func update(photo: UIImage) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
-        do {
-            let fetchedPhotoData = try managedContext.fetch(fetchRequest)
+
+        let request = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
+        let result = Globals.fetch(request)
+
+        if result.isSuccess {
+            let fetchedPhotoData = result.value!
+
             for photoData in fetchedPhotoData {
-                managedContext.delete(photoData)
+                Globals.managedContext.delete(photoData)
             }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        } else {
+            print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
-        
-        let contextUserPhoto = UserPhoto(context: managedContext)
+
+        let contextUserPhoto = UserPhoto(context: Globals.managedContext)
         contextUserPhoto.photoImage  = (UIImagePNGRepresentation(photo)! as NSData)
         
-        appDelegate.saveContext()
+        Globals.saveContext()
         print("appDelegate.saveContext() for userPhoto")
 
     }
     
     func loadFromCoreData() {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
-        do {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let fetchedPhotoData = try managedContext.fetch(fetchRequest)
+        let request = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
+        let result = Globals.fetch(request)
+        if result.isSuccess {
+
+            let fetchedPhotoData = result.value!
             print(fetchedPhotoData.count)
             if let photoData = fetchedPhotoData[0] as? UserPhoto {
-                if let userPhotoData = photoData.photoImage as? Data {
+                if let userPhotoData = photoData.photoImage as Data? {
                     userPhoto = UIImage(data: userPhotoData)
                     photoImageView.image = userPhoto
                 }
             }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        } else {
+            print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
     }
 }

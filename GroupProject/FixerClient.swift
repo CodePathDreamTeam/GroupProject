@@ -22,7 +22,7 @@ class FixerClient {
         let task = session.dataTask(with: url, completionHandler: { data, response, error -> Void in
 
             if error != nil {
-                completionHandler(Result.failure(APIError.RemoteError(error?.localizedDescription)))
+                completionHandler(Result.failure(APIError.ReasonableError(error?.localizedDescription)))
 
             } else if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]

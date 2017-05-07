@@ -14,8 +14,6 @@ import Photos
 
 class PhotoMapViewController: DashBaseViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate)
-    let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var photos: [NSManagedObject] = []
 
     @IBOutlet var mapView: MKMapView!
@@ -67,33 +65,33 @@ class PhotoMapViewController: DashBaseViewController {
     }
     
     func loadFromCoreData() {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
-        do {
-            //let test = try managedContext.fetch(fetchRequest)
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Photo")
+        let result = Globals.fetch(request)
 
-            let photos = try managedContext.fetch(fetchRequest)
-            
+        if result.isSuccess {
+            let photos = result.value!
+
             for photo in photos {
-                
+
                 let imageURL = photo.value(forKey: "photoURLString")
                 let annotation = PhotoAnnotation()
-                
+
                 let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees,
                                                                 longitude: photo.value(forKey: "photoLongitude") as! CLLocationDegrees)
                 annotation.coordinate = locationCoordinate
-                
+
                 let assetURL = URL(string: imageURL as! String)
-                
+
                 if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL!], options: nil).firstObject {
-                    
+
                     PHImageManager.default().requestImage(for: asset,
                                                           targetSize: CGSize(width: 45, height: 45),
                                                           contentMode: .aspectFill,
                                                           options: nil,
                                                           resultHandler: { (result, info) ->Void in
-                                                            
+
                                                             self.myImage = result!
-                                                            
+
                                                             annotation.photo = result!
                     })
                 }
@@ -101,8 +99,8 @@ class PhotoMapViewController: DashBaseViewController {
                 mapView.addAnnotation(annotation)
                 
             }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        } else {
+            print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
     }
 }
@@ -190,36 +188,35 @@ extension PhotoMapViewController: MKMapViewDelegate {
     
     func updatePhoto(view: PhotoAnnotation) {
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Photo")
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Photo")
         let predicate = NSPredicate(format: "photoURLString = '\(view.photoURL.absoluteString!)'")
-        fetchRequest.predicate = predicate
-        do {
-            let test = try managedContext.fetch(fetchRequest)
+        request.predicate = predicate
+
+        let result = Globals.fetch(request)
+
+        if result.isSuccess {
+            let test = result.value!
+
             if test.count == 1 {
                 let objectUpdate = test[0]
                 objectUpdate.setValue(view.coordinate.latitude, forKey: "photoLatitude")
                 objectUpdate.setValue(view.coordinate.longitude, forKey: "photoLongitude")
-                do {
-                    try context.saveContext()
-                }
-                catch {
-                    print(error)
-                }
+
+                Globals.saveContext()
             }
-        }
-        catch {
-            print(error)
+        } else {
+            print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
     }
-    
+
     func savePhoto(view: PhotoAnnotation) {
         
-        let photo = Photo(context: managedContext)
+        let photo = Photo(context: Globals.managedContext)
         photo.photoLatitude = view.coordinate.latitude
         photo.photoLongitude = view.coordinate.longitude
         photo.photoURLString = view.photoURL.absoluteString
         
-        context.saveContext()
+        Globals.saveContext()
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
