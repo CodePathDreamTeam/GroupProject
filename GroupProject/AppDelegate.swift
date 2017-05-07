@@ -11,6 +11,8 @@ import CoreData
 import GooglePlaces
 import Parse
 
+let defaults = UserDefaults.standard
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -29,6 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initialize(with: parseConfig)
         
         GMSPlacesClient.provideAPIKey("AIzaSyC11OQ4loHbjXLhOaQl-zXJWDPPGbLcgts")
+        
+        let hamburgerViewController = HamburgerViewController.sharedInstance
+
+        window!.rootViewController = HamburgerViewController.sharedInstance
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        
+        menuViewController.hamburgerViewController = hamburgerViewController
+        
+        hamburgerViewController.menuViewController = menuViewController
+        
         return true
     }
 

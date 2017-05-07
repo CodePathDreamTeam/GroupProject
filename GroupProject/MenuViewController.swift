@@ -62,7 +62,7 @@ class MenuViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
+        let savedName = defaults.string(forKey: "name") ?? "Traveler"
         greetingLabel.text = "Greetings, \(savedName)!"
     }
     

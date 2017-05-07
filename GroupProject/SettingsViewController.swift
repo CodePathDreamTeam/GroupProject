@@ -9,6 +9,15 @@
 import UIKit
 import CoreData
 
+
+/*@objc protocol FiltersViewControllerDelegate {
+    @objc optional func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
+}*/
+
+protocol SettingsViewControllerDelegate {
+    func selectCurrentCountry()
+}
+
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -16,11 +25,12 @@ class SettingsViewController: UIViewController {
     
     var userPhoto: UIImage?
     
+    var delegate: SettingsViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let userDefaults = UserDefaults.standard
-        if let savedName = userDefaults.string(forKey: "name") {
+        if let savedName = defaults.string(forKey: "name") {
             nameTextField.text = savedName
         } else {
             nameTextField.text = ""
@@ -39,15 +49,15 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onSaveButton(_ sender: Any) {
+        delegate?.selectCurrentCountry()
         self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func onEditingNameDidEnd(_ sender: Any) {
         let newName = nameTextField.text
-        let userDefaults = UserDefaults.standard
-        userDefaults.setValue(newName, forKey: "name")
-        userDefaults.synchronize()
-        print("New saved Name: \(userDefaults.string(forKey: "name"))")
+        defaults.setValue(newName, forKey: "name")
+        defaults.synchronize()
+        print("New saved Name: \(defaults.string(forKey: "name"))")
     }
     
     @IBAction func onTap(_ sender: Any) {

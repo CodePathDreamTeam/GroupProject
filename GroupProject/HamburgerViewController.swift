@@ -2,19 +2,20 @@ import UIKit
 
 class HamburgerViewController: UIViewController {
     
-    static let sharedInstance = UIStoryboard(name: "Hamburger", bundle: nil).instantiateViewController(withIdentifier: "HamburgerMenu") as! HamburgerViewController
-
+    static let sharedInstance = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HamburgerMenu") as! HamburgerViewController
     
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var leftMargainConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftMargainConstraint: NSLayoutConstraint! {
+        didSet {
+            print("hello")
+        }
+    }
     var originalLeftMargin: CGFloat!
     
-    var menuViewController: UIViewController!{
+    var menuViewController: MenuViewController!{
         didSet{
             view.layoutIfNeeded()
-            
             menuView.addSubview(menuViewController.view)
         }
     }
@@ -42,25 +43,29 @@ class HamburgerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews() {
+        print(self.leftMargainConstraint.constant)
+        
+        if defaults.string(forKey: "address") == nil {
+            
+            let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)
+            let viewController = storyboard.instantiateInitialViewController()
+            present(viewController!, animated: true, completion: nil)
+        }
     }
     
     func moveMenu() {
         UIView.animate(withDuration: 0.5, delay: 0, options: [],
                        animations: {
                         if self.leftMargainConstraint.constant == 0 {
-                            self.leftMargainConstraint.constant = self.view.frame.size.width - 60
+                            self.leftMargainConstraint.constant = self.view.frame.size.width - 90
                         } else {
                             self.leftMargainConstraint.constant = 0
                         }
                         self.view.layoutIfNeeded()
         })
-        
     }
     
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {

@@ -35,7 +35,6 @@ class HomeViewController: DashBaseViewController {
             }
         }
         
-        let defaults = UserDefaults.standard
         var latitude = defaults.string(forKey: "latitude")
         var longitude = defaults.string(forKey: "longitude")
         if latitude == nil || longitude == nil {
