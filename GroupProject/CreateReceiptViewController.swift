@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AFNetworking
+import Photos
 
 enum ReceiptSource: Int {
     case camera
@@ -25,6 +27,7 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
 
     var sourceType: ReceiptSource = .manual
     var source: CurrencyConverter?
+    var receiptImageURL: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,18 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
                 detailsImageView.isHidden = true
             } else {
                 detailsTextView.isHidden = true
+                if let assetUrl = receiptImageURL {
+                    if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil).firstObject {
+
+                        PHImageManager.default().requestImage(for: asset,
+                                                              targetSize: CGSize(width: 200, height: 200),
+                                                              contentMode: .aspectFill,
+                                                              options: nil,
+                                                              resultHandler: { (result, info) ->Void in
+                                                                self.detailsImageView.image = result
+                        })
+                    }
+                }
             }
         }
 

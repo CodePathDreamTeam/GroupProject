@@ -72,21 +72,34 @@ class CurrencyConverter {
 
     init(localCurrencyCd: String, nativeCurrencyCd: String) {
         
-        localCurrencyCode = "USD"
-        localCurrencySign = "$"
-        localCurrencyName = "United States Dollar"
-        localCurrencyImage = "USD"
-        localToNativeFactor = 1.0
-        localCurrencyAmount = 1.0
+        self.localCurrencyCode = "USD"
+        self.localCurrencySign = "$"
+        self.localCurrencyName = "United States Dollar"
+        self.localCurrencyImage = "USD"
+        self.localToNativeFactor = 1.0
+        self.localCurrencyAmount = 1.0
 
-        nativeCurrencyCode = "JPY"
-        nativeCurrencySign = "¥"
-        nativeCurrencyName = "Japanese Yen"
-        nativeCurrencyImage = "JPY"
-        nativeToLocalFactor = 1.0
-        nativeCurrencyAmount = 1.0
+        self.nativeCurrencyCode = "JPY"
+        self.nativeCurrencySign = "¥"
+        self.nativeCurrencyName = "Japanese Yen"
+        self.nativeCurrencyImage = "JPY"
+        self.nativeToLocalFactor = 1.0
+        self.nativeCurrencyAmount = 1.0
 
-        conversionMode = ConversionMode.localToNative
+        self.conversionMode = ConversionMode.localToNative
+    }
+
+    convenience init(localCurrencyCd: String, nativeCurrencyCd: String, localCurrencyAmount: Double) {
+
+        self.init(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
+        self.localCurrencyAmount = localCurrencyAmount
+    }
+
+    convenience init(localCurrencyCd: String, nativeCurrencyCd: String, localCurrencyAmount: Double, nativeCurrencyAmount: Double) {
+
+        self.init(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
+        self.localCurrencyAmount = localCurrencyAmount
+        self.nativeCurrencyAmount = nativeCurrencyAmount
     }
 
     func updateCurrencyConversionFactors(completion: @escaping (Result<Double>) -> ()) {

@@ -20,19 +20,26 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     @IBOutlet weak var targetCurrencyNameLabel: UILabel!
     @IBOutlet weak var targetAmountField: UITextField!
 
-    // TODO: Temp outlet, to be removed.
-    @IBOutlet weak var importTextLabel: UILabel!
+    @IBOutlet weak var cameraBarButtonItem: UIBarButtonItem!
+
 
     fileprivate var activityIndicator:UIActivityIndicatorView!
 
     fileprivate var currencyConverterTimer = Timer()
     fileprivate var currencyConverter: CurrencyConverter!
+    fileprivate var importedReceiptImageURL: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: Setup source and target fields (right now its stubbed in the storyboard)
-        currencyConverter = CurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+        // TODO: Setup source and target fields dynamically based on the user's current and native locations.
+        setupCurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+    }
+
+    // MARK: Model Setup
+
+    func setupCurrencyConverter(localCurrencyCd: String, nativeCurrencyCd: String) {
+        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
             DispatchQueue.main.async {
@@ -136,6 +143,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
             destination.sourceType = receiptSource ?? .manual
             destination.source = currencyConverter
+            destination.receiptImageURL = importedReceiptImageURL
         }
     }
 }
@@ -143,6 +151,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 extension FinancesViewController: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        importedReceiptImageURL = info[UIImagePickerControllerReferenceURL] as? URL
         let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = scale(image: selectedPhoto, maxDimension: 640)
 
@@ -201,8 +210,29 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
 
         tesseract.recognize()
 
-        importTextLabel.text = tesseract.recognizedText
+        let importedText = tesseract.recognizedText
+        print("Imported Text: \(importedText ?? "No text imported")")
+        createReceipt(forImportedLocalAmount: 36.14, localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+
         removeActivityIndicator()
+    }
+
+    func createReceipt(forImportedLocalAmount localCurrencyAmount: Double, localCurrencyCd: String, nativeCurrencyCd: String) {
+        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd, localCurrencyAmount: localCurrencyAmount)
+        currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
+
+            DispatchQueue.main.async {
+                if result.isSuccess {
+                    self?.updateUI(isInteractive: false)
+                    // Initiate create new receipt segue
+                    self?.performSegue(withIdentifier: "CreateReceiptView", sender: self?.cameraBarButtonItem)
+                } else {
+                    // TODO: Throw UI alert
+                    // Display UI alert, if needed...
+                    print("error: \(String(describing: result.error?.localizedDescription))")
+                }
+            }
+        }
     }
 
     // Scaling image for better recognition
