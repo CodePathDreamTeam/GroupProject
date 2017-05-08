@@ -15,7 +15,7 @@ enum ReceiptCategory: String {
     case Misc
 
     static var categoryNames: [String] {
-        return ["Food","Logistics","Entertainment","Misc"]
+        return ["Dinning","Travel","Entertainment","Misc"]
     }
 
     static var count: Int {
