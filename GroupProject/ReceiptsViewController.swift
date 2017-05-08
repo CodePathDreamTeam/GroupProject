@@ -15,10 +15,49 @@ class ReceiptsViewController: UIViewController {
     @IBOutlet weak var chartView: PieChartView!
     @IBOutlet weak var tableView: UITableView!
 
-    var receipts = Array<Receipts>()
+    var receipts = Array<Receipts>() {
+        didSet {
+
+            if receipts.count > 0 {
+
+                var categorizedAmounts = Dictionary<String, Double>()
+
+                receipts.forEach({ (element) in
+
+                    if let category = element.category {
+                        var totalAmount = element.nativeCurrencyAmount
+
+                        if let currentAmount = categorizedAmounts[category] {
+                            totalAmount =  currentAmount + totalAmount
+                        }
+                        categorizedAmounts.updateValue(totalAmount, forKey: category)
+                    }
+                })
+
+                self.categorizedAmounts = categorizedAmounts
+            }
+
+            // Reload receipts table view
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    fileprivate var categorizedAmounts = Dictionary<String, Double>() {
+        didSet {
+            DispatchQueue.main.async {
+                // Setup chart data sets
+                self.reloadChartData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Setup Chart View
+        setupChartView()
 
         // Fetch saved receipts
         let request = NSFetchRequest<NSManagedObject>(entityName: "Receipts")
@@ -29,14 +68,6 @@ class ReceiptsViewController: UIViewController {
         } else {
             print("Error fetching receipts: \(String(describing: result.error?.localizedDescription))")
         }
-
-        // Setup Chart View
-        setupChartView()
-
-        // Animate and render chart
-        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeOutCirc)
-        // Reload table view
-        tableView.reloadData()
     }
 
 }
@@ -59,17 +90,14 @@ extension ReceiptsViewController: ChartViewDelegate {
 
         chartView.entryLabelColor = .white
         chartView.entryLabelFont = UIFont.systemFont(ofSize: 12.0)
-
-        // Need to be replaced with remote API call
-        setData(range: 5)
     }
 
-    func setData(range: Double) {
+    func reloadChartData() {
 
         var values = Array<PieChartDataEntry>()
-
-        for i in 0..<ReceiptCategory.count {
-            values.append(PieChartDataEntry(value: (Double(arc4random_uniform(UInt32(range))) + range/5), label: ReceiptCategory.categoryNames[i]))
+        
+        for key in categorizedAmounts.keys {
+            values.append(PieChartDataEntry(value: categorizedAmounts[key]!, label: key))
         }
 
         let dataset = PieChartDataSet(values: values, label: "Trip Expenses")
@@ -94,7 +122,7 @@ extension ReceiptsViewController: ChartViewDelegate {
         percentFormatter.numberStyle = .percent
         percentFormatter.maximumFractionDigits = 1
         percentFormatter.multiplier = 1.0
-        percentFormatter.percentSymbol = " %"
+        percentFormatter.percentSymbol = " JPY"
 
         data.setValueFormatter(DefaultValueFormatter(formatter: percentFormatter))
         data.setValueFont(UIFont.systemFont(ofSize: 11.0))
@@ -102,6 +130,9 @@ extension ReceiptsViewController: ChartViewDelegate {
         
         chartView.data = data
         chartView.highlightValues(nil)
+
+        // Animate and render chart
+        self.chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeOutCirc)
     }
 }
 
