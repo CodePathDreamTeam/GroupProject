@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let parseConfig = ParseClientConfiguration { (ParseMutableClientConfiguration) in
             
-            ParseMutableClientConfiguration.applicationId = "trippinAppID" //testparsebca
-            ParseMutableClientConfiguration.clientKey = "trippinMasterKey"//mykey
+            ParseMutableClientConfiguration.applicationId = "trippinAppID"
+            ParseMutableClientConfiguration.clientKey = "trippinMasterKey"
             ParseMutableClientConfiguration.server = "http://trippincodepath.herokuapp.com/parse"//"http://testparsebca.herokuapp.com/parse"
         }
         

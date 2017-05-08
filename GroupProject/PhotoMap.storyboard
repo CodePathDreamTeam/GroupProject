@@ -13,10 +13,66 @@
         <scene sceneID="ZOn-Jr-L1F">
             <objects>
                 <viewController id="Eb9-l4-6GM" customClass="PhotoMapViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="MbJ-xn-X5u">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vx3-n4-XYy"/>
+                        <viewControllerLayoutGuide type="bottom" id="EAq-jg-CKr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fr7-J6-rg6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask"/>
-                    </mapView>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mzo-tW-cJG">
+                                <rect key="frame" x="0.0" y="7" width="375" height="660"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YsA-AX-DGV">
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentController:" destination="Eb9-l4-6GM" eventType="valueChanged" id="Yac-Nz-eKO"/>
+                                </connections>
+                            </segmentedControl>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cuJ-Qf-P3e">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cIH-bv-2Tx">
+                                    <size key="itemSize" width="110" height="125"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoMapCollectionViewCell" id="DKj-dw-SwM" customClass="PhotoMapCollectionViewCell" customModule="GroupProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="125"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-dz-P5n">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="125"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="imageView" destination="v6a-dz-P5n" id="IKW-Gi-G2f"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Eb9-l4-6GM" id="z4O-9a-ngq"/>
+                                    <outlet property="delegate" destination="Eb9-l4-6GM" id="wWA-PX-Mmv"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <navigationItem key="navigationItem" id="M0C-9u-asQ">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="9P3-8K-YLX">
                             <connections>
@@ -30,7 +86,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="MbJ-xn-X5u" id="9qi-cj-wpT"/>
+                        <outlet property="collectionView" destination="cuJ-Qf-P3e" id="VZd-PW-RUE"/>
+                        <outlet property="mapView" destination="Mzo-tW-cJG" id="iDk-Sc-UfE"/>
                         <segue destination="GHW-36-czL" kind="push" identifier="fullImageSegue" id="HOm-7b-mgA"/>
                     </connections>
                 </viewController>
@@ -71,7 +128,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drm-Nl-zxo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WE7-U7-Tbt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WE7-U7-Tbt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

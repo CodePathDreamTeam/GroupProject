@@ -17,8 +17,12 @@ class PhotoMapViewController: DashBaseViewController {
     var photos: [NSManagedObject] = []
 
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var myImage: UIImage!
     var imgURL: NSURL!
+    
+    var visibleAnnotations = [PhotoAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,7 @@ class PhotoMapViewController: DashBaseViewController {
                                               MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(sfRegion, animated: false)
     }
+    
     
     @IBAction func openCameraButton(_ sender: UIBarButtonItem) {
         
@@ -52,6 +57,17 @@ class PhotoMapViewController: DashBaseViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func segmentController(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            collectionView.isHidden = true
+        } else {
+            collectionView.isHidden = false
+            visibleAnnotations = mapView.visibleAnnotations()
+            collectionView.reloadData()
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        /* if segue.identifier == "tagSegue" {
@@ -228,5 +244,44 @@ extension PhotoMapViewController: MKMapViewDelegate {
             view.dragState = .none
         default: break
         }
+    }
+}
+
+extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoMapCollectionViewCell", for: indexPath) as! PhotoMapCollectionViewCell
+        
+        let photoURL = visibleAnnotations[indexPath.row].photoURL
+
+        let assetURL = photoURL as! URL
+        
+        if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize(width: cell.imageView.frame.maxX,
+                                                                     height: cell.imageView.frame.maxY),
+                                                  contentMode: .aspectFill,
+                                                  options: nil,
+                                                  resultHandler: { (result, info) ->Void in
+                                                    
+                                                    cell.imageView.image = result!
+
+            })
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return visibleAnnotations.count
+    }
+}
+
+extension MKMapView {
+    func visibleAnnotations() -> [PhotoAnnotation] {
+        return self.annotations(in: self.visibleMapRect).map { obj -> PhotoAnnotation in return obj as! PhotoAnnotation }
     }
 }
