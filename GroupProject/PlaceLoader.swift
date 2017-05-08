@@ -13,6 +13,10 @@ struct PlacesLoader {
     let apiURL = "https://maps.googleapis.com/maps/api/place/"
     let apiKey = "AIzaSyC11OQ4loHbjXLhOaQl-zXJWDPPGbLcgts"
     
+    //https://maps.googleapis.com/maps/api/place/radarsearch/json?location=51.503186,-0.126446&radius=5000&type=museum&key=YOUR_API_KEY
+    //https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.859294,2.347589&radius=5000&type=cafe&keyword=vegetarian&key=YOUR_API_KEY
+
+    
     func loadPOIS(location: CLLocation, radius: Int = 30, completionHandler: @escaping ((Result<NSDictionary>) -> Void))  {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
