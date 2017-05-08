@@ -125,11 +125,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ReceiptsView" {
-            let destination = segue.destination as! ReceiptsViewController
-            destination.sourceCurrency = "USD"
-            destination.targetCurrency = "JPY"
-        } else if segue.identifier == "CreateReceiptView" {
+        if segue.identifier == "CreateReceiptView" {
 
             let destination = (segue.destination as! UINavigationController).topViewController as! CreateReceiptViewController
             var receiptSource: ReceiptSource? = nil
