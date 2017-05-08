@@ -45,7 +45,7 @@ Geo Journal
 Ideal I describe the Geo-Journal as Pokemon-Go mixed with Yik-Yak (with a sprinkle of the custom location based snapchat filters). If you are near a Geo-Journal you can look at it in your app and its exclusive image (Think of location based filters from snapchat). After tapping on it you can write on the custom wall for the location to prove you have been to that location.
  * [x] User can see Geo-Journal in AR when close to it
  * [x] By tapping on Geo-Journal object (currently just a wall) user gets access to a message board exclusive to that location
- * [x] User can write on message board and see what others have written.
+ * [x] User can write on message board and see what others have written (parse/heroku backend.
  * [ ] Custom Images per location
  * [ ] Geo Fencing to tell users when they are near a geo-journal
 
