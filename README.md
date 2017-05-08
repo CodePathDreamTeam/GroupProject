@@ -27,7 +27,9 @@ Photo Journal
  * [x] You can drag you photo to any location you want.
  * [x] Images are saved in Core data and automatically updated after you are done dragging.
  * [x] Image URL in photo asset is saved not actual photo making it memory safe.
- * [ ] See all photos in UICollection view that are within the mapviews bounds.
+ * [x] See all photos in UICollection view that are within the mapviews bounds.
+ * [ ] Full size image when selecting collectionView cell
+ * [ ] High Quality image for annotation
 
 [![PhotoMapGif.gif](https://s14.postimg.org/5g17evg1t/Photo_Map_Gif.gif)](https://postimg.org/image/uytjrvzlp/)
 
