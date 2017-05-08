@@ -35,6 +35,8 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
             nativeAmountField.text = String(format: "%.2f", receiptSource.nativeCurrencyAmount)
             nativeCurrencyCdLabel.text = receiptSource.nativeCurrencyCode
 
+            // When receipt is created manually, user can add optional description about the receipt
+            // When receipt is created from Camera/Image, the thumbnail will be used instead (which implicitly describes)
             if sourceType == .manual {
                 detailsImageView.isHidden = true
             } else {
@@ -55,7 +57,19 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
     // MARK: Action Methods
 
     @IBAction func save(_ sender: Any) {
-        // TODO: Save new receipt to core data persistent store
+
+        if source != nil {
+            // Save new receipt to core data persistent store
+            let newReceipt = Receipts(context: Globals.managedContext)
+            newReceipt.localCurrencyCode = source?.localCurrencyCode
+            newReceipt.localCurrencyAmount = source!.localCurrencyAmount
+            newReceipt.nativeCurrencyCode = source?.nativeCurrencyCode
+            newReceipt.nativeCurrencyAmount = source!.nativeCurrencyAmount
+            newReceipt.category = categoryField.text
+
+            Globals.saveContext()
+        }
+
         // And then Dimiss view controller
         dismiss()
     }
