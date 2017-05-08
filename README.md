@@ -50,6 +50,19 @@ Ideal I describe the Geo-Journal as Pokemon-Go mixed with Yik-Yak (with a sprink
  * [ ] Geo Fencing to tell users when they are near a geo-journal
 
 [![GeoJournalGif.gif](https://s22.postimg.org/qs6igvs0h/Geo_Journal_Gif.gif)](https://postimg.org/image/ltj02co7h/)
+
+Finance
+* [x] Quick converter from user's current location to native location currency. 
+* [x] You can log expense receipt from converted amount by selecting category.
+* [x] You can import expense receipt from Photo library or snap it via camera.
+* [x] View saved receipts synopsis and Pie chart distribution.
+* [ ] View receipt details.
+* [ ] Delete/Update receipt details.
+* [ ] View nearby currency exchanges.
+* [ ] View local currency denomination guide.
+
+[![Finance-UserStory.gif](https://s10.postimg.org/p1b7d21tl/Finance-_User_Story.gif)](https://postimg.org/image/qgcs1s2wl/)
+
  
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
