@@ -74,6 +74,7 @@
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CA621D3C1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */; };
 		CA621D3E1EC0F4C6007DC8A3 /* POISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */; };
+		CA621D401EC244B2007DC8A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3F1EC244B2007DC8A3 /* User.swift */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
@@ -152,6 +153,7 @@
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POISearchViewController.swift; sourceTree = "<group>"; };
+		CA621D3F1EC244B2007DC8A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
@@ -226,16 +228,17 @@
 		3920BEB21EAEE4A000DE76C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */,
-				39E225ED1EAF1FEA0064C27F /* PlaceAnnotation.swift */,
-				39E225EF1EAF1FFB0064C27F /* Place.swift */,
-				396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */,
-				3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */,
-				3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */,
 				3909F0BF1EB301C600029E44 /* ARItem.swift */,
-				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
-				39F84D751EBC111400BAE34F /* Receipt.swift */,
 				390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */,
+				396FDEAF1EB05931005657BB /* PhotoAnnotation.swift */,
+				39E225EF1EAF1FFB0064C27F /* Place.swift */,
+				39E225ED1EAF1FEA0064C27F /* PlaceAnnotation.swift */,
+				39F84D751EBC111400BAE34F /* Receipt.swift */,
+				3954F5E11EB1BF1600C234F2 /* StrikeThroughText.swift */,
+				3954F5DF1EB1BE6700C234F2 /* ToDoItem.swift */,
+				CA621D3F1EC244B2007DC8A3 /* User.swift */,
+				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
+				CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */,
 				3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */,
 			);
 			name = Model;
@@ -554,6 +557,7 @@
 				CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */,
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
+				CA621D401EC244B2007DC8A3 /* User.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
 				39F84D761EBC111400BAE34F /* Receipt.swift in Sources */,
