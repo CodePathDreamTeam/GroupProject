@@ -190,25 +190,25 @@
 			isa = PBXGroup;
 			children = (
 				3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */,
+				397C92F81EBFC8E60025C79E /* CreateReceiptViewController.swift */,
 				39E225D11EAF14DC0064C27F /* DashBaseViewController.swift */,
 				39E225D91EAF19560064C27F /* FinancesViewController.swift */,
+				3958077E1EB6D57500EAE714 /* FullImageViewController.swift */,
 				39E225C91EAF0CC50064C27F /* HamburgerViewController.swift */,
 				39E225CF1EAF135A0064C27F /* HomeViewController.swift */,
 				394602051EAD33DD00BAAC4F /* LoginViewController.swift */,
 				39E225CB1EAF0EA40064C27F /* MenuViewController.swift */,
 				39E225E71EAF1A7B0064C27F /* PhotoMapViewController.swift */,
+				CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */,
 				39E225E51EAF1A6F0064C27F /* PoisViewController.swift */,
-				39E225E91EAF1A880064C27F /* TheWallViewController.swift */,
-				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
-				3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */,
+				39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */,
 				3954F5E31EB1C4A300C234F2 /* SettingsViewController.swift */,
+				39E225E91EAF1A880064C27F /* TheWallViewController.swift */,
+				3954F5DB1EB1BDC500C234F2 /* TodoViewController.swift */,
 				3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */,
 				3909F0BD1EB3017800029E44 /* WallViewController.swift */,
+				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
-				3958077E1EB6D57500EAE714 /* FullImageViewController.swift */,
-				39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */,
-				397C92F81EBFC8E60025C79E /* CreateReceiptViewController.swift */,
-				CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

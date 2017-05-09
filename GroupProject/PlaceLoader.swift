@@ -47,6 +47,47 @@ struct PlacesLoader {
         dataTask.resume()
     }
     
+    func loadPOIS(location: CLLocation, radius: Int, type: String, keyword: String, completionHandler: @escaping ((Result<NSDictionary>) -> Void))  {
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        var typeText = ""
+        if type != "all" {
+            typeText = "&types=\(type)"
+        }
+        
+        var keywordText = ""
+        if keyword != "" {
+            keywordText = "&types=\(type)"
+        }
+        
+        let uri = apiURL + "nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&sensor=true\(typeText)\(keywordText)&key=\(apiKey)"
+        
+        print(uri)
+        let url = URL(string: uri)!
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = session.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
+            } else if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let responseObject = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        guard let responseDict = responseObject as? NSDictionary else {
+                            return
+                        }
+                        completionHandler(Result.success(responseDict))
+                        
+                    } catch let error as NSError {
+                        completionHandler(Result.failure(APIError.ReasonableError(error.localizedDescription)))
+                    }
+                }
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
     func loadDetailInformation(forPlace: Place, completionHandler: @escaping ((Result<NSDictionary>) -> Void)) {
         
         let uri = apiURL + "details/json?reference=\(forPlace.reference)&sensor=true&key=\(apiKey)"
