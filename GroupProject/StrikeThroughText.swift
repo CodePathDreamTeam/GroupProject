@@ -41,7 +41,7 @@ class StrikeThroughText: UITextField {
         resizeStrikeThrough()
     }
     
-    let kStrikeOutThickness: CGFloat = 2.0
+    let kStrikeOutThickness: CGFloat = 1.0
     func resizeStrikeThrough() {
         let textSize = text?.size(attributes: [NSFontAttributeName:font])
         strikeThroughLayer.frame = CGRect(x: 0, y: bounds.size.height/2,

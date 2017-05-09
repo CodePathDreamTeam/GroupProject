@@ -61,7 +61,7 @@ class MenuViewController: UIViewController {
         
         hamburgerViewController.contentViewController = homeNavController
         
-        loadFromCoreData()
+        //loadFromCoreData()
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension

@@ -189,7 +189,7 @@ class TodoViewController: DashBaseViewController, TableViewCellDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // this behavior starts when a user pulls down while at the top of the table
         pullDownInProgress = scrollView.contentOffset.y <= 0.0
-        placeHolderCell.backgroundColor = UIColor.red
+        placeHolderCell.backgroundColor = UIColor.gray
         if pullDownInProgress {
             // add the placeholder
             tableView.insertSubview(placeHolderCell, at: 0)
@@ -352,12 +352,6 @@ extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
     }
     // MARK: - Table view delegate
     
-    func colorForIndex(_ index: Int) -> UIColor {
-        let itemCount = toDoItems.count - 1
-        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-    }
-    
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return kRowHeight
@@ -365,7 +359,7 @@ extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = colorForIndex(indexPath.row)
+        cell.backgroundColor = UIColor.white
     }
 }
 

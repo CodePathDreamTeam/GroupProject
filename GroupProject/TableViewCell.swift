@@ -49,7 +49,7 @@ class TableViewCell: UITableViewCell, UITextFieldDelegate {
                   reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         label = StrikeThroughText(frame: CGRect.null)
-        label.textColor = UIColor.white
+        label.textColor = UIColor.lightGray
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.backgroundColor = UIColor.clear
         
@@ -93,7 +93,7 @@ class TableViewCell: UITableViewCell, UITextFieldDelegate {
         
         // add a layer that renders a green background when an item is complete
         itemCompleteLayer = CALayer(layer: layer)
-        itemCompleteLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).cgColor
+        itemCompleteLayer.backgroundColor = UIColor.darkGray.cgColor
         itemCompleteLayer.isHidden = true
         layer.insertSublayer(itemCompleteLayer, at: 0)
         
