@@ -72,6 +72,18 @@ class HomeViewController: DashBaseViewController {
                 }
             }
         })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if let navigationController = segue.destination as? UINavigationController {
+            if let settingsViewController = navigationController.topViewController as? SettingsViewController {
+                settingsViewController.delegate = HamburgerViewController.sharedInstance.menuViewController as? SettingsViewControllerDelegate
+            }
+        }
+        
     }
     
     func updateUI(isInteractive: Bool) {

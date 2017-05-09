@@ -20,6 +20,7 @@ class MenuViewController: UIViewController {
     private var photoMapNavController: UINavigationController!
     private var theWallNavController: UINavigationController!
 
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     @IBOutlet weak var greetingLabel: UILabel!
     
     var viewControllers: [UIViewController] = []
@@ -61,8 +62,10 @@ class MenuViewController: UIViewController {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        let savedName = defaults.string(forKey: "name") ?? "Traveler"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
         greetingLabel.text = "Greetings, \(savedName)!"
     }
     
@@ -90,5 +93,12 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         cell.iconImageView?.image = icons[indexPath.row]
         
         return cell
+    }
+}
+
+extension MenuViewController: SettingsViewControllerDelegate {
+    
+    func settingsViewController(didUpdatePhoto photo: UIImage) {
+        userPhotoImageView.image = photo
     }
 }

@@ -155,6 +155,7 @@
                     <connections>
                         <outlet property="greetingLabel" destination="fxs-uD-0e3" id="Z7U-TL-KFN"/>
                         <outlet property="tableView" destination="Xp7-vz-4R5" id="8Ph-1M-ctL"/>
+                        <outlet property="userPhotoImageView" destination="BbJ-10-nk9" id="316-Uf-lR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTd-vZ-TXR" userLabel="First Responder" sceneMemberID="firstResponder"/>

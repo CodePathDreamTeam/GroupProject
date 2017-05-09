@@ -9,12 +9,17 @@
 import UIKit
 import CoreData
 
+protocol SettingsViewControllerDelegate {
+    func settingsViewController(didUpdatePhoto: UIImage)
+}
+
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     
     var userPhoto: UIImage?
+    var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +101,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         
         Globals.saveContext()
         print("appDelegate.saveContext() for userPhoto")
+        delegate?.settingsViewController(didUpdatePhoto: photo)
 
     }
     
