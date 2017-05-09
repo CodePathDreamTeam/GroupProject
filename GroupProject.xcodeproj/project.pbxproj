@@ -75,6 +75,8 @@
 		CA621D3C1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */; };
 		CA621D3E1EC0F4C6007DC8A3 /* POISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */; };
 		CA621D401EC244B2007DC8A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3F1EC244B2007DC8A3 /* User.swift */; };
+		CA621D421EC27AAC007DC8A3 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D411EC27AAC007DC8A3 /* HamburgerButton.swift */; };
+		CA621D441EC283C8007DC8A3 /* HamburgerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D431EC283C8007DC8A3 /* HamburgerTwo.swift */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
@@ -154,6 +156,8 @@
 		CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POISearchViewController.swift; sourceTree = "<group>"; };
 		CA621D3F1EC244B2007DC8A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CA621D411EC27AAC007DC8A3 /* HamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
+		CA621D431EC283C8007DC8A3 /* HamburgerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerTwo.swift; sourceTree = "<group>"; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				3954F5DD1EB1BE4600C234F2 /* TableViewCell.swift */,
 				CB6CC3441EBB8D9F00351372 /* MenuCell.swift */,
 				CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */,
+				CA621D411EC27AAC007DC8A3 /* HamburgerButton.swift */,
+				CA621D431EC283C8007DC8A3 /* HamburgerTwo.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -519,11 +525,13 @@
 				39E225EE1EAF1FEA0064C27F /* PlaceAnnotation.swift in Sources */,
 				39E225F21EAF20130064C27F /* AnnotationView.swift in Sources */,
 				39E225E81EAF1A7B0064C27F /* PhotoMapViewController.swift in Sources */,
+				CA621D421EC27AAC007DC8A3 /* HamburgerButton.swift in Sources */,
 				394602061EAD33DD00BAAC4F /* LoginViewController.swift in Sources */,
 				39E225EC1EAF1FC90064C27F /* PlaceLoader.swift in Sources */,
 				3958077F1EB6D57500EAE714 /* FullImageViewController.swift in Sources */,
 				3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */,
 				39E225E61EAF1A6F0064C27F /* PoisViewController.swift in Sources */,
+				CA621D441EC283C8007DC8A3 /* HamburgerTwo.swift in Sources */,
 				39E225D21EAF14DC0064C27F /* DashBaseViewController.swift in Sources */,
 				39E225CC1EAF0EA40064C27F /* MenuViewController.swift in Sources */,
 				39E225D61EAF159A0064C27F /* WeatherStationViewController.swift in Sources */,
