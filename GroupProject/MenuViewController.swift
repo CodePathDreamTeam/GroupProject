@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MenuViewController: UIViewController {
     
@@ -60,6 +61,8 @@ class MenuViewController: UIViewController {
         
         hamburgerViewController.contentViewController = homeNavController
         
+        loadFromCoreData()
+        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -73,6 +76,24 @@ class MenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func loadFromCoreData() {
+        let request = NSFetchRequest<NSManagedObject>(entityName: "UserPhoto")
+        let result = Globals.fetch(request)
+        if result.isSuccess {
+            
+            let fetchedPhotoData = result.value!
+            print(fetchedPhotoData.count)
+            if let photoData = fetchedPhotoData[0] as? UserPhoto {
+                if let userPhotoData = photoData.photoImage as Data? {
+                    userPhotoImageView.image = UIImage(data: userPhotoData)
+                }
+            }
+        } else {
+            print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
+        }
+    }
+
 }
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
@@ -100,5 +121,10 @@ extension MenuViewController: SettingsViewControllerDelegate {
     
     func settingsViewController(didUpdatePhoto photo: UIImage) {
         userPhotoImageView.image = photo
+    }
+    
+    func settingsViewController(didUpdateName: String) {
+        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
+        greetingLabel.text = "Greetings, \(savedName)!"
     }
 }

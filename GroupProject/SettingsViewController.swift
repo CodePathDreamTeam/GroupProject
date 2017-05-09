@@ -11,6 +11,7 @@ import CoreData
 
 protocol SettingsViewControllerDelegate {
     func settingsViewController(didUpdatePhoto: UIImage)
+    func settingsViewController(didUpdateName: String)
 }
 
 class SettingsViewController: UIViewController {
@@ -43,6 +44,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onSaveButton(_ sender: Any) {
+        
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -51,6 +53,7 @@ class SettingsViewController: UIViewController {
         defaults.setValue(newName, forKey: "name")
         defaults.synchronize()
         print("New saved Name: \(defaults.string(forKey: "name"))")
+        delegate?.settingsViewController(didUpdateName: newName!)
     }
     
     @IBAction func onTap(_ sender: Any) {
