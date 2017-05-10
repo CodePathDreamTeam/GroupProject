@@ -75,8 +75,8 @@ class MenuViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
-        greetingLabel.text = "Greetings, \(savedName)!"
+        let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
+        greetingLabel.text = "\(savedName)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,8 +131,8 @@ extension MenuViewController: SettingsViewControllerDelegate {
     }
     
     func settingsViewController(didUpdateName: String) {
-        let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
-        greetingLabel.text = "Greetings, \(savedName)!"
+        let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
+        greetingLabel.text = "\(savedName)"
     }
     
     func settingsViewController(didUpdateLocation: GMSPlace){
