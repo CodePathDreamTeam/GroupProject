@@ -27,6 +27,7 @@ class MenuViewController: UIViewController {
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
+    var currentIndex = 0
     let titles = ["Home","To-Do","Finances","Weather","Near Me","Photo Map","Geo Journal"]
     let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "checkbox"),#imageLiteral(resourceName: "calculator"),#imageLiteral(resourceName: "weather"),#imageLiteral(resourceName: "pin"),#imageLiteral(resourceName: "camera"),#imageLiteral(resourceName: "message")]
     
@@ -105,9 +106,13 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
-        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        if currentIndex != indexPath.row {
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+            hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+            currentIndex = indexPath.row
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

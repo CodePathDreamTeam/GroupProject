@@ -25,7 +25,12 @@ class DashBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.HamburgerButton.showsMenu = !self.HamburgerButton.showsMenu
+    }
+    
     @IBAction func openHamburgerMenu(_ sender: Any) {
         self.HamburgerButton.showsMenu = !self.HamburgerButton.showsMenu
+        HamburgerViewController.sharedInstance.moveMenu()
     }
 }

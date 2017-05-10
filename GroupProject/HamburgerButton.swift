@@ -119,7 +119,6 @@ open class HamburgerButton: UIButton {
             bottom.strokeStart = strokeStartNewValue
             
             CATransaction.commit()
-            HamburgerViewController.sharedInstance.moveMenu()
 
         }
     }
