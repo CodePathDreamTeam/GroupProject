@@ -12,6 +12,8 @@ class HamburgerViewController: UIViewController {
         }
     }
     var originalLeftMargin: CGFloat!
+    var openPositionLeftMarginConstant: CGFloat!
+    var closedPositionLeftMarginConstant: CGFloat!
     
     var menuViewController: MenuViewController!{
         didSet{
@@ -43,6 +45,10 @@ class HamburgerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Setup open and closed position constants
+        openPositionLeftMarginConstant = self.view.frame.size.width - 50
+        closedPositionLeftMarginConstant = 0
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,7 +77,15 @@ class HamburgerViewController: UIViewController {
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let velocity = sender.velocity(in: view)
-        
+
+        // Restricts pan gesture, 
+        //      towards right when hamburger menu is in open position
+        //      towards left when hamburger menu is in closed position
+        if ((leftMargainConstraint.constant == closedPositionLeftMarginConstant && velocity.x < 0) ||
+            leftMargainConstraint.constant == openPositionLeftMarginConstant && velocity.x > 0) {
+            return
+        }
+
         if sender.state == UIGestureRecognizerState.began {
             originalLeftMargin = leftMargainConstraint.constant
         } else if sender.state == UIGestureRecognizerState.changed {
@@ -80,10 +94,10 @@ class HamburgerViewController: UIViewController {
         } else if sender.state == UIGestureRecognizerState.ended{
             UIView.animate(withDuration: 0.3, animations: {
                 if velocity.x > 0 {
-                    self.leftMargainConstraint.constant = self.view.frame.size.width - 50
+                    self.leftMargainConstraint.constant = self.openPositionLeftMarginConstant
                     
                 } else {
-                    self.leftMargainConstraint.constant = 0
+                    self.leftMargainConstraint.constant = self.closedPositionLeftMarginConstant
                 }
                 self.view.layoutIfNeeded()
             })
