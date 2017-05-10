@@ -169,7 +169,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
 
             let fetchedPhotoData = result.value!
             print(fetchedPhotoData.count)
-            if let photoData = fetchedPhotoData[0] as? UserPhoto {
+            if let photoData = fetchedPhotoData.first as? UserPhoto {
                 if let userPhotoData = photoData.photoImage as Data? {
                     userPhoto = UIImage(data: userPhotoData)
                     photoImageView.image = userPhoto

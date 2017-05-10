@@ -62,8 +62,8 @@ class MenuViewController: UIViewController {
         
         hamburgerViewController.contentViewController = homeNavController
         
-        //loadFromCoreData()
-        
+        loadFromCoreData()
+
         userPhotoImageView.layer.borderWidth = 2
         userPhotoImageView.layer.masksToBounds = false
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
@@ -91,7 +91,7 @@ class MenuViewController: UIViewController {
             
             let fetchedPhotoData = result.value!
             print(fetchedPhotoData.count)
-            if let photoData = fetchedPhotoData[0] as? UserPhoto {
+            if let photoData = fetchedPhotoData.first as? UserPhoto {
                 if let userPhotoData = photoData.photoImage as Data? {
                     userPhotoImageView.image = UIImage(data: userPhotoData)
                 }
