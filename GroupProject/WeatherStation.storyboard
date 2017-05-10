@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -101,13 +101,28 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7zz-pc-IWn">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="0PY-xl-FJZ">
-                            <connections>
-                                <action selector="openHamburgerMenu:" destination="au3-4c-ief" id="J6N-dV-H9d"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="70v-Fi-PQ4">
+                            <view key="customView" contentMode="scaleToFill" id="f1p-3W-CJO">
+                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T7-8e-TcK" customClass="HamburgerButton" customModule="GroupProject">
+                                        <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="openHamburgerMenu:" destination="au3-4c-ief" eventType="touchUpInside" id="N1O-1H-1NW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="3T7-8e-TcK" firstAttribute="centerY" secondItem="f1p-3W-CJO" secondAttribute="centerY" id="2fP-QH-gYh"/>
+                                    <constraint firstItem="3T7-8e-TcK" firstAttribute="leading" secondItem="f1p-3W-CJO" secondAttribute="leading" id="ihH-jR-Spp"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="HamburgerButton" destination="3T7-8e-TcK" id="Lqz-vZ-nlb"/>
                         <outlet property="locationLabel" destination="Cp6-lp-TRJ" id="gmC-f4-swy"/>
                         <outlet property="tableView" destination="r0c-6P-sTJ" id="chr-Gq-meb"/>
                     </connections>
@@ -121,7 +136,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fap-6u-5rc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="au3-Ag-3pB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="au3-Ag-3pB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

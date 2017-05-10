@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Drm-Nl-zxo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Drm-Nl-zxo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,10 +74,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="M0C-9u-asQ">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="9P3-8K-YLX">
-                            <connections>
-                                <action selector="openHamburgerMenu:" destination="Eb9-l4-6GM" id="0Ma-xy-Tny"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="fjZ-V1-tYs">
+                            <view key="customView" contentMode="scaleToFill" id="9Xn-1Z-jS7">
+                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVi-qb-she" customClass="HamburgerButton" customModule="GroupProject">
+                                        <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="openHamburgerMenu:" destination="Eb9-l4-6GM" eventType="touchUpInside" id="dbC-2J-N8O"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="bVi-qb-she" firstAttribute="centerY" secondItem="9Xn-1Z-jS7" secondAttribute="centerY" id="2hh-Ig-khl"/>
+                                    <constraint firstItem="bVi-qb-she" firstAttribute="leading" secondItem="9Xn-1Z-jS7" secondAttribute="leading" id="btW-bn-p9l"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="z4U-bM-pMD">
                             <connections>
@@ -86,6 +100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="HamburgerButton" destination="bVi-qb-she" id="sj8-iF-fap"/>
                         <outlet property="collectionView" destination="cuJ-Qf-P3e" id="VZd-PW-RUE"/>
                         <outlet property="mapView" destination="Mzo-tW-cJG" id="iDk-Sc-UfE"/>
                         <segue destination="GHW-36-czL" kind="push" identifier="fullImageSegue" id="HOm-7b-mgA"/>

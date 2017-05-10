@@ -37,13 +37,28 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pmg-z8-f5a">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="G8x-7O-1BB">
-                            <connections>
-                                <action selector="openHamburgerMenu:" destination="WPE-ZK-i2T" id="QXt-rZ-5MN"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="eF0-Cb-cZ9">
+                            <view key="customView" contentMode="scaleToFill" id="G4K-tg-cNb">
+                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNI-8a-fox" customClass="HamburgerButton" customModule="GroupProject">
+                                        <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="openHamburgerMenu:" destination="WPE-ZK-i2T" eventType="touchUpInside" id="h93-QV-D9W"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cNI-8a-fox" firstAttribute="centerY" secondItem="G4K-tg-cNb" secondAttribute="centerY" id="S77-gZ-fHL"/>
+                                    <constraint firstItem="cNI-8a-fox" firstAttribute="leading" secondItem="G4K-tg-cNb" secondAttribute="leading" id="crR-m1-SEK"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="HamburgerButton" destination="cNI-8a-fox" id="c0D-g2-rz3"/>
                         <outlet property="mapView" destination="15f-YI-ZED" id="N4n-3E-fZm"/>
                     </connections>
                 </viewController>
@@ -175,7 +190,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pE4-gV-CAx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Wj1-Mb-1Q0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wj1-Mb-1Q0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -193,7 +208,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LVU-DX-W7N" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gDN-wW-I7G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gDN-wW-I7G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

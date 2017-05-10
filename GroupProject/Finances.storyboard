@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yzV-Bd-LK1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yzV-Bd-LK1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -138,10 +138,24 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jnr-ex-5Pv">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Rdu-Sl-mwa">
-                            <connections>
-                                <action selector="openHamburgerMenu:" destination="kU4-Oe-HOg" id="t9L-Nn-fqe"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="gLl-A3-4TW">
+                            <view key="customView" contentMode="scaleToFill" id="b7y-te-C6y">
+                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDJ-Ls-emc" customClass="HamburgerButton" customModule="GroupProject">
+                                        <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="openHamburgerMenu:" destination="kU4-Oe-HOg" eventType="touchUpInside" id="vnk-by-Twa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xDJ-Ls-emc" firstAttribute="centerY" secondItem="b7y-te-C6y" secondAttribute="centerY" id="EYh-mH-iKI"/>
+                                    <constraint firstItem="xDJ-Ls-emc" firstAttribute="leading" secondItem="b7y-te-C6y" secondAttribute="leading" id="h5Q-Hw-M0g"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem tag="1" systemItem="add" id="2nv-fH-pT4">
@@ -157,6 +171,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="HamburgerButton" destination="xDJ-Ls-emc" id="pSb-jI-jno"/>
                         <outlet property="cameraBarButtonItem" destination="wjQ-A6-RRG" id="DlH-pb-WUU"/>
                         <outlet property="sourceAmountField" destination="5Yi-vC-K1b" id="Y2c-2w-qWb"/>
                         <outlet property="sourceCurrencyCodeLabel" destination="Wnb-SZ-IZq" id="lsJ-YG-C1H"/>
@@ -339,18 +354,18 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5oX-h1-PT2" id="5MG-Mw-AVJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EmW-IG-ezc">
-                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VOV-Wj-zJk">
-                                                    <rect key="frame" x="269" y="11" width="59" height="21"/>
+                                                    <rect key="frame" x="269" y="12" width="59" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

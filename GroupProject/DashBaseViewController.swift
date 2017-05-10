@@ -10,12 +10,12 @@ import UIKit
 
 class DashBaseViewController: UIViewController {
     
-    @IBOutlet weak var HamburgerButton: HamburgerTwo!
+    @IBOutlet weak var HamburgerButton: HamburgerButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.HamburgerButton.transform = CGAffineTransform(scaleX: 2, y: 2)
+        //self.HamburgerButton.transform = CGAffineTransform(scaleX: 1, y: 1)
 
         // Do any additional setup after loading the view.
     }
@@ -25,12 +25,7 @@ class DashBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func openHamburgerMenuTest(_ sender: Any) {
-        //self.HamburgerButton.showsMenu = !self.HamburgerButton.showsMenu
-        HamburgerViewController.sharedInstance.moveMenu()
-
-    }
-    @IBAction func openHamburgerMenu(_ sender: UIBarButtonItem) {
-        HamburgerViewController.sharedInstance.moveMenu()
+    @IBAction func openHamburgerMenu(_ sender: Any) {
+        self.HamburgerButton.showsMenu = !self.HamburgerButton.showsMenu
     }
 }
