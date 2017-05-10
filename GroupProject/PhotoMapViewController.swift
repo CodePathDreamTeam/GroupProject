@@ -68,12 +68,7 @@ class PhotoMapViewController: DashBaseViewController {
         }
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       /* if segue.identifier == "tagSegue" {
-            let vc = segue.destination as! LocationsViewController
-            vc.delegate = self
-        }*/
         if segue.identifier == "fullImageSegue" {
             let vc = segue.destination as! FullImageViewController
             vc.imgURL = imgURL
@@ -147,6 +142,7 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
                 annotation.photo = result!
             })
         }
+        
         annotation.photoURL = imageURL
         savePhoto(view: annotation)
         mapView.addAnnotation(annotation)
@@ -154,8 +150,6 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
         dismiss(animated: true, completion: nil)
     }
 }
-
-
 
 extension PhotoMapViewController: MKMapViewDelegate {
     
@@ -168,10 +162,8 @@ extension PhotoMapViewController: MKMapViewDelegate {
         if (annotationView == nil) {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView!.canShowCallout = true
-            annotationView!.leftCalloutAccessoryView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.infoDark)
             annotationView?.isDraggable = true
-            
         }
         
         let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
@@ -186,8 +178,6 @@ extension PhotoMapViewController: MKMapViewDelegate {
         let thumbnail = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
-        imageView.image = thumbnail
         annotationView?.image = thumbnail
         
         return annotationView
@@ -249,9 +239,11 @@ extension PhotoMapViewController: MKMapViewDelegate {
 
 extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        imgURL = visibleAnnotations[indexPath.row].photoURL
+        self.performSegue(withIdentifier: "fullImageSegue", sender: self)
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoMapCollectionViewCell", for: indexPath) as! PhotoMapCollectionViewCell

@@ -62,7 +62,7 @@ class MenuViewController: UIViewController {
         
         hamburgerViewController.contentViewController = homeNavController
         
-        loadFromCoreData()
+        //loadFromCoreData()
         
         userPhotoImageView.layer.borderWidth = 2
         userPhotoImageView.layer.masksToBounds = false
