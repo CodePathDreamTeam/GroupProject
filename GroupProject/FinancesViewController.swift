@@ -22,6 +22,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     @IBOutlet weak var cameraBarButtonItem: UIBarButtonItem!
 
+    @IBOutlet weak var scrollView: UIScrollView!
 
     fileprivate var activityIndicator:UIActivityIndicatorView!
 
@@ -32,8 +33,43 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setup custom page control
+        let newPageControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 450, height: scrollView.frame.height))
+        newPageControl.items = ["Expense Report","Denomination Guide","Nearby Exchanges"]
+        newPageControl.backColor = .yellow
+        newPageControl.cornerRadius = 0
+        newPageControl.bottomBorderEnabled = true
+        newPageControl.highlightedLabelColor = .red
+        newPageControl.unSelectedLabelColor = .black
+        newPageControl.fontSize = 14.0
+        newPageControl.radiusStyle = false
+        newPageControl.flatStyle = true
+        newPageControl.selectedLabelViewColor = .red
+        newPageControl.selectedLabelBorderWidth = 0
+        newPageControl.addTarget(self, action: #selector(pageControlValueChanged(_:)), for: .valueChanged)
+
+        // Setup scrollview for page control
+        scrollView.contentSize = newPageControl.frame.size
+        scrollView.addSubview(newPageControl)
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isScrollEnabled = false
+
         // TODO: Setup source and target fields dynamically based on the user's current and native locations.
         setupCurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+    }
+
+    // MARK: Page Control
+
+    func pageControlValueChanged(_ sender: Any){
+        // Force cast is OK here.
+        let pageControl = sender as! CustomSegmentedControl
+        // Figure out the new rect to display based on selected index
+        let labelWidthWithPadding: CGFloat = 200
+        let xPosition = CGFloat(pageControl.selectedIndex) * labelWidthWithPadding
+        let rectToDisplay = CGRect(x: xPosition, y: 0, width: labelWidthWithPadding, height: scrollView.frame.height)
+        // Scroll to new recet
+        scrollView.scrollRectToVisible(rectToDisplay, animated: true)
     }
 
     // MARK: Model Setup

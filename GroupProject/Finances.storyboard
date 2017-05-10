@@ -122,18 +122,27 @@
                                     <segue destination="1XY-BB-bRN" kind="show" identifier="ReceiptsView" id="cLA-2w-yPQ"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-L3-zAo">
+                                <rect key="frame" x="0.0" y="303" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AfB-O4-lao"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1KA-3c-PDM" firstAttribute="top" secondItem="FWS-91-ASm" secondAttribute="bottom" constant="20" id="4ZA-fW-Atz"/>
+                            <constraint firstAttribute="trailing" secondItem="Eye-L3-zAo" secondAttribute="trailing" id="78N-gb-dIJ"/>
                             <constraint firstItem="8ll-fC-p2E" firstAttribute="centerX" secondItem="PU6-jU-7I1" secondAttribute="centerX" id="MZ4-bb-Gcu"/>
                             <constraint firstItem="38d-ru-ziv" firstAttribute="centerX" secondItem="x2u-pZ-Akc" secondAttribute="centerX" id="QyO-an-25P"/>
                             <constraint firstItem="x2u-pZ-Akc" firstAttribute="centerY" secondItem="1KA-3c-PDM" secondAttribute="centerY" id="Trz-Q5-UDM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rHi-z1-Au7" secondAttribute="trailing" id="WUK-8f-Po3"/>
+                            <constraint firstItem="Eye-L3-zAo" firstAttribute="top" secondItem="8ll-fC-p2E" secondAttribute="bottom" constant="50" id="lpb-iT-CgG"/>
                             <constraint firstItem="8ll-fC-p2E" firstAttribute="top" secondItem="rHi-z1-Au7" secondAttribute="bottom" constant="20" id="orp-Yg-NVn"/>
                             <constraint firstItem="x2u-pZ-Akc" firstAttribute="width" secondItem="1KA-3c-PDM" secondAttribute="width" id="rEi-ye-a35"/>
                             <constraint firstItem="rHi-z1-Au7" firstAttribute="leading" secondItem="PU6-jU-7I1" secondAttribute="leadingMargin" id="uXI-er-Qrr"/>
                             <constraint firstItem="rHi-z1-Au7" firstAttribute="top" secondItem="1KA-3c-PDM" secondAttribute="bottom" constant="20" id="vyH-ia-Cmn"/>
+                            <constraint firstItem="Eye-L3-zAo" firstAttribute="leading" secondItem="PU6-jU-7I1" secondAttribute="leading" id="w27-D9-KSZ"/>
                             <constraint firstItem="5Yi-vC-K1b" firstAttribute="centerX" secondItem="1KA-3c-PDM" secondAttribute="centerX" id="zW3-Vn-51g"/>
                         </constraints>
                     </view>
@@ -173,6 +182,7 @@
                     <connections>
                         <outlet property="HamburgerButton" destination="xDJ-Ls-emc" id="pSb-jI-jno"/>
                         <outlet property="cameraBarButtonItem" destination="wjQ-A6-RRG" id="DlH-pb-WUU"/>
+                        <outlet property="scrollView" destination="Eye-L3-zAo" id="g4L-kg-1QS"/>
                         <outlet property="sourceAmountField" destination="5Yi-vC-K1b" id="Y2c-2w-qWb"/>
                         <outlet property="sourceCurrencyCodeLabel" destination="Wnb-SZ-IZq" id="lsJ-YG-C1H"/>
                         <outlet property="sourceCurrencyNameLabel" destination="n0I-M0-2FK" id="WcJ-ce-lat"/>

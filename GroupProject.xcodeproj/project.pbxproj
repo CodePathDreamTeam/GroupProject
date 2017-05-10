@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3908F9861EC2F5EB0040FC47 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */; };
 		3909F0BC1EB3014C00029E44 /* WallMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */; };
 		3909F0BE1EB3017800029E44 /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0BD1EB3017800029E44 /* WallViewController.swift */; };
 		3909F0C01EB301C600029E44 /* ARItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0BF1EB301C600029E44 /* ARItem.swift */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		0D7A177C130AF460D21FD878 /* Pods-GroupProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.debug.xcconfig"; sourceTree = "<group>"; };
+		3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallMapViewController.swift; sourceTree = "<group>"; };
 		3909F0BD1EB3017800029E44 /* WallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallViewController.swift; sourceTree = "<group>"; };
 		3909F0BF1EB301C600029E44 /* ARItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARItem.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				CB6CC3441EBB8D9F00351372 /* MenuCell.swift */,
 				CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */,
 				CA621D431EC283C8007DC8A3 /* HamburgerButton.swift */,
+				3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				397C92F71EBF92360025C79E /* AppGlobals.swift in Sources */,
+				3908F9861EC2F5EB0040FC47 /* CustomSegmentedControl.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
 				3909F0C01EB301C600029E44 /* ARItem.swift in Sources */,
 				3909F0BE1EB3017800029E44 /* WallViewController.swift in Sources */,
