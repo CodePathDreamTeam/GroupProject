@@ -8,16 +8,21 @@
 
 import UIKit
 import CoreData
+import GooglePlaces
 
 protocol SettingsViewControllerDelegate {
     func settingsViewController(didUpdatePhoto: UIImage)
     func settingsViewController(didUpdateName: String)
+    func settingsViewController(didUpdateLocation: GMSPlace)
 }
 
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var setLocationButton: UIButton!
+    
+    var placesClient: GMSPlacesClient!
     
     var userPhoto: UIImage?
     var delegate: SettingsViewControllerDelegate?
@@ -30,7 +35,8 @@ class SettingsViewController: UIViewController {
         } else {
             nameTextField.text = ""
         }
-        // Do any additional setup after loading the view.
+        
+        placesClient = GMSPlacesClient.shared()
         loadFromCoreData()
     }
 
@@ -47,6 +53,12 @@ class SettingsViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onSetLocationButton(_ sender: Any) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
 
     @IBAction func onEditingNameDidEnd(_ sender: Any) {
         let newName = nameTextField.text
@@ -61,6 +73,48 @@ class SettingsViewController: UIViewController {
     }
 
 }
+
+extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address:  \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        print("Place coordinates: \(place.coordinate)")
+        print("Place: \(place)")
+        
+        defaults.set("\(place.coordinate.latitude)", forKey: "latitude")
+        defaults.set("\(place.coordinate.longitude)", forKey: "longitude")
+        if let address = place.formattedAddress {
+            defaults.set("\(address)", forKey: "address")
+        }
+        defaults.synchronize()
+        dismiss(animated: true, completion: nil)
+        print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
+        print("defaults[longitude]: \(defaults.object(forKey: "longitude") as? String)")
+        print("defaults[address]: \(defaults.object(forKey: "address") as? String)")
+        
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+}
+
+
 
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
