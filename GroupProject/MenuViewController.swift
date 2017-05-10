@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GooglePlaces
 
 class MenuViewController: UIViewController {
     
@@ -61,7 +62,13 @@ class MenuViewController: UIViewController {
         
         hamburgerViewController.contentViewController = homeNavController
         
-        //loadFromCoreData()
+        loadFromCoreData()
+        
+        userPhotoImageView.layer.borderWidth = 2
+        userPhotoImageView.layer.masksToBounds = false
+        userPhotoImageView.layer.borderColor = UIColor.white.cgColor
+        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
+        userPhotoImageView.clipsToBounds = true
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -126,5 +133,9 @@ extension MenuViewController: SettingsViewControllerDelegate {
     func settingsViewController(didUpdateName: String) {
         let savedName = UserDefaults.standard.string(forKey: "name") ?? "Traveler"
         greetingLabel.text = "Greetings, \(savedName)!"
+    }
+    
+    func settingsViewController(didUpdateLocation: GMSPlace){
+    
     }
 }
