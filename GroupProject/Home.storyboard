@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xLX-oF-C21">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xLX-oF-C21">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -158,6 +158,14 @@
                                     <action selector="onUploadPhotoButton:" destination="EKI-7W-kRx" eventType="touchUpInside" id="1f1-Ia-Tuf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YI2-57-Rxj">
+                                <rect key="frame" x="142" y="568" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Set Location"/>
+                                <connections>
+                                    <action selector="onSetLocationButton:" destination="EKI-7W-kRx" eventType="touchUpInside" id="j9h-Gn-J9p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -191,6 +199,7 @@
                     <connections>
                         <outlet property="nameTextField" destination="O3N-54-8ki" id="Acf-w9-aGl"/>
                         <outlet property="photoImageView" destination="hBP-3K-rW2" id="qsg-NO-oC4"/>
+                        <outlet property="setLocationButton" destination="YI2-57-Rxj" id="XGY-ko-73Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2O-Wv-1HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
