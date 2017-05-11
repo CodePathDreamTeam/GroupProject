@@ -15,6 +15,8 @@
 		3909F0C41EB3028100029E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3909F0C31EB3028100029E44 /* art.scnassets */; };
 		3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */; };
 		390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */; };
+		3917C25C1EC3E516004495EF /* AddReceiptNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917C25B1EC3E516004495EF /* AddReceiptNavigationButton.swift */; };
+		3917C25E1EC3E524004495EF /* AddReceiptNavigationButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3917C25D1EC3E524004495EF /* AddReceiptNavigationButton.xib */; };
 		3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */; };
 		39452CEB1EB6BE2E00DE9080 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */; };
 		39452CEE1EB6BEC700DE9080 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 39452CED1EB6BEC700DE9080 /* tessdata */; };
@@ -92,6 +94,8 @@
 		3909F0C31EB3028100029E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteOnWallViewController.swift; sourceTree = "<group>"; };
 		390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
+		3917C25B1EC3E516004495EF /* AddReceiptNavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReceiptNavigationButton.swift; sourceTree = "<group>"; };
+		3917C25D1EC3E524004495EF /* AddReceiptNavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddReceiptNavigationButton.xib; sourceTree = "<group>"; };
 		3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		39452CED1EB6BEC700DE9080 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */,
 				CA621D431EC283C8007DC8A3 /* HamburgerButton.swift */,
 				3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */,
+				3917C25B1EC3E516004495EF /* AddReceiptNavigationButton.swift */,
+				3917C25D1EC3E524004495EF /* AddReceiptNavigationButton.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
 				39E225C81EAF0AFE0064C27F /* Main.storyboard in Resources */,
 				39E226081EAF20330064C27F /* hdar_close.png in Resources */,
+				3917C25E1EC3E524004495EF /* AddReceiptNavigationButton.xib in Resources */,
 				3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */,
 				39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */,
 				39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */,
@@ -568,6 +575,7 @@
 				CA621D401EC244B2007DC8A3 /* User.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
+				3917C25C1EC3E516004495EF /* AddReceiptNavigationButton.swift in Sources */,
 				39F84D761EBC111400BAE34F /* Receipt.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
 				3958077D1EB441F000EAE714 /* CustomEntities.xcdatamodeld in Sources */,

@@ -33,6 +33,11 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setup Add Recipts bar button item
+        let addReceiptBarButtonItem = UIBarButtonItem(customView: AddReceiptNavigationButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44)))
+        navigationItem.rightBarButtonItems = []
+        navigationItem.rightBarButtonItem = addReceiptBarButtonItem
+
         // Setup custom page control
         let newPageControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 450, height: scrollView.frame.height))
         newPageControl.items = ["Expense Report","Denomination Guide","Nearby Exchanges"]
