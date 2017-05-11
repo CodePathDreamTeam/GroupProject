@@ -34,7 +34,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         super.viewDidLoad()
 
         // Setup Add Recipts bar button item
-        let addReceiptBarButtonItem = UIBarButtonItem(customView: AddReceiptNavigationButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44)))
+        let addReceiptBarButtonItem = UIBarButtonItem(customView: AddReceiptNavigationButton(frame: CGRect(x: 0, y: 0, width: 66, height: 66)))
         navigationItem.rightBarButtonItems = []
         navigationItem.rightBarButtonItem = addReceiptBarButtonItem
 

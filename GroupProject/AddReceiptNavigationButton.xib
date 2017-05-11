@@ -13,57 +13,42 @@
             <connections>
                 <outlet property="addButton" destination="YVl-Aa-Jbm" id="gU0-dV-sEc"/>
                 <outlet property="backgroundView" destination="9Yt-85-MK5" id="kML-PC-Ihw"/>
-                <outlet property="cameraBackView" destination="MBp-Bj-BWp" id="aSY-2q-mdY"/>
+                <outlet property="cameraButton" destination="v3Z-S1-Txu" id="2m9-I9-nPJ"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="geE-iD-YeR"/>
-                <outlet property="manualBackView" destination="JgC-82-8NR" id="5wa-92-Iay"/>
+                <outlet property="pencilButton" destination="mPq-jd-FmM" id="0dy-XD-VtD"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
-            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Yt-85-MK5" userLabel="Background View">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                    <rect key="frame" x="11" y="11" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBp-Bj-BWp" userLabel="Camera Background View">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                <button opaque="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3Z-S1-Txu" userLabel="Camera Button">
+                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3Z-S1-Txu" userLabel="Camera Button">
-                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="camera"/>
-                            <connections>
-                                <action selector="cameraButtonClicked:" destination="-1" eventType="touchUpInside" id="GvA-DL-Y1Z"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-82-8NR" userLabel="Manual Background View">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                    <state key="normal" image="cbutton_camera"/>
+                    <connections>
+                        <action selector="cameraButtonClicked:" destination="-1" eventType="touchUpInside" id="GvA-DL-Y1Z"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPq-jd-FmM" userLabel="Pencil">
+                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPq-jd-FmM" userLabel="Manual Button">
-                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="calculator"/>
-                            <connections>
-                                <action selector="manualButtonClicked:" destination="-1" eventType="touchUpInside" id="IR5-BJ-NH0"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVl-Aa-Jbm" userLabel="Add Button">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                    <state key="normal" image="cbutton_pencil"/>
+                    <connections>
+                        <action selector="manualButtonClicked:" destination="-1" eventType="touchUpInside" id="IR5-BJ-NH0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVl-Aa-Jbm" userLabel="Add Button">
+                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <inset key="contentEdgeInsets" minX="1" minY="-5" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="+"/>
+                    <state key="normal" title="+" image="cbutton_add"/>
                     <connections>
                         <action selector="addButtonClicked:" destination="-1" eventType="touchUpInside" id="HrD-1V-4eB"/>
                     </connections>
@@ -78,7 +63,8 @@
         </view>
     </objects>
     <resources>
-        <image name="calculator" width="35" height="35"/>
-        <image name="camera" width="35" height="35"/>
+        <image name="cbutton_add" width="66" height="66"/>
+        <image name="cbutton_camera" width="66" height="66"/>
+        <image name="cbutton_pencil" width="66" height="66"/>
     </resources>
 </document>

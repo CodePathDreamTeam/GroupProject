@@ -14,8 +14,8 @@ class AddReceiptNavigationButton: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var cameraBackView: UIView!
-    @IBOutlet weak var manualBackView: UIView!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var pencilButton: UIButton!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,10 +34,8 @@ class AddReceiptNavigationButton: UIView {
 
         // contentView outlet will be setup now.
         // Setup the frame such that the button hangs below nagivation bar and add the subview.
-        contentView.frame = CGRect(x: 0, y: bounds.size.height / 2, width: bounds.size.width, height: bounds.size.height)
+        contentView.frame = CGRect(x:0, y: 22.0, width: bounds.size.width, height: bounds.size.height)
         backgroundView.layer.cornerRadius = 22.0
-        cameraBackView.layer.cornerRadius = 22.0
-        manualBackView.layer.cornerRadius = 22.0
 
         addSubview(contentView)
     }
@@ -47,30 +45,32 @@ class AddReceiptNavigationButton: UIView {
             if self.backgroundView.transform == .identity {
                 UIView.animate(withDuration: 0.5, animations: { 
                     self.backgroundView.transform = CGAffineTransform(scaleX: 40, y: 40)
-                    self.backgroundView.alpha = 0.75
+                    self.backgroundView.alpha = 0.85;
+                    self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat((45 * Double.pi)/180))
 
                 }, completion: { (_) in
                     UIView.animate(withDuration: 0.5, animations: { 
-                        self.cameraBackView.transform = CGAffineTransform(translationX: 0, y: 50)
-                        self.cameraBackView.alpha = 1.0
-                        self.manualBackView.transform = CGAffineTransform(translationX: 0, y: 100)
-                        self.manualBackView.alpha = 1.0
+                        self.cameraButton.transform = CGAffineTransform(translationX: 0, y: 75)
+                        self.cameraButton.alpha = 1.0
+                        self.pencilButton.transform = CGAffineTransform(translationX: 0, y: 150)
+                        self.pencilButton.alpha = 1.0
                     })
                 })
 
             } else {
 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.cameraBackView.transform = .identity
-                    self.cameraBackView.alpha = 0.0
-                    self.manualBackView.transform = .identity
-                    self.manualBackView.alpha = 0.0
+                    self.cameraButton.transform = .identity
+                    self.cameraButton.alpha = 0.0
+                    self.pencilButton.transform = .identity
+                    self.pencilButton.alpha = 0.0
 
                 }, completion: { (_) in
 
                     UIView.animate(withDuration: 0.5, animations: { 
                         self.backgroundView.transform = .identity
                         self.backgroundView.alpha = 1.0
+                        self.addButton.transform = .identity
                     })
                 })
             }
