@@ -21,7 +21,7 @@ class User {
     func updateUser() {
         nativeLocation = defaults.value(forKey: "nativeLocation") as! String?
         destinationLocation = defaults.value(forKey: "destinationLocation") as! String?
-        latitude = defaults.value(forKey: "latitude") as! Double?
-        longitude = defaults.value(forKey: "longitude") as! Double?
+        latitude = defaults.value(forKey: "latitude") as? Double
+        longitude = defaults.value(forKey: "longitude") as? Double
     }
 }

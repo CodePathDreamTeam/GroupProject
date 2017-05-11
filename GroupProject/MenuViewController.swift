@@ -22,8 +22,11 @@ class MenuViewController: UIViewController {
     private var photoMapNavController: UINavigationController!
     private var theWallNavController: UINavigationController!
 
+    @IBOutlet weak var userInfoView: UIView!
     @IBOutlet weak var userPhotoImageView: UIImageView!
-    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
@@ -71,13 +74,15 @@ class MenuViewController: UIViewController {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
         userPhotoImageView.clipsToBounds = true
         
+        locationLabel.text = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
-        greetingLabel.text = "\(savedName)"
+        nameLabel.text = "\(savedName)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,10 +142,11 @@ extension MenuViewController: SettingsViewControllerDelegate {
     
     func settingsViewController(didUpdateName: String) {
         let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
-        greetingLabel.text = "\(savedName)"
+        nameLabel.text = "\(savedName)"
     }
     
     func settingsViewController(didUpdateLocation: GMSPlace){
-    
+        let location = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        locationLabel.text = location
     }
 }
