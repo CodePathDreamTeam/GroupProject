@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AnimatedCollectionViewLayout (0.3.0)
   - Bolts/Tasks (1.8.4)
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
@@ -33,6 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - AnimatedCollectionViewLayout
   - Charts
   - GoogleMaps
   - GooglePlacePicker
@@ -41,6 +43,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AnimatedCollectionViewLayout: 504b992a4258eb39d2dd2b2b48e84b4b95860fd7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
@@ -48,6 +51,6 @@ SPEC CHECKSUMS:
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
 
-PODFILE CHECKSUM: c4c2eb3283e7c879b4008dfbb42c0ce004abffb1
+PODFILE CHECKSUM: 06a626988f4508b50d12cd99fc4de8b4698ba126
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

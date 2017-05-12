@@ -50,7 +50,7 @@ class HamburgerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         print(self.leftMargainConstraint.constant)
         
-        if defaults.string(forKey: "address") == nil {
+        if User.sharedInstance.nativeCountry == nil {
             
             let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)
             let viewController = storyboard.instantiateInitialViewController()

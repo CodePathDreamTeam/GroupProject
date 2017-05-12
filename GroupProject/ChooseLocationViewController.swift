@@ -7,16 +7,40 @@
 //
 
 import UIKit
-import GooglePlaces
+import AnimatedCollectionViewLayout
 
 class ChooseLocationViewController: UIViewController {
     
-    var placesClient: GMSPlacesClient!
+    let countryTuple : [(String,String)] = [("AUD", "Australia"), ("BGN","Bulgaria"), ("BRL","Brazil"), ("CAD","Canada"),  ("CHF","Switzerland"), ("CNY","Chinese Yuan"), ("CZK","Czech Republic"), ("DKK","Denmark"), ("EUR","Euro"),  ("GBP","British Pound"), ("HKD","Hong Kong Dollar"), ("HRK","Croatia"), ("HUF","Hungary"), ("IDR","Indonesia"),  ("ILS","Israel"), ("INR","India"), ("JPY","Japan"), ("KRW","South Korea"), ("MXN","Mexico"), ("MYR","Malaysia"),  ("NOK","Norway"), ("NZD","New Zealand"), ("PHP","Philippines"), ("PLN","Poland"), ("RON","Romania"), ("RUB","Russia"),  ("SEK","Sweden"), ("SGD","Singapore"), ("THB","Thailand"), ("TRY","Turkey"), ("USD","United States"), ("ZAR","South Africa")]
+    
+    var nativeCountry = "AUD"
+    var destinationCountry = "AUD"
+    
+    var nativeCurrency = "AUD"
+    var destinationCurrency = "AUD"
+    
+    @IBOutlet weak var nativeCollectionView: UICollectionView!
+    @IBOutlet weak var destinationCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Helpers.setupGradient(view: self.view)
+        
+        nativeCollectionView?.isPagingEnabled = true
+        destinationCollectionView?.isPagingEnabled = true
 
-        placesClient = GMSPlacesClient.shared()
+        
+        let nativeLayout = AnimatedCollectionViewLayout()
+        nativeLayout.animator = LinearCardAttributesAnimator()
+        nativeLayout.scrollDirection = .horizontal
+        nativeCollectionView.collectionViewLayout = nativeLayout
+        
+        let destinationLayout = AnimatedCollectionViewLayout()
+        destinationLayout.animator = LinearCardAttributesAnimator()
+        destinationLayout.scrollDirection = .horizontal
+        destinationCollectionView.collectionViewLayout = destinationLayout
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,66 +49,61 @@ class ChooseLocationViewController: UIViewController {
     }
     
     @IBAction func onStartButton(_ sender: Any) {
-        /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let hamburgerViewController = HamburgerViewController.sharedInstance
         
-        let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
 
-        menuViewController.hamburgerViewController = hamburgerViewController
-        hamburgerViewController.menuViewController = menuViewController
+        defaults.set(nativeCountry, forKey: "nativeCountry")
+        defaults.set(destinationCountry, forKey: "destinationCountry")
         
-        present(hamburgerViewController, animated: true, completion: nil)*/
+        defaults.set(nativeCurrency, forKey: "nativeCurrency")
+        defaults.set(destinationCurrency, forKey: "destinationCurrency")
+
+        User.sharedInstance.updateUser()
         
-        //defaults.set("my Location", forKey: "address")
         self.dismiss(animated: true, completion: nil)
 
     }
-    
-    @IBAction func onChooseLocation(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        present(autocompleteController, animated: true, completion: nil)
-    }
-
 }
 
-extension ChooseLocationViewController: GMSAutocompleteViewControllerDelegate {
+extension ChooseLocationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address:  \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-        print("Place coordinates: \(place.coordinate)")
-        print("Place: \(place)")
-        
-        defaults.set("\(place.coordinate.latitude)", forKey: "latitude")
-        defaults.set("\(place.coordinate.longitude)", forKey: "longitude")
-        if let address = place.formattedAddress {
-            defaults.set("\(address)", forKey: "address")
-        }
-        defaults.synchronize()
-        dismiss(animated: true, completion: nil)
-        print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
-        print("defaults[longitude]: \(defaults.object(forKey: "longitude") as? String)")
-        print("defaults[address]: \(defaults.object(forKey: "address") as? String)")
-        
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        print("Error: ", error.localizedDescription)
-    }
-    
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    
-    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
-}
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let nativeIndex = self.nativeCollectionView.indexPathsForVisibleItems.first?.row
+        nativeCurrency = countryTuple[nativeIndex!].0
+        nativeCountry = countryTuple[nativeIndex!].1
 
+        
+        let destinationIndex = self.destinationCollectionView.indexPathsForVisibleItems.first?.row
+        destinationCurrency = countryTuple[destinationIndex!].0
+        destinationCountry = countryTuple[nativeIndex!].1
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return countryTuple.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MapCollectionViewCell", for: indexPath) as! MapCollectionViewCell
+        cell.bind(country: countryTuple[indexPath.row])
+        cell.clipsToBounds = true
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+}

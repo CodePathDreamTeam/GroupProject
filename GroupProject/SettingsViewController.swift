@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import GooglePlaces
+import CoreLocation
 
 protocol SettingsViewControllerDelegate {
     func settingsViewController(didUpdatePhoto: UIImage)

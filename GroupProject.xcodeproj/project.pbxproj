@@ -77,6 +77,8 @@
 		CA621D3E1EC0F4C6007DC8A3 /* POISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */; };
 		CA621D401EC244B2007DC8A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3F1EC244B2007DC8A3 /* User.swift */; };
 		CA621D441EC283C8007DC8A3 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D431EC283C8007DC8A3 /* HamburgerButton.swift */; };
+		CA621D6A1EC64124007DC8A3 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D691EC64124007DC8A3 /* MapCollectionViewCell.swift */; };
+		CA621D6D1EC6739D007DC8A3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D6C1EC6739D007DC8A3 /* Helpers.swift */; };
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
@@ -158,6 +160,8 @@
 		CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POISearchViewController.swift; sourceTree = "<group>"; };
 		CA621D3F1EC244B2007DC8A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CA621D431EC283C8007DC8A3 /* HamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
+		CA621D691EC64124007DC8A3 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA621D6C1EC6739D007DC8A3 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */,
 				CA621D431EC283C8007DC8A3 /* HamburgerButton.swift */,
 				3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */,
+				CA621D691EC64124007DC8A3 /* MapCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				3909F0C31EB3028100029E44 /* art.scnassets */,
 				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
 				3946020F1EAD33DD00BAAC4F /* Info.plist */,
+				CA621D6C1EC6739D007DC8A3 /* Helpers.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -512,7 +518,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -529,9 +535,11 @@
 				39E225EC1EAF1FC90064C27F /* PlaceLoader.swift in Sources */,
 				3958077F1EB6D57500EAE714 /* FullImageViewController.swift in Sources */,
 				3954F5DE1EB1BE4600C234F2 /* TableViewCell.swift in Sources */,
+				CA621D6A1EC64124007DC8A3 /* MapCollectionViewCell.swift in Sources */,
 				39E225E61EAF1A6F0064C27F /* PoisViewController.swift in Sources */,
 				CA621D441EC283C8007DC8A3 /* HamburgerButton.swift in Sources */,
 				39E225D21EAF14DC0064C27F /* DashBaseViewController.swift in Sources */,
+				CA621D6D1EC6739D007DC8A3 /* Helpers.swift in Sources */,
 				39E225CC1EAF0EA40064C27F /* MenuViewController.swift in Sources */,
 				39E225D61EAF159A0064C27F /* WeatherStationViewController.swift in Sources */,
 				39E226041EAF20330064C27F /* ARTrackingManager.swift in Sources */,

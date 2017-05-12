@@ -16,7 +16,6 @@ class PoisViewController: DashBaseViewController {
     fileprivate let locationManager = CLLocationManager()
     fileprivate var startedLoadingPOIs = false
     fileprivate var places = [Place]()
-    
     fileprivate var arViewController: ARViewController!
     
     var distance = 500

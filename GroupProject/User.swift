@@ -13,14 +13,22 @@ class User {
     
     static let sharedInstance = User()
     
-    var nativeLocation: String?
-    var destinationLocation: String?
+    var nativeCountry: String?
+    var destinationCountry: String?
+    
+    var nativeCurrency: String?
+    var destinationCurrency: String?
+    
     var latitude: Double?
     var longitude: Double?
     
     func updateUser() {
-        nativeLocation = defaults.value(forKey: "nativeLocation") as! String?
-        destinationLocation = defaults.value(forKey: "destinationLocation") as! String?
+        nativeCountry = defaults.value(forKey: "nativeCountry") as! String?
+        destinationCountry = defaults.value(forKey: "destinationCountry") as! String?
+        
+        nativeCurrency = defaults.value(forKey: "nativeCurrency") as! String?
+        destinationCurrency = defaults.value(forKey: "destinationCurrency") as! String?
+        
         latitude = defaults.value(forKey: "latitude") as! Double?
         longitude = defaults.value(forKey: "longitude") as! Double?
     }

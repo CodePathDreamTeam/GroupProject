@@ -13,5 +13,6 @@ target 'GroupProject' do
   pod 'GoogleMaps'
   pod 'Charts'
   pod 'Parse'
+  pod 'AnimatedCollectionViewLayout'
 
 end
