@@ -120,6 +120,10 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sanfran" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-Kg-1gJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="kaz-eK-Wfx" appends="YES" id="Ft9-t7-9TP"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My San Francisco Photos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOP-jb-mKF">
                                             <rect key="frame" x="40" y="49" width="220" height="24"/>
@@ -195,8 +199,8 @@
                     </view>
                     <connections>
                         <outlet property="locationLabel" destination="rRL-C8-zpm" id="qpG-2o-0q1"/>
+                        <outlet property="myPhotosImageView" destination="Tqe-Kg-1gJ" id="sb9-Qb-f6b"/>
                         <outlet property="myPhotosLabel" destination="tOP-jb-mKF" id="gsG-6f-ba7"/>
-                        <outlet property="myPhotosView" destination="Tqe-Kg-1gJ" id="qCE-jW-xA5"/>
                         <outlet property="nameLabel" destination="fxs-uD-0e3" id="D2f-8f-4uJ"/>
                         <outlet property="tableView" destination="Xp7-vz-4R5" id="8Ph-1M-ctL"/>
                         <outlet property="userInfoView" destination="sjk-wl-V0t" id="OGw-sA-e0w"/>
@@ -204,6 +208,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTd-vZ-TXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kaz-eK-Wfx">
+                    <connections>
+                        <action selector="onPhotosTapGesture:" destination="KEN-HD-rkc" id="XPI-mx-O2V"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-53.600000000000001" y="867.61619190404804"/>
         </scene>

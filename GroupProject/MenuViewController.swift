@@ -26,8 +26,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var userPhotoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var myPhotosView: UIImageView!
     @IBOutlet weak var myPhotosLabel: UILabel!
+    @IBOutlet weak var myPhotosImageView: UIImageView!
     
     
     var viewControllers: [UIViewController] = []
@@ -72,16 +72,18 @@ class MenuViewController: UIViewController {
 
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = myPhotosView.bounds
+        blurEffectView.frame = myPhotosImageView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurEffectView.alpha = 0.5
-        myPhotosView.addSubview(blurEffectView)
+        myPhotosImageView.addSubview(blurEffectView)
         
         userPhotoImageView.layer.borderWidth = 2
         userPhotoImageView.layer.masksToBounds = false
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
         userPhotoImageView.clipsToBounds = true
+        
+        myPhotosImageView.isUserInteractionEnabled = true
         
         
         let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
@@ -102,6 +104,11 @@ class MenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onPhotosTapGesture(_ sender: Any) {
+        print("photo tap")
+        hamburgerViewController.contentViewController = photoMapNavController
     }
     
     func loadFromCoreData() {
