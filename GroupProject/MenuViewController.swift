@@ -26,6 +26,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var userPhotoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var myPhotosView: UIImageView!
+    @IBOutlet weak var myPhotosLabel: UILabel!
     
     
     var viewControllers: [UIViewController] = []
@@ -68,13 +70,25 @@ class MenuViewController: UIViewController {
         
         loadFromCoreData()
 
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = myPhotosView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.5
+        myPhotosView.addSubview(blurEffectView)
+        
         userPhotoImageView.layer.borderWidth = 2
         userPhotoImageView.layer.masksToBounds = false
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
         userPhotoImageView.clipsToBounds = true
         
-        locationLabel.text = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        
+        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        let location = getLocationSubstring(fullLocation)
+        locationLabel.text = location
+        
+        myPhotosLabel.text = "My \(location) Photos"
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -105,6 +119,14 @@ class MenuViewController: UIViewController {
         } else {
             print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
+    }
+    
+    func getLocationSubstring(_ fullLocation: String) -> String{
+        let addressComponents = fullLocation.components(separatedBy: ",")
+        if let location = addressComponents.first {
+            return location
+        }
+        return fullLocation
     }
 
 }
@@ -146,7 +168,7 @@ extension MenuViewController: SettingsViewControllerDelegate {
     }
     
     func settingsViewController(didUpdateLocation: GMSPlace){
-        let location = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
-        locationLabel.text = location
+        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        locationLabel.text = getLocationSubstring(fullLocation)
     }
 }
