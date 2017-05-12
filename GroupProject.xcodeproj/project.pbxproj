@@ -15,6 +15,8 @@
 		3909F0C41EB3028100029E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3909F0C31EB3028100029E44 /* art.scnassets */; };
 		3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */; };
 		390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */; };
+		3917C25C1EC3E516004495EF /* AddReceiptNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917C25B1EC3E516004495EF /* AddReceiptNavigationButton.swift */; };
+		3917C25E1EC3E524004495EF /* AddReceiptNavigationButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3917C25D1EC3E524004495EF /* AddReceiptNavigationButton.xib */; };
 		3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */; };
 		39452CEB1EB6BE2E00DE9080 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */; };
 		39452CEE1EB6BEC700DE9080 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 39452CED1EB6BEC700DE9080 /* tessdata */; };
@@ -82,6 +84,7 @@
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
+		CBF5F9E51EC5584B005038C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBF5F9E41EC5584B005038C4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,8 @@
 		3909F0C31EB3028100029E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteOnWallViewController.swift; sourceTree = "<group>"; };
 		390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
+		3917C25B1EC3E516004495EF /* AddReceiptNavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReceiptNavigationButton.swift; sourceTree = "<group>"; };
+		3917C25D1EC3E524004495EF /* AddReceiptNavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddReceiptNavigationButton.xib; sourceTree = "<group>"; };
 		3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		39452CEA1EB6BE2E00DE9080 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		39452CED1EB6BEC700DE9080 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -165,6 +170,7 @@
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
+		CBF5F9E41EC5584B005038C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GroupProject/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +293,7 @@
 		394601F71EAD33DD00BAAC4F = {
 			isa = PBXGroup;
 			children = (
+				CBF5F9E41EC5584B005038C4 /* Assets.xcassets */,
 				394602021EAD33DD00BAAC4F /* GroupProject */,
 				394602011EAD33DD00BAAC4F /* Products */,
 				4E99EA5F587885EEA8717B46 /* Pods */,
@@ -456,11 +463,13 @@
 				3909F0C41EB3028100029E44 /* art.scnassets in Resources */,
 				39E225D41EAF15540064C27F /* WeatherStation.storyboard in Resources */,
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
+				CBF5F9E51EC5584B005038C4 /* Assets.xcassets in Resources */,
 				39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */,
 				39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */,
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
 				39E225C81EAF0AFE0064C27F /* Main.storyboard in Resources */,
 				39E226081EAF20330064C27F /* hdar_close.png in Resources */,
+				3917C25E1EC3E524004495EF /* AddReceiptNavigationButton.xib in Resources */,
 				3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */,
 				39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */,
 				39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */,
@@ -576,6 +585,7 @@
 				CA621D401EC244B2007DC8A3 /* User.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
+				3917C25C1EC3E516004495EF /* AddReceiptNavigationButton.swift in Sources */,
 				39F84D761EBC111400BAE34F /* Receipt.swift in Sources */,
 				39E226011EAF20330064C27F /* ARAnnotation.swift in Sources */,
 				3958077D1EB441F000EAE714 /* CustomEntities.xcdatamodeld in Sources */,

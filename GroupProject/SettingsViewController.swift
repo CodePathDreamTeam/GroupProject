@@ -87,6 +87,7 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
         defaults.set("\(place.coordinate.latitude)", forKey: "latitude")
         defaults.set("\(place.coordinate.longitude)", forKey: "longitude")
         if let address = place.formattedAddress {
+            defaults.setValue(address, forKey: "nativeLocation")
             defaults.set("\(address)", forKey: "address")
         }
         defaults.synchronize()
@@ -94,7 +95,7 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
         print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
         print("defaults[longitude]: \(defaults.object(forKey: "longitude") as? String)")
         print("defaults[address]: \(defaults.object(forKey: "address") as? String)")
-        
+        delegate?.settingsViewController(didUpdateLocation: place)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

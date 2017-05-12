@@ -88,14 +88,20 @@ class HamburgerViewController: UIViewController {
             leftMargainConstraint.constant = originalLeftMargin + translation.x
             
         } else if sender.state == UIGestureRecognizerState.ended{
-            UIView.animate(withDuration: 0.3, animations: {
+
+            UIView.animate(withDuration: 0.3, animations: { 
                 if velocity.x > 0 {
                     self.leftMargainConstraint.constant = self.openPositionLeftMarginConstant
-                    
+
                 } else {
                     self.leftMargainConstraint.constant = self.closedPositionLeftMarginConstant
                 }
                 self.view.layoutIfNeeded()
+
+            }, completion: { (_) in
+                // Confidently assumes its Dashbaseviewcontroller!
+                let viewController = (self.contentViewController as! UINavigationController).viewControllers[0] as! DashBaseViewController
+                viewController.HamburgerButton.showsMenu = !viewController.HamburgerButton.showsMenu
             })
         }
     }

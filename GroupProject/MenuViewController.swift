@@ -22,8 +22,13 @@ class MenuViewController: UIViewController {
     private var photoMapNavController: UINavigationController!
     private var theWallNavController: UINavigationController!
 
+    @IBOutlet weak var userInfoView: UIView!
     @IBOutlet weak var userPhotoImageView: UIImageView!
-    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var myPhotosLabel: UILabel!
+    @IBOutlet weak var myPhotosImageView: UIImageView!
+    
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
@@ -65,11 +70,27 @@ class MenuViewController: UIViewController {
         
         loadFromCoreData()
 
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = myPhotosImageView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.5
+        myPhotosImageView.addSubview(blurEffectView)
+        
         userPhotoImageView.layer.borderWidth = 2
         userPhotoImageView.layer.masksToBounds = false
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
         userPhotoImageView.clipsToBounds = true
+        
+        myPhotosImageView.isUserInteractionEnabled = true
+        
+        
+        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        let location = getLocationSubstring(fullLocation)
+        locationLabel.text = location
+        
+        myPhotosLabel.text = "My \(location) Photos"
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -77,12 +98,17 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
-        greetingLabel.text = "\(savedName)"
+        nameLabel.text = "\(savedName)"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onPhotosTapGesture(_ sender: Any) {
+        print("photo tap")
+        hamburgerViewController.contentViewController = photoMapNavController
     }
     
     func loadFromCoreData() {
@@ -100,6 +126,14 @@ class MenuViewController: UIViewController {
         } else {
             print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
         }
+    }
+    
+    func getLocationSubstring(_ fullLocation: String) -> String{
+        let addressComponents = fullLocation.components(separatedBy: ",")
+        if let location = addressComponents.first {
+            return location
+        }
+        return fullLocation
     }
 
 }
@@ -137,10 +171,11 @@ extension MenuViewController: SettingsViewControllerDelegate {
     
     func settingsViewController(didUpdateName: String) {
         let savedName = UserDefaults.standard.string(forKey: "name") ?? ""
-        greetingLabel.text = "\(savedName)"
+        nameLabel.text = "\(savedName)"
     }
     
     func settingsViewController(didUpdateLocation: GMSPlace){
-    
+        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
+        locationLabel.text = getLocationSubstring(fullLocation)
     }
 }
