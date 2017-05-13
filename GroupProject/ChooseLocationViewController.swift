@@ -65,6 +65,7 @@ class ChooseLocationViewController: UIViewController {
 }
 
 extension ChooseLocationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
