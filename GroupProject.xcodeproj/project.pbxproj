@@ -15,6 +15,7 @@
 		3909F0C41EB3028100029E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3909F0C31EB3028100029E44 /* art.scnassets */; };
 		3909F0C61EB3089700029E44 /* WriteOnWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */; };
 		390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */; };
+		390F56701EC6F8B40010AA59 /* ShadowCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F566F1EC6F8B40010AA59 /* ShadowCardView.swift */; };
 		3917C25C1EC3E516004495EF /* SpiderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917C25B1EC3E516004495EF /* SpiderButton.swift */; };
 		3917C25E1EC3E524004495EF /* SpiderButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3917C25D1EC3E524004495EF /* SpiderButton.xib */; };
 		3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */; };
@@ -96,6 +97,7 @@
 		3909F0C31EB3028100029E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteOnWallViewController.swift; sourceTree = "<group>"; };
 		390BBC821EBDB9DB00496769 /* CurrencyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
+		390F566F1EC6F8B40010AA59 /* ShadowCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowCardView.swift; sourceTree = "<group>"; };
 		3917C25B1EC3E516004495EF /* SpiderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderButton.swift; sourceTree = "<group>"; };
 		3917C25D1EC3E524004495EF /* SpiderButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpiderButton.xib; sourceTree = "<group>"; };
 		3920BEB61EAF0A5B00DE76C1 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				CA621D691EC64124007DC8A3 /* MapCollectionViewCell.swift */,
 				3917C25B1EC3E516004495EF /* SpiderButton.swift */,
 				3917C25D1EC3E524004495EF /* SpiderButton.xib */,
+				390F566F1EC6F8B40010AA59 /* ShadowCardView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				CA621D401EC244B2007DC8A3 /* User.swift in Sources */,
+				390F56701EC6F8B40010AA59 /* ShadowCardView.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
 				3917C25C1EC3E516004495EF /* SpiderButton.swift in Sources */,
