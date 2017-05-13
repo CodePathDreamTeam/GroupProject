@@ -8,21 +8,41 @@
 
 import UIKit
 
-class HomeViewController: DashBaseViewController {
+class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
 
+    // @VIEW OUTLETS
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    // @VIEW VARIABLES
+    var colors : [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown]
+    var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    
+    
+    
+    // @CURRENCY OUTLETS
     @IBOutlet weak var homeCurrencyTF: UITextField!
     @IBOutlet weak var destinationCurrencyTF: UITextField!
-    @IBOutlet weak var weatherConditionsLabel: UILabel!
-    @IBOutlet weak var weatherTemperatureLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var homeCurrencyCd: UILabel!
     @IBOutlet weak var destinationCurrencyCd: UILabel!
-
-
+    
+    // @CURRENCY VARIABLES
     var rate: Double?
     var currencyConverter: CurrencyConverter!
     var currencyConverterTimer = Timer()
     
+    
+    // @WEATHER OUTLET
+    @IBOutlet weak var weatherConditionsLabel: UILabel!
+    @IBOutlet weak var weatherTemperatureLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+
+
+    
+    
+    
+// @DAFAULT -----------------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,8 +84,32 @@ class HomeViewController: DashBaseViewController {
             }
         })
         
+        
+        // ScrollView Settings
+        scrollView.delegate = self
+        
+        pageControl.numberOfPages = colors.count
+        
+        for index in 0..<colors.count
+        {
+            frame.origin.x = scrollView.frame.size.width * CGFloat(index)
+            frame.size = scrollView.frame.size
+            
+            let view = UIView(frame: frame)
+            view.backgroundColor = colors[index]
+            
+            self.scrollView.addSubview(view)
+        }
+        
+        scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(colors.count)), height: scrollView.frame.size.height)
+        
+        
+        
+
+        
     }
-    
+
+    // @VIEW WILL APPEAR -------------------------------------------------------------------------------------------
     override func viewWillAppear(_ animated: Bool) {
         
         if let nativeCurrency = User.sharedInstance.nativeCurrency, let nativeCountry = User.sharedInstance.nativeCountry, let destinationCurrency = User.sharedInstance.destinationCurrency, let destinationCountry = User.sharedInstance.destinationCountry {
@@ -83,6 +127,7 @@ class HomeViewController: DashBaseViewController {
         }
     }
     
+    // @PREPARE FOR SEGUE -------------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let navigationController = segue.destination as? UINavigationController {
@@ -115,7 +160,36 @@ class HomeViewController: DashBaseViewController {
         }
     }
 
+    
+    // @FUNCTIONS -----------------------------------------------------------------------------------------
+    
+    // SCROLLVIEW
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
+        
+        pageControl.currentPage = Int(pageNumber)
+        pageControl.currentPageIndicatorTintColor = colors [pageControl.currentPage]
+        
+        
+    }
+    
+    // PAGECONTROL
+    @IBAction func pageChange(_ sender: UIPageControl) {
+        
+        let x = CGFloat(sender.currentPage) * scrollView.frame.size.width
+        scrollView.contentOffset = CGPoint(x: x, y: 0)
+        pageControl.currentPageIndicatorTintColor = colors[sender.currentPage]
+        
+    }
+    
+    
+    
 }
+
+
+
+
+
 
 extension HomeViewController: UITextFieldDelegate {
     

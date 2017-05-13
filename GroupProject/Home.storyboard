@@ -77,6 +77,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-sF-e5H">
+                                <rect key="frame" x="0.0" y="492" width="375" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jDd-na-BlX">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="pageChange:" destination="gpp-4Q-KiQ" eventType="valueChanged" id="ki9-UL-Nsn"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -114,6 +127,8 @@
                         <outlet property="homeCurrencyCd" destination="zH9-El-Fmf" id="g9L-vl-nEw"/>
                         <outlet property="homeCurrencyTF" destination="TEq-ew-X9C" id="zUC-fX-ACE"/>
                         <outlet property="locationLabel" destination="hrv-6G-Lim" id="OrE-EO-wbN"/>
+                        <outlet property="pageControl" destination="jDd-na-BlX" id="H47-yS-afx"/>
+                        <outlet property="scrollView" destination="yRs-sF-e5H" id="Dp6-wX-eXS"/>
                         <outlet property="weatherConditionsLabel" destination="Yuz-JN-aOs" id="Yv0-xY-f3M"/>
                         <outlet property="weatherTemperatureLabel" destination="gSW-mV-qaI" id="yYi-Lz-Flg"/>
                     </connections>
