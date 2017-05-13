@@ -15,6 +15,9 @@ class HomeViewController: DashBaseViewController {
     @IBOutlet weak var weatherConditionsLabel: UILabel!
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var homeCurrencyCd: UILabel!
+    @IBOutlet weak var destinationCurrencyCd: UILabel!
+
 
     var rate: Double?
     var currencyConverter: CurrencyConverter!
@@ -95,32 +98,20 @@ class HomeViewController: DashBaseViewController {
         switch currencyConverter.conversionMode {
             
         case .localToNative:
-            //sourceImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
-            //homeCurrencyTF.text = currencyConverter.localCurrencyCode
-            //sourceCurrencyNameLabel.text = currencyConverter.localCurrencyName
-            
-            if isInteractive == false {
-                homeCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-            }
-            
-            //targetImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
-            //targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            //targetCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
-            destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-            
-        case .nativeToLocal:
-            //sourceImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
-            //sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            //sourceCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
-            
-            if isInteractive == false {
-                homeCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-            }
-            
-            //targetImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
-            //targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-            //targetCurrencyNameLabel.text = currencyConverter.localCurrencyName
+
             destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            destinationCurrencyCd.text = currencyConverter.localCurrencyCode
+
+            homeCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+            homeCurrencyCd.text = currencyConverter.nativeCurrencyCode
+
+        case .nativeToLocal:
+
+            destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+            destinationCurrencyCd.text = currencyConverter.nativeCurrencyCode
+
+            homeCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            homeCurrencyCd.text = currencyConverter.localCurrencyCode
         }
     }
 
