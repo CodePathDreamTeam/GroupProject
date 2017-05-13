@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yzV-Bd-LK1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yzV-Bd-LK1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,7 +56,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1KA-3c-PDM">
-                                <rect key="frame" x="40" y="84" width="108.5" height="57"/>
+                                <rect key="frame" x="40.5" y="84" width="108.5" height="57"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-Pq-lRC">
                                         <rect key="frame" x="0.0" y="0.0" width="108.5" height="40"/>
@@ -86,7 +85,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="x2u-pZ-Akc">
-                                <rect key="frame" x="227" y="84" width="108.5" height="57"/>
+                                <rect key="frame" x="226.5" y="84" width="108.5" height="57"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zpg-NS-DGJ">
                                         <rect key="frame" x="4.5" y="0.0" width="100" height="40"/>
@@ -166,22 +165,9 @@
                                 </constraints>
                             </view>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem tag="1" systemItem="add" id="2nv-fH-pT4">
-                                <connections>
-                                    <segue destination="yOt-3l-t3j" kind="presentation" identifier="CreateReceiptView" id="dQS-fr-FLz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="camera" id="wjQ-A6-RRG">
-                                <connections>
-                                    <action selector="importImage:" destination="kU4-Oe-HOg" id="JfO-x5-lRg"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="HamburgerButton" destination="xDJ-Ls-emc" id="pSb-jI-jno"/>
-                        <outlet property="cameraBarButtonItem" destination="wjQ-A6-RRG" id="DlH-pb-WUU"/>
                         <outlet property="scrollView" destination="Eye-L3-zAo" id="g4L-kg-1QS"/>
                         <outlet property="sourceAmountField" destination="5Yi-vC-K1b" id="Y2c-2w-qWb"/>
                         <outlet property="sourceCurrencyCodeLabel" destination="Wnb-SZ-IZq" id="lsJ-YG-C1H"/>
@@ -191,11 +177,12 @@
                         <outlet property="targetCurrencyCodeLabel" destination="3c6-IC-E63" id="Hk2-Fy-zMI"/>
                         <outlet property="targetCurrencyNameLabel" destination="Kcr-N4-MKL" id="Evc-gg-g03"/>
                         <outlet property="targetImageView" destination="Rds-oX-OQ6" id="gy0-Bh-x2R"/>
+                        <segue destination="yOt-3l-t3j" kind="presentation" identifier="CreateReceiptView" id="FDL-YQ-Aap"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuq-07-q4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888.79999999999995" y="123.68815592203899"/>
+            <point key="canvasLocation" x="892" y="124"/>
         </scene>
         <!--New Receipt-->
         <scene sceneID="vNR-W0-4Oz">

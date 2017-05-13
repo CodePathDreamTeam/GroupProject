@@ -20,9 +20,9 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     @IBOutlet weak var targetCurrencyNameLabel: UILabel!
     @IBOutlet weak var targetAmountField: UITextField!
 
-    @IBOutlet weak var cameraBarButtonItem: UIBarButtonItem!
-
     @IBOutlet weak var scrollView: UIScrollView!
+
+    var receiptSource: ReceiptSource = .manual
 
     fileprivate var activityIndicator:UIActivityIndicatorView!
 
@@ -30,13 +30,25 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     fileprivate var currencyConverter: CurrencyConverter!
     fileprivate var importedReceiptImageURL: URL?
 
+    // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
+    override var floatingActionButtons: [UIButton] {
+        let buttonFrame = CGRect(x: 0, y: 0, width: 66, height: 66)
+
+        let camera = UIButton(frame: buttonFrame)
+        camera.addTarget(self, action: #selector(importImage(_:)), for: .touchUpInside)
+        camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
+        camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+
+        let manual = UIButton(frame: buttonFrame)
+        manual.addTarget(self, action: #selector(createReceipt(_:)), for: .touchUpInside)
+        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
+        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+
+        return [camera, manual]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Setup Add Recipts bar button item
-        let addReceiptBarButtonItem = UIBarButtonItem(customView: AddReceiptNavigationButton(frame: CGRect(x: 0, y: 0, width: 66, height: 66)))
-        navigationItem.rightBarButtonItems = []
-        navigationItem.rightBarButtonItem = addReceiptBarButtonItem
 
         // Setup custom page control
         let newPageControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 450, height: scrollView.frame.height))
@@ -172,17 +184,21 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     // MARK: Navigation
 
+    func createReceipt(_ sender: AnyObject) {
+        DispatchQueue.main.async {
+            // Track receipt source
+            self.receiptSource = .manual
+            // Perform segue to create receipt view
+            self.performSegue(withIdentifier: "CreateReceiptView", sender: sender)
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateReceiptView" {
 
             let destination = (segue.destination as! UINavigationController).topViewController as! CreateReceiptViewController
-            var receiptSource: ReceiptSource? = nil
 
-            if let senderButton = sender as? UIBarButtonItem {
-                receiptSource = ReceiptSource(rawValue: senderButton.tag)
-            }
-
-            destination.sourceType = receiptSource ?? .manual
+            destination.sourceType = receiptSource
             destination.source = currencyConverter
             destination.receiptImageURL = importedReceiptImageURL
         }
@@ -205,6 +221,7 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
 
     // Import currency amounts for conversion
     @IBAction func importImage(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
         view.endEditing(true)
 
         let imagePickerActionSheet = UIAlertController(title: "Snap/Upload Photo",
@@ -265,8 +282,10 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
             DispatchQueue.main.async {
                 if result.isSuccess {
                     self?.updateUI(isInteractive: false)
+                    // Track receipt source
+                    self?.receiptSource = .camera
                     // Initiate create new receipt segue
-                    self?.performSegue(withIdentifier: "CreateReceiptView", sender: self?.cameraBarButtonItem)
+                    self?.performSegue(withIdentifier: "CreateReceiptView", sender: self)
                 } else {
                     // TODO: Throw UI alert
                     // Display UI alert, if needed...
