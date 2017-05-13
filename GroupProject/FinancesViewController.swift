@@ -29,19 +29,32 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
     override var floatingActionButtons: [UIButton] {
+
+        var buttons: [UIButton] = []
+
         let buttonFrame = CGRect(x: 0, y: 0, width: 66, height: 66)
 
-        let camera = UIButton(frame: buttonFrame)
-        camera.addTarget(self, action: #selector(importImage(_:)), for: .touchUpInside)
-        camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
-        camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let camera = UIButton(frame: buttonFrame)
+            camera.addTarget(self, action: #selector(openCamera(_:)), for: .touchUpInside)
+            camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
+            camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+            buttons.append(camera)
+        }
+
+        let photoLibrary = UIButton(frame: buttonFrame)
+        photoLibrary.addTarget(self, action: #selector(openPhotoLibrary(_:)), for: .touchUpInside)
+        photoLibrary.setImage(UIImage(named:"map"), for: .normal)
+        photoLibrary.setImage(UIImage(named:"map"), for: .highlighted)
+        buttons.append(photoLibrary)
 
         let manual = UIButton(frame: buttonFrame)
         manual.addTarget(self, action: #selector(createReceipt(_:)), for: .touchUpInside)
         manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
         manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        buttons.append(manual)
 
-        return [camera, manual]
+        return buttons
     }
 
     override func viewDidLoad() {
@@ -176,40 +189,25 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
         })
     }
 
-    // Import currency amounts for conversion
-    @IBAction func importImage(_ sender: AnyObject) {
+    // Import receipt from camera
+    func openCamera(_ sender: AnyObject) {
         // End editing to discard keyboards or input views, if any
         view.endEditing(true)
 
-        let imagePickerActionSheet = UIAlertController(title: "Snap/Upload Photo",
-                                                       message: nil, preferredStyle: .actionSheet)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        self.present(imagePicker,animated: true,completion: nil)
+    }
 
-        // Check for device compabtability before adding Camera button
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePickerActionSheet.addAction(UIAlertAction(title: "Take Photo",
-                                                           style: .default) { (alert) -> Void in
-                                                            let imagePicker = UIImagePickerController()
-                                                            imagePicker.delegate = self
-                                                            imagePicker.sourceType = .camera
-                                                            self.present(imagePicker,animated: true,completion: nil)
-            })
-        }
+    func openPhotoLibrary(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
 
-        // Option to pick existing images
-        imagePickerActionSheet.addAction(UIAlertAction(title: "Choose Existing",
-                                                       style: .default) { (alert) -> Void in
-                                                        let imagePicker = UIImagePickerController()
-                                                        imagePicker.delegate = self
-                                                        imagePicker.sourceType = .photoLibrary
-                                                        self.present(imagePicker,animated: true,completion: nil)
-        })
-
-        // Option to cancel the import action
-        imagePickerActionSheet.addAction(UIAlertAction(title: "Cancel",
-                                                       style: .cancel) { (alert) -> Void in
-        })
-
-        present(imagePickerActionSheet, animated: true, completion: nil)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker,animated: true,completion: nil)
     }
 
     // Tesseract conversion of image to text
