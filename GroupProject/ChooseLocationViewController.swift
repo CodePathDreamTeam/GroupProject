@@ -67,15 +67,19 @@ class ChooseLocationViewController: UIViewController {
 extension ChooseLocationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let nativeIndex = self.nativeCollectionView.indexPathsForVisibleItems.first?.row
-        nativeCurrency = countryTuple[nativeIndex!].0
-        nativeCountry = countryTuple[nativeIndex!].1
 
-        
-        let destinationIndex = self.destinationCollectionView.indexPathsForVisibleItems.first?.row
-        destinationCurrency = countryTuple[destinationIndex!].0
-        destinationCountry = countryTuple[nativeIndex!].1
+        let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width);
 
+        if scrollView == self.nativeCollectionView {
+            nativeCurrency = countryTuple[page].0
+            nativeCountry = countryTuple[page].1
+            print("Native - currency: \(nativeCurrency), country: \(nativeCountry)")
+            
+        } else if scrollView == self.destinationCollectionView {
+            destinationCurrency = countryTuple[page].0
+            destinationCountry = countryTuple[page].1
+            print("Destination - currency: \(destinationCurrency), country: \(destinationCountry)")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
