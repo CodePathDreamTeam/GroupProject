@@ -22,18 +22,6 @@ class HomeViewController: DashBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        currencyConverter = CurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
-        currencyConverter.updateCurrencyConversionFactors {(result) in
-            DispatchQueue.main.async {
-                if result.isSuccess {
-                    self.updateUI(isInteractive: false)
-                } else {
-                    // Display UI alert, if needed...
-                    print("error:  \(String(describing: result.error?.localizedDescription))")
-                }
-            }
-        }
 
         /*FixerClient.shared.getCurrencyRate(for: "JPY", relativeTo: "USD") {[weak self] (result) in
 
@@ -73,6 +61,23 @@ class HomeViewController: DashBaseViewController {
             }
         })
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let nativeCurrency = User.sharedInstance.nativeCurrency, let destinationCurrency = User.sharedInstance.destinationCurrency {
+            currencyConverter = CurrencyConverter(localCurrencyCd: nativeCurrency, nativeCurrencyCd: destinationCurrency)
+            currencyConverter.updateCurrencyConversionFactors {(result) in
+                DispatchQueue.main.async {
+                    if result.isSuccess {
+                        self.updateUI(isInteractive: false)
+                    } else {
+                        // Display UI alert, if needed...
+                        print("error:  \(String(describing: result.error?.localizedDescription))")
+                    }
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
