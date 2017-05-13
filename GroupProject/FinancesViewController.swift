@@ -10,25 +10,22 @@ import UIKit
 
 class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate, UITextFieldDelegate, ScrollableSegmentControlDelegate {
 
-    @IBOutlet weak var sourceImageView: UIImageView!
-    @IBOutlet weak var sourceCurrencyCodeLabel: UILabel!
-    @IBOutlet weak var sourceCurrencyNameLabel: UILabel!
-    @IBOutlet weak var sourceAmountField: UITextField!
+    @IBOutlet weak var localCurrencySignLabel: UILabel!
+    @IBOutlet weak var localCountryNmLabel: UILabel!
+    @IBOutlet weak var localAmountField: UITextField!
 
-    @IBOutlet weak var targetImageView: UIImageView!
-    @IBOutlet weak var targetCurrencyCodeLabel: UILabel!
-    @IBOutlet weak var targetCurrencyNameLabel: UILabel!
-    @IBOutlet weak var targetAmountField: UITextField!
+    @IBOutlet weak var nativeCurrencySignLabel: UILabel!
+    @IBOutlet weak var nativeCountryNmLabel: UILabel!
+    @IBOutlet weak var nativeAmountField: UITextField!
 
     @IBOutlet weak var pageControl: ScrollableSegmentControl!
 
     var receiptSource: ReceiptSource = .manual
-
+    fileprivate var importedReceiptImageURL: URL?
     fileprivate var activityIndicator:UIActivityIndicatorView!
 
     fileprivate var currencyConverterTimer = Timer()
     fileprivate var currencyConverter: CurrencyConverter!
-    fileprivate var importedReceiptImageURL: URL?
 
     // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
     override var floatingActionButtons: [UIButton] {
@@ -68,6 +65,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     // MARK: Model Setup
 
     func setupCurrencyConverter(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
+
         currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry)
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
@@ -87,45 +85,24 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     func updateUI(isInteractive: Bool) {
 
-//        switch currencyConverter.conversionMode {
-//
-//        case .localToNative:
-//            sourceImageView.image = UIImage(named: "USD")
-//            sourceCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-//            sourceCurrencyNameLabel.text = currencyConverter.localCountry
-//
-//            if isInteractive == false {
-//                sourceAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-//            }
-//
-//            targetImageView.image = UIImage(named: "JPY")
-//            targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-//            targetCurrencyNameLabel.text = currencyConverter.nativeCountry
-//            targetAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-//
-//        case .nativeToLocal:
-//            sourceImageView.image = UIImage(named: "JPY")
-//            sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-//            sourceCurrencyNameLabel.text = currencyConverter.nativeCountry
-//
-//            if isInteractive == false {
-//                sourceAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-//            }
-//
-//            targetImageView.image = UIImage(named: "USD")
-//            targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-//            targetCurrencyNameLabel.text = currencyConverter.localCountry
-//            targetAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-//        }
-    }
+        // When UI is updated as response to interactive user edits, do not reset the field thats edited...
+        if isInteractive {
+            switch currencyConverter.conversionMode {
+            case .localToNative:
+                nativeAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+            case .nativeToLocal:
+                localAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            }
+        } else {
+            localAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            nativeAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+        }
 
-    // MARK: Action Methods
+        localCurrencySignLabel.text = currencyConverter.localCurrencySign
+        localCountryNmLabel.text = currencyConverter.localCountry
 
-    @IBAction func toggleSourceTargetCurrencies(_ sender: Any) {
-        // Toggle the conversion mode
-        currencyConverter.conversionMode.toggle()
-        // Update the UI
-        updateUI(isInteractive: false)
+        nativeCurrencySignLabel.text = currencyConverter.nativeCurrencySign
+        nativeCountryNmLabel.text = currencyConverter.nativeCountry
     }
 
     // UITextFieldDelegate
@@ -136,26 +113,30 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
             textField.text = "1"
         }
 
-        if textField == sourceAmountField {
-            currencyConverterTimer.invalidate()
-            currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
-                if let sourceAmountStr = textField.text, let sourceAmount = Double(sourceAmountStr) {
-                    DispatchQueue.main.async {
-                        switch self.currencyConverter.conversionMode {
-                        case .localToNative:
-                            self.currencyConverter.localCurrencyAmount = sourceAmount
-                        case .nativeToLocal:
-                            self.currencyConverter.nativeCurrencyAmount = sourceAmount
-                        }
-                        self.updateUI(isInteractive: true)
-                    }
-                }
-            })
-            return true
-
+        if textField == localAmountField {
+            currencyConverter.conversionMode = .localToNative
+        } else if textField == nativeAmountField {
+            currencyConverter.conversionMode = .nativeToLocal
         } else {
             return false
         }
+
+        currencyConverterTimer.invalidate()
+        currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
+            if let newAmountStr = textField.text, let amountToConvert = Double(newAmountStr) {
+                DispatchQueue.main.async {
+                    switch self.currencyConverter.conversionMode {
+                    case .localToNative:
+                        self.currencyConverter.localCurrencyAmount = amountToConvert
+                    case .nativeToLocal:
+                        self.currencyConverter.nativeCurrencyAmount = amountToConvert
+                    }
+                    self.updateUI(isInteractive: true)
+                }
+            }
+        })
+
+        return true
     }
 
     // MARK: Navigation
@@ -252,6 +233,7 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
     }
 
     func createReceipt(forImportedLocalAmount localCurrencyAmount: Double, localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
+
         currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry, localCurrencyAmount: localCurrencyAmount)
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
