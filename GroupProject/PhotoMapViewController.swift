@@ -23,6 +23,27 @@ class PhotoMapViewController: DashBaseViewController {
     var imgURL: NSURL!
     
     var visibleAnnotations = [PhotoAnnotation]()
+    
+    // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
+    override var floatingActionButtons: [UIButton] {
+        let buttonFrame = CGRect(x: 0, y: 0, width: 66, height: 66)
+        
+        let camera = UIButton(frame: buttonFrame)
+        camera.addTarget(self, action: #selector(importImage(_:)), for: .touchUpInside)
+        camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
+        camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+        
+        let manual = UIButton(frame: buttonFrame)
+        manual.addTarget(self, action: #selector(createReceipt(_:)), for: .touchUpInside)
+        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
+        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        
+        return [camera, manual]
+    }
+
+    func createReceipt(_ sender: AnyObject) {
+        print("ello")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,27 +56,39 @@ class PhotoMapViewController: DashBaseViewController {
         mapView.setRegion(sfRegion, animated: false)
     }
     
-    
-    @IBAction func openCameraButton(_ sender: UIBarButtonItem) {
+    func importImage(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
         
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.allowsEditing = true
+        let imagePickerActionSheet = UIAlertController(title: "Snap/Upload Photo",
+                                                       message: nil, preferredStyle: .actionSheet)
         
-        let alert = UIAlertController(title: "Photo", message: "What would you like to do", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Take Photo", style: .default) { action in
-            vc.sourceType = .camera
-            self.present(vc, animated: true, completion: nil)
-
+        // Check for device compabtability before adding Camera button
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerActionSheet.addAction(UIAlertAction(title: "Take Photo",
+                                                           style: .default) { (alert) -> Void in
+                                                            let imagePicker = UIImagePickerController()
+                                                            imagePicker.delegate = self
+                                                            imagePicker.sourceType = .camera
+                                                            self.present(imagePicker,animated: true,completion: nil)
+            })
+        }
+        
+        // Option to pick existing images
+        imagePickerActionSheet.addAction(UIAlertAction(title: "Choose Existing",
+                                                       style: .default) { (alert) -> Void in
+                                                        let imagePicker = UIImagePickerController()
+                                                        imagePicker.delegate = self
+                                                        imagePicker.sourceType = .photoLibrary
+                                                        self.present(imagePicker,animated: true,completion: nil)
         })
         
-        alert.addAction(UIAlertAction(title: "Photo Roll", style: .default) { action in
-            vc.allowsEditing = false
-            vc.sourceType = .photoLibrary
-            self.present(vc, animated: true, completion: nil)
+        // Option to cancel the import action
+        imagePickerActionSheet.addAction(UIAlertAction(title: "Cancel",
+                                                       style: .cancel) { (alert) -> Void in
         })
         
-        self.present(alert, animated: true, completion: nil)
+        present(imagePickerActionSheet, animated: true, completion: nil)
     }
     
     @IBAction func segmentController(_ sender: UISegmentedControl) {
@@ -85,6 +118,7 @@ class PhotoMapViewController: DashBaseViewController {
             for photo in photos {
 
                 let imageURL = photo.value(forKey: "photoURLString")
+                print(imageURL)
                 let annotation = PhotoAnnotation()
 
                 let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees,
@@ -96,7 +130,7 @@ class PhotoMapViewController: DashBaseViewController {
                 if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL!], options: nil).firstObject {
 
                     PHImageManager.default().requestImage(for: asset,
-                                                          targetSize: CGSize(width: 45, height: 45),
+                                                          targetSize: CGSize(width: 100, height: 100),
                                                           contentMode: .aspectFill,
                                                           options: nil,
                                                           resultHandler: { (result, info) ->Void in
@@ -108,7 +142,6 @@ class PhotoMapViewController: DashBaseViewController {
                 }
                 annotation.photoURL = NSURL(string: imageURL as! String)
                 mapView.addAnnotation(annotation)
-                
             }
         } else {
             print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
@@ -132,7 +165,7 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
             
             PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: 45, height: 45),
+                                                  targetSize: CGSize(width: 1000, height: 1000),
                                                   contentMode: .aspectFill,
                                                   options: nil,
                                                   resultHandler: { (result, info) ->Void in
@@ -166,12 +199,12 @@ extension PhotoMapViewController: MKMapViewDelegate {
             annotationView?.isDraggable = true
         }
         
-        let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         resizeRenderImageView.layer.borderColor = UIColor.white.cgColor
         resizeRenderImageView.layer.borderWidth = 3.0
         resizeRenderImageView.contentMode = UIViewContentMode.scaleAspectFill
         
-        resizeRenderImageView.image = myImage// setImageWith((annotation as? PhotoAnnotation)?.photoURL as! URL)
+        resizeRenderImageView.image = (annotation as? PhotoAnnotation)?.photo
         
         UIGraphicsBeginImageContext(resizeRenderImageView.frame.size)
         resizeRenderImageView.layer.render(in: UIGraphicsGetCurrentContext()!)

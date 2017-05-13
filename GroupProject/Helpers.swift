@@ -8,12 +8,8 @@
 
 import Foundation
 
-
 class Helpers {
-    class func setupGradient(view : UIView) {
-        
-        let topColor = UIColor(red:  52/255.0, green: 232/255.0, blue: 158/255.0, alpha: 100.0/100.0)
-        let bottomColor = UIColor(red:  15/255.0, green: 52/255.0, blue: 67/255.0, alpha: 100.0/100.0)
+    class func setupGradient(view : UIView, topColor: UIColor, bottomColor: UIColor) {
         
         let gradientColors:[CGColor] = [topColor.cgColor, bottomColor.cgColor]
         

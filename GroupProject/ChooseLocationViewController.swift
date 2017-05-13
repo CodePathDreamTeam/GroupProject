@@ -11,6 +11,9 @@ import AnimatedCollectionViewLayout
 
 class ChooseLocationViewController: UIViewController {
     
+    var topColor = UIColor(red:  52/255.0, green: 232/255.0, blue: 158/255.0, alpha: 100.0/100.0)
+    var bottomColor = UIColor(red:  15/255.0, green: 52/255.0, blue: 67/255.0, alpha: 100.0/100.0)
+    
     let countryTuple : [(String,String)] = [("AUD", "Australia"), ("BGN","Bulgaria"), ("BRL","Brazil"), ("CAD","Canada"),  ("CHF","Switzerland"), ("CNY","Chinese Yuan"), ("CZK","Czech Republic"), ("DKK","Denmark"), ("EUR","Euro"),  ("GBP","British Pound"), ("HKD","Hong Kong Dollar"), ("HRK","Croatia"), ("HUF","Hungary"), ("IDR","Indonesia"),  ("ILS","Israel"), ("INR","India"), ("JPY","Japan"), ("KRW","South Korea"), ("MXN","Mexico"), ("MYR","Malaysia"),  ("NOK","Norway"), ("NZD","New Zealand"), ("PHP","Philippines"), ("PLN","Poland"), ("RON","Romania"), ("RUB","Russia"),  ("SEK","Sweden"), ("SGD","Singapore"), ("THB","Thailand"), ("TRY","Turkey"), ("USD","United States"), ("ZAR","South Africa")]
     
     var nativeCountry = "AUD"
@@ -25,7 +28,7 @@ class ChooseLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Helpers.setupGradient(view: self.view)
+        Helpers.setupGradient(view: self.view, topColor: topColor, bottomColor: bottomColor)
         
         nativeCollectionView?.isPagingEnabled = true
         destinationCollectionView?.isPagingEnabled = true
@@ -40,7 +43,6 @@ class ChooseLocationViewController: UIViewController {
         destinationLayout.animator = LinearCardAttributesAnimator()
         destinationLayout.scrollDirection = .horizontal
         destinationCollectionView.collectionViewLayout = destinationLayout
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +52,10 @@ class ChooseLocationViewController: UIViewController {
     
     @IBAction func onStartButton(_ sender: Any) {
         
+        print(nativeCountry)
+        print(destinationCountry)
+        print(nativeCurrency)
+        print(destinationCurrency)
 
         defaults.set(nativeCountry, forKey: "nativeCountry")
         defaults.set(destinationCountry, forKey: "destinationCountry")

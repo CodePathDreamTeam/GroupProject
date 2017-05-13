@@ -88,7 +88,6 @@ class WeatherClient {
             }
             if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
-                print(jsonData)
                 
                 if let current = jsonData["current_observation"] as? [String:AnyObject] {
                     let temp = current["temp_f"] as? Int

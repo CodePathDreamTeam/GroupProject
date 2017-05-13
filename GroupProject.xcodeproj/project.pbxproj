@@ -291,7 +291,6 @@
 				3909F0C31EB3028100029E44 /* art.scnassets */,
 				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
 				3946020F1EAD33DD00BAAC4F /* Info.plist */,
-				CA621D6C1EC6739D007DC8A3 /* Helpers.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -335,6 +334,7 @@
 			children = (
 				394602031EAD33DD00BAAC4F /* AppDelegate.swift */,
 				397C92F61EBF92360025C79E /* AppGlobals.swift */,
+				CA621D6C1EC6739D007DC8A3 /* Helpers.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";

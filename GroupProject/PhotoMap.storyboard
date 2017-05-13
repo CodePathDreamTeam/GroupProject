@@ -94,11 +94,6 @@
                                 </constraints>
                             </view>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="z4U-bM-pMD">
-                            <connections>
-                                <action selector="openCameraButton:" destination="Eb9-l4-6GM" id="WpQ-sM-ubi"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="HamburgerButton" destination="bVi-qb-she" id="sj8-iF-fap"/>
@@ -144,7 +139,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drm-Nl-zxo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WE7-U7-Tbt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WE7-U7-Tbt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
