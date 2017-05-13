@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate, UITextFieldDelegate {
+class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate, UITextFieldDelegate, ScrollableSegmentControlDelegate {
 
     @IBOutlet weak var sourceImageView: UIImageView!
     @IBOutlet weak var sourceCurrencyCodeLabel: UILabel!
@@ -20,7 +20,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     @IBOutlet weak var targetCurrencyNameLabel: UILabel!
     @IBOutlet weak var targetAmountField: UITextField!
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: ScrollableSegmentControl!
 
     var receiptSource: ReceiptSource = .manual
 
@@ -51,43 +51,18 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         super.viewDidLoad()
 
         // Setup custom page control
-        let newPageControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 450, height: scrollView.frame.height))
-        newPageControl.items = ["Expense Report","Denomination Guide","Nearby Exchanges"]
-        newPageControl.backColor = .yellow
-        newPageControl.cornerRadius = 0
-        newPageControl.bottomBorderEnabled = true
-        newPageControl.highlightedLabelColor = .red
-        newPageControl.unSelectedLabelColor = .black
-        newPageControl.fontSize = 14.0
-        newPageControl.radiusStyle = false
-        newPageControl.flatStyle = true
-        newPageControl.selectedLabelViewColor = .red
-        newPageControl.selectedLabelBorderWidth = 0
-        newPageControl.addTarget(self, action: #selector(pageControlValueChanged(_:)), for: .valueChanged)
+        pageControl.segmentControlDelegate = self
+        pageControl.segmentTitles = ["Expense Report","Denomination","Nearby Exchanges"]
 
-        // Setup scrollview for page control
-        scrollView.contentSize = newPageControl.frame.size
-        scrollView.addSubview(newPageControl)
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.isScrollEnabled = false
-
-        // TODO: Setup source and target fields dynamically based on the user's current and native locations.
+        // Setup currency converter based on the user's current and native locations.
         let currentUser = User.sharedInstance
         setupCurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
     }
 
-    // MARK: Page Control
+    // MARK: ScrollableSegmentControlDelegate
 
-    func pageControlValueChanged(_ sender: Any){
-        // Force cast is OK here.
-        let pageControl = sender as! CustomSegmentedControl
-        // Figure out the new rect to display based on selected index
-        let labelWidthWithPadding: CGFloat = 200
-        let xPosition = CGFloat(pageControl.selectedIndex) * labelWidthWithPadding
-        let rectToDisplay = CGRect(x: xPosition, y: 0, width: labelWidthWithPadding, height: scrollView.frame.height)
-        // Scroll to new recet
-        scrollView.scrollRectToVisible(rectToDisplay, animated: true)
+    func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
+        // Do custom actions based on selected segment
     }
 
     // MARK: Model Setup
@@ -112,36 +87,36 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     func updateUI(isInteractive: Bool) {
 
-        switch currencyConverter.conversionMode {
-
-        case .localToNative:
-            sourceImageView.image = UIImage(named: "USD")
-            sourceCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-            sourceCurrencyNameLabel.text = currencyConverter.localCountry
-
-            if isInteractive == false {
-                sourceAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-            }
-
-            targetImageView.image = UIImage(named: "JPY")
-            targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            targetCurrencyNameLabel.text = currencyConverter.nativeCountry
-            targetAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-
-        case .nativeToLocal:
-            sourceImageView.image = UIImage(named: "JPY")
-            sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            sourceCurrencyNameLabel.text = currencyConverter.nativeCountry
-
-            if isInteractive == false {
-                sourceAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-            }
-
-            targetImageView.image = UIImage(named: "USD")
-            targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-            targetCurrencyNameLabel.text = currencyConverter.localCountry
-            targetAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-        }
+//        switch currencyConverter.conversionMode {
+//
+//        case .localToNative:
+//            sourceImageView.image = UIImage(named: "USD")
+//            sourceCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
+//            sourceCurrencyNameLabel.text = currencyConverter.localCountry
+//
+//            if isInteractive == false {
+//                sourceAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+//            }
+//
+//            targetImageView.image = UIImage(named: "JPY")
+//            targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
+//            targetCurrencyNameLabel.text = currencyConverter.nativeCountry
+//            targetAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+//
+//        case .nativeToLocal:
+//            sourceImageView.image = UIImage(named: "JPY")
+//            sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
+//            sourceCurrencyNameLabel.text = currencyConverter.nativeCountry
+//
+//            if isInteractive == false {
+//                sourceAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+//            }
+//
+//            targetImageView.image = UIImage(named: "USD")
+//            targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
+//            targetCurrencyNameLabel.text = currencyConverter.localCountry
+//            targetAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+//        }
     }
 
     // MARK: Action Methods
