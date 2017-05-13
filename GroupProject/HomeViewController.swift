@@ -14,8 +14,14 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+        // widgets:
+    @IBOutlet weak var widgetCurrencyConverter: UIView!
+    @IBOutlet weak var widgetOCR: UIView!
+    
+    
     // @VIEW VARIABLES
     var colors : [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown]
+    var widgetPage = [UIView]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     
@@ -88,15 +94,18 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
         // ScrollView Settings
         scrollView.delegate = self
         
-        pageControl.numberOfPages = colors.count
+        widgetPage.append(widgetCurrencyConverter)
+        widgetPage.append(widgetOCR)
         
-        for index in 0..<colors.count
+        pageControl.numberOfPages = widgetPage.count
+        
+        for index in 0..<widgetPage.count
         {
             frame.origin.x = scrollView.frame.size.width * CGFloat(index)
             frame.size = scrollView.frame.size
             
             let view = UIView(frame: frame)
-            view.backgroundColor = colors[index]
+            view.addSubview(widgetPage[index])
             
             self.scrollView.addSubview(view)
         }
@@ -165,7 +174,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     
     // SCROLLVIEW
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        var pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
+        let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
         
         pageControl.currentPage = Int(pageNumber)
         pageControl.currentPageIndicatorTintColor = colors [pageControl.currentPage]
