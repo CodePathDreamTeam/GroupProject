@@ -8,11 +8,13 @@
 
 import UIKit
 
-class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
+class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFieldDelegate {
 
     // @VIEW OUTLETS
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+ 
     
         // widgets:
     @IBOutlet weak var widgetCurrencyConverter: UIView!
@@ -22,6 +24,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     // @VIEW VARIABLES
     var widgetPage = [UIView]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    var keyboardConstant: CGFloat?
     
     
     
@@ -89,6 +92,11 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
             }
         })
         
+        // Keyboard Settings
+        keyboardConstant = bottomConstraint.constant
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         
         // ScrollView Settings
         scrollView.delegate = self
@@ -120,6 +128,8 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     // @VIEW WILL APPEAR -------------------------------------------------------------------------------------------
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        
         if let nativeCurrency = User.sharedInstance.nativeCurrency, let nativeCountry = User.sharedInstance.nativeCountry, let destinationCurrency = User.sharedInstance.destinationCurrency, let destinationCountry = User.sharedInstance.destinationCountry {
             currencyConverter = CurrencyConverter(localCurrencyCd: destinationCurrency, localCountry: destinationCountry, nativeCurrencyCd: nativeCurrency, nativeCountry: nativeCountry)
             currencyConverter.updateCurrencyConversionFactors {(result) in
@@ -146,59 +156,33 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
         
     }
     
+   
+    
+    // @FUNCTIONS -----------------------------------------------------------------------------------------
+    
+    // CURRENCY CONVERTER
     func updateUI(isInteractive: Bool) {
         
         switch currencyConverter.conversionMode {
             
         case .localToNative:
-
+            
             destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
             destinationCurrencyCd.text = currencyConverter.localCurrencyCode
-
+            
             homeCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
             homeCurrencyCd.text = currencyConverter.nativeCurrencyCode
-
+            
         case .nativeToLocal:
-
+            
             destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
             destinationCurrencyCd.text = currencyConverter.nativeCurrencyCode
-
+            
             homeCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
             homeCurrencyCd.text = currencyConverter.localCurrencyCode
         }
     }
 
-    
-    // @FUNCTIONS -----------------------------------------------------------------------------------------
-    
-    // SCROLLVIEW
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
-        pageControl.currentPage = Int(pageNumber)
-        
-        
-    }
-    
-    // PAGECONTROL
-    @IBAction func pageChange(_ sender: UIPageControl) {
-        
-        let x = CGFloat(sender.currentPage) * scrollView.frame.size.width
-        scrollView.contentOffset = CGPoint(x: x, y: 0)
-        
-    }
-    
-    
-    
-}
-
-
-
-
-
-
-extension HomeViewController: UITextFieldDelegate {
-    
-    
     
     // UITextFieldDelegate
     
@@ -229,6 +213,58 @@ extension HomeViewController: UITextFieldDelegate {
             return false
         }
     }
+    
 
     
+    // KEYBOARD
+    func keyboardWillShow(_ notification : Notification) {
+        let value = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let rect = value.cgRectValue
+        self.bottomConstraint.constant = rect.size.height
+        
+    }
+    
+    func keyboardWillHide(_ notification : Notification) {
+        self.bottomConstraint.constant = keyboardConstant!
+        
+    }
+   
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        view.endEditing(true)
+        
+    }
+    
+
+    
+    
+    // SCROLLVIEW
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
+        pageControl.currentPage = Int(pageNumber)
+        
+        
+    }
+    
+    // PAGECONTROL
+    @IBAction func pageChange(_ sender: UIPageControl) {
+        
+        let x = CGFloat(sender.currentPage) * scrollView.frame.size.width
+        scrollView.contentOffset = CGPoint(x: x, y: 0)
+        
+    }
+    
+    
+    
 }
+
+
+
+
+
+
+

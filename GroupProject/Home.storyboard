@@ -75,7 +75,10 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gpp-4Q-KiQ" id="p2C-k2-gXm"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5i-gO-PKA">
                                                 <rect key="frame" x="49" y="33" width="97" height="21"/>
@@ -98,12 +101,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEq-ew-X9C">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1.00" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEq-ew-X9C">
                                                 <rect key="frame" x="234" y="62" width="85" height="51"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gpp-4Q-KiQ" id="kBa-rL-S04"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -121,13 +127,27 @@
                                     <action selector="pageChange:" destination="gpp-4Q-KiQ" eventType="valueChanged" id="ki9-UL-Nsn"/>
                                 </connections>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JA8-DE-DDQ">
+                                <rect key="frame" x="293" y="459" width="66" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="B9z-Ky-lZ2"/>
+                                    <constraint firstAttribute="height" constant="66" id="qur-TE-xJa"/>
+                                </constraints>
+                                <state key="normal" image="cbutton_add"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="gpp-4Q-KiQ" eventType="touchUpInside" id="7OK-AA-4ut"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="yRs-sF-e5H" secondAttribute="trailing" id="2Bb-0q-Ahp"/>
                             <constraint firstItem="yRs-sF-e5H" firstAttribute="leading" secondItem="Cfv-Nv-YEK" secondAttribute="leading" id="HZd-7K-lH3"/>
+                            <constraint firstAttribute="trailing" secondItem="JA8-DE-DDQ" secondAttribute="trailing" constant="16" id="Inn-rh-NNt"/>
+                            <constraint firstItem="JA8-DE-DDQ" firstAttribute="leading" secondItem="Cfv-Nv-YEK" secondAttribute="leading" constant="293" id="gnS-rw-E1i"/>
                             <constraint firstItem="jDd-na-BlX" firstAttribute="centerX" secondItem="Cfv-Nv-YEK" secondAttribute="centerX" id="hm8-bb-nfl"/>
                             <constraint firstItem="6Or-nZ-oie" firstAttribute="top" secondItem="jDd-na-BlX" secondAttribute="bottom" id="kml-FB-cTR"/>
+                            <constraint firstItem="JA8-DE-DDQ" firstAttribute="top" secondItem="yRs-sF-e5H" secondAttribute="top" constant="-33" id="mlc-Sq-q9b"/>
                             <constraint firstItem="jDd-na-BlX" firstAttribute="top" secondItem="yRs-sF-e5H" secondAttribute="bottom" constant="-2" id="qqX-KO-Tv1"/>
                         </constraints>
                     </view>
@@ -160,6 +180,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="HamburgerButton" destination="kY6-v8-FBI" id="xRY-jH-3BW"/>
+                        <outlet property="bottomConstraint" destination="kml-FB-cTR" id="lRS-Xt-gbe"/>
                         <outlet property="destinationCurrencyCd" destination="E5i-gO-PKA" id="Ppn-9o-wu3"/>
                         <outlet property="destinationCurrencyTF" destination="Vh7-HL-844" id="Jxh-ge-C5n"/>
                         <outlet property="homeCurrencyCd" destination="zH9-El-Fmf" id="g9L-vl-nEw"/>
@@ -276,7 +297,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-oF-C21" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xYR-fH-u8I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xYR-fH-u8I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -294,7 +315,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mlj-rR-98B" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1TP-Pz-G7m">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1TP-Pz-G7m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -308,4 +329,7 @@
             <point key="canvasLocation" x="2352.8000000000002" y="87.706146926536732"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cbutton_add" width="66" height="66"/>
+    </resources>
 </document>
