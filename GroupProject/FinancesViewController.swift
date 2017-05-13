@@ -73,7 +73,8 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         scrollView.isScrollEnabled = false
 
         // TODO: Setup source and target fields dynamically based on the user's current and native locations.
-        setupCurrencyConverter(localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+        let currentUser = User.sharedInstance
+        setupCurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
     }
 
     // MARK: Page Control
@@ -91,8 +92,8 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
     // MARK: Model Setup
 
-    func setupCurrencyConverter(localCurrencyCd: String, nativeCurrencyCd: String) {
-        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
+    func setupCurrencyConverter(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
+        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry)
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
             DispatchQueue.main.async {
@@ -114,31 +115,31 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         switch currencyConverter.conversionMode {
 
         case .localToNative:
-            sourceImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
+            sourceImageView.image = UIImage(named: "USD")
             sourceCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-            sourceCurrencyNameLabel.text = currencyConverter.localCurrencyName
+            sourceCurrencyNameLabel.text = currencyConverter.localCountry
 
             if isInteractive == false {
                 sourceAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
             }
 
-            targetImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
+            targetImageView.image = UIImage(named: "JPY")
             targetCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            targetCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
+            targetCurrencyNameLabel.text = currencyConverter.nativeCountry
             targetAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
 
         case .nativeToLocal:
-            sourceImageView.image = UIImage(named: currencyConverter.nativeCurrencyImage!)
+            sourceImageView.image = UIImage(named: "JPY")
             sourceCurrencyCodeLabel.text = currencyConverter.nativeCurrencyCode
-            sourceCurrencyNameLabel.text = currencyConverter.nativeCurrencyName
+            sourceCurrencyNameLabel.text = currencyConverter.nativeCountry
 
             if isInteractive == false {
                 sourceAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
             }
 
-            targetImageView.image = UIImage(named: currencyConverter.localCurrencyImage!)
+            targetImageView.image = UIImage(named: "USD")
             targetCurrencyCodeLabel.text = currencyConverter.localCurrencyCode
-            targetCurrencyNameLabel.text = currencyConverter.localCurrencyName
+            targetCurrencyNameLabel.text = currencyConverter.localCountry
             targetAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
         }
     }
@@ -270,13 +271,13 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
 
         let importedText = tesseract.recognizedText
         print("Imported Text: \(importedText ?? "No text imported")")
-        createReceipt(forImportedLocalAmount: 36.14, localCurrencyCd: "USD", nativeCurrencyCd: "JPY")
+        createReceipt(forImportedLocalAmount: 36.14, localCurrencyCd: "USD", localCountry: "United States", nativeCurrencyCd: "JPY", nativeCountry: "Japan")
 
         removeActivityIndicator()
     }
 
-    func createReceipt(forImportedLocalAmount localCurrencyAmount: Double, localCurrencyCd: String, nativeCurrencyCd: String) {
-        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd, localCurrencyAmount: localCurrencyAmount)
+    func createReceipt(forImportedLocalAmount localCurrencyAmount: Double, localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
+        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry, localCurrencyAmount: localCurrencyAmount)
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
             DispatchQueue.main.async {

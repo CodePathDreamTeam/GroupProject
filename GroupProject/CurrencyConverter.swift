@@ -22,12 +22,13 @@ enum ConversionMode {
     }
 }
 
+let currencySign : [String:String] = ["AUD":"$", "BGN":"лв", "BRL":"R$", "CAD":"$", "CHF":"chf", "CNY":"¥", "CZK":"Kč", "DKK":"kr", "EUR":"€", "GBP":"£", "HKD":"$", "HRK":"kn", "HUF":"Ft", "IDR":"Rp", "ILS":"₪", "INR":"₹", "JPY":"¥", "KRW":"₩", "MXN":"$", "MYR":"RM", "NOK":"kr", "NZD":"$", "PHP":"₱", "PLN":"zł", "RON":"lei", "RUB":"₽", "SEK":"kr", "SGD":"$", "THB":"฿", "TRY":"₤", "USD":"$", "ZAR":"R"]
+
 class CurrencyConverter {
 
     var localCurrencyCode: String
     var localCurrencySign: String
-    var localCurrencyName: String
-    var localCurrencyImage: String?
+    var localCountry: String
     var localCurrencyAmount: Double {
         didSet {
             if conversionMode == .localToNative {
@@ -48,8 +49,7 @@ class CurrencyConverter {
 
     var nativeCurrencyCode: String
     var nativeCurrencySign: String
-    var nativeCurrencyName: String
-    var nativeCurrencyImage: String?
+    var nativeCountry: String
     var nativeCurrencyAmount: Double {
         didSet {
             if conversionMode == .nativeToLocal {
@@ -70,34 +70,32 @@ class CurrencyConverter {
 
     var conversionMode: ConversionMode
 
-    init(localCurrencyCd: String, nativeCurrencyCd: String) {
+    init(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
         
-        self.localCurrencyCode = "USD"
-        self.localCurrencySign = "$"
-        self.localCurrencyName = "United States Dollar"
-        self.localCurrencyImage = "USD"
+        self.localCurrencyCode = localCurrencyCd
+        self.localCurrencySign = currencySign[localCurrencyCd] ?? "$"
+        self.localCountry = localCountry
         self.localToNativeFactor = 1.0
         self.localCurrencyAmount = 1.0
 
-        self.nativeCurrencyCode = "JPY"
-        self.nativeCurrencySign = "¥"
-        self.nativeCurrencyName = "Japanese Yen"
-        self.nativeCurrencyImage = "JPY"
+        self.nativeCurrencyCode = nativeCurrencyCd
+        self.nativeCurrencySign = currencySign[nativeCurrencyCd] ?? "$"
+        self.nativeCountry = nativeCountry
         self.nativeToLocalFactor = 1.0
         self.nativeCurrencyAmount = 1.0
 
         self.conversionMode = ConversionMode.localToNative
     }
 
-    convenience init(localCurrencyCd: String, nativeCurrencyCd: String, localCurrencyAmount: Double) {
+    convenience init(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String, localCurrencyAmount: Double) {
 
-        self.init(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
+        self.init(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry)
         self.localCurrencyAmount = localCurrencyAmount
     }
 
-    convenience init(localCurrencyCd: String, nativeCurrencyCd: String, localCurrencyAmount: Double, nativeCurrencyAmount: Double) {
+    convenience init(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String, localCurrencyAmount: Double, nativeCurrencyAmount: Double) {
 
-        self.init(localCurrencyCd: localCurrencyCd, nativeCurrencyCd: nativeCurrencyCd)
+        self.init(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry)
         self.localCurrencyAmount = localCurrencyAmount
         self.nativeCurrencyAmount = nativeCurrencyAmount
     }

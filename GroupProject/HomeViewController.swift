@@ -65,8 +65,8 @@ class HomeViewController: DashBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let nativeCurrency = User.sharedInstance.nativeCurrency, let destinationCurrency = User.sharedInstance.destinationCurrency {
-            currencyConverter = CurrencyConverter(localCurrencyCd: nativeCurrency, nativeCurrencyCd: destinationCurrency)
+        if let nativeCurrency = User.sharedInstance.nativeCurrency, let nativeCountry = User.sharedInstance.nativeCountry, let destinationCurrency = User.sharedInstance.destinationCurrency, let destinationCountry = User.sharedInstance.destinationCountry {
+            currencyConverter = CurrencyConverter(localCurrencyCd: destinationCurrency, localCountry: destinationCountry, nativeCurrencyCd: nativeCurrency, nativeCountry: nativeCountry)
             currencyConverter.updateCurrencyConversionFactors {(result) in
                 DispatchQueue.main.async {
                     if result.isSuccess {
