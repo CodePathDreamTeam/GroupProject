@@ -20,7 +20,6 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     
     
     // @VIEW VARIABLES
-    var colors : [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown]
     var widgetPage = [UIView]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
@@ -110,7 +109,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
             self.scrollView.addSubview(view)
         }
         
-        scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(colors.count)), height: scrollView.frame.size.height)
+        scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(widgetPage.count)), height: scrollView.frame.size.height)
         
         
         
@@ -175,9 +174,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     // SCROLLVIEW
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
-        
         pageControl.currentPage = Int(pageNumber)
-        pageControl.currentPageIndicatorTintColor = colors [pageControl.currentPage]
         
         
     }
@@ -187,7 +184,6 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
         
         let x = CGFloat(sender.currentPage) * scrollView.frame.size.width
         scrollView.contentOffset = CGPoint(x: x, y: 0)
-        pageControl.currentPageIndicatorTintColor = colors[sender.currentPage]
         
     }
     
