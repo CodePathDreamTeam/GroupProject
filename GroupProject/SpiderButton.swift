@@ -16,6 +16,14 @@ class SpiderButton: UIView {
     @IBOutlet weak var addButton: UIButton!
 
     var actionButtons: [UIButton]!
+    var image: UIImage! {
+        didSet {
+            if image != nil {
+                addButton.setImage(image, for: .normal)
+            }
+        }
+    }
+
     private var originalFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
     required init?(coder aDecoder: NSCoder) {
