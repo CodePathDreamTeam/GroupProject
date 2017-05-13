@@ -84,7 +84,6 @@
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
-		CBF5F9E51EC5584B005038C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBF5F9E41EC5584B005038C4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,7 +169,6 @@
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
-		CBF5F9E41EC5584B005038C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GroupProject/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,7 +293,6 @@
 		394601F71EAD33DD00BAAC4F = {
 			isa = PBXGroup;
 			children = (
-				CBF5F9E41EC5584B005038C4 /* Assets.xcassets */,
 				394602021EAD33DD00BAAC4F /* GroupProject */,
 				394602011EAD33DD00BAAC4F /* Products */,
 				4E99EA5F587885EEA8717B46 /* Pods */,
@@ -465,7 +462,6 @@
 				3909F0C41EB3028100029E44 /* art.scnassets in Resources */,
 				39E225D41EAF15540064C27F /* WeatherStation.storyboard in Resources */,
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
-				CBF5F9E51EC5584B005038C4 /* Assets.xcassets in Resources */,
 				39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */,
 				39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */,
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
@@ -529,7 +525,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
