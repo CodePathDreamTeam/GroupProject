@@ -24,7 +24,6 @@ class NavBarTransparent: UINavigationController {
         self.navigationBar.isTranslucent = true
         
 
-
-    
     }
+    
 }
