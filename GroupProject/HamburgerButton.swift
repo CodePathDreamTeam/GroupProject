@@ -4,7 +4,7 @@ import UIKit
 
 open class HamburgerButton: UIButton {
     
-    open var color: UIColor = UIColor.black {
+    open var color: UIColor = UIColor.white {
         didSet {
             for shapeLayer in shapeLayers {
                 shapeLayer.strokeColor = color.cgColor

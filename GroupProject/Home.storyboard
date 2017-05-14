@@ -281,6 +281,10 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kY6-v8-FBI" customClass="HamburgerButton" customModule="GroupProject">
                                         <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="openHamburgerMenu:" destination="gpp-4Q-KiQ" eventType="touchUpInside" id="vdr-wH-TVt"/>
                                         </connections>
@@ -420,7 +424,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-oF-C21" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xYR-fH-u8I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xYR-fH-u8I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
