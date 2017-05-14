@@ -48,8 +48,7 @@ class HamburgerViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        print(self.leftMargainConstraint.constant)
-        
+        User.sharedInstance.updateUser()
         if User.sharedInstance.nativeCountry == nil {
             
             let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)

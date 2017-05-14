@@ -18,6 +18,7 @@ class PhotoMapViewController: DashBaseViewController {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: ScrollableSegmentControl!
     
     var myImage: UIImage!
     var imgURL: NSURL!
@@ -47,6 +48,10 @@ class PhotoMapViewController: DashBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        pageControl.segmentControlDelegate = self
+        pageControl.segmentTitles = ["Map View","Gallery",]
         
         loadFromCoreData()
         
@@ -91,15 +96,15 @@ class PhotoMapViewController: DashBaseViewController {
         present(imagePickerActionSheet, animated: true, completion: nil)
     }
     
-    @IBAction func segmentController(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            collectionView.isHidden = true
-        } else {
-            collectionView.isHidden = false
-            visibleAnnotations = mapView.visibleAnnotations()
-            collectionView.reloadData()
-        }
-    }
+//    @IBAction func segmentController(_ sender: UISegmentedControl) {
+//        if sender.selectedSegmentIndex == 0 {
+//            collectionView.isHidden = true
+//        } else {
+//            collectionView.isHidden = false
+//            visibleAnnotations = mapView.visibleAnnotations()
+//            collectionView.reloadData()
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fullImageSegue" {
@@ -118,7 +123,6 @@ class PhotoMapViewController: DashBaseViewController {
             for photo in photos {
 
                 let imageURL = photo.value(forKey: "photoURLString")
-                print(imageURL)
                 let annotation = PhotoAnnotation()
 
                 let locationCoordinate = CLLocationCoordinate2D(latitude: photo.value(forKey: "photoLatitude") as! CLLocationDegrees,
@@ -130,7 +134,7 @@ class PhotoMapViewController: DashBaseViewController {
                 if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL!], options: nil).firstObject {
 
                     PHImageManager.default().requestImage(for: asset,
-                                                          targetSize: CGSize(width: 100, height: 100),
+                                                          targetSize: CGSize(width: 1000, height: 1000),
                                                           contentMode: .aspectFill,
                                                           options: nil,
                                                           resultHandler: { (result, info) ->Void in
@@ -283,7 +287,7 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
         
         let photoURL = visibleAnnotations[indexPath.row].photoURL
 
-        let assetURL = photoURL as! URL
+        let assetURL = photoURL! as URL
         
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
             PHImageManager.default().requestImage(for: asset,
@@ -308,5 +312,18 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
 extension MKMapView {
     func visibleAnnotations() -> [PhotoAnnotation] {
         return self.annotations(in: self.visibleMapRect).map { obj -> PhotoAnnotation in return obj as! PhotoAnnotation }
+    }
+}
+
+extension PhotoMapViewController: ScrollableSegmentControlDelegate {
+    func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
+        
+        if index == 0 {
+            collectionView.isHidden = true
+        } else {
+            collectionView.isHidden = false
+            visibleAnnotations = mapView.visibleAnnotations()
+            collectionView.reloadData()
+        }
     }
 }
