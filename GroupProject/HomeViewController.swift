@@ -14,12 +14,15 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
  
     
         // widgets:
     @IBOutlet weak var widgetCurrencyConverter: UIView!
     @IBOutlet weak var widgetOCR: UIView!
-    
+    @IBOutlet weak var hideKeyboardButton: UIButton!
     
     // @VIEW VARIABLES
     var widgetPage = [UIView]()
@@ -93,6 +96,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         })
         
         // Keyboard Settings
+        hideKeyboardButton.alpha = 0
         keyboardConstant = bottomConstraint.constant
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -119,7 +123,9 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         
         scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(widgetPage.count)), height: scrollView.frame.size.height)
         
-        
+        // collectionsview settings
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
 
         
@@ -221,11 +227,13 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         let value = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         let rect = value.cgRectValue
         self.bottomConstraint.constant = rect.size.height
+        hideKeyboardButton.alpha = 1
         
     }
     
     func keyboardWillHide(_ notification : Notification) {
         self.bottomConstraint.constant = keyboardConstant!
+        hideKeyboardButton.alpha = 0
         
     }
    
@@ -263,6 +271,45 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
 }
 
 
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    // COLLECTIONVIEW CONFIG ------------------------------------------------------------------
+    
+    //Cell size (autolayout)
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: self.view.frame.size.width / 3.01, height: self.view.frame.size.width / 2)
+        return size
+        
+    }
+    
+    
+    // cell numb
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 6
+    }
+    
+    
+    
+    // cell config
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // define cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeLocationsCell", for: indexPath) as! HomeLocationsCell
+        cell.locationImages.image = UIImage(named: "AdobeStock_40603639.jpeg")
+        // create imageView in cell to show pictures
+        //let posterImage = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height: cell.frame.size.height))
+        //cell.addSubview(posterImage)
+        
+        // LOAD IMAGES
+
+    return cell
+    }
+    
+}
 
 
 

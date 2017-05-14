@@ -76,6 +76,10 @@
 		39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E226001EAF20330064C27F /* hdar_close@3x.png */; };
 		39F84D721EBBED6F00BAE34F /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */; };
 		39F84D761EBC111400BAE34F /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F84D751EBC111400BAE34F /* Receipt.swift */; };
+		4CCA52661EC7CD0100214976 /* AdobeStock_40603639.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA52651EC7CD0100214976 /* AdobeStock_40603639.jpeg */; };
+		4CCA52681EC7D15600214976 /* HomeLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA52671EC7D15600214976 /* HomeLocationsCell.swift */; };
+		4CCA526A1EC7D6C500214976 /* AdobeStock_54850653.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA52691EC7D6C500214976 /* AdobeStock_54850653.jpeg */; };
+		4CCA526C1EC7D6D300214976 /* AdobeStock_78473061.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA526B1EC7D6D300214976 /* AdobeStock_78473061.jpeg */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CA621D3C1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */; };
 		CA621D3E1EC0F4C6007DC8A3 /* POISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */; };
@@ -162,6 +166,10 @@
 		39E226001EAF20330064C27F /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		39F84D711EBBED6F00BAE34F /* ReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsViewController.swift; sourceTree = "<group>"; };
 		39F84D751EBC111400BAE34F /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		4CCA52651EC7CD0100214976 /* AdobeStock_40603639.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AdobeStock_40603639.jpeg; sourceTree = "<group>"; };
+		4CCA52671EC7D15600214976 /* HomeLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationsCell.swift; sourceTree = "<group>"; };
+		4CCA52691EC7D6C500214976 /* AdobeStock_54850653.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AdobeStock_54850653.jpeg; sourceTree = "<group>"; };
+		4CCA526B1EC7D6D300214976 /* AdobeStock_78473061.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AdobeStock_78473061.jpeg; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 				3917C25D1EC3E524004495EF /* SpiderButton.xib */,
 				390F566F1EC6F8B40010AA59 /* ShadowCardView.swift */,
 				390F56711EC7001F0010AA59 /* ScrollableSegmentControl.swift */,
+				4CCA52671EC7D15600214976 /* HomeLocationsCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -317,6 +326,7 @@
 		394602021EAD33DD00BAAC4F /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				4CCA52641EC7CCDE00214976 /* SampleImages */,
 				39934DB11EBB0C5200D54797 /* Common */,
 				3920BEB21EAEE4A000DE76C1 /* Model */,
 				3920BEB11EAEE49A00DE76C1 /* View */,
@@ -378,6 +388,16 @@
 				39E226001EAF20330064C27F /* hdar_close@3x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4CCA52641EC7CCDE00214976 /* SampleImages */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA526B1EC7D6D300214976 /* AdobeStock_78473061.jpeg */,
+				4CCA52691EC7D6C500214976 /* AdobeStock_54850653.jpeg */,
+				4CCA52651EC7CD0100214976 /* AdobeStock_40603639.jpeg */,
+			);
+			name = SampleImages;
 			sourceTree = "<group>";
 		};
 		4E99EA5F587885EEA8717B46 /* Pods */ = {
@@ -470,14 +490,17 @@
 				39E225D81EAF192F0064C27F /* Finances.storyboard in Resources */,
 				39E2260A1EAF20330064C27F /* hdar_close@3x.png in Resources */,
 				39E225E21EAF1A4C0064C27F /* PhotoMap.storyboard in Resources */,
+				4CCA52661EC7CD0100214976 /* AdobeStock_40603639.jpeg in Resources */,
 				39E226091EAF20330064C27F /* hdar_close@2x.png in Resources */,
 				39E225C81EAF0AFE0064C27F /* Main.storyboard in Resources */,
 				39E226081EAF20330064C27F /* hdar_close.png in Resources */,
 				3917C25E1EC3E524004495EF /* SpiderButton.xib in Resources */,
+				4CCA526C1EC7D6D300214976 /* AdobeStock_78473061.jpeg in Resources */,
 				3946020E1EAD33DD00BAAC4F /* LaunchScreen.storyboard in Resources */,
 				39E225E41EAF1A5F0064C27F /* TheWall.storyboard in Resources */,
 				39E225E01EAF1A140064C27F /* Pois.storyboard in Resources */,
 				39452CEE1EB6BEC700DE9080 /* tessdata in Resources */,
+				4CCA526A1EC7D6C500214976 /* AdobeStock_54850653.jpeg in Resources */,
 				3946020B1EAD33DD00BAAC4F /* Assets.xcassets in Resources */,
 				39E225CE1EAF13480064C27F /* Home.storyboard in Resources */,
 				39E225C61EAF0A8F0064C27F /* ChooseLocation.storyboard in Resources */,
@@ -570,6 +593,7 @@
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				397C92F71EBF92360025C79E /* AppGlobals.swift in Sources */,
 				3908F9861EC2F5EB0040FC47 /* CustomSegmentedControl.swift in Sources */,
+				4CCA52681EC7D15600214976 /* HomeLocationsCell.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
 				3909F0C01EB301C600029E44 /* ARItem.swift in Sources */,
 				3909F0BE1EB3017800029E44 /* WallViewController.swift in Sources */,
