@@ -16,13 +16,12 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
- 
-    
+    @IBOutlet weak var blurBG: UIVisualEffectView!
+
         // widgets:
-    @IBOutlet weak var widgetCurrencyConverter: UIView!
-    @IBOutlet weak var widgetOCR: UIView!
-    @IBOutlet weak var hideKeyboardButton: UIButton!
+        @IBOutlet weak var widgetCurrencyConverter: UIView!
+        @IBOutlet weak var widgetOCR: UIView!
+        @IBOutlet weak var hideKeyboardButton: UIButton!
     
     // @VIEW VARIABLES
     var widgetPage = [UIView]()
@@ -107,6 +106,9 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         
         widgetPage.append(widgetCurrencyConverter)
         widgetPage.append(widgetOCR)
+        
+        blurBG.isHidden = true
+        blurBG.alpha = 0
         
         pageControl.numberOfPages = widgetPage.count
         
@@ -229,12 +231,20 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         self.bottomConstraint.constant = rect.size.height
         hideKeyboardButton.alpha = 1
         
+        /* let blurBack = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurView = UIVisualEffectView(effect: blurBack)
+        blurView.frame = self.view.bounds
+        self.view.insertSubview(blurView, belowSubview: scrollView) */
+        blurBG.isHidden = false
+        blurBG.alpha = 1
+        
     }
     
     func keyboardWillHide(_ notification : Notification) {
         self.bottomConstraint.constant = keyboardConstant!
         hideKeyboardButton.alpha = 0
-        
+        blurBG.isHidden = true
+        blurBG.alpha = 0
     }
    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
