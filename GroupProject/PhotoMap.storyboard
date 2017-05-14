@@ -89,12 +89,56 @@
                         <outlet property="collectionView" destination="cuJ-Qf-P3e" id="VZd-PW-RUE"/>
                         <outlet property="mapView" destination="Mzo-tW-cJG" id="iDk-Sc-UfE"/>
                         <outlet property="pageControl" destination="SUy-fg-Cfz" id="AKF-bQ-5zc"/>
-                        <segue destination="GHW-36-czL" kind="push" identifier="fullImageSegue" id="HOm-7b-mgA"/>
+                        <segue destination="8Gw-Cx-fQ9" kind="modal" identifier="fullImageSegue" id="HOm-7b-mgA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tb-8V-HSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="123.68815592203899"/>
+        </scene>
+        <!--Full Image Collection View Controller-->
+        <scene sceneID="vqo-3b-rA1">
+            <objects>
+                <collectionViewController id="ZXd-7D-9DN" customClass="FullImageCollectionViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Xmc-mH-AKh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LOC-Ba-QNX">
+                            <size key="itemSize" width="375" height="605"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FullImageCollectionViewCell" id="f3l-ca-JEw" customClass="FullImageCollectionViewCell" customModule="GroupProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-1" width="375" height="605"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMH-cE-WID">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <connections>
+                                    <outlet property="imageview" destination="gMH-cE-WID" id="Gc9-7T-3aZ"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ZXd-7D-9DN" id="93m-9R-7Hb"/>
+                            <outlet property="delegate" destination="ZXd-7D-9DN" id="bP9-JM-eaB"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="m0k-M6-Kz1"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l5H-AS-hME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3341.5999999999999" y="111.99400299850076"/>
         </scene>
         <!--Full Image View Controller-->
         <scene sceneID="Uxh-Hj-RCZ">
@@ -122,14 +166,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcU-2G-c0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1743.2" y="116.49175412293854"/>
+            <point key="canvasLocation" x="3342" y="788"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9vf-EY-hzz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drm-Nl-zxo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WE7-U7-Tbt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WE7-U7-Tbt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -141,6 +185,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkr-qa-9EM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-50.399999999999999" y="123.68815592203899"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dql-vu-9Ei">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Gw-Cx-fQ9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ztS-aW-nBs"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SDb-fQ-17r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZXd-7D-9DN" kind="relationship" relationship="rootViewController" id="xBB-IP-5fO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8C-to-yGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000.8" y="111.99400299850076"/>
         </scene>
     </scenes>
 </document>

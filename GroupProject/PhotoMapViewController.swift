@@ -49,7 +49,6 @@ class PhotoMapViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         pageControl.segmentControlDelegate = self
         pageControl.segmentTitles = ["Map View","Gallery",]
         
@@ -96,20 +95,17 @@ class PhotoMapViewController: DashBaseViewController {
         present(imagePickerActionSheet, animated: true, completion: nil)
     }
     
-//    @IBAction func segmentController(_ sender: UISegmentedControl) {
-//        if sender.selectedSegmentIndex == 0 {
-//            collectionView.isHidden = true
-//        } else {
-//            collectionView.isHidden = false
-//            visibleAnnotations = mapView.visibleAnnotations()
-//            collectionView.reloadData()
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fullImageSegue" {
-            let vc = segue.destination as! FullImageViewController
-            vc.imgURL = imgURL
+//            
+//            let navController = segue.destination as! UINavigationController
+//            let fullImage = navController.topViewController as! FullImageViewController
+//            fullImage.imgURL = imgURL
+
+            
+            let navController = segue.destination as! UINavigationController
+            let fullImage = navController.topViewController as! FullImageCollectionViewController
+            fullImage.imageArray = visibleAnnotations
         }
     }
     
@@ -274,7 +270,7 @@ extension PhotoMapViewController: MKMapViewDelegate {
     }
 }
 
-extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -306,6 +302,28 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return visibleAnnotations.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let size = self.view.layer.frame.width / 3
+        print(size)
+        return CGSize(width: size, height: size)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
     }
 }
 

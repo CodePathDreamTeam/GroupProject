@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3903CF311EC814E100D3E679 /* FullImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903CF301EC814E100D3E679 /* FullImageCollectionViewController.swift */; };
+		3903CF331EC8152900D3E679 /* FullImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903CF321EC8152900D3E679 /* FullImageCollectionViewCell.swift */; };
 		3908F9861EC2F5EB0040FC47 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */; };
 		3909F0BC1EB3014C00029E44 /* WallMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */; };
 		3909F0BE1EB3017800029E44 /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3909F0BD1EB3017800029E44 /* WallViewController.swift */; };
@@ -90,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		0D7A177C130AF460D21FD878 /* Pods-GroupProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.debug.xcconfig"; sourceTree = "<group>"; };
+		3903CF301EC814E100D3E679 /* FullImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullImageCollectionViewController.swift; sourceTree = "<group>"; };
+		3903CF321EC8152900D3E679 /* FullImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		3908F9851EC2F5EB0040FC47 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		3909F0BB1EB3014C00029E44 /* WallMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallMapViewController.swift; sourceTree = "<group>"; };
 		3909F0BD1EB3017800029E44 /* WallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				3909F0BD1EB3017800029E44 /* WallViewController.swift */,
 				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
+				3903CF301EC814E100D3E679 /* FullImageCollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				3909F0C11EB3020A00029E44 /* WallMapAnnotation.swift */,
 				CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */,
 				3958077B1EB441F000EAE714 /* CustomEntities.xcdatamodeld */,
+				3903CF321EC8152900D3E679 /* FullImageCollectionViewCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 				39E226041EAF20330064C27F /* ARTrackingManager.swift in Sources */,
 				3909F0C21EB3020A00029E44 /* WallMapAnnotation.swift in Sources */,
 				39F84D721EBBED6F00BAE34F /* ReceiptsViewController.swift in Sources */,
+				3903CF331EC8152900D3E679 /* FullImageCollectionViewCell.swift in Sources */,
 				3954F5DC1EB1BDC500C234F2 /* TodoViewController.swift in Sources */,
 				397C92F91EBFC8E60025C79E /* CreateReceiptViewController.swift in Sources */,
 				394602041EAD33DD00BAAC4F /* AppDelegate.swift in Sources */,
@@ -588,6 +595,7 @@
 				39E226061EAF20330064C27F /* DebugMapViewController.swift in Sources */,
 				3954F5E01EB1BE6700C234F2 /* ToDoItem.swift in Sources */,
 				CA621D401EC244B2007DC8A3 /* User.swift in Sources */,
+				3903CF311EC814E100D3E679 /* FullImageCollectionViewController.swift in Sources */,
 				390F56701EC6F8B40010AA59 /* ShadowCardView.swift in Sources */,
 				39E225D01EAF135A0064C27F /* HomeViewController.swift in Sources */,
 				CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */,
