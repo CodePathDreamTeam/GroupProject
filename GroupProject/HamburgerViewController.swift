@@ -61,12 +61,29 @@ class HamburgerViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, options: [],
                        animations: {
                         if self.leftMargainConstraint.constant == 0 {
+                            
                             self.leftMargainConstraint.constant = self.view.frame.size.width - 90
+                            
+                            //self.contentView.layer.transform = self.transformForFraction(fraction: 0.5)
+
                         } else {
                             self.leftMargainConstraint.constant = 0
+                            self.contentView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                         }
                         self.view.layoutIfNeeded()
         })
+    }
+    
+    func transformForFraction(fraction:CGFloat) -> CATransform3D {
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0 / 100.0;
+        let angle = Double(1.0 - fraction) * -M_PI_2
+        //let xOffset = contentView.bounds.width * 0.4
+        let rotateTransform = CATransform3DRotate(identity, CGFloat(angle), 0.0, 1.0, 0.0)
+       // let translateTransform = CATransform3DMakeTranslation(xOffset, 0.5, 0.0)
+        let shrink = CATransform3DMakeScale(0.7, 0.7, 0.1)
+
+        return CATransform3DConcat(rotateTransform, shrink)
     }
     
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {

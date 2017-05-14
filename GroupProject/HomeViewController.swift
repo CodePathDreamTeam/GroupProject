@@ -48,7 +48,7 @@ class HomeViewController: DashBaseViewController {
             longitude = "-122.4194"
         }
         print("coordinates: \(latitude), \(longitude)")
-        WeatherClient.sharedInstance.getWeather(latitude: latitude!, longitude: longitude!, completionHandler: {
+      /*  WeatherClient.sharedInstance.getWeather(latitude: latitude!, longitude: longitude!, completionHandler: {
             response in DispatchQueue.main.async {
                 if let error = response as? Error {
                     print("error: \(error)")
@@ -62,7 +62,7 @@ class HomeViewController: DashBaseViewController {
                     self.weatherTemperatureLabel.text = weather.tempCurr!
                 }
             }
-        })
+        })*/
         
     }
     
