@@ -48,7 +48,7 @@ class HamburgerViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        User.sharedInstance.updateUser()
+        //User.sharedInstance.updateUser()
         if User.sharedInstance.nativeCountry == nil {
             
             let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)
@@ -61,7 +61,6 @@ class HamburgerViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, options: [],
                        animations: {
                         if self.leftMargainConstraint.constant == 0 {
-                            
                             self.leftMargainConstraint.constant = self.view.frame.size.width - 90
                             
                             //self.contentView.layer.transform = self.transformForFraction(fraction: 0.5)
