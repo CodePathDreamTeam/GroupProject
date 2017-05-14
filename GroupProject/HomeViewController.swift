@@ -145,6 +145,8 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         collectionView.dataSource = self
         
         // WEATHER FUNCTION:
+        hourlyTempDictionary.removeAll()
+        hourlyConditionDictionary.removeAll()
         WeatherClient.sharedInstance.getWeather24hours(city: "San_Francisco") { (response) in
             DispatchQueue.main.async {
                 if let weatherForecasts = response as? [WeatherForecast] {
@@ -344,7 +346,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
                 weatherConditionsLabel.text = "no 0"
                 
             }
-            weatherTemperatureLabel.text = hourlyTempDictionary["0"]
+            weatherTemperatureLabel.text = "\(hourlyTempDictionary["0"]!)°"
             weatherConditionsLabel.text = hourlyConditionDictionary["0"]
         case 1:
             weatherTemperatureLabel.text = hourlyTempDictionary["1"]
