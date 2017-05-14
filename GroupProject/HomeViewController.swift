@@ -89,7 +89,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
                     print("address: \(defaults.string(forKey: "address"))")
                     self.locationLabel.text = defaults.string(forKey: "address") ?? ""
                     self.weatherConditionsLabel.text = weather.conditions!
-                    self.weatherTemperatureLabel.text = weather.tempCurr!
+                    self.weatherTemperatureLabel.text = "\(weather.tempCurr!)°"
                 }
             }
         })
