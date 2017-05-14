@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FinancesViewController: DashBaseViewController, UINavigationControllerDelegate, UITextFieldDelegate, ScrollableSegmentControlDelegate {
+class FinancesViewController: DashBaseViewController {
 
     @IBOutlet weak var localCurrencySignLabel: UILabel!
     @IBOutlet weak var localCountryNmLabel: UILabel!
@@ -19,6 +19,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     @IBOutlet weak var nativeAmountField: UITextField!
 
     @IBOutlet weak var pageControl: ScrollableSegmentControl!
+    @IBOutlet weak var pageView: UICollectionView!
 
     var receiptSource: ReceiptSource = .manual
     fileprivate var importedReceiptImageURL: URL?
@@ -61,25 +62,130 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         super.viewDidLoad()
 
         // Setup custom page control
+        setupPageControl()
+        // Setup page view
+        setupPageView()
+        // Setup currency converter
+        setupCurrencyConverter()
+    }
+
+    // MARK: Navigation
+
+    func createReceipt(_ sender: AnyObject) {
+        DispatchQueue.main.async {
+            // Track receipt source
+            self.receiptSource = .manual
+            // Perform segue to create receipt view
+            self.performSegue(withIdentifier: "CreateReceiptView", sender: sender)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CreateReceiptView" {
+
+            let destination = (segue.destination as! UINavigationController).topViewController as! CreateReceiptViewController
+
+            destination.sourceType = receiptSource
+            destination.source = currencyConverter
+            destination.receiptImageURL = importedReceiptImageURL
+        }
+    }
+}
+
+extension FinancesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ScrollableSegmentControlDelegate {
+
+    // MARK: View setup
+
+    func setupPageControl() {
         pageControl.segmentControlDelegate = self
         pageControl.segmentTitles = ["Expense Report","Denomination","Nearby Exchanges"]
+    }
 
-        // Setup currency converter based on the user's current and native locations.
-        let currentUser = User.sharedInstance
-        setupCurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
+    func setupPageView() {
+        if let flowLayout = pageView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 0
+        }
+        pageView.isPagingEnabled = true
+        pageView.isScrollEnabled = false
+        pageView.allowsSelection = false
     }
 
     // MARK: ScrollableSegmentControlDelegate
 
     func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
-        // Do custom actions based on selected segment
+        // Figure out the new page to display based on selected index
+        let labelWidthWithPadding: CGFloat = pageView.frame.width
+        let xPosition = CGFloat(index) * labelWidthWithPadding
+        let rectToDisplay = CGRect(x: xPosition, y: 0, width: labelWidthWithPadding, height: pageView.frame.height)
+
+        // Scroll to new rect
+        pageView.scrollRectToVisible(rectToDisplay, animated: true)
+    }
+
+    // MARK: UICollectionViewDataSource
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+
+        let colors: [UIColor] = [.white,.blue,.yellow]
+        cellView.backgroundColor = colors[indexPath.row]
+
+        return cellView
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
+
+extension FinancesViewController: UITextFieldDelegate {
+
+    // UITextFieldDelegate
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if textField.text?.characters.count == 0 && string == "" {
+            textField.text = "1"
+        }
+
+        if textField == localAmountField {
+            currencyConverter.conversionMode = .localToNative
+        } else if textField == nativeAmountField {
+            currencyConverter.conversionMode = .nativeToLocal
+        } else {
+            return false
+        }
+
+        currencyConverterTimer.invalidate()
+        currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
+            if let newAmountStr = textField.text, let amountToConvert = Double(newAmountStr) {
+                DispatchQueue.main.async {
+                    switch self.currencyConverter.conversionMode {
+                    case .localToNative:
+                        self.currencyConverter.localCurrencyAmount = amountToConvert
+                    case .nativeToLocal:
+                        self.currencyConverter.nativeCurrencyAmount = amountToConvert
+                    }
+                    self.updateUI(isInteractive: true)
+                }
+            }
+        })
+
+        return true
     }
 
     // MARK: Model Setup
 
-    func setupCurrencyConverter(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
+    func setupCurrencyConverter() {
+        // Based on the user's current and native locations.
+        let currentUser = User.sharedInstance
 
-        currencyConverter = CurrencyConverter(localCurrencyCd: localCurrencyCd, localCountry: localCountry, nativeCurrencyCd: nativeCurrencyCd, nativeCountry: nativeCountry)
+        currencyConverter = CurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
         currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
 
             DispatchQueue.main.async {
@@ -118,64 +224,9 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
         nativeCountryNmLabel.text = currencyConverter.nativeCountry
     }
 
-    // UITextFieldDelegate
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        if textField.text?.characters.count == 0 && string == "" {
-            textField.text = "1"
-        }
-
-        if textField == localAmountField {
-            currencyConverter.conversionMode = .localToNative
-        } else if textField == nativeAmountField {
-            currencyConverter.conversionMode = .nativeToLocal
-        } else {
-            return false
-        }
-
-        currencyConverterTimer.invalidate()
-        currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
-            if let newAmountStr = textField.text, let amountToConvert = Double(newAmountStr) {
-                DispatchQueue.main.async {
-                    switch self.currencyConverter.conversionMode {
-                    case .localToNative:
-                        self.currencyConverter.localCurrencyAmount = amountToConvert
-                    case .nativeToLocal:
-                        self.currencyConverter.nativeCurrencyAmount = amountToConvert
-                    }
-                    self.updateUI(isInteractive: true)
-                }
-            }
-        })
-
-        return true
-    }
-
-    // MARK: Navigation
-
-    func createReceipt(_ sender: AnyObject) {
-        DispatchQueue.main.async {
-            // Track receipt source
-            self.receiptSource = .manual
-            // Perform segue to create receipt view
-            self.performSegue(withIdentifier: "CreateReceiptView", sender: sender)
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CreateReceiptView" {
-
-            let destination = (segue.destination as! UINavigationController).topViewController as! CreateReceiptViewController
-
-            destination.sourceType = receiptSource
-            destination.source = currencyConverter
-            destination.receiptImageURL = importedReceiptImageURL
-        }
-    }
 }
 
-extension FinancesViewController: UIImagePickerControllerDelegate {
+extension FinancesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: UIImagePickerControllerDelegate
 
@@ -297,6 +348,7 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
             var validCharacters = CharacterSet.decimalDigits
             validCharacters.formUnion(.whitespaces)
             let rangeOfAmount = importText.rangeOfCharacter(from: validCharacters, options: .literal, range: rangeOfCurrencyIdentifier)
+            print("rangeOfAmount: \(String(describing: rangeOfAmount))")
 
             // Note: Dots aren't always the decimal separator, it depends on the currency locale but assuming for now.
 
