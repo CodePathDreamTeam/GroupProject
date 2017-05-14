@@ -415,16 +415,20 @@
             </objects>
             <point key="canvasLocation" x="3292" y="87.706146926536732"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav Bar Transparent-->
         <scene sceneID="8vE-QC-dvB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-oF-C21" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-oF-C21" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xYR-fH-u8I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BEJ-9a-OiB">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="gpp-4Q-KiQ" kind="relationship" relationship="rootViewController" id="BkL-dY-ZGL"/>
                     </connections>
@@ -433,12 +437,12 @@
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="87.706146926536732"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav Bar Transparent-->
         <scene sceneID="0wX-N9-8nw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mlj-rR-98B" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mlj-rR-98B" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1TP-Pz-G7m">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1TP-Pz-G7m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

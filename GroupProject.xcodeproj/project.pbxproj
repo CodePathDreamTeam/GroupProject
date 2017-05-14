@@ -80,6 +80,7 @@
 		4CCA52681EC7D15600214976 /* HomeLocationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA52671EC7D15600214976 /* HomeLocationsCell.swift */; };
 		4CCA526A1EC7D6C500214976 /* AdobeStock_54850653.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA52691EC7D6C500214976 /* AdobeStock_54850653.jpeg */; };
 		4CCA526C1EC7D6D300214976 /* AdobeStock_78473061.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA526B1EC7D6D300214976 /* AdobeStock_78473061.jpeg */; };
+		4CCA526E1EC7F61A00214976 /* NavBarTransparent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA526D1EC7F61A00214976 /* NavBarTransparent.swift */; };
 		747CA54C99CC378E043CE25C /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */; };
 		CA621D3C1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */; };
 		CA621D3E1EC0F4C6007DC8A3 /* POISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA621D3D1EC0F4C6007DC8A3 /* POISearchViewController.swift */; };
@@ -170,6 +171,7 @@
 		4CCA52671EC7D15600214976 /* HomeLocationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationsCell.swift; sourceTree = "<group>"; };
 		4CCA52691EC7D6C500214976 /* AdobeStock_54850653.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AdobeStock_54850653.jpeg; sourceTree = "<group>"; };
 		4CCA526B1EC7D6D300214976 /* AdobeStock_78473061.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AdobeStock_78473061.jpeg; sourceTree = "<group>"; };
+		4CCA526D1EC7F61A00214976 /* NavBarTransparent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarTransparent.swift; sourceTree = "<group>"; };
 		861B29CEEA68F6F26DC83B98 /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		A8840C912490DCFBF5D8C4FC /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA621D3B1EC0ED93007DC8A3 /* PhotoMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				3909F0BD1EB3017800029E44 /* WallViewController.swift */,
 				39E225D51EAF159A0064C27F /* WeatherStationViewController.swift */,
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
+				4CCA526D1EC7F61A00214976 /* NavBarTransparent.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */,
 				396FDEAC1EB04729005657BB /* WeatherClient.swift in Sources */,
 				397C92F71EBF92360025C79E /* AppGlobals.swift in Sources */,
+				4CCA526E1EC7F61A00214976 /* NavBarTransparent.swift in Sources */,
 				3908F9861EC2F5EB0040FC47 /* CustomSegmentedControl.swift in Sources */,
 				4CCA52681EC7D15600214976 /* HomeLocationsCell.swift in Sources */,
 				39E226021EAF20330064C27F /* ARAnnotationView.swift in Sources */,
