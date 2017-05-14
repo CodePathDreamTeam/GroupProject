@@ -27,7 +27,7 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
     fileprivate var currencyConverterTimer = Timer()
     fileprivate var currencyConverter: CurrencyConverter!
 
-    // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
+    // Setup action buttons for adding receipts - Quick Import via Camera, Photo library or Manually create receipt
     override var floatingActionButtons: [UIButton] {
 
         var buttons: [UIButton] = []
@@ -177,6 +177,8 @@ class FinancesViewController: DashBaseViewController, UINavigationControllerDele
 
 extension FinancesViewController: UIImagePickerControllerDelegate {
 
+    // MARK: UIImagePickerControllerDelegate
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         importedReceiptImageURL = info[UIImagePickerControllerReferenceURL] as? URL
         let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -189,6 +191,8 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
         })
     }
 
+    // MARK: Action Methods
+
     // Import receipt from camera
     func openCamera(_ sender: AnyObject) {
         // End editing to discard keyboards or input views, if any
@@ -200,6 +204,7 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
         self.present(imagePicker,animated: true,completion: nil)
     }
 
+    // Import receipt from photo library
     func openPhotoLibrary(_ sender: AnyObject) {
         // End editing to discard keyboards or input views, if any
         view.endEditing(true)
@@ -209,6 +214,8 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
         imagePicker.sourceType = .photoLibrary
         self.present(imagePicker,animated: true,completion: nil)
     }
+
+    // MARK: Tesseract Stack
 
     // Tesseract conversion of image to text
     func performImageRecognition(_ image: UIImage) {
@@ -223,12 +230,17 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
 
         tesseract.recognize()
 
-        let importedText = tesseract.recognizedText
-        print("Imported Text: \(importedText ?? "No text imported")")
-        createReceipt(forImportedLocalAmount: 36.14, localCurrencyCd: "USD", localCountry: "United States", nativeCurrencyCd: "JPY", nativeCountry: "Japan")
+        if let importedText = tesseract.recognizedText {
+            print("Imported Text: \(importedText)")
+            if let local = extractCurrencyDetails(from: importedText) {
+                createReceipt(forImportedLocalAmount: local.amount, localCurrencyCd: local.currency, localCountry: local.country, nativeCurrencyCd: User.sharedInstance.nativeCurrency!, nativeCountry: User.sharedInstance.nativeCountry!)
+            }
+        }
 
         removeActivityIndicator()
     }
+
+    // MARK: Receipt Creation
 
     func createReceipt(forImportedLocalAmount localCurrencyAmount: Double, localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
 
@@ -249,6 +261,52 @@ extension FinancesViewController: UIImagePickerControllerDelegate {
                 }
             }
         }
+    }
+
+    // MARK: Helpers
+
+    // Parse imported text and extract the local currency and amount
+    func extractCurrencyDetails(from importText: String) -> (currency: String, country: String, amount: Double)? {
+
+        // Locate the range of first currency sign or code.
+        var rangeOfCurrencyIdentifier: Range<String.Index>? = nil
+        var currencyCode: String? = nil
+        var currencySign: String? = nil
+
+        for aCurrencyCode in [User.sharedInstance.destinationCurrency ?? "USD", User.sharedInstance.destinationCurrency ?? "USD"] {
+
+            let aCurrencySign = currencyCodeBasedTuple[aCurrencyCode]?.sign ?? "$"
+            rangeOfCurrencyIdentifier = importText.range(of: aCurrencySign, options: .caseInsensitive, range: nil, locale: nil)
+            if rangeOfCurrencyIdentifier == nil {
+                rangeOfCurrencyIdentifier = importText.range(of: aCurrencyCode, options: .caseInsensitive, range: nil, locale: nil)
+            }
+
+            if rangeOfCurrencyIdentifier != nil {
+                currencyCode = aCurrencyCode
+                currencySign = aCurrencySign
+                break
+            }
+        }
+
+        // If range is still empty, then imported text doesn't have any detectable local currency amounts
+        if rangeOfCurrencyIdentifier == nil || rangeOfCurrencyIdentifier?.isEmpty == true || currencyCode == nil || currencySign == nil {
+            return nil
+        } else {
+
+            // Extract the string following this range unless limited by characters other than numbers or dot (decimals)
+            var validCharacters = CharacterSet.decimalDigits
+            validCharacters.formUnion(.whitespaces)
+            let rangeOfAmount = importText.rangeOfCharacter(from: validCharacters, options: .literal, range: rangeOfCurrencyIdentifier)
+
+            // Note: Dots aren't always the decimal separator, it depends on the currency locale but assuming for now.
+
+            // Extract Sign, Code, Country name from the extracted currency sign or code.
+
+            // Create a tuple to return. If any of required values are missing, return empty tuple.
+
+        }
+
+        return ("USD", "United States", 12.35)
     }
 
     // Scaling image for better recognition
