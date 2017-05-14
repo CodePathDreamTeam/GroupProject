@@ -48,6 +48,21 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     
     @IBOutlet weak var locationLabel: UILabel!
 
+    // WEATHER VARIABLES
+    var weatherForecasts: [WeatherForecast]!
+    var hourlyWeatherForecast: WeatherForecast! {
+        didSet {
+            weatherConditionsLabel.text = ""
+            weatherTemperatureLabel.text = ""
+            
+        }
+    }
+    
+    var hourlyTempDictionary = [String:String]()
+    var hourlyConditionDictionary = [String:String]()
+    var sliderValue = Int()
+    var counter = Int()
+    
 
     
     
@@ -129,9 +144,29 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
         collectionView.delegate = self
         collectionView.dataSource = self
         
-
-        
+        // WEATHER FUNCTION:
+        WeatherClient.sharedInstance.getWeather24hours(city: "San_Francisco") { (response) in
+            DispatchQueue.main.async {
+                if let weatherForecasts = response as? [WeatherForecast] {
+                    self.weatherForecasts = weatherForecasts
+                    for i in self.weatherForecasts {
+                        print(i.hour!)
+                        print(i.tempHour!)
+                        print(i.conditionHour!)
+                    }
+                    self.loadWeatherPerHour()
+                    
+                    
+                    print("HOMEVC HOURLY WEATHER \(self.weatherForecasts!.count)")
+                    
+                } else {
+                    print("error getting Forecast per hour")
+                }
+            }
+            
+        }
     }
+
 
     // @VIEW WILL APPEAR -------------------------------------------------------------------------------------------
     override func viewWillAppear(_ animated: Bool) {
@@ -277,11 +312,128 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     }
     
     
+    // WEATHER FUNCTIONS -------------------------------------------------------------------------------
+    func loadWeatherPerHour() {
+        
+        let currentDate = Date()
+        let formatHR = DateFormatter()
+        formatHR.dateFormat = "H"
+        let currentHour = formatHR.string(from: currentDate)
+        print ("Hour: \(currentHour)")
+        
+        let max = 24 - Int(currentHour)!
+        
+        for i in self.weatherForecasts {
+            if counter <= max {
+                hourlyTempDictionary[i.hour!] = i.tempHour!
+                hourlyConditionDictionary[i.hour!] = i.conditionHour!
+                print ("Added \(i.hour!)")
+                counter = counter + 1
+                
+            }
+            
+            
+        }
+        
+        sliderValue = 0
+        
+        switch sliderValue {
+        case 0:
+            if hourlyConditionDictionary["0"] == nil {
+                weatherTemperatureLabel.text = "no 0"
+                weatherConditionsLabel.text = "no 0"
+                
+            }
+            weatherTemperatureLabel.text = hourlyTempDictionary["0"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["0"]
+        case 1:
+            weatherTemperatureLabel.text = hourlyTempDictionary["1"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["1"]
+        case 2:
+            weatherTemperatureLabel.text = hourlyTempDictionary["2"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["2"]
+        case 3:
+            weatherTemperatureLabel.text = hourlyTempDictionary["3"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["3"]
+        case 4:
+            weatherTemperatureLabel.text = hourlyTempDictionary["4"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["4"]
+        case 5:
+            weatherTemperatureLabel.text = hourlyTempDictionary["5"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["5"]
+        case 6:
+            weatherTemperatureLabel.text = hourlyTempDictionary["6"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["6"]
+        case 7:
+            weatherTemperatureLabel.text = hourlyTempDictionary["7"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["7"]
+        case 8:
+            weatherTemperatureLabel.text = hourlyTempDictionary["8"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["8"]
+        case 9:
+            weatherTemperatureLabel.text = hourlyTempDictionary["9"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["9"]
+        case 10:
+            weatherTemperatureLabel.text = hourlyTempDictionary["10"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["10"]
+        case 12:
+            weatherTemperatureLabel.text = hourlyTempDictionary["12"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["12"]
+        case 13:
+            weatherTemperatureLabel.text = hourlyTempDictionary["13"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["13"]
+        case 14:
+            weatherTemperatureLabel.text = hourlyTempDictionary["14"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["14"]
+        case 15:
+            weatherTemperatureLabel.text = hourlyTempDictionary["15"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["15"]
+        case 16:
+            weatherTemperatureLabel.text = hourlyTempDictionary["16"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["16"]
+        case 17:
+            weatherTemperatureLabel.text = hourlyTempDictionary["17"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["17"]
+        case 18:
+            weatherTemperatureLabel.text = hourlyTempDictionary["18"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["18"]
+        case 19:
+            weatherTemperatureLabel.text = hourlyTempDictionary["19"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["19"]
+        case 20:
+            weatherTemperatureLabel.text = hourlyTempDictionary["20"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["20"]
+        case 21:
+            weatherTemperatureLabel.text = hourlyTempDictionary["21"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["21"]
+        case 22:
+            weatherTemperatureLabel.text = hourlyTempDictionary["22"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["22"]
+        case 23:
+            weatherTemperatureLabel.text = hourlyTempDictionary["23"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["23"]
+        case 24:
+            weatherTemperatureLabel.text = hourlyTempDictionary["24"]
+            weatherConditionsLabel.text = hourlyConditionDictionary["24"]
+        default:
+            weatherTemperatureLabel.text = "no"
+            weatherConditionsLabel.text = "no"
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+
+    
     
 }
 
 
-
+// @EXTENSION1 -----------------------------------------------------------------------------------------
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
@@ -320,8 +472,5 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
 }
-
-
-
 
 

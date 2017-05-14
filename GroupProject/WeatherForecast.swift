@@ -17,6 +17,15 @@ class WeatherForecast: NSObject {
     var conditions: String?
     var rawDictionary: NSDictionary?
     
+    // hourly
+    var hourlyWeatherTime = NSDictionary()
+    var hourlyWeatherTemp = NSDictionary()
+    
+    var hour: String?
+    var tempHour: String?
+    var conditionHour: String?
+
+    
     init(_ dictionary: NSDictionary){
         if let date = dictionary["date"] as? NSDictionary {
             day = date["weekday"] as? String
@@ -31,6 +40,16 @@ class WeatherForecast: NSObject {
             conditions = cond
         }
         rawDictionary = dictionary
+        
+        // hourly
+        hourlyWeatherTime = (dictionary["FCTTIME"] as? NSDictionary)!
+        hour = hourlyWeatherTime.value(forKeyPath: "hour") as? String
+        
+        hourlyWeatherTemp = (dictionary["temp"] as? NSDictionary)!
+        tempHour = hourlyWeatherTemp.value(forKeyPath: "english") as? String
+        
+        conditionHour = dictionary["condition"] as? String
+
     }
     
     init(temp: String, weather: String){

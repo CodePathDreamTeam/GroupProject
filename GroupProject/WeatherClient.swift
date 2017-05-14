@@ -135,5 +135,31 @@ class WeatherClient {
         })
         task.resume()
     }
+    
+    // 24HR WEATHER
+    func getWeather24hours(city: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
+        let city = "San_Francisco"
+        let baseURL = "https://api.wunderground.com/api/c7b6d2a6854f038d/hourly/q/CA/"
+        let urlString = "\(baseURL)\(city).json"
+        let nsURL = URL(string: urlString)!
+        let session = URLSession.shared
+        let task = session.dataTask(with: nsURL, completionHandler: { data, response, error -> Void in
+            if error != nil{
+                completionHandler(error as AnyObject)
+            }
+            if data != nil {
+                let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
+                print("getWeather24hours\(jsonData)")
+                if let jsonHourlyForecast = jsonData["hourly_forecast"] as? [NSDictionary] {
+                    
+                    let weatherForecasts = WeatherForecast.weatherForecastsWith(array: jsonHourlyForecast)
+                    completionHandler(weatherForecasts as AnyObject)
+                    
+                }
+            }
+            session.invalidateAndCancel()
+        })
+        task.resume()
+    }
 
 }
