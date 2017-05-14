@@ -35,15 +35,11 @@ class PhotoMapViewController: DashBaseViewController {
         camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
         
         let manual = UIButton(frame: buttonFrame)
-        manual.addTarget(self, action: #selector(createReceipt(_:)), for: .touchUpInside)
+        manual.addTarget(self, action: #selector(importPhoto(_:)), for: .touchUpInside)
         manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
         manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
         
         return [camera, manual]
-    }
-
-    func createReceipt(_ sender: AnyObject) {
-        print("ello")
     }
 
     override func viewDidLoad() {
@@ -64,44 +60,26 @@ class PhotoMapViewController: DashBaseViewController {
         // End editing to discard keyboards or input views, if any
         view.endEditing(true)
         
-        let imagePickerActionSheet = UIAlertController(title: "Snap/Upload Photo",
-                                                       message: nil, preferredStyle: .actionSheet)
-        
-        // Check for device compabtability before adding Camera button
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePickerActionSheet.addAction(UIAlertAction(title: "Take Photo",
-                                                           style: .default) { (alert) -> Void in
-                                                            let imagePicker = UIImagePickerController()
-                                                            imagePicker.delegate = self
-                                                            imagePicker.sourceType = .camera
-                                                            self.present(imagePicker,animated: true,completion: nil)
-            })
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker,animated: true,completion: nil)
         }
-        
-        // Option to pick existing images
-        imagePickerActionSheet.addAction(UIAlertAction(title: "Choose Existing",
-                                                       style: .default) { (alert) -> Void in
-                                                        let imagePicker = UIImagePickerController()
-                                                        imagePicker.delegate = self
-                                                        imagePicker.sourceType = .photoLibrary
-                                                        self.present(imagePicker,animated: true,completion: nil)
-        })
-        
-        // Option to cancel the import action
-        imagePickerActionSheet.addAction(UIAlertAction(title: "Cancel",
-                                                       style: .cancel) { (alert) -> Void in
-        })
-        
-        present(imagePickerActionSheet, animated: true, completion: nil)
+    }
+    
+    func importPhoto(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker,animated: true,completion: nil)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fullImageSegue" {
-//            
-//            let navController = segue.destination as! UINavigationController
-//            let fullImage = navController.topViewController as! FullImageViewController
-//            fullImage.imgURL = imgURL
-
             
             let navController = segue.destination as! UINavigationController
             let fullImage = navController.topViewController as! FullImageCollectionViewController
@@ -292,9 +270,7 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
                                                   contentMode: .aspectFill,
                                                   options: nil,
                                                   resultHandler: { (result, info) ->Void in
-                                                    
                                                     cell.imageView.image = result!
-
             })
         }
         return cell
