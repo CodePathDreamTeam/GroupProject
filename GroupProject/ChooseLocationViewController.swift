@@ -16,8 +16,8 @@ class ChooseLocationViewController: UIViewController {
     
     let countryTuple : [(String,String)] = [("AUD", "Australia"), ("BGN","Bulgaria"), ("BRL","Brazil"), ("CAD","Canada"),  ("CHF","Switzerland"), ("CNY","Chinese Yuan"), ("CZK","Czech Republic"), ("DKK","Denmark"), ("EUR","Euro"),  ("GBP","British Pound"), ("HKD","Hong Kong Dollar"), ("HRK","Croatia"), ("HUF","Hungary"), ("IDR","Indonesia"),  ("ILS","Israel"), ("INR","India"), ("JPY","Japan"), ("KRW","South Korea"), ("MXN","Mexico"), ("MYR","Malaysia"),  ("NOK","Norway"), ("NZD","New Zealand"), ("PHP","Philippines"), ("PLN","Poland"), ("RON","Romania"), ("RUB","Russia"),  ("SEK","Sweden"), ("SGD","Singapore"), ("THB","Thailand"), ("TRY","Turkey"), ("USD","United States"), ("ZAR","South Africa")]
     
-    var nativeCountry = "AUD"
-    var destinationCountry = "AUD"
+    var nativeCountry = "Australia"
+    var destinationCountry = "Australia"
     
     var nativeCurrency = "AUD"
     var destinationCurrency = "AUD"
