@@ -127,6 +127,16 @@ class FinancesViewController: DashBaseViewController {
             destination.sourceType = receiptSource
             destination.source = currencyConverter
             destination.receiptImageURL = importedReceiptImageURL
+
+        } else if segue.identifier == "ReceiptsView" {
+            let destination = segue.destination as! ReceiptsViewController
+            destination.receipts = receipts
+        }
+    }
+
+    func viewReceipts(_ sender:AnyObject) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "ReceiptsView", sender: sender)
         }
     }
 }
@@ -266,14 +276,23 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
         cellView.backgroundColor = colors[indexPath.row]
 
         if indexPath.row == 0 {
-            let chartViewDimension = collectionView.frame.width
-            var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[chartView(width)]", options: .alignAllCenterX, metrics: ["width":chartViewDimension], views: ["chartView":receiptChartView,"width":chartViewDimension])
-            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[chartView(height)]", options: .alignAllCenterY, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"height":chartViewDimension]))
-
+            // Add Chart as subview
+            let chartViewDimension = min(collectionView.frame.width, collectionView.frame.height)
             receiptChartView.translatesAutoresizingMaskIntoConstraints = false
             cellView.addSubview(receiptChartView)
+            // Add View Receipts button as subview
+            let viewReceiptsButton = UIButton(type: .roundedRect)
+            viewReceiptsButton.setTitle("View Receipts", for: .normal)
+            viewReceiptsButton.addTarget(self, action: #selector(viewReceipts(_:)), for: .touchUpInside)
+            viewReceiptsButton.sizeToFit()
+            viewReceiptsButton.translatesAutoresizingMaskIntoConstraints = false
+            cellView.addSubview(viewReceiptsButton)
+
+            // Setup Constraints for chart view and view receipts button
+            var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[chartView(width)]|", options: [], metrics: ["width":chartViewDimension], views: ["chartView":receiptChartView])
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
+
             cellView.addConstraints(constraints)
-            print("Returning ChartView part of collection view cell")
         }
 
         return cellView
@@ -298,7 +317,6 @@ extension FinancesViewController: ChartViewDelegate {
         let result = Globals.fetch(request)
 
         if result.isSuccess {
-            print("Fetched Chart View data")
             receipts = result.value! as! Array<Receipts>
         } else {
             print("Error fetching receipts: \(String(describing: result.error?.localizedDescription))")
@@ -321,8 +339,7 @@ extension FinancesViewController: ChartViewDelegate {
 
         receiptChartView.entryLabelColor = .white
         receiptChartView.entryLabelFont = UIFont.systemFont(ofSize: 12.0)
-
-        print("ChartView setup part of viewDidLoad")
+        receiptChartView.chartDescription?.text = ""
     }
 
     func reloadChartData() {
@@ -355,7 +372,8 @@ extension FinancesViewController: ChartViewDelegate {
         percentFormatter.numberStyle = .percent
         percentFormatter.maximumFractionDigits = 1
         percentFormatter.multiplier = 1.0
-        percentFormatter.percentSymbol = " \(currencyConverter.nativeCurrencySign)"
+        percentFormatter.percentSymbol = ""
+        percentFormatter.positivePrefix = "\(currencyConverter.nativeCurrencySign)"
 
         data.setValueFormatter(DefaultValueFormatter(formatter: percentFormatter))
         data.setValueFont(UIFont.systemFont(ofSize: 11.0))
@@ -366,7 +384,6 @@ extension FinancesViewController: ChartViewDelegate {
 
         // Animate and render chart
         receiptChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeOutCirc)
-        print("Reloaded Chart View data")
     }
 }
 
@@ -537,7 +554,6 @@ extension FinancesViewController: ReceiptDataSourceRefreshing {
 
     func receiptDidCreate(info: Receipts) {
         // Refresh View
-        print("Fetching Receipts post receipt creation")
         fetchReceipts()
     }
 
