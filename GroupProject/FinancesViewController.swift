@@ -308,7 +308,8 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             var constraints: [NSLayoutConstraint] = []
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[chartView(width)]", options: [], metrics: ["width":chartViewDimension], views: ["chartView":receiptChartView]))
             constraints.append(NSLayoutConstraint(item: receiptChartView, attribute: .centerX, relatedBy: .equal, toItem: cellView, attribute: .centerX, multiplier: 1.0, constant: 0))
-            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
+            constraints.append(NSLayoutConstraint(item: receiptChartView, attribute: .centerY, relatedBy: .equal, toItem: cellView, attribute: .centerY, multiplier: 1.0, constant: 0))
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
 
             cellView.addConstraints(constraints)
         }
