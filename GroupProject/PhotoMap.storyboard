@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="3342" y="788"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav Bar Transparent-->
         <scene sceneID="9vf-EY-hzz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drm-Nl-zxo" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drm-Nl-zxo" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WE7-U7-Tbt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -186,13 +186,13 @@
             </objects>
             <point key="canvasLocation" x="-50.399999999999999" y="123.68815592203899"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav Bar Transparent-->
         <scene sceneID="dql-vu-9Ei">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Gw-Cx-fQ9" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Gw-Cx-fQ9" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ztS-aW-nBs"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SDb-fQ-17r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SDb-fQ-17r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
