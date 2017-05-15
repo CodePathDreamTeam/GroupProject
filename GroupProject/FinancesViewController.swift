@@ -293,7 +293,7 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
 
         if indexPath.row == 0 {
             // Add Chart as subview
-            let chartViewDimension = min(collectionView.frame.width, collectionView.frame.height)
+            let chartViewDimension = min(collectionView.frame.width, collectionView.frame.height) * 0.80
             receiptChartView.translatesAutoresizingMaskIntoConstraints = false
             cellView.addSubview(receiptChartView)
             // Add View Receipts button as subview
@@ -305,8 +305,10 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             cellView.addSubview(viewReceiptsButton)
 
             // Setup Constraints for chart view and view receipts button
-            var constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[chartView(width)]|", options: [], metrics: ["width":chartViewDimension], views: ["chartView":receiptChartView])
-            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
+            var constraints: [NSLayoutConstraint] = []
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[chartView(width)]", options: [], metrics: ["width":chartViewDimension], views: ["chartView":receiptChartView]))
+            constraints.append(NSLayoutConstraint(item: receiptChartView, attribute: .centerX, relatedBy: .equal, toItem: cellView, attribute: .centerX, multiplier: 1.0, constant: 0))
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
 
             cellView.addConstraints(constraints)
         }
