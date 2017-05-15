@@ -270,6 +270,13 @@ extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
         //            cell.textLabel?.text = item.text
         cell.delegate = self
         cell.toDoItem = item
+        
+        cell.layer.shadowOffset = CGSize(0, 0)
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOpacity = 0.25
+        cell.layer.masksToBounds = false;
+        cell.clipsToBounds = false;
         return cell
     }
     
@@ -369,6 +376,12 @@ extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.white
+    }
+}
+
+extension CGSize{
+    init(_ width:CGFloat,_ height:CGFloat) {
+        self.init(width:width,height:height)
     }
 }
 
