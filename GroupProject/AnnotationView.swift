@@ -43,18 +43,21 @@ class AnnotationView: ARAnnotationView {
         label.numberOfLines = 0
         label.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         label.textColor = UIColor.white
+        label.textAlignment = .center
         self.addSubview(label)
         self.titleLabel = label
         
         distanceLabel = UILabel(frame: CGRect(x: 10, y: 30, width: self.frame.size.width, height: 20))
         distanceLabel?.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
-        distanceLabel?.textColor = UIColor.green
+        distanceLabel?.textColor = UIColor.black
         distanceLabel?.font = UIFont.systemFont(ofSize: 12)
+        distanceLabel?.textAlignment = .center
         self.addSubview(distanceLabel!)
         
         if let annotation = annotation as? Place {
             titleLabel?.text = annotation.placeName
-            distanceLabel?.text = String(format: "%.2f km", annotation.distanceFromUser / 1000)
+            let miles = (annotation.distanceFromUser * 0.62137119224)
+            distanceLabel?.text = String(format: "%.2f m", miles / 1000)
         }
     }
 }

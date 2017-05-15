@@ -35,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-eZ-eqj" customClass="HamburgerButton" customModule="GroupProject">
-                                        <rect key="frame" x="0.0" y="1.5" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="2" width="30" height="30"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -121,7 +121,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VrL-QR-4Sx" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u1J-9U-hGx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u1J-9U-hGx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -139,7 +139,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UhD-j0-q8F" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bDf-vk-Lnk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bDf-vk-Lnk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

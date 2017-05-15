@@ -494,6 +494,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
             let y = self.yPositionForAnnotationView(annotationView)
             
             annotationView.frame = CGRect(x: x, y: y, width: annotationView.bounds.size.width, height: annotationView.bounds.size.height)
+            annotationView.layer.cornerRadius = 4.0
+            annotationView.clipsToBounds = true
         }
     }
     
@@ -735,6 +737,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         {
             for annotationView in self.annotationViews
             {
+                annotationView.layer.cornerRadius = 4
+                annotationView.clipsToBounds = true
                 annotationView.bindUi()
             }
         }
