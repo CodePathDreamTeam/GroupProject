@@ -42,13 +42,14 @@ class WeatherForecast: NSObject {
         rawDictionary = dictionary
         
         // hourly
-        hourlyWeatherTime = (dictionary["FCTTIME"] as? NSDictionary)!
-        hour = hourlyWeatherTime.value(forKeyPath: "hour") as? String
-        
-        hourlyWeatherTemp = (dictionary["temp"] as? NSDictionary)!
-        tempHour = hourlyWeatherTemp.value(forKeyPath: "english") as? String
-        
-        conditionHour = dictionary["condition"] as? String
+        if let hourlyWeatherTime = (dictionary["FCTTIME"] as? NSDictionary){
+            hour = hourlyWeatherTime.value(forKeyPath: "hour") as? String
+            
+            hourlyWeatherTemp = (dictionary["temp"] as? NSDictionary)!
+            tempHour = hourlyWeatherTemp.value(forKeyPath: "english") as? String
+            
+            conditionHour = dictionary["condition"] as? String
+        }
 
     }
     
