@@ -39,6 +39,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SET BG GRADIENT
+        let background = CAGradientLayer().creymeColor()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, at: 0)
+        
         tableView.delegate = self
         tableView.dataSource = self
         

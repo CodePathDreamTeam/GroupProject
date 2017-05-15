@@ -50,7 +50,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YW-he-ZK8" userLabel="topView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AdobeStock_40603639.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="hmt-vw-hSp">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AdobeStock_40603639.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="hmt-vw-hSp">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
