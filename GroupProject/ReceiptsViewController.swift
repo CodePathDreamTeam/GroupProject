@@ -45,7 +45,7 @@ extension ReceiptsViewController: UITableViewDataSource, UITableViewDelegate {
         let receipt = receipts[indexPath.row]
 
         cell.textLabel?.text = receipt.category
-        cell.detailTextLabel?.text = String(format: "%.2f \(receipt.nativeCurrencyCode!)", receipt.nativeCurrencyAmount)
+        cell.detailTextLabel?.text = String(format: "\(receipt.nativeCurrencySign ?? "$")%.2f", receipt.nativeCurrencyAmount)
 
         return cell
     }

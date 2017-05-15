@@ -82,8 +82,10 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
         if source != nil {
             // Save new receipt to core data persistent store
             let newReceipt = Receipts(context: Globals.managedContext)
+            newReceipt.localCurrencySign = source?.localCurrencySign
             newReceipt.localCurrencyCode = source?.localCurrencyCode
             newReceipt.localCurrencyAmount = source!.localCurrencyAmount
+            newReceipt.nativeCurrencySign = source?.nativeCurrencySign
             newReceipt.nativeCurrencyCode = source?.nativeCurrencyCode
             newReceipt.nativeCurrencyAmount = source!.nativeCurrencyAmount
             newReceipt.category = categoryField.text

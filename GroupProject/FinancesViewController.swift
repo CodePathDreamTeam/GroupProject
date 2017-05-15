@@ -27,6 +27,7 @@ class FinancesViewController: DashBaseViewController {
 
     // Receipt Chart, Table view outlets
     let receiptChartView = PieChartView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let viewReceiptsButton = UIButton(type: .roundedRect)
 
     // Create receipt
     var receiptSource: ReceiptSource = .manual
@@ -89,6 +90,8 @@ class FinancesViewController: DashBaseViewController {
 
                 self.categorizedAmounts = categorizedAmounts
             }
+
+            viewReceiptsButton.isHidden = (receipts.count == 0)
         }
     }
 
@@ -281,11 +284,11 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             receiptChartView.translatesAutoresizingMaskIntoConstraints = false
             cellView.addSubview(receiptChartView)
             // Add View Receipts button as subview
-            let viewReceiptsButton = UIButton(type: .roundedRect)
             viewReceiptsButton.setTitle("View Receipts", for: .normal)
             viewReceiptsButton.addTarget(self, action: #selector(viewReceipts(_:)), for: .touchUpInside)
             viewReceiptsButton.sizeToFit()
             viewReceiptsButton.translatesAutoresizingMaskIntoConstraints = false
+            viewReceiptsButton.isHidden = (receipts.count == 0)
             cellView.addSubview(viewReceiptsButton)
 
             // Setup Constraints for chart view and view receipts button
@@ -340,6 +343,10 @@ extension FinancesViewController: ChartViewDelegate {
         receiptChartView.entryLabelColor = .white
         receiptChartView.entryLabelFont = UIFont.systemFont(ofSize: 12.0)
         receiptChartView.chartDescription?.text = ""
+
+        receiptChartView.noDataTextColor = UIColor(colorLiteralRed: 145/255.0, green: 145/255.0, blue: 145/255.0, alpha: 1.0)
+        receiptChartView.noDataFont = UIFont.italicSystemFont(ofSize: 17.0)
+        receiptChartView.noDataText = "You are yet to log expense receipts."
     }
 
     func reloadChartData() {
