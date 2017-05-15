@@ -48,16 +48,11 @@
                                 </constraints>
                             </view>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Search By" id="a0C-MC-3H7">
-                            <connections>
-                                <action selector="showARController:" destination="WfW-I3-Cvb" id="vTH-a1-DJU"/>
-                                <segue destination="UhD-j0-q8F" kind="presentation" identifier="searchBySegue" id="gGw-se-X9K"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="HamburgerButton" destination="Y4j-eZ-eqj" id="Ydj-V4-lGC"/>
                         <outlet property="mapView" destination="xRA-fM-Md7" id="lWG-xK-Yff"/>
+                        <segue destination="UhD-j0-q8F" kind="presentation" identifier="searchBySegue" id="IE0-zI-SDo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcZ-hp-Qpb" userLabel="First Responder" sceneMemberID="firstResponder"/>

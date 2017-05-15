@@ -23,6 +23,22 @@ class PoisViewController: DashBaseViewController {
     var search = ""
     var location = CLLocation()
     
+    override var floatingActionButtons: [UIButton] {
+        let buttonFrame = CGRect(x: 0, y: 0, width: 66, height: 66)
+        
+        let camera = UIButton(frame: buttonFrame)
+        camera.addTarget(self, action: #selector(goToAR(_:)), for: .touchUpInside)
+        camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
+        camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+        
+        let manual = UIButton(frame: buttonFrame)
+        manual.addTarget(self, action: #selector(filters(_:)), for: .touchUpInside)
+        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
+        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        
+        return [camera, manual]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +47,26 @@ class PoisViewController: DashBaseViewController {
         locationManager.startUpdatingLocation()
         locationManager.requestWhenInUseAuthorization()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func goToAR(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
+        arViewController = ARViewController()
+        
+        arViewController.dataSource = self
+        
+        arViewController.maxVisibleAnnotations = 30
+        arViewController.headingSmoothingFactor = 0.05
+        
+        arViewController.setAnnotations(places)
+        self.present(arViewController, animated: true, completion: nil)
+    }
+    
+    func filters(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
+        performSegue(withIdentifier: "searchBySegue", sender: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
