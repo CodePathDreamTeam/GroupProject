@@ -177,14 +177,14 @@ extension PhotoMapViewController: MKMapViewDelegate {
         
         if (annotationView == nil) {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-            annotationView!.canShowCallout = true
-            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.infoDark)
+            //annotationView!.canShowCallout = true
+            //annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.infoDark)
             annotationView?.isDraggable = true
         }
         
         let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         resizeRenderImageView.layer.borderColor = UIColor.white.cgColor
-        resizeRenderImageView.layer.borderWidth = 3.0
+        resizeRenderImageView.layer.borderWidth = 6.0
         resizeRenderImageView.contentMode = UIViewContentMode.scaleAspectFill
         
         resizeRenderImageView.image = (annotation as? PhotoAnnotation)?.photo

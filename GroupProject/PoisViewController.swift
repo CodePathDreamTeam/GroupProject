@@ -31,12 +31,12 @@ class PoisViewController: DashBaseViewController {
         camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
         camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
         
-        let manual = UIButton(frame: buttonFrame)
-        manual.addTarget(self, action: #selector(filters(_:)), for: .touchUpInside)
-        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
-        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        let search = UIButton(frame: buttonFrame)
+        search.addTarget(self, action: #selector(filters(_:)), for: .touchUpInside)
+        search.setImage(UIImage(named:"cbutton_search"), for: .normal)
+        search.setImage(UIImage(named:"cbutton_search"), for: .highlighted)
         
-        return [camera, manual]
+        return [camera, search]
     }
     
     override func viewDidLoad() {

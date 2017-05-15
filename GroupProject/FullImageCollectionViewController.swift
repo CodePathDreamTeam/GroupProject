@@ -22,6 +22,11 @@ class FullImageCollectionViewController: UICollectionViewController {
         layout.scrollDirection = .horizontal
         collectionView?.collectionViewLayout = layout
     }
+    
+    @IBAction func onDoneButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension FullImageCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -52,6 +57,7 @@ extension FullImageCollectionViewController: UICollectionViewDelegateFlowLayout 
         return cell
         
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.width, height: view.bounds.height)

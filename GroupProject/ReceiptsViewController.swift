@@ -25,17 +25,14 @@ class ReceiptsViewController: UIViewController {
                 return true
             }
         })
-
         // Fetch saved receipts
         tableView.reloadData()
     }
-
 }
 
 extension ReceiptsViewController: UITableViewDataSource, UITableViewDelegate {
 
     // UITableViewDataSource
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receipts.count
     }
