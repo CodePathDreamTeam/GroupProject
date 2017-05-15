@@ -13,8 +13,8 @@ class ChooseLocationViewController: UIViewController {
     
     let countryTuple : [(String,String)] = [("AUD", "Australia"), ("BGN","Bulgaria"), ("BRL","Brazil"), ("CAD","Canada"),  ("CHF","Switzerland"), ("CNY","Chinese Yuan"), ("CZK","Czech Republic"), ("DKK","Denmark"), ("EUR","Euro"),  ("GBP","British Pound"), ("HKD","Hong Kong Dollar"), ("HRK","Croatia"), ("HUF","Hungary"), ("IDR","Indonesia"),  ("ILS","Israel"), ("INR","India"), ("JPY","Japan"), ("KRW","South Korea"), ("MXN","Mexico"), ("MYR","Malaysia"),  ("NOK","Norway"), ("NZD","New Zealand"), ("PHP","Philippines"), ("PLN","Poland"), ("RON","Romania"), ("RUB","Russia"),  ("SEK","Sweden"), ("SGD","Singapore"), ("THB","Thailand"), ("TRY","Turkey"), ("USD","United States"), ("ZAR","South Africa")]
     
-    var nativeCountry = "AUD"
-    var destinationCountry = "AUD"
+    var nativeCountry = "Australia"
+    var destinationCountry = "Australia"
     
     var nativeCurrency = "AUD"
     var destinationCurrency = "AUD"
@@ -25,11 +25,8 @@ class ChooseLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Helpers.setupGradient(view: self.view)
-        
         nativeCollectionView?.isPagingEnabled = true
         destinationCollectionView?.isPagingEnabled = true
-
         
         let nativeLayout = AnimatedCollectionViewLayout()
         nativeLayout.animator = LinearCardAttributesAnimator()
@@ -40,16 +37,9 @@ class ChooseLocationViewController: UIViewController {
         destinationLayout.animator = LinearCardAttributesAnimator()
         destinationLayout.scrollDirection = .horizontal
         destinationCollectionView.collectionViewLayout = destinationLayout
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onStartButton(_ sender: Any) {
-        
 
         defaults.set(nativeCountry, forKey: "nativeCountry")
         defaults.set(destinationCountry, forKey: "destinationCountry")
@@ -65,17 +55,25 @@ class ChooseLocationViewController: UIViewController {
 }
 
 extension ChooseLocationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
         let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width);
 
+        let randomRed = CGFloat(arc4random_uniform(256))
+        let randomGreen = CGFloat(arc4random_uniform(256))
+        let randomBlue = CGFloat(arc4random_uniform(256))
+        
         if scrollView == self.nativeCollectionView {
+            
+            (self.view as? GradientView)?.startColor = UIColor(red:  randomRed/255.0, green: randomGreen/255.0, blue: randomBlue/255.0, alpha: 100.0/100.0)
             nativeCurrency = countryTuple[page].0
             nativeCountry = countryTuple[page].1
             print("Native - currency: \(nativeCurrency), country: \(nativeCountry)")
             
         } else if scrollView == self.destinationCollectionView {
+            (self.view as? GradientView)?.endColor = UIColor(red:  randomRed/255.0, green: randomGreen/255.0, blue: randomBlue/255.0, alpha: 100.0/100.0)
             destinationCurrency = countryTuple[page].0
             destinationCountry = countryTuple[page].1
             print("Destination - currency: \(destinationCurrency), country: \(destinationCountry)")

@@ -15,6 +15,10 @@ enum ReceiptSource: Int {
     case manual
 }
 
+protocol ReceiptDataSourceRefreshing: AnyObject {
+    func receiptDidCreate(info: Receipts)
+}
+
 class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var localAmountField: UITextField!
@@ -28,6 +32,8 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
     var sourceType: ReceiptSource = .manual
     var source: CurrencyConverter?
     var receiptImageURL: URL?
+
+    weak var delegate: ReceiptDataSourceRefreshing?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,13 +82,18 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
         if source != nil {
             // Save new receipt to core data persistent store
             let newReceipt = Receipts(context: Globals.managedContext)
+            newReceipt.localCurrencySign = source?.localCurrencySign
             newReceipt.localCurrencyCode = source?.localCurrencyCode
             newReceipt.localCurrencyAmount = source!.localCurrencyAmount
+            newReceipt.nativeCurrencySign = source?.nativeCurrencySign
             newReceipt.nativeCurrencyCode = source?.nativeCurrencyCode
             newReceipt.nativeCurrencyAmount = source!.nativeCurrencyAmount
             newReceipt.category = categoryField.text
 
             Globals.saveContext()
+
+            // Notify delegate for possible refresh
+            delegate?.receiptDidCreate(info: newReceipt)
         }
 
         // And then Dimiss view controller

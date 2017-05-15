@@ -32,12 +32,19 @@ class WeatherClient {
             }
             if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
-                print("\(jsonData)")
+//                print("\(jsonData)")
                 if let jsonForecast = jsonData["forecast"] as? NSDictionary {
                     print(jsonForecast)
                     if let simpleForecast = jsonForecast["simpleforecast"] as? NSDictionary {
-                        if let forecastDay = simpleForecast["forecastday"] as? [NSDictionary] {
-                            let weatherForecasts = WeatherForecast.weatherForecastsWith(array: forecastDay)
+                        if let simpleForecastDay = simpleForecast["forecastday"] as? [NSDictionary] {
+                            let weatherForecasts = WeatherForecast.weatherForecastsWith(array: simpleForecastDay)
+                            if let currentTxtForecastDay = ((jsonForecast["txt_forecast"] as? NSDictionary)?["forecastday"] as? NSArray)?.firstObject as? NSDictionary {
+                                if let forecastToday = weatherForecasts.first {
+                                    forecastToday.conditions = currentTxtForecastDay.value(forKey: "fcttext") as? String
+                                    print("wow, somehow")
+                                }
+                            }
+
                             completionHandler(weatherForecasts as AnyObject)
                         }
                     }
@@ -65,8 +72,14 @@ class WeatherClient {
                 if let jsonForecast = jsonData["forecast"] as? NSDictionary {
                     print(jsonForecast)
                     if let simpleForecast = jsonForecast["simpleforecast"] as? NSDictionary {
-                        if let forecastDay = simpleForecast["forecastday"] as? [NSDictionary] {
-                            let weatherForecasts = WeatherForecast.weatherForecastsWith(array: forecastDay)
+                        if let simpleForecastDay = simpleForecast["forecastday"] as? [NSDictionary] {
+                            let weatherForecasts = WeatherForecast.weatherForecastsWith(array: simpleForecastDay)
+                            if let currentTxtForecastDay = ((jsonForecast["txt_forecast"] as? NSDictionary)?["forecastday"] as? NSArray)?.firstObject as? NSDictionary {
+                                if let forecastToday = weatherForecasts.first {
+                                    forecastToday.conditions = currentTxtForecastDay.value(forKey: "fcttext") as? String
+                                    print("wow, somehow")
+                                }
+                            }
                             completionHandler(weatherForecasts as AnyObject)
                         }
                     }
@@ -89,7 +102,6 @@ class WeatherClient {
             if data != nil {
                 let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
                 print(jsonData)
-                
                 if let current = jsonData["current_observation"] as? [String:AnyObject] {
                     let temp = current["temp_f"] as? Int
                     let weather = current["weather"] as? String

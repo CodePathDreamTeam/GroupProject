@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="photoLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="photoLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -10,8 +10,10 @@
         <attribute name="imageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="localCurrencyAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="localCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localCurrencySign" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nativeCurrencyAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nativeCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nativeCurrencySign" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiptDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UserPhoto" representedClassName="UserPhoto" syncable="YES" codeGenerationType="class">
@@ -19,7 +21,7 @@
     </entity>
     <elements>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Receipts" positionX="-63" positionY="9" width="128" height="150"/>
+        <element name="Receipts" positionX="-63" positionY="9" width="128" height="180"/>
         <element name="UserPhoto" positionX="-63" positionY="9" width="128" height="60"/>
     </elements>
 </model>

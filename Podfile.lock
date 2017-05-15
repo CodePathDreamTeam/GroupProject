@@ -29,6 +29,7 @@ PODS:
     - GooglePlaces (= 2.2.0)
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
+  - HGCircularSlider (2.0.0)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
 
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - HGCircularSlider
   - Parse
 
 SPEC CHECKSUMS:
@@ -49,8 +51,9 @@ SPEC CHECKSUMS:
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
 
-PODFILE CHECKSUM: 06a626988f4508b50d12cd99fc4de8b4698ba126
+PODFILE CHECKSUM: 6cd5c3711ecde213bafaaec4d87d1145b0e750fa
 
 COCOAPODS: 1.2.0

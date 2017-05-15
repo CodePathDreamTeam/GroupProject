@@ -18,14 +18,35 @@ class PhotoMapViewController: DashBaseViewController {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: ScrollableSegmentControl!
     
     var myImage: UIImage!
     var imgURL: NSURL!
     
     var visibleAnnotations = [PhotoAnnotation]()
+    
+    // Setups up action buttons for adding receipts - Quick Import via Camera or Manually create receipt
+    override var floatingActionButtons: [UIButton] {
+        let buttonFrame = CGRect(x: 0, y: 0, width: 66, height: 66)
+        
+        let camera = UIButton(frame: buttonFrame)
+        camera.addTarget(self, action: #selector(importImage(_:)), for: .touchUpInside)
+        camera.setImage(UIImage(named:"cbutton_camera"), for: .normal)
+        camera.setImage(UIImage(named:"cbutton_camera-tap"), for: .highlighted)
+        
+        let manual = UIButton(frame: buttonFrame)
+        manual.addTarget(self, action: #selector(importPhoto(_:)), for: .touchUpInside)
+        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
+        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        
+        return [camera, manual]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pageControl.segmentControlDelegate = self
+        pageControl.segmentTitles = ["Map View","Gallery",]
         
         loadFromCoreData()
         
@@ -35,43 +56,34 @@ class PhotoMapViewController: DashBaseViewController {
         mapView.setRegion(sfRegion, animated: false)
     }
     
-    
-    @IBAction func openCameraButton(_ sender: UIBarButtonItem) {
+    func importImage(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
         
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.allowsEditing = true
-        
-        let alert = UIAlertController(title: "Photo", message: "What would you like to do", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Take Photo", style: .default) { action in
-            vc.sourceType = .camera
-            self.present(vc, animated: true, completion: nil)
-
-        })
-        
-        alert.addAction(UIAlertAction(title: "Photo Roll", style: .default) { action in
-            vc.allowsEditing = false
-            vc.sourceType = .photoLibrary
-            self.present(vc, animated: true, completion: nil)
-        })
-        
-        self.present(alert, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker,animated: true,completion: nil)
+        }
     }
     
-    @IBAction func segmentController(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            collectionView.isHidden = true
-        } else {
-            collectionView.isHidden = false
-            visibleAnnotations = mapView.visibleAnnotations()
-            collectionView.reloadData()
-        }
+    func importPhoto(_ sender: AnyObject) {
+        // End editing to discard keyboards or input views, if any
+        view.endEditing(true)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker,animated: true,completion: nil)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fullImageSegue" {
-            let vc = segue.destination as! FullImageViewController
-            vc.imgURL = imgURL
+            
+            let navController = segue.destination as! UINavigationController
+            let fullImage = navController.topViewController as! FullImageCollectionViewController
+            fullImage.imageArray = visibleAnnotations
         }
     }
     
@@ -96,7 +108,7 @@ class PhotoMapViewController: DashBaseViewController {
                 if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL!], options: nil).firstObject {
 
                     PHImageManager.default().requestImage(for: asset,
-                                                          targetSize: CGSize(width: 45, height: 45),
+                                                          targetSize: CGSize(width: 1000, height: 1000),
                                                           contentMode: .aspectFill,
                                                           options: nil,
                                                           resultHandler: { (result, info) ->Void in
@@ -108,7 +120,6 @@ class PhotoMapViewController: DashBaseViewController {
                 }
                 annotation.photoURL = NSURL(string: imageURL as! String)
                 mapView.addAnnotation(annotation)
-                
             }
         } else {
             print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
@@ -132,7 +143,7 @@ extension PhotoMapViewController: UIImagePickerControllerDelegate, UINavigationC
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
             
             PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: 45, height: 45),
+                                                  targetSize: CGSize(width: 1000, height: 1000),
                                                   contentMode: .aspectFill,
                                                   options: nil,
                                                   resultHandler: { (result, info) ->Void in
@@ -166,12 +177,12 @@ extension PhotoMapViewController: MKMapViewDelegate {
             annotationView?.isDraggable = true
         }
         
-        let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        let resizeRenderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         resizeRenderImageView.layer.borderColor = UIColor.white.cgColor
         resizeRenderImageView.layer.borderWidth = 3.0
         resizeRenderImageView.contentMode = UIViewContentMode.scaleAspectFill
         
-        resizeRenderImageView.image = myImage// setImageWith((annotation as? PhotoAnnotation)?.photoURL as! URL)
+        resizeRenderImageView.image = (annotation as? PhotoAnnotation)?.photo
         
         UIGraphicsBeginImageContext(resizeRenderImageView.frame.size)
         resizeRenderImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -237,7 +248,7 @@ extension PhotoMapViewController: MKMapViewDelegate {
     }
 }
 
-extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -250,7 +261,7 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
         
         let photoURL = visibleAnnotations[indexPath.row].photoURL
 
-        let assetURL = photoURL as! URL
+        let assetURL = photoURL! as URL
         
         if let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
             PHImageManager.default().requestImage(for: asset,
@@ -259,9 +270,7 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
                                                   contentMode: .aspectFill,
                                                   options: nil,
                                                   resultHandler: { (result, info) ->Void in
-                                                    
                                                     cell.imageView.image = result!
-
             })
         }
         return cell
@@ -270,10 +279,45 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return visibleAnnotations.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let size = self.view.layer.frame.width / 3
+        print(size)
+        return CGSize(width: size, height: size)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
 }
 
 extension MKMapView {
     func visibleAnnotations() -> [PhotoAnnotation] {
         return self.annotations(in: self.visibleMapRect).map { obj -> PhotoAnnotation in return obj as! PhotoAnnotation }
+    }
+}
+
+extension PhotoMapViewController: ScrollableSegmentControlDelegate {
+    func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
+        
+        if index == 0 {
+            collectionView.isHidden = true
+        } else {
+            collectionView.isHidden = false
+            visibleAnnotations = mapView.visibleAnnotations()
+            collectionView.reloadData()
+        }
     }
 }

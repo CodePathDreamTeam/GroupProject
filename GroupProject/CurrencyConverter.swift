@@ -22,7 +22,9 @@ enum ConversionMode {
     }
 }
 
-let currencySign : [String:String] = ["AUD":"$", "BGN":"лв", "BRL":"R$", "CAD":"$", "CHF":"chf", "CNY":"¥", "CZK":"Kč", "DKK":"kr", "EUR":"€", "GBP":"£", "HKD":"$", "HRK":"kn", "HUF":"Ft", "IDR":"Rp", "ILS":"₪", "INR":"₹", "JPY":"¥", "KRW":"₩", "MXN":"$", "MYR":"RM", "NOK":"kr", "NZD":"$", "PHP":"₱", "PLN":"zł", "RON":"lei", "RUB":"₽", "SEK":"kr", "SGD":"$", "THB":"฿", "TRY":"₤", "USD":"$", "ZAR":"R"]
+let currencySignBasedTuple : [String:(code: String, country: String)] = ["$":("AUD", "Australia"), "лв":("BGN","Bulgaria"), "R$":("BRL","Brazil"), "$":("CAD","Canada"),  "chf":("CHF","Switzerland"), "¥":("CNY","Chinese Yuan"), "Kč":("CZK","Czech Republic"), "kr":("DKK","Denmark"), "€":("EUR","Euro"),  "£":("GBP","British Pound"), "$":("HKD","Hong Kong Dollar"), "kn":("HRK","Croatia"), "Ft":("HUF","Hungary"), "Rp":("IDR","Indonesia"),  "₪":("ILS","Israel"), "₹":("INR","India"), "¥":("JPY","Japan"), "₩":("KRW","South Korea"), "$":("MXN","Mexico"), "RM":("MYR","Malaysia"),  "kr":("NOK","Norway"), "$":("NZD","New Zealand"), "₱":("PHP","Philippines"), "zł":("PLN","Poland"), "lei":("RON","Romania"), "₽":("RUB","Russia"),  "kr":("SEK","Sweden"), "$":("SGD","Singapore"), "฿":("THB","Thailand"), "₤":("TRY","Turkey"), "$":("USD","United States"), "R":("ZAR","South Africa")]
+let currencyCodeBasedTuple : [String:(sign: String, country: String)] = ["AUD":("$", "Australia"), "BGN":("лв","Bulgaria"), "BRL":("R$","Brazil"), "CAD":("$","Canada"),  "CHF":("chf","Switzerland"), "CNY":("¥","Chinese Yuan"), "CZK":("Kč","Czech Republic"), "DKK":("kr","Denmark"), "EUR":("€","Euro"),  "GBP":("£","British Pound"), "HKD":("$","Hong Kong Dollar"), "HRK":("kn","Croatia"), "HUF":("Ft","Hungary"), "IDR":("Rp","Indonesia"),  "ILS":("₪","Israel"), "INR":("₹","India"), "JPY":("¥","Japan"), "KRW":("₩","South Korea"), "MXN":("$","Mexico"), "MYR":("RM","Malaysia"),  "NOK":("kr","Norway"), "NZD":("$","New Zealand"), "PHP":("₱","Philippines"), "PLN":("zł","Poland"), "RON":("lei","Romania"), "RUB":("₽","Russia"),  "SEK":("kr","Sweden"), "SGD":("$","Singapore"), "THB":("฿","Thailand"), "TRY":("₤","Turkey"), "USD":("$","United States"), "ZAR":("R","South Africa")]
+
 
 class CurrencyConverter {
 
@@ -73,13 +75,13 @@ class CurrencyConverter {
     init(localCurrencyCd: String, localCountry: String, nativeCurrencyCd: String, nativeCountry: String) {
         
         self.localCurrencyCode = localCurrencyCd
-        self.localCurrencySign = currencySign[localCurrencyCd] ?? "$"
+        self.localCurrencySign = currencyCodeBasedTuple[localCurrencyCd]?.sign ?? "$"
         self.localCountry = localCountry
         self.localToNativeFactor = 1.0
         self.localCurrencyAmount = 1.0
 
         self.nativeCurrencyCode = nativeCurrencyCd
-        self.nativeCurrencySign = currencySign[nativeCurrencyCd] ?? "$"
+        self.nativeCurrencySign = currencyCodeBasedTuple[nativeCurrencyCd]?.sign ?? "$"
         self.nativeCountry = nativeCountry
         self.nativeToLocalFactor = 1.0
         self.nativeCurrencyAmount = 1.0

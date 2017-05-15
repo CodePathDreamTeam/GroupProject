@@ -46,17 +46,16 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onCancelButton(_ sender: UIBarButtonItem) {
+    @IBAction func onCloseButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onSaveButton(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func onSetLocationButton(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
+//        let cityFilter = GMSAutocompleteFilter()
+//        cityFilter.type = GMSPlacesAutocompleteTypeFilter.city
+//        autocompleteController.autocompleteFilter = cityFilter
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
@@ -90,6 +89,13 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
             defaults.setValue(address, forKey: "nativeLocation")
             defaults.set("\(address)", forKey: "address")
         }
+        if let country = getAddressComponent(["country"], for: place){
+            defaults.setValue(country, forKey: "country")
+        }
+        if let city = getAddressComponent(["neighborhood","locality","administrative_level_3"], for: place) {
+            print("got city: \(city)")
+            defaults.setValue(city, forKey: "city")
+        }
         defaults.synchronize()
         dismiss(animated: true, completion: nil)
         print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
@@ -112,6 +118,22 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
     
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    func getAddressComponent(_ types: [String], for place: GMSPlace) -> String? {
+        if let addressComponents = place.addressComponents {
+            for component in addressComponents {
+                for type in types {
+                    if component.type == type  {
+                        print("country: \(component.name)")
+                        return component.name
+                    }
+                }
+            }
+        } else {
+            print("place does not have address components")
+        }
+        return nil
     }
     
 }

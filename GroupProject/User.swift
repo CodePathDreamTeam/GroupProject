@@ -23,13 +23,14 @@ class User {
     var longitude: Double?
     
     func updateUser() {
+        
         nativeCountry = defaults.value(forKey: "nativeCountry") as! String?
         destinationCountry = defaults.value(forKey: "destinationCountry") as! String?
         
         nativeCurrency = defaults.value(forKey: "nativeCurrency") as! String?
         destinationCurrency = defaults.value(forKey: "destinationCurrency") as! String?
         
-        latitude = defaults.value(forKey: "latitude") as! Double?
-        longitude = defaults.value(forKey: "longitude") as! Double?
+//        latitude = defaults.value(forKey: "latitude") as! Double?
+//        longitude = defaults.value(forKey: "longitude") as! Double?
     }
 }
