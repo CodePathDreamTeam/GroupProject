@@ -137,7 +137,13 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             tableView.deselectRow(at: indexPath, animated: true)
             hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+
             currentIndex = indexPath.row
+            UIView.animate(withDuration: 0.5, delay: 0, options: [],
+                           animations: {
+                            self.hamburgerViewController.contentView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            })
+
         }
     }
     
