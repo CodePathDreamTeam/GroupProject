@@ -74,7 +74,7 @@ class MenuViewController: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = myPhotosImageView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.5
+        blurEffectView.alpha = 1
         myPhotosImageView.addSubview(blurEffectView)
         
         userPhotoImageView.layer.borderWidth = 2
@@ -108,6 +108,11 @@ class MenuViewController: UIViewController {
     @IBAction func onPhotosTapGesture(_ sender: Any) {
         print("photo tap")
         hamburgerViewController.contentViewController = photoMapNavController
+        UIView.animate(withDuration: 0.5, delay: 0, options: [],
+                       animations: {
+                        self.hamburgerViewController.contentView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        })
+
     }
     
     func loadFromCoreData() {

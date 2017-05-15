@@ -59,7 +59,7 @@ class ChooseDestinationViewController: UIViewController {
     }
 
     @IBAction func onSkipButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Setting Destination", message: "You can set your destination location at any time from the Settings page", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Setting Destination", message: "Set your destination location at any time from the Home > Settings page", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style:.default) {
             (action) in
             let presentingViewController = self.presentingViewController

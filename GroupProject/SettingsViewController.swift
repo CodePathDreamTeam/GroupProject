@@ -184,6 +184,8 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
                     userPhoto = UIImage(data: userPhotoData)
                     photoImageView.image = userPhoto
                 }
+            } else {
+                photoImageView.image = #imageLiteral(resourceName: "earth")
             }
         } else {
             print("PhotoMapViewController.loadFromCoreData Error: \(String(describing: result.error?.localizedDescription))")
