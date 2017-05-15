@@ -253,8 +253,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-qJ-J87">
+                                                <rect key="frame" x="31" y="81" width="26" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1.00" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEq-ew-X9C">
-                                                <rect key="frame" x="234" y="81" width="85" height="51"/>
+                                                <rect key="frame" x="257" y="81" width="85" height="51"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
@@ -263,6 +270,13 @@
                                                     <outlet property="delegate" destination="gpp-4Q-KiQ" id="kBa-rL-S04"/>
                                                 </connections>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgG-8z-SOv">
+                                                <rect key="frame" x="233" y="81" width="26" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -351,12 +365,14 @@
                         <outlet property="blurBG" destination="ZSU-Vy-Xcr" id="daM-tN-zb3"/>
                         <outlet property="bottomConstraint" destination="kml-FB-cTR" id="lRS-Xt-gbe"/>
                         <outlet property="collectionView" destination="Wnf-W9-Rbe" id="KpL-X4-QoS"/>
-                        <outlet property="destinationCurrencyCd" destination="E5i-gO-PKA" id="Ppn-9o-wu3"/>
-                        <outlet property="destinationCurrencyTF" destination="Vh7-HL-844" id="Jxh-ge-C5n"/>
                         <outlet property="hideKeyboardButton" destination="JA8-DE-DDQ" id="MiY-Qm-6qz"/>
-                        <outlet property="homeCurrencyCd" destination="zH9-El-Fmf" id="g9L-vl-nEw"/>
-                        <outlet property="homeCurrencyTF" destination="TEq-ew-X9C" id="zUC-fX-ACE"/>
+                        <outlet property="localAmountField" destination="Vh7-HL-844" id="D6Z-GM-gIb"/>
+                        <outlet property="localCountryNmLabel" destination="E5i-gO-PKA" id="XO3-d6-N8C"/>
+                        <outlet property="localCurrencySignLabel" destination="tq0-qJ-J87" id="9oN-Ak-J98"/>
                         <outlet property="locationLabel" destination="hrv-6G-Lim" id="OrE-EO-wbN"/>
+                        <outlet property="nativeAmountField" destination="TEq-ew-X9C" id="u4Y-hr-6HU"/>
+                        <outlet property="nativeCountryNmLabel" destination="zH9-El-Fmf" id="gjY-TC-Xt7"/>
+                        <outlet property="nativeCurrencySignLabel" destination="wgG-8z-SOv" id="BBR-6G-byf"/>
                         <outlet property="pageControl" destination="jDd-na-BlX" id="H47-yS-afx"/>
                         <outlet property="scrollView" destination="yRs-sF-e5H" id="Dp6-wX-eXS"/>
                         <outlet property="weatherConditionsLabel" destination="Yuz-JN-aOs" id="Yv0-xY-f3M"/>

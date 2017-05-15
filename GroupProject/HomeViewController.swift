@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFieldDelegate {
+class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
 
     // @VIEW OUTLETS
     @IBOutlet weak var scrollView: UIScrollView!
@@ -31,15 +31,17 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     
     
     // @CURRENCY OUTLETS
-    @IBOutlet weak var homeCurrencyTF: UITextField!
-    @IBOutlet weak var destinationCurrencyTF: UITextField!
-    @IBOutlet weak var homeCurrencyCd: UILabel!
-    @IBOutlet weak var destinationCurrencyCd: UILabel!
+    @IBOutlet weak var localCurrencySignLabel: UILabel!
+    @IBOutlet weak var localCountryNmLabel: UILabel!
+    @IBOutlet weak var localAmountField: UITextField!
+    
+    @IBOutlet weak var nativeCurrencySignLabel: UILabel!
+    @IBOutlet weak var nativeCountryNmLabel: UILabel!
+    @IBOutlet weak var nativeAmountField: UITextField!
     
     // @CURRENCY VARIABLES
-    var rate: Double?
-    var currencyConverter: CurrencyConverter!
-    var currencyConverterTimer = Timer()
+    fileprivate var currencyConverterTimer = Timer()
+    fileprivate var currencyConverter: CurrencyConverter!
     
     
     // @WEATHER OUTLET
@@ -93,6 +95,9 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
                 }
             }
         }*/
+        
+        // Setup currency converter
+        setupCurrencyConverter()
         
         var latitude = defaults.string(forKey: "latitude")
         var longitude = defaults.string(forKey: "longitude")
@@ -183,7 +188,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
     override func viewWillAppear(_ animated: Bool) {
         
         
-        
+        /*
         if let nativeCurrency = User.sharedInstance.nativeCurrency, let nativeCountry = User.sharedInstance.nativeCountry, let destinationCurrency = User.sharedInstance.destinationCurrency, let destinationCountry = User.sharedInstance.destinationCountry {
             currencyConverter = CurrencyConverter(localCurrencyCd: destinationCurrency, localCountry: destinationCountry, nativeCurrencyCd: nativeCurrency, nativeCountry: nativeCountry)
             currencyConverter.updateCurrencyConversionFactors {(result) in
@@ -196,9 +201,9 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
                     }
                 }
             }
-        }
+        }*/
     }
-    
+ 
     // @PREPARE FOR SEGUE -------------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -213,61 +218,6 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate, UITextFi
    
     
     // @FUNCTIONS -----------------------------------------------------------------------------------------
-    
-    // CURRENCY CONVERTER
-    func updateUI(isInteractive: Bool) {
-        
-        switch currencyConverter.conversionMode {
-            
-        case .localToNative:
-            
-            destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-            destinationCurrencyCd.text = currencyConverter.localCurrencyCode
-            
-            homeCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-            homeCurrencyCd.text = currencyConverter.nativeCurrencyCode
-            
-        case .nativeToLocal:
-            
-            destinationCurrencyTF.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
-            destinationCurrencyCd.text = currencyConverter.nativeCurrencyCode
-            
-            homeCurrencyTF.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
-            homeCurrencyCd.text = currencyConverter.localCurrencyCode
-        }
-    }
-
-    
-    // UITextFieldDelegate
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField.text?.characters.count == 0 && string == "" {
-            textField.text = "1"
-        }
-        
-        if textField == homeCurrencyTF {
-            currencyConverterTimer.invalidate()
-            currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
-                if let sourceAmountStr = textField.text, let sourceAmount = Double(sourceAmountStr) {
-                    DispatchQueue.main.async {
-                        switch self.currencyConverter.conversionMode {
-                        case .localToNative:
-                            self.currencyConverter.localCurrencyAmount = sourceAmount
-                        case .nativeToLocal:
-                            self.currencyConverter.nativeCurrencyAmount = sourceAmount
-                        }
-                        self.updateUI(isInteractive: true)
-                    }
-                }
-            })
-            return true
-            
-        } else {
-            return false
-        }
-    }
-    
 
     
     // KEYBOARD
@@ -482,6 +432,95 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     return cell
     }
     
+}
+
+
+// @EXTENSION2 -----------------------------------------------------------------------------------------
+/* This Extension Manages the following:
+ — Sets up Currency Converter Model
+ — Updates Currency Converter UI
+ — Handles Currency Converter Interactions
+ */
+extension HomeViewController: UITextFieldDelegate {
+    
+    // UITextFieldDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField.text?.characters.count == 0 && string == "" {
+            textField.text = "1"
+        }
+        
+        if textField == localAmountField {
+            currencyConverter.conversionMode = .localToNative
+        } else if textField == nativeAmountField {
+            currencyConverter.conversionMode = .nativeToLocal
+        } else {
+            return false
+        }
+        
+        currencyConverterTimer.invalidate()
+        currencyConverterTimer = Timer.scheduledTimer(withTimeInterval: 0.45, repeats: false, block: { (_) in
+            if let newAmountStr = textField.text, let amountToConvert = Double(newAmountStr) {
+                DispatchQueue.main.async {
+                    switch self.currencyConverter.conversionMode {
+                    case .localToNative:
+                        self.currencyConverter.localCurrencyAmount = amountToConvert
+                    case .nativeToLocal:
+                        self.currencyConverter.nativeCurrencyAmount = amountToConvert
+                    }
+                    self.updateUI(isInteractive: true)
+                }
+            }
+        })
+        
+        return true
+    }
+    
+    // MARK: Model Setup
+    
+    func setupCurrencyConverter() {
+        // Based on the user's current and native locations.
+        let currentUser = User.sharedInstance
+        
+        currencyConverter = CurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
+        currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
+            
+            DispatchQueue.main.async {
+                if result.isSuccess {
+                    self?.updateUI(isInteractive: false)
+                } else {
+                    // TODO: Throw UI alert
+                    // Display UI alert, if needed...
+                    print("error: \(String(describing: result.error?.localizedDescription))")
+                }
+            }
+        }
+    }
+    
+    // MARK: View Updates
+    
+    func updateUI(isInteractive: Bool) {
+        
+        // When UI is updated as response to interactive user edits, do not reset the field thats edited...
+        if isInteractive {
+            switch currencyConverter.conversionMode {
+            case .localToNative:
+                nativeAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+            case .nativeToLocal:
+                localAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            }
+        } else {
+            localAmountField.text = String(format: "%.2f", currencyConverter.localCurrencyAmount)
+            nativeAmountField.text = String(format: "%.2f", currencyConverter.nativeCurrencyAmount)
+        }
+        
+        localCurrencySignLabel.text = currencyConverter.localCurrencySign
+        localCountryNmLabel.text = currencyConverter.localCountry
+        
+        nativeCurrencySignLabel.text = currencyConverter.nativeCurrencySign
+        nativeCountryNmLabel.text = currencyConverter.nativeCountry
+    }
 }
 
 
