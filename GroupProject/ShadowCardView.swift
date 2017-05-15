@@ -25,5 +25,6 @@ class ShadowCardView: UIView {
         layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.8
+        clipsToBounds = true
     }
 }
