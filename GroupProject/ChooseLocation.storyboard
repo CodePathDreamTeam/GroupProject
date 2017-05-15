@@ -182,12 +182,54 @@
                     <view key="view" contentMode="scaleToFill" id="eVB-oi-5bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6he-1s-RF1" customClass="ShadowCardView" customModule="GroupProject" customModuleProvider="target">
+                                <rect key="frame" x="68" y="168" width="239" height="73"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Your Destination City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XJ-eK-817">
+                                        <rect key="frame" x="15" y="25" width="208" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="7Pm-2j-Xtd"/>
+                                    <constraint firstItem="5XJ-eK-817" firstAttribute="top" secondItem="6he-1s-RF1" secondAttribute="top" constant="25" id="f2y-MI-3qy"/>
+                                    <constraint firstAttribute="trailing" secondItem="5XJ-eK-817" secondAttribute="trailing" constant="16" id="xnz-BD-uxd"/>
+                                    <constraint firstItem="5XJ-eK-817" firstAttribute="leading" secondItem="6he-1s-RF1" secondAttribute="leading" constant="15" id="yQt-xa-Zza"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ixc-X5-wBl" appends="YES" id="xmY-Cq-D05"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMy-st-A2v">
+                                <rect key="frame" x="136" y="275" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip for Now"/>
+                                <connections>
+                                    <action selector="onSkipButton:" destination="gE1-1S-0cO" eventType="touchUpInside" id="qFA-WJ-mFe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6he-1s-RF1" firstAttribute="leading" secondItem="eVB-oi-5bK" secondAttribute="leading" constant="68" id="NkP-KH-bxx"/>
+                            <constraint firstAttribute="trailing" secondItem="6he-1s-RF1" secondAttribute="trailing" constant="68" id="WNu-ZA-eiS"/>
+                            <constraint firstItem="6he-1s-RF1" firstAttribute="top" secondItem="HBr-hX-Ckm" secondAttribute="bottom" constant="148" id="cKA-wh-fZC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXt-33-uAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ixc-X5-wBl">
+                    <connections>
+                        <action selector="onSetDestinationTap:" destination="gE1-1S-0cO" id="bmU-bL-BVZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2041" y="155"/>
+            <point key="canvasLocation" x="2040.8" y="154.27286356821591"/>
         </scene>
     </scenes>
 </document>

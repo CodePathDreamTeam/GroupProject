@@ -52,7 +52,28 @@ class ChooseDestinationViewController: UIViewController {
         delegates.append(menuViewController)
         
     }
+    @IBAction func onSetDestinationTap(_ sender: Any) {
+        searchController?.isActive = true
+        searchController?.searchBar.becomeFirstResponder()
+        print("tapped set destination")
+    }
 
+    @IBAction func onSkipButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Setting Destination", message: "You can set your destination location at any time from the Settings page", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style:.default) {
+            (action) in
+            let presentingViewController = self.presentingViewController
+            
+            self.dismiss(animated: false, completion: {
+                presentingViewController?.dismiss(animated: true, completion: nil)
+            })
+        }
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
+        
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
