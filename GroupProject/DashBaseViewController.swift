@@ -28,16 +28,31 @@ class DashBaseViewController: UIViewController {
         // Setup floating button, if required
         let buttons = floatingActionButtons
         if buttons.count > 0 {
-            // Frame position is hard set to mimic a clip over nav bar
-            let floatingClipFrame = CGRect(x: view.bounds.size.width - 86, y: 32, width: 66, height: 66)
-            floatingClipButton = SpiderButton(frame: floatingClipFrame, actionButtons:buttons)
-
-            navigationController?.view.addSubview(floatingClipButton)
+            addFloatingClip(for: buttons)
         }
+    }
 
-        //self.HamburgerButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // If floating clip button is needed and not part of the nav view hierarchy, add it.
 
-        // Do any additional setup after loading the view.
+        if floatingClipButton != nil &&
+            navigationController != nil &&
+            (floatingClipButton.isDescendant(of: navigationController!.view) == false) {
+            
+            addFloatingClip()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // If floating clip button is present, remove it from the nav view hierarchy before transitioning out
+        if floatingClipButton != nil &&
+            navigationController != nil &&
+            floatingClipButton.isDescendant(of: navigationController!.view) {
+
+            floatingClipButton.removeFromSuperview()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -47,5 +62,18 @@ class DashBaseViewController: UIViewController {
     @IBAction func openHamburgerMenu(_ sender: Any) {
         self.HamburgerButton.showsMenu = !self.HamburgerButton.showsMenu
         HamburgerViewController.sharedInstance.moveMenu()
+    }
+
+    func addFloatingClip(for buttons: [UIButton] = []) {
+        // Frame position is hard set to mimic a clip over nav bar
+        let floatingClipFrame = CGRect(x: view.bounds.size.width - 86, y: 32, width: 66, height: 66)
+
+        if floatingClipButton == nil {
+            floatingClipButton = SpiderButton(frame: floatingClipFrame, actionButtons:buttons)
+        } else {
+            floatingClipButton.frame = floatingClipFrame
+        }
+        // Add floating clip on nav controller's view
+        navigationController?.view.addSubview(floatingClipButton)
     }
 }
