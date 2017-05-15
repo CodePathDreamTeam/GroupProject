@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GooglePlaces
 
 class Helpers {
     class func setupGradient(view : UIView, topColor: UIColor, bottomColor: UIColor) {
@@ -20,6 +21,22 @@ class Helpers {
         gradientLayer.locations = gradientLocations as [NSNumber]?
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    class func getAddressComponent(_ types: [String], for place: GMSPlace) -> String? {
+        if let addressComponents = place.addressComponents {
+            for component in addressComponents {
+                for type in types {
+                    if component.type == type  {
+                        print("country: \(component.name)")
+                        return component.name
+                    }
+                }
+            }
+        } else {
+            print("place does not have address components")
+        }
+        return nil
     }
 }
 

@@ -49,10 +49,13 @@ class ChooseLocationViewController: UIViewController {
 
         User.sharedInstance.updateUser()
         
-        self.dismiss(animated: true, completion: nil)
+        
 
     }
+    
+    
 }
+
 
 extension ChooseLocationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 

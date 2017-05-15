@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
 
@@ -99,29 +100,8 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
         // Setup currency converter
         setupCurrencyConverter()
         
-        var latitude = defaults.string(forKey: "latitude")
-        var longitude = defaults.string(forKey: "longitude")
-        if latitude == nil || longitude == nil {
-            print("Using default SF coordinates")
-            latitude = "37.7749"
-            longitude = "-122.4194"
-        }
-        print("coordinates: \(latitude), \(longitude)")
-        WeatherClient.sharedInstance.getWeather(latitude: latitude!, longitude: longitude!, completionHandler: {
-            response in DispatchQueue.main.async {
-                if let error = response as? Error {
-                    print("error: \(error)")
-                }
-                if let weather = response as? WeatherForecast {
-                    print("weather.temp: \(weather.tempCurr)")
-                    print("weather.conditions: \(weather.conditions)")
-                    print("address: \(defaults.string(forKey: "address"))")
-                    self.locationLabel.text = defaults.string(forKey: "address") ?? ""
-                    self.weatherConditionsLabel.text = weather.conditions!
-                    self.weatherTemperatureLabel.text = "\(weather.tempCurr!)°"
-                }
-            }
-        })
+        // Setup weather forecast
+        setupWeatherForecast()
         
         // Keyboard Settings
         hideKeyboardButton.alpha = 0
@@ -202,6 +182,30 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
                 }
             }
         }*/
+        
+        var latitude = defaults.string(forKey: "latitude")
+        var longitude = defaults.string(forKey: "longitude")
+        if latitude == nil || longitude == nil {
+            print("Using default SF coordinates")
+            latitude = "37.7749"
+            longitude = "-122.4194"
+        }
+        print("coordinates: \(latitude), \(longitude)")
+        WeatherClient.sharedInstance.getWeather(latitude: latitude!, longitude: longitude!, completionHandler: {
+            response in DispatchQueue.main.async {
+                if let error = response as? Error {
+                    print("error: \(error)")
+                }
+                if let weather = response as? WeatherForecast {
+                    print("weather.temp: \(weather.tempCurr)")
+                    print("weather.conditions: \(weather.conditions)")
+                    print("address: \(defaults.string(forKey: "address"))")
+                    self.locationLabel.text = defaults.string(forKey: "city") ?? ""
+                    self.weatherConditionsLabel.text = weather.conditions!
+                    self.weatherTemperatureLabel.text = "\(weather.tempCurr!)°"
+                }
+            }
+        })
     }
  
     // @PREPARE FOR SEGUE -------------------------------------------------------------------------------------------
@@ -274,6 +278,32 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     
     
     // WEATHER FUNCTIONS -------------------------------------------------------------------------------
+    func setupWeatherForecast() {
+        var latitude = defaults.string(forKey: "latitude")
+        var longitude = defaults.string(forKey: "longitude")
+        if latitude == nil || longitude == nil {
+            print("Using default SF coordinates")
+            latitude = "37.7749"
+            longitude = "-122.4194"
+        }
+        print("coordinates: \(latitude), \(longitude)")
+        WeatherClient.sharedInstance.getWeather(latitude: latitude!, longitude: longitude!, completionHandler: {
+            response in DispatchQueue.main.async {
+                if let error = response as? Error {
+                    print("error: \(error)")
+                }
+                if let weather = response as? WeatherForecast {
+                    print("weather.temp: \(weather.tempCurr)")
+                    print("weather.conditions: \(weather.conditions)")
+                    print("address: \(defaults.string(forKey: "address"))")
+                    self.locationLabel.text = defaults.string(forKey: "city") ?? ""
+                    self.weatherConditionsLabel.text = weather.conditions!
+                    self.weatherTemperatureLabel.text = "\(weather.tempCurr!)°"
+                }
+            }
+        })
+    }
+    
     func loadWeatherPerHour() {
         
         let currentDate = Date()
@@ -523,4 +553,18 @@ extension HomeViewController: UITextFieldDelegate {
     }
 }
 
+// @EXTENSION3 -----------------------------------------------------------------------------------------
+/* This Extension Manages the following:
+ — Choosing the location
+ */
+extension HomeViewController: ChooseDestinationViewControllerDelegate {
+    func chooseDestination(didChooseDestination: GMSPlace) {
+        setupWeatherForecast()
+    }
+}
 
+extension HomeViewController: SettingsViewControllerDelegate {
+    func settingsViewController(didUpdateLocation: GMSPlace) {
+        setupWeatherForecast()
+    }
+}

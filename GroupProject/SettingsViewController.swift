@@ -11,10 +11,10 @@ import CoreData
 import GooglePlaces
 import CoreLocation
 
-protocol SettingsViewControllerDelegate {
-    func settingsViewController(didUpdatePhoto: UIImage)
-    func settingsViewController(didUpdateName: String)
-    func settingsViewController(didUpdateLocation: GMSPlace)
+@objc protocol SettingsViewControllerDelegate {
+    @objc optional func settingsViewController(didUpdatePhoto: UIImage)
+    @objc optional func settingsViewController(didUpdateName: String)
+    @objc optional func settingsViewController(didUpdateLocation: GMSPlace)
 }
 
 class SettingsViewController: UIViewController {
@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController {
         defaults.setValue(newName, forKey: "name")
         defaults.synchronize()
         print("New saved Name: \(defaults.string(forKey: "name"))")
-        delegate?.settingsViewController(didUpdateName: newName!)
+        delegate?.settingsViewController!(didUpdateName: newName!)
     }
     
     @IBAction func onTap(_ sender: Any) {
@@ -89,10 +89,10 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
             defaults.setValue(address, forKey: "nativeLocation")
             defaults.set("\(address)", forKey: "address")
         }
-        if let country = getAddressComponent(["country"], for: place){
+        if let country = Helpers.getAddressComponent(["country"], for: place){
             defaults.setValue(country, forKey: "country")
         }
-        if let city = getAddressComponent(["neighborhood","locality","administrative_level_3"], for: place) {
+        if let city = Helpers.getAddressComponent(["neighborhood","locality","administrative_level_3"], for: place) {
             print("got city: \(city)")
             defaults.setValue(city, forKey: "city")
         }
@@ -101,7 +101,7 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
         print("defaults[latitude]: \(defaults.object(forKey: "latitude") as? String)")
         print("defaults[longitude]: \(defaults.object(forKey: "longitude") as? String)")
         print("defaults[address]: \(defaults.object(forKey: "address") as? String)")
-        delegate?.settingsViewController(didUpdateLocation: place)
+        delegate?.settingsViewController!(didUpdateLocation: place)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -120,21 +120,7 @@ extension SettingsViewController : GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-    func getAddressComponent(_ types: [String], for place: GMSPlace) -> String? {
-        if let addressComponents = place.addressComponents {
-            for component in addressComponents {
-                for type in types {
-                    if component.type == type  {
-                        print("country: \(component.name)")
-                        return component.name
-                    }
-                }
-            }
-        } else {
-            print("place does not have address components")
-        }
-        return nil
-    }
+    
     
 }
 
@@ -182,7 +168,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         
         Globals.saveContext()
         print("appDelegate.saveContext() for userPhoto")
-        delegate?.settingsViewController(didUpdatePhoto: photo)
+        delegate?.settingsViewController!(didUpdatePhoto: photo)
 
     }
     

@@ -180,3 +180,9 @@ extension MenuViewController: SettingsViewControllerDelegate {
         
     }
 }
+
+extension MenuViewController: ChooseDestinationViewControllerDelegate {
+    func chooseDestination(didChooseDestination: GMSPlace) {
+        self.settingsViewController(didUpdateLocation: didChooseDestination)
+    }
+}
