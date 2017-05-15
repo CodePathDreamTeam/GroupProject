@@ -45,6 +45,11 @@ class PhotoMapViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SET BG GRADIENT
+        let background = CAGradientLayer().creymeColor()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, at: 0)
+        
         pageControl.segmentControlDelegate = self
         pageControl.segmentTitles = ["Map View","Gallery",]
         

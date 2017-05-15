@@ -107,6 +107,14 @@ class FinancesViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // UI
+        let trippinLogo = UIImage(named: "Trippin.png")
+        let logoImage = UIImageView(image: trippinLogo)
+        logoImage.frame.size.width = 78
+        logoImage.frame.size.height = 23
+        logoImage.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImage
+        
         // Setup custom page control
         setupPageControl()
         // Setup page view
@@ -117,6 +125,11 @@ class FinancesViewController: DashBaseViewController {
         setupChartView()
         // Fetch saved receipts
         fetchReceipts()
+        
+        // SET BG GRADIENT
+        let background = CAGradientLayer().creymeColor()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, at: 0)
     }
 
     // MARK: Navigation
