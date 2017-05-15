@@ -66,7 +66,7 @@ class DashBaseViewController: UIViewController {
 
     func addFloatingClip(for buttons: [UIButton] = []) {
         // Frame position is hard set to mimic a clip over nav bar
-        let floatingClipFrame = CGRect(x: view.bounds.size.width - 86, y: 32, width: 66, height: 66)
+        let floatingClipFrame = CGRect(x: view.bounds.size.width - 86, y: 60, width: 66, height: 66)
 
         if floatingClipButton == nil {
             floatingClipButton = SpiderButton(frame: floatingClipFrame, actionButtons:buttons)
