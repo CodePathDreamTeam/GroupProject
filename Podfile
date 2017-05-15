@@ -14,5 +14,6 @@ target 'GroupProject' do
   pod 'Charts'
   pod 'Parse'
   pod 'AnimatedCollectionViewLayout'
+  pod 'HGCircularSlider'
 
 end
