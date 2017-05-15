@@ -51,7 +51,7 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
                     self.currentDescLabel.text = weatherForecasts.first?.conditions
                     self.weatherForecasts?.removeFirst(1)
                     print("it worked!")
-                    if let location = defaults.string(forKey: "address") {
+                    if let location = defaults.string(forKey: "city") {
                         self.locationLabel.text = location
                     }
                     self.tableView.reloadData()

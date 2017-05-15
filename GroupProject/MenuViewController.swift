@@ -86,8 +86,7 @@ class MenuViewController: UIViewController {
         myPhotosImageView.isUserInteractionEnabled = true
         
         
-        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
-        let location = getLocationSubstring(fullLocation)
+        let location = (defaults.value(forKey: "city") as? String) ?? ""
         locationLabel.text = location
         
         myPhotosLabel.text = "My \(location) Photos"
@@ -128,13 +127,6 @@ class MenuViewController: UIViewController {
         }
     }
     
-    func getLocationSubstring(_ fullLocation: String) -> String{
-        let addressComponents = fullLocation.components(separatedBy: ",")
-        if let location = addressComponents.first {
-            return location
-        }
-        return fullLocation
-    }
 
 }
 
@@ -175,7 +167,10 @@ extension MenuViewController: SettingsViewControllerDelegate {
     }
     
     func settingsViewController(didUpdateLocation: GMSPlace){
-        let fullLocation = (defaults.value(forKey: "nativeLocation") as? String) ?? ""
-        locationLabel.text = getLocationSubstring(fullLocation)
+        let location = (defaults.value(forKey: "city") as? String) ?? ""
+        locationLabel.text = location
+        myPhotosLabel.text = "My \(location) Photos"
+        
+        
     }
 }
