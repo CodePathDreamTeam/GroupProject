@@ -100,7 +100,6 @@
 		CB6CC3451EBB8D9F00351372 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6CC3441EBB8D9F00351372 /* MenuCell.swift */; };
 		CBE20F291EB1CE0C0007776F /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F271EB1CE0C0007776F /* WeatherCell.swift */; };
 		CBE20F2A1EB1CE0C0007776F /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */; };
-		CBE2E5DD1EC9E63A0069F693 /* ChooseDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE2E5DC1EC9E63A0069F693 /* ChooseDestinationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,7 +201,6 @@
 		CB6CC3441EBB8D9F00351372 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		CBE20F271EB1CE0C0007776F /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		CBE20F281EB1CE0C0007776F /* WeatherForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
-		CBE2E5DC1EC9E63A0069F693 /* ChooseDestinationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDestinationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +255,6 @@
 				3909F0C51EB3089700029E44 /* WriteOnWallViewController.swift */,
 				3903CF301EC814E100D3E679 /* FullImageCollectionViewController.swift */,
 				4CCA526D1EC7F61A00214976 /* NavBarTransparent.swift */,
-				CBE2E5DC1EC9E63A0069F693 /* ChooseDestinationViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -647,7 +644,6 @@
 				390BBC831EBDB9DB00496769 /* CurrencyConverter.swift in Sources */,
 				39934DB51EBB0D3A00D54797 /* NetworkHelpers.swift in Sources */,
 				39E226051EAF20330064C27F /* ARViewController.swift in Sources */,
-				CBE2E5DD1EC9E63A0069F693 /* ChooseDestinationViewController.swift in Sources */,
 				390F56721EC7001F0010AA59 /* ScrollableSegmentControl.swift in Sources */,
 				3920BEB71EAF0A5B00DE76C1 /* ChooseLocationViewController.swift in Sources */,
 				39E225DA1EAF19560064C27F /* FinancesViewController.swift in Sources */,
