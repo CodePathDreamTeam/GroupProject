@@ -95,7 +95,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L40-p2-acQ" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="x4d-QX-dmP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x4d-QX-dmP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
