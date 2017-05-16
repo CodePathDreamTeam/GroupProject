@@ -21,13 +21,12 @@ protocol ReceiptDataSourceRefreshing: AnyObject {
 
 class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
-    @IBOutlet weak var localAmountField: UITextField!
-    @IBOutlet weak var localCurrencyCdLabel: UILabel!
-    @IBOutlet weak var nativeAmountField: UITextField!
-    @IBOutlet weak var nativeCurrencyCdLabel: UILabel!
     @IBOutlet weak var categoryField: UITextField!
-    @IBOutlet weak var detailsTextView: UITextView!
-    @IBOutlet weak var detailsImageView: UIImageView!
+    @IBOutlet weak var localAmountCodeLabel: UILabel!
+    @IBOutlet weak var localCurrencySignLabel: UILabel!
+    @IBOutlet weak var nativeAmountCodeLabel: UILabel!
+    @IBOutlet weak var nativeCurrencySignLabel: UILabel!
+    @IBOutlet weak var receiptDescriptionField: UITextField!
 
     var sourceType: ReceiptSource = .manual
     var source: CurrencyConverter?
@@ -39,13 +38,12 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewDidLoad()
 
         if let receiptSource = source {
-            localAmountField.text = String(format: "%.2f", receiptSource.localCurrencyAmount)
-            localCurrencyCdLabel.text = receiptSource.localCurrencyCode
-            nativeAmountField.text = String(format: "%.2f", receiptSource.nativeCurrencyAmount)
-            nativeCurrencyCdLabel.text = receiptSource.nativeCurrencyCode
+            localAmountCodeLabel.text = String(format: "%.2f \(receiptSource.localCurrencyCode)", receiptSource.localCurrencyAmount)
+            localCurrencySignLabel.text = receiptSource.localCurrencySign
+            nativeAmountCodeLabel.text = String(format: "%.2f \(receiptSource.nativeCurrencyCode)", receiptSource.nativeCurrencyAmount)
+            nativeCurrencySignLabel.text = receiptSource.nativeCurrencySign
 
-            // When receipt is created manually, user can add optional description about the receipt
-            // When receipt is created from Camera/Image, the thumbnail will be used instead (which implicitly describes)
+            /*
             if sourceType == .manual {
                 detailsImageView.isHidden = true
             } else {
@@ -62,7 +60,7 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
                         })
                     }
                 }
-            }
+            } */
         }
 
         // Setup category picker view
@@ -77,8 +75,7 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
 
     // MARK: Action Methods
 
-    @IBAction func save(_ sender: Any) {
-
+    @IBAction func save(_ sender: UIButton) {
         if source != nil {
             // Save new receipt to core data persistent store
             let newReceipt = Receipts(context: Globals.managedContext)
@@ -89,6 +86,7 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
             newReceipt.nativeCurrencyCode = source?.nativeCurrencyCode
             newReceipt.nativeCurrencyAmount = source!.nativeCurrencyAmount
             newReceipt.category = categoryField.text
+            newReceipt.receiptDescription = receiptDescriptionField.text
 
             Globals.saveContext()
 
@@ -100,7 +98,7 @@ class CreateReceiptViewController: UIViewController, UIPickerViewDelegate, UIPic
         dismiss()
     }
 
-    @IBAction func cancel(_ sender: Any) {
+    @IBAction func cancel(_ sender: UIButton) {
         // Discard and dimiss view controller
         dismiss()
     }
