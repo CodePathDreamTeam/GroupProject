@@ -63,6 +63,7 @@ class HamburgerViewController: UIViewController {
                         if self.leftMargainConstraint.constant == 0 {
                             self.leftMargainConstraint.constant = self.openPositionLeftMarginConstant
                             self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                            self.updateRotation(200)
                             
                         } else {
                             self.leftMargainConstraint.constant = self.closedPositionLeftMarginConstant
@@ -70,6 +71,22 @@ class HamburgerViewController: UIViewController {
                         }
                         self.view.layoutIfNeeded()
         })
+    }
+    
+    func updateRotation(_ offset: CGFloat) {
+        var transform = CATransform3DIdentity
+        let perspective = 250
+        transform.m34 = 1.0 / CGFloat(perspective)
+        
+        let rotation = offset * 20.0 / 320.0
+        
+        transform = CATransform3DRotate(transform, rotation * CGFloat(M_PI / 180), 0, 1, 0)
+        //contentView.layer.transform = transform
+        let shrink = CATransform3DScale(transform, 0.80, 0.80, 1)
+        CATransform3DConcat(transform, shrink)
+        contentView.layer.transform = shrink
+        contentView.layer.zPosition = 100
+
     }
     
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {

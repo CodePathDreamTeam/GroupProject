@@ -69,7 +69,7 @@
                         <viewControllerLayoutGuide type="top" id="Eyo-yl-o9R"/>
                         <viewControllerLayoutGuide type="bottom" id="G8I-sh-RVb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rJz-ZD-wlY">
+                    <view key="view" contentMode="scaleToFill" id="rJz-ZD-wlY" customClass="GradientView" customModule="GroupProject" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -114,7 +114,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xp7-vz-4R5">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="0ex-O3-5lr">
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="0ex-O3-5lr" customClass="GradientView" customModule="GroupProject" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -136,7 +137,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Tqe-Kg-1gJ" secondAttribute="bottom" id="Dvp-OH-ewp"/>
                                         <constraint firstAttribute="trailing" secondItem="Tqe-Kg-1gJ" secondAttribute="trailing" id="PKU-z8-Ymc"/>
@@ -145,6 +146,20 @@
                                         <constraint firstItem="Tqe-Kg-1gJ" firstAttribute="top" secondItem="0ex-O3-5lr" secondAttribute="top" id="jLD-5I-Moh"/>
                                         <constraint firstItem="tOP-jb-mKF" firstAttribute="centerY" secondItem="0ex-O3-5lr" secondAttribute="centerY" id="xtF-Mi-Ie5"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                            <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                            <real key="value" value="0.25"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                            <real key="value" value="0.75"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="108" id="1TK-Ad-nJX" customClass="MenuCell" customModule="GroupProject" customModuleProvider="target">
@@ -168,6 +183,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="MCt-vx-Yjh" firstAttribute="leading" secondItem="H3f-ob-gnw" secondAttribute="leading" constant="20" id="24h-zl-Xaz"/>
                                                 <constraint firstItem="MCt-vx-Yjh" firstAttribute="centerY" secondItem="H3f-ob-gnw" secondAttribute="centerY" id="2DZ-Jb-JRZ"/>
@@ -178,6 +194,7 @@
                                                 <constraint firstItem="7cj-PU-sqQ" firstAttribute="leading" secondItem="MCt-vx-Yjh" secondAttribute="trailing" constant="20" id="j3w-W9-Lw8"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="cellLabel" destination="7cj-PU-sqQ" id="uVX-8X-XVQ"/>
                                             <outlet property="iconImageView" destination="MCt-vx-Yjh" id="ccA-iO-ZGS"/>
@@ -196,6 +213,20 @@
                             <constraint firstAttribute="trailing" secondItem="Xp7-vz-4R5" secondAttribute="trailing" id="nzo-DH-cri"/>
                             <constraint firstAttribute="trailing" secondItem="sjk-wl-V0t" secondAttribute="trailing" id="sZc-bw-4a0"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.25"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="0.75"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="locationLabel" destination="rRL-C8-zpm" id="qpG-2o-0q1"/>

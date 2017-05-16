@@ -271,6 +271,7 @@ extension TodoViewController : UITableViewDataSource, UITableViewDelegate {
         cell.delegate = self
         cell.toDoItem = item
         
+        cell.backgroundView?.layer.opacity = 0.3
         cell.layer.shadowOffset = CGSize(0, 0)
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowRadius = 4

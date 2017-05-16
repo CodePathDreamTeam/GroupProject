@@ -25,8 +25,8 @@ class ChooseLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nativeCollectionView?.isPagingEnabled = true
-        destinationCollectionView?.isPagingEnabled = true
+        //nativeCollectionView?.isPagingEnabled = true
+        //destinationCollectionView?.isPagingEnabled = true
         
         let nativeLayout = AnimatedCollectionViewLayout()
         nativeLayout.animator = LinearCardAttributesAnimator()
@@ -48,12 +48,7 @@ class ChooseLocationViewController: UIViewController {
         defaults.set(destinationCurrency, forKey: "destinationCurrency")
 
         User.sharedInstance.updateUser()
-        
-        
-
     }
-    
-    
 }
 
 
