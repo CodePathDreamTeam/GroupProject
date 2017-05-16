@@ -34,7 +34,6 @@ class WeatherCell: UITableViewCell {
             dayLabel.text = weatherForecast?.day
             if let forecastConditions = weatherForecast?.conditions {
                 conditionsImageView.image = WeatherCell.weatherIconMap?[forecastConditions.lowercased()]
-                print(forecastConditions)
             }
             temperatureLabel.text = weatherForecast?.tempHigh
         }

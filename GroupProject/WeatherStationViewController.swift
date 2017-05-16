@@ -14,6 +14,7 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var currentDescLabel: UILabel!
+    @IBOutlet weak var cloudsView: UIView!
     
     var weatherForecasts: [WeatherForecast]?
     
@@ -24,6 +25,8 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        cloudsView.alpha = 0
         // Do any additional setup after loading the view.
         
     }
@@ -55,6 +58,10 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
                         self.locationLabel.text = location
                     }
                     self.tableView.reloadData()
+                    self.cloudsView.alpha = 1
+                    UIView.animate(withDuration: 10) {
+                        self.cloudsView.frame.origin.x -= 50
+                    }
                 }
             }
             
