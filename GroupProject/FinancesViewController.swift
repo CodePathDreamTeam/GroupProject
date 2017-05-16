@@ -298,6 +298,7 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             cellView.addSubview(receiptChartView)
             // Add View Receipts button as subview
             viewReceiptsButton.setTitle("View Receipts", for: .normal)
+            viewReceiptsButton.setTitleColor(UIColor(red: 88/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1.0), for: .normal)
             viewReceiptsButton.addTarget(self, action: #selector(viewReceipts(_:)), for: .touchUpInside)
             viewReceiptsButton.sizeToFit()
             viewReceiptsButton.translatesAutoresizingMaskIntoConstraints = false
