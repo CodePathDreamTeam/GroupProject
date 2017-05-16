@@ -71,7 +71,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mym-ST-boe" customClass="ShadowCardView" customModule="GroupProject" customModuleProvider="target">
+<<<<<<< Updated upstream
                                 <rect key="frame" x="16" y="94" width="343" height="125"/>
+=======
+                                <rect key="frame" x="16" y="84" width="343" height="125"/>
+>>>>>>> Stashed changes
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLZ-rL-ih1">
                                         <rect key="frame" x="104" y="8" width="135" height="18"/>
@@ -174,7 +178,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhH-1p-shn" customClass="ShadowCardView" customModule="GroupProject" customModuleProvider="target">
+<<<<<<< Updated upstream
                                 <rect key="frame" x="16" y="229" width="343" height="418"/>
+=======
+                                <rect key="frame" x="16" y="219" width="343" height="428"/>
+>>>>>>> Stashed changes
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-L3-zAo" customClass="ScrollableSegmentControl" customModule="GroupProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
@@ -183,7 +191,11 @@
                                         </constraints>
                                     </scrollView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FLI-DR-8sd">
+<<<<<<< Updated upstream
                                         <rect key="frame" x="0.0" y="48" width="343" height="370"/>
+=======
+                                        <rect key="frame" x="0.0" y="48" width="343" height="380"/>
+>>>>>>> Stashed changes
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B79-fB-8Ab">
                                             <size key="itemSize" width="50" height="50"/>
@@ -223,7 +235,11 @@
                         <constraints>
                             <constraint firstItem="mym-ST-boe" firstAttribute="trailing" secondItem="PU6-jU-7I1" secondAttribute="trailingMargin" id="O5z-eV-64C"/>
                             <constraint firstItem="mym-ST-boe" firstAttribute="leading" secondItem="PU6-jU-7I1" secondAttribute="leadingMargin" id="XJ5-5U-VuD"/>
+<<<<<<< Updated upstream
                             <constraint firstItem="mym-ST-boe" firstAttribute="top" secondItem="FWS-91-ASm" secondAttribute="bottom" constant="30" id="Yxx-tx-tey"/>
+=======
+                            <constraint firstItem="mym-ST-boe" firstAttribute="top" secondItem="FWS-91-ASm" secondAttribute="bottom" constant="20" id="Yxx-tx-tey"/>
+>>>>>>> Stashed changes
                             <constraint firstItem="GhH-1p-shn" firstAttribute="trailing" secondItem="PU6-jU-7I1" secondAttribute="trailingMargin" id="a0z-Rq-ZSQ"/>
                             <constraint firstItem="GhH-1p-shn" firstAttribute="top" secondItem="mym-ST-boe" secondAttribute="bottom" constant="10" id="cMM-JR-cLA"/>
                             <constraint firstItem="Znz-Da-cAn" firstAttribute="top" secondItem="GhH-1p-shn" secondAttribute="bottom" constant="20" id="hMy-R0-YaP"/>
