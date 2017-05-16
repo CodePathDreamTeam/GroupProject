@@ -52,12 +52,12 @@ class ScrollableSegmentControl: UIScrollView {
         segmentControl.backColor = .white
         segmentControl.cornerRadius = 0
         segmentControl.bottomBorderEnabled = true
-        segmentControl.highlightedLabelColor = .black
-        segmentControl.unSelectedLabelColor = UIColor(colorLiteralRed: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1.0)
+        segmentControl.highlightedLabelColor = UIColor(red: 88/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1.0)
+        segmentControl.unSelectedLabelColor = UIColor(red: 127/255.0, green: 127/255.0, blue: 127/255.0, alpha: 1.0)
         segmentControl.fontSize = 12.0
         segmentControl.radiusStyle = false
         segmentControl.flatStyle = true
-        segmentControl.selectedLabelViewColor = .black
+        segmentControl.selectedLabelViewColor = UIColor(red: 88/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1.0)
         segmentControl.selectedLabelBorderWidth = 0
         segmentControl.addTarget(self, action: #selector(segmentControlValueChanged(_:)), for: .valueChanged)
 

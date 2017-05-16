@@ -55,8 +55,8 @@ class FinancesViewController: DashBaseViewController {
 
         let photoLibrary = UIButton(frame: buttonFrame)
         photoLibrary.addTarget(self, action: #selector(openPhotoLibrary(_:)), for: .touchUpInside)
-        photoLibrary.setImage(UIImage(named:"map"), for: .normal)
-        photoLibrary.setImage(UIImage(named:"map"), for: .highlighted)
+        photoLibrary.setImage(UIImage(named:"cbutton_album"), for: .normal)
+        photoLibrary.setImage(UIImage(named:"cbutton_album-tap"), for: .highlighted)
         buttons.append(photoLibrary)
 
         let manual = UIButton(frame: buttonFrame)
