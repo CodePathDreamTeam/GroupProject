@@ -132,6 +132,12 @@ class FinancesViewController: DashBaseViewController {
         self.view.layer.insertSublayer(background, at: 0)
     }
 
+    // End view editing on arbitrary touches on the viewcontroller's view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+
     // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -270,6 +276,9 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
     // MARK: ScrollableSegmentControlDelegate
 
     func segmentControl(_ segmentControl: ScrollableSegmentControl, didSelectIndex index: Int) {
+        // End view editing, if any
+        view.endEditing(true)
+
         // Figure out the new page to display based on selected index
         let labelWidthWithPadding: CGFloat = pageView.frame.width
         let xPosition = CGFloat(index) * labelWidthWithPadding
@@ -408,6 +417,16 @@ extension FinancesViewController: ChartViewDelegate {
 
         // Animate and render chart
         receiptChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeOutCirc)
+    }
+
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        // End view editing, if any
+        view.endEditing(true)
+    }
+
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        // End view editing, if any
+        view.endEditing(true)
     }
 }
 

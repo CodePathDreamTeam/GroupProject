@@ -75,34 +75,37 @@ class SpiderButton: UIView {
 
     @IBAction func addButtonClicked(_ sender: UIButton) {
 
-            if self.backgroundView.transform == .identity {
-                // Extend the frame to support interaction with transformed action buttons
+        // End superview editing, if any
+        superview?.endEditing(true)
+
+        if self.backgroundView.transform == .identity {
+            // Extend the frame to support interaction with transformed action buttons
+            let verticalPadding: CGFloat = 75.0
+            let buttonsCount = CGFloat(actionButtons != nil ? actionButtons!.count : 0)
+            frame = CGRect(origin: frame.origin, size: CGSize(width: frame.size.width, height: frame.size.height + (buttonsCount * verticalPadding)))
+
+            // Animate and transform to dispaly action buttons
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction], animations: { 
+                self.backgroundView.transform = CGAffineTransform(scaleX: 40, y: 40)
+                self.backgroundView.alpha = 0.85;
+                self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat((45 * Double.pi)/180))
+
+            }, completion: { (_) in
                 let verticalPadding: CGFloat = 75.0
-                let buttonsCount = CGFloat(actionButtons != nil ? actionButtons!.count : 0)
-                frame = CGRect(origin: frame.origin, size: CGSize(width: frame.size.width, height: frame.size.height + (buttonsCount * verticalPadding)))
-
-                // Animate and transform to dispaly action buttons
-                UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction], animations: { 
-                    self.backgroundView.transform = CGAffineTransform(scaleX: 40, y: 40)
-                    self.backgroundView.alpha = 0.85;
-                    self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat((45 * Double.pi)/180))
-
-                }, completion: { (_) in
-                    let verticalPadding: CGFloat = 75.0
-                    var buttonIndex: CGFloat = 0
-                    UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction], animations: {
-                        // Transform action buttons
-                        self.actionButtons?.forEach({ (button) in
-                            buttonIndex += 1
-                            button.transform = CGAffineTransform(translationX: 0, y: buttonIndex * verticalPadding)
-                            button.alpha = 1.0
-                        })
-                    }, completion: nil)
-                })
-            } else {
-                // Fallback to original states
-                fallback()
-            }
+                var buttonIndex: CGFloat = 0
+                UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction], animations: {
+                    // Transform action buttons
+                    self.actionButtons?.forEach({ (button) in
+                        buttonIndex += 1
+                        button.transform = CGAffineTransform(translationX: 0, y: buttonIndex * verticalPadding)
+                        button.alpha = 1.0
+                    })
+                }, completion: nil)
+            })
+        } else {
+            // Fallback to original states
+            fallback()
+        }
     }
 
     // This will be a convenience api to fallback all buttons to their respective original state
