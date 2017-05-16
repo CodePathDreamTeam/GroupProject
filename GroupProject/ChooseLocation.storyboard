@@ -179,7 +179,7 @@
                         <viewControllerLayoutGuide type="top" id="HBr-hX-Ckm"/>
                         <viewControllerLayoutGuide type="bottom" id="reW-74-7AX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eVB-oi-5bK">
+                    <view key="view" contentMode="scaleToFill" id="eVB-oi-5bK" customClass="GradientView" customModule="GroupProject" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -220,6 +220,17 @@
                             <constraint firstAttribute="trailing" secondItem="6he-1s-RF1" secondAttribute="trailing" constant="68" id="WNu-ZA-eiS"/>
                             <constraint firstItem="6he-1s-RF1" firstAttribute="top" secondItem="HBr-hX-Ckm" secondAttribute="bottom" constant="148" id="cKA-wh-fZC"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.20000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXt-33-uAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
