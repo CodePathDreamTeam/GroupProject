@@ -45,9 +45,9 @@
                                 <rect key="frame" x="10" y="266" width="355" height="391"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r0c-6P-sTJ">
-                                        <rect key="frame" x="5" y="5" width="345" height="381"/>
+                                        <rect key="frame" x="5" y="51" width="345" height="287"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="separatorColor" red="0.6544671474" green="0.6544671474" blue="0.6544671474" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="43" id="hDa-2g-fLl" customClass="WeatherCell" customModule="GroupProject" customModuleProvider="target">
@@ -97,8 +97,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="r0c-6P-sTJ" secondAttribute="bottom" constant="5" id="K4z-Hd-EnW"/>
-                                    <constraint firstItem="r0c-6P-sTJ" firstAttribute="top" secondItem="DwB-yk-isy" secondAttribute="top" constant="5" id="e91-Jw-zfd"/>
+                                    <constraint firstAttribute="bottom" secondItem="r0c-6P-sTJ" secondAttribute="bottom" constant="53" id="K4z-Hd-EnW"/>
+                                    <constraint firstItem="r0c-6P-sTJ" firstAttribute="top" secondItem="DwB-yk-isy" secondAttribute="top" constant="51" id="e91-Jw-zfd"/>
                                     <constraint firstAttribute="trailing" secondItem="r0c-6P-sTJ" secondAttribute="trailing" constant="5" id="n68-nv-vyd"/>
                                     <constraint firstItem="r0c-6P-sTJ" firstAttribute="leading" secondItem="DwB-yk-isy" secondAttribute="leading" constant="5" id="zSM-Ec-hIQ"/>
                                 </constraints>
