@@ -11,13 +11,22 @@ import UIKit
 class WeatherCell: UITableViewCell {
 
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var conditionsImageView: UIImageView!
+    
+    static var weatherIconMap: [String : UIImage]? {
+        var iconMap = [String : UIImage]()
+        iconMap["Clear"] = #imageLiteral(resourceName: "weathericon_sunny")
+        iconMap["Partly Cloudy"] = #imageLiteral(resourceName: "weathericon_sunnycloudy")
+        return iconMap
+    }
     
     var weatherForecast: WeatherForecast? {
         didSet {
             dayLabel.text = weatherForecast?.day
-            conditionsLabel.text = weatherForecast?.conditions
+            if let forecastConditions = weatherForecast?.conditions {
+            conditionsImageView.image = WeatherCell.weatherIconMap?[forecastConditions]
+            }
             temperatureLabel.text = weatherForecast?.tempHigh
         }
     }
