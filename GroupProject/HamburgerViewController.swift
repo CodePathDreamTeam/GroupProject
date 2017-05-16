@@ -43,7 +43,7 @@ class HamburgerViewController: UIViewController {
         super.viewDidLoad()
 
         // Setup open and closed position constants
-        openPositionLeftMarginConstant = self.view.frame.size.width - 190
+        openPositionLeftMarginConstant = self.view.frame.size.width - 150
         closedPositionLeftMarginConstant = 0
     }
     
