@@ -16,8 +16,16 @@ class WeatherCell: UITableViewCell {
     
     static var weatherIconMap: [String : UIImage]? {
         var iconMap = [String : UIImage]()
-        iconMap["Clear"] = #imageLiteral(resourceName: "weathericon_sunny")
-        iconMap["Partly Cloudy"] = #imageLiteral(resourceName: "weathericon_sunnycloudy")
+        iconMap["clear"] = #imageLiteral(resourceName: "weathericon_sunny")
+        iconMap["partly cloudy"] = #imageLiteral(resourceName: "weathericon_sunnycloudy")
+        iconMap["thunderstorm"] = #imageLiteral(resourceName: "weathericon_stormy")
+        iconMap["chance of a thunderstorm"] = #imageLiteral(resourceName: "weathericon_stormy")
+        iconMap["overcast"] = #imageLiteral(resourceName: "weathericon_cloudy")
+        iconMap["chance of rain"] = #imageLiteral(resourceName: "weathericon_rainy")
+        iconMap["rain"] = #imageLiteral(resourceName: "weathericon_rainy")
+        iconMap["snow"] = #imageLiteral(resourceName: "weathericon_snowy")
+        iconMap["chance of snow"] = #imageLiteral(resourceName: "weathericon_snowy")
+        iconMap["windy"] = #imageLiteral(resourceName: "weathericon_windy")
         return iconMap
     }
     
@@ -25,7 +33,8 @@ class WeatherCell: UITableViewCell {
         didSet {
             dayLabel.text = weatherForecast?.day
             if let forecastConditions = weatherForecast?.conditions {
-            conditionsImageView.image = WeatherCell.weatherIconMap?[forecastConditions]
+                conditionsImageView.image = WeatherCell.weatherIconMap?[forecastConditions.lowercased()]
+                print(forecastConditions)
             }
             temperatureLabel.text = weatherForecast?.tempHigh
         }
