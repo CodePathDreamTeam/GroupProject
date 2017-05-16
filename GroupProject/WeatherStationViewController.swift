@@ -15,6 +15,7 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var currentDescLabel: UILabel!
     @IBOutlet weak var cloudsView: UIView!
+    @IBOutlet var gradientView: GradientView!
     
     var weatherForecasts: [WeatherForecast]?
     
@@ -66,6 +67,8 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
             }
             
         })
+        
+        gradientView.startColor=getHexBackgroundColor(from: getCurrentHour())
 
     }
     
@@ -77,6 +80,21 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         cell.weatherForecast = weatherForecasts?[indexPath.row]
         return cell
+    }
+    
+    func getCurrentHour() -> Int{
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        return hour
+    }
+    
+    func getHexBackgroundColor(from hour: Int) -> UIColor {
+        if hour <= 18 {
+            return UIColor(red: 103, green: 186, blue: 255, alpha: 0)
+        } else {
+            return UIColor(red: 85, green: 85, blue: 85, alpha: 0)
+        }
     }
 
     override func didReceiveMemoryWarning() {

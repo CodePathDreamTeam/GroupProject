@@ -128,6 +128,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.40392156862745099" green="0.72941176470588232" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="55z-Pc-5T5" secondAttribute="trailing" constant="70" id="2dg-n1-xoR"/>
                             <constraint firstAttribute="trailing" secondItem="Cp6-lp-TRJ" secondAttribute="trailing" constant="30" id="2ww-ee-7rX"/>
@@ -156,7 +157,7 @@
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                <color key="value" red="0.6544671474" green="0.6544671474" blue="0.6544671474" alpha="0.30603448275862066" colorSpace="calibratedRGB"/>
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -186,6 +187,7 @@
                         <outlet property="cloudsView" destination="u5C-cK-DcZ" id="YPW-lN-kEa"/>
                         <outlet property="currentDescLabel" destination="h1w-OP-pfv" id="kQ5-7N-ifX"/>
                         <outlet property="currentTempLabel" destination="55z-Pc-5T5" id="gTq-uV-qvG"/>
+                        <outlet property="gradientView" destination="Jql-38-7A9" id="l2A-Y1-Hs7"/>
                         <outlet property="locationLabel" destination="Cp6-lp-TRJ" id="gmC-f4-swy"/>
                         <outlet property="tableView" destination="r0c-6P-sTJ" id="chr-Gq-meb"/>
                     </connections>
@@ -199,7 +201,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fap-6u-5rc" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="au3-Ag-3pB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="au3-Ag-3pB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
