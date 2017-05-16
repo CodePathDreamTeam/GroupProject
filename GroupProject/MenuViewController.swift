@@ -74,7 +74,7 @@ class MenuViewController: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = myPhotosImageView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 1
+        blurEffectView.alpha = 0.8
         myPhotosImageView.addSubview(blurEffectView)
         
         userPhotoImageView.layer.borderWidth = 2
