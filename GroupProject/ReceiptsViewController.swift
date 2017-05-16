@@ -14,6 +14,15 @@ class ReceiptsViewController: UIViewController {
 
     var receipts = Array<Receipts>()
 
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        formatter.locale = Locale.autoupdatingCurrent
+        print("Prepared dateFormatter")
+        return formatter
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +34,7 @@ class ReceiptsViewController: UIViewController {
                 return true
             }
         })
+
         // Fetch saved receipts
         tableView.reloadData()
     }
@@ -34,16 +44,50 @@ extension ReceiptsViewController: UITableViewDataSource, UITableViewDelegate {
 
     // UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return receipts.count
+        return receipts.count + 2 // To accomodate Header and Totals rows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        let receipt = receipts[indexPath.row]
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Header")!
+            return cell
 
-        cell.textLabel?.text = receipt.category
-        cell.detailTextLabel?.text = String(format: "\(receipt.nativeCurrencySign ?? "$")%.2f", receipt.nativeCurrencyAmount)
+        case (receipts.count + 1): // Totals row index
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Total")!
 
-        return cell
+            let totalLabel = cell.viewWithTag(1) as? UILabel
+            totalLabel?.text = String(format: "\(receipts.first?.nativeCurrencySign ?? "") %.2f \(receipts.first?.nativeCurrencyCode ?? "")", receipts.reduce(0){$0 + $1.nativeCurrencyAmount})
+
+            return cell
+
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptInfo")!
+            let receipt = receipts[indexPath.row - 1] // To account for header row
+
+            let dateLabel = cell.viewWithTag(1) as? UILabel
+            dateLabel?.text = dateFormatter.string(from: Date.init())
+
+            let categoryLabel = cell.viewWithTag(2) as? UILabel
+            categoryLabel?.text = receipt.category
+
+            let amountInfoLabel = cell.viewWithTag(3) as? UILabel
+            amountInfoLabel?.text = String(format: "\(receipt.nativeCurrencySign ?? "") %.2f \(receipt.nativeCurrencyCode ?? "")", receipt.nativeCurrencyAmount)
+
+            return cell
+        }
+    }
+
+    // MARK: UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 60
+        case receipts.count + 1:
+            return 60
+        default:
+            return 30
+        }
     }
 }
