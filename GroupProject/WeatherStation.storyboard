@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,27 +25,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5C-cK-DcZ">
                                 <rect key="frame" x="-67" y="64" width="522" height="138"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-oo-3o8">
-                                        <rect key="frame" x="6" y="0.0" width="240" height="128"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Mk-CUr">
+                                        <rect key="frame" x="245" y="33" width="375" height="141"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="I2Z-0R-ihm"/>
-                                            <constraint firstAttribute="width" constant="240" id="zv6-mN-dZ6"/>
+                                            <constraint firstAttribute="height" constant="141" id="307-PB-V0R"/>
+                                            <constraint firstAttribute="width" constant="375" id="Ekh-ml-0bi"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Mk-CUr">
-                                        <rect key="frame" x="246" y="2" width="240" height="128"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-oo-3o8">
+                                        <rect key="frame" x="-130" y="27" width="375" height="141"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="307-PB-V0R"/>
-                                            <constraint firstAttribute="width" constant="240" id="Ekh-ml-0bi"/>
+                                            <constraint firstAttribute="height" constant="141" id="I2Z-0R-ihm"/>
+                                            <constraint firstAttribute="width" constant="375" id="zv6-mN-dZ6"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="zCJ-oo-3o8" firstAttribute="top" secondItem="u5C-cK-DcZ" secondAttribute="top" id="JEf-9u-cBB"/>
+                                    <constraint firstItem="zCJ-oo-3o8" firstAttribute="top" secondItem="u5C-cK-DcZ" secondAttribute="top" constant="27" id="JEf-9u-cBB"/>
                                     <constraint firstItem="NOc-Mk-CUr" firstAttribute="leading" secondItem="zCJ-oo-3o8" secondAttribute="trailing" id="JOz-aa-UzI"/>
                                     <constraint firstAttribute="height" constant="138" id="Qqr-cY-Rgf"/>
-                                    <constraint firstItem="NOc-Mk-CUr" firstAttribute="top" secondItem="u5C-cK-DcZ" secondAttribute="top" constant="2" id="dE2-s5-8ct"/>
-                                    <constraint firstItem="zCJ-oo-3o8" firstAttribute="leading" secondItem="u5C-cK-DcZ" secondAttribute="leading" constant="6" id="mjG-ca-MTQ"/>
+                                    <constraint firstItem="NOc-Mk-CUr" firstAttribute="top" secondItem="u5C-cK-DcZ" secondAttribute="top" constant="33" id="dE2-s5-8ct"/>
+                                    <constraint firstItem="zCJ-oo-3o8" firstAttribute="leading" secondItem="u5C-cK-DcZ" secondAttribute="leading" constant="-130" id="mjG-ca-MTQ"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55z-Pc-5T5">
@@ -79,7 +79,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="345" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hDa-2g-fLl" id="HVS-FE-9jT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="42.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wl1-bA-4sR">
@@ -201,7 +201,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fap-6u-5rc" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="au3-Ag-3pB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="au3-Ag-3pB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
