@@ -372,7 +372,7 @@ extension FinancesViewController: ChartViewDelegate {
 
         receiptChartView.noDataTextColor = UIColor(colorLiteralRed: 145/255.0, green: 145/255.0, blue: 145/255.0, alpha: 1.0)
         receiptChartView.noDataFont = UIFont.italicSystemFont(ofSize: 17.0)
-        receiptChartView.noDataText = "You are yet to log expense receipts."
+        receiptChartView.noDataText = "You have yet to log expense receipts."
     }
 
     func reloadChartData() {
