@@ -160,11 +160,8 @@ class WallViewController: UIViewController {
         let scene = SCNScene(named: "art.scnassets/\(target.itemDescription).dae")
         let enemy = scene?.rootNode.childNode(withName: target.itemDescription, recursively: true)
         
-        if target.itemDescription == "dragon" {
-            enemy?.position = SCNVector3(x: 0, y: -15, z: 0)
-        } else {
-            enemy?.position = SCNVector3(x: 0, y: 0, z: 0)
-        }
+        enemy?.position = SCNVector3(x: 0, y: 0, z: 0)
+
         // Reading from public effective user settings.
 
         let node = SCNNode()
