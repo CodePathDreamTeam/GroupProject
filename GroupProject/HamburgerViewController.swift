@@ -48,7 +48,7 @@ class HamburgerViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        //User.sharedInstance.updateUser()
+        User.sharedInstance.updateUser()
         if User.sharedInstance.nativeCountry == nil {
             
             let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)
@@ -62,7 +62,6 @@ class HamburgerViewController: UIViewController {
                        animations: {
                         if self.leftMargainConstraint.constant == 0 {
                             self.leftMargainConstraint.constant = self.openPositionLeftMarginConstant
-                            self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
                             self.updateRotation(200)
                             
                         } else {
@@ -110,8 +109,7 @@ class HamburgerViewController: UIViewController {
 
             UIView.animate(withDuration: 0.3, animations: { 
                 if velocity.x > 0 {
-                    self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-
+                    self.updateRotation(200)
                     self.leftMargainConstraint.constant = self.openPositionLeftMarginConstant
 
                 } else {

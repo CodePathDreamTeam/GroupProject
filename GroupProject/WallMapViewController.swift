@@ -28,8 +28,8 @@ class WallMapViewController: DashBaseViewController {
         //let firstTarget = ARItem(itemDescription: "bridge", location: CLLocation(latitude: 34.159634, longitude: -118.333418), itemNode: nil)
         targets.append(firstTarget)
         
-        //let secondTarget = ARItem(itemDescription: "wolf", location: CLLocation(latitude: 50.5184, longitude: 8.3895), itemNode: nil)
-        //targets.append(secondTarget)
+        let secondTarget = ARItem(itemDescription: "wolf", location: CLLocation(latitude: 50.5184, longitude: 8.3895), itemNode: nil)
+        targets.append(secondTarget)
         
         //let thirdTarget = ARItem(itemDescription: "dragon", location: CLLocation(latitude: 50.5181, longitude: 8.3882), itemNode: nil)
         //targets.append(thirdTarget)
