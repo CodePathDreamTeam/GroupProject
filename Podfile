@@ -15,5 +15,6 @@ target 'GroupProject' do
   pod 'Parse'
   pod 'AnimatedCollectionViewLayout'
   pod 'HGCircularSlider'
+  pod 'BDBOAuth1Manager'
 
 end
