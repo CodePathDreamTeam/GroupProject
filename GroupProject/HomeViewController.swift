@@ -109,10 +109,7 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
                 }
             }
         }*/
-        
-        // Setup currency converter
-        setupCurrencyConverter()
-        
+
         // Setup weather forecast
         setupWeatherForecast()
         
@@ -220,7 +217,14 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
             }
         })
     }
- 
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Setup currency converter
+        setupCurrencyConverter()
+    }
+
     // @PREPARE FOR SEGUE -------------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -525,17 +529,21 @@ extension HomeViewController: UITextFieldDelegate {
     func setupCurrencyConverter() {
         // Based on the user's current and native locations.
         let currentUser = User.sharedInstance
-        
-        currencyConverter = CurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
-        currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
+
+        if currentUser.nativeCurrency != nil &&
+            currentUser.destinationCurrency != nil {
             
-            DispatchQueue.main.async {
-                if result.isSuccess {
-                    self?.updateUI(isInteractive: false)
-                } else {
-                    // TODO: Throw UI alert
-                    // Display UI alert, if needed...
-                    print("error: \(String(describing: result.error?.localizedDescription))")
+            currencyConverter = CurrencyConverter(localCurrencyCd: currentUser.destinationCurrency ?? "USD", localCountry: currentUser.destinationCountry ?? "United States", nativeCurrencyCd: currentUser.nativeCurrency ?? "USD", nativeCountry: currentUser.nativeCountry ?? "United States")
+            currencyConverter.updateCurrencyConversionFactors {[weak self] (result) in
+
+                DispatchQueue.main.async {
+                    if result.isSuccess {
+                        self?.updateUI(isInteractive: false)
+                    } else {
+                        // TODO: Throw UI alert
+                        // Display UI alert, if needed...
+                        print("error: \(String(describing: result.error?.localizedDescription))")
+                    }
                 }
             }
         }
