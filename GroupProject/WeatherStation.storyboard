@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fap-6u-5rc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,9 +61,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-OP-pfv">
-                                <rect key="frame" x="20" y="203.5" width="335" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="25" y="203.5" width="325" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                <color key="textColor" red="0.4349289536" green="0.4425882995" blue="0.47577035429999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DwB-yk-isy" customClass="ShadowCardView" customModule="GroupProject" customModuleProvider="target">
@@ -79,7 +79,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="325" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hDa-2g-fLl" id="HVS-FE-9jT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="42.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wl1-bA-4sR">
@@ -138,10 +138,10 @@
                             <constraint firstItem="55z-Pc-5T5" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leadingMargin" constant="70" id="Jng-IK-pz8"/>
                             <constraint firstItem="55z-Pc-5T5" firstAttribute="centerX" secondItem="Jql-38-7A9" secondAttribute="centerX" id="Tl9-un-baj"/>
                             <constraint firstItem="DwB-yk-isy" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="20" id="bEt-bZ-2sE"/>
-                            <constraint firstAttribute="trailing" secondItem="h1w-OP-pfv" secondAttribute="trailing" constant="20" id="cXd-2h-5rb"/>
+                            <constraint firstAttribute="trailing" secondItem="h1w-OP-pfv" secondAttribute="trailing" constant="25" id="cXd-2h-5rb"/>
                             <constraint firstItem="h1w-OP-pfv" firstAttribute="centerX" secondItem="Jql-38-7A9" secondAttribute="centerX" id="cnd-h5-qu5"/>
                             <constraint firstItem="u5C-cK-DcZ" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="-67" id="fHu-Gp-hn8"/>
-                            <constraint firstItem="h1w-OP-pfv" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="20" id="gxq-8g-JdD"/>
+                            <constraint firstItem="h1w-OP-pfv" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="25" id="gxq-8g-JdD"/>
                             <constraint firstItem="Cp6-lp-TRJ" firstAttribute="leading" secondItem="Jql-38-7A9" secondAttribute="leading" constant="30" id="jVY-MN-O5K"/>
                             <constraint firstAttribute="trailing" secondItem="u5C-cK-DcZ" secondAttribute="trailing" constant="-80" id="rBe-ed-4Fq"/>
                             <constraint firstItem="DwB-yk-isy" firstAttribute="top" secondItem="SDb-ky-oTd" secondAttribute="bottom" constant="219" id="u2e-J7-OQb"/>
