@@ -26,6 +26,8 @@ class POISearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         filtersArray.append(Filter(chosenValue: "Distance(meters)", values: distances, isExpanded: false))
         filtersArray.append(Filter(chosenValue: "Type", values: types, isExpanded: false))
     }

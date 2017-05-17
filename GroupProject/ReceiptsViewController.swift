@@ -25,6 +25,14 @@ class ReceiptsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // UI
+        let trippinLogo = UIImage(named: "Trippin.png")
+        let logoImage = UIImageView(image: trippinLogo)
+        logoImage.frame.size.width = 78
+        logoImage.frame.size.height = 23
+        logoImage.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImage
+        
         // Sort receipts by their category in ascending order
         receipts = receipts.sorted(by: { (first, second) -> Bool in
             if let firstStr = first.category, let secondStr = second.category {

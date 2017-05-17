@@ -45,6 +45,15 @@ class PhotoMapViewController: DashBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // UI
+        let trippinLogo = UIImage(named: "Trippin.png")
+        let logoImage = UIImageView(image: trippinLogo)
+        logoImage.frame.size.width = 78
+        logoImage.frame.size.height = 23
+        logoImage.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImage
+        
+        
         // SET BG GRADIENT
         let background = CAGradientLayer().creymeColor()
         background.frame = self.view.bounds

@@ -17,6 +17,14 @@ class FullImageCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // UI
+        let trippinLogo = UIImage(named: "Trippin.png")
+        let logoImage = UIImageView(image: trippinLogo)
+        logoImage.frame.size.width = 78
+        logoImage.frame.size.height = 23
+        logoImage.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImage
+        
         let layout = AnimatedCollectionViewLayout()
         layout.animator = CubeAttributesAnimator()
         layout.scrollDirection = .horizontal

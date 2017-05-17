@@ -77,6 +77,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjk-wl-V0t">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRU-uh-5q2" customClass="GradientView" customModule="GroupProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-198" width="375" height="267"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="267" id="ae3-Kh-6zj"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.71764705882352942" green="0.73333333333333328" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="Oval" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-10-nk9">
                                         <rect key="frame" x="29" y="40" width="70" height="70"/>
                                         <constraints>
@@ -102,6 +123,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="rRL-C8-zpm" firstAttribute="leading" secondItem="BbJ-10-nk9" secondAttribute="trailing" constant="20" id="3VL-fM-sFb"/>
+                                    <constraint firstItem="rRL-C8-zpm" firstAttribute="top" secondItem="LRU-uh-5q2" secondAttribute="bottom" constant="8" id="3pY-Ww-uSy"/>
                                     <constraint firstItem="fxs-uD-0e3" firstAttribute="centerY" secondItem="sjk-wl-V0t" secondAttribute="centerY" constant="7" id="6uI-xO-y1E"/>
                                     <constraint firstItem="BbJ-10-nk9" firstAttribute="centerY" secondItem="sjk-wl-V0t" secondAttribute="centerY" constant="15" id="Al0-yc-rbi"/>
                                     <constraint firstItem="BbJ-10-nk9" firstAttribute="leading" secondItem="sjk-wl-V0t" secondAttribute="leading" constant="29" id="INZ-NK-Up8"/>
@@ -109,6 +131,8 @@
                                     <constraint firstAttribute="trailing" secondItem="rRL-C8-zpm" secondAttribute="trailing" constant="120" id="XUQ-fM-7R0"/>
                                     <constraint firstItem="rRL-C8-zpm" firstAttribute="centerY" secondItem="sjk-wl-V0t" secondAttribute="centerY" constant="25.5" id="dSy-lz-LQj"/>
                                     <constraint firstAttribute="height" constant="120" id="gEA-oH-068"/>
+                                    <constraint firstAttribute="trailing" secondItem="LRU-uh-5q2" secondAttribute="trailing" id="igK-Fh-9NQ"/>
+                                    <constraint firstItem="LRU-uh-5q2" firstAttribute="leading" secondItem="sjk-wl-V0t" secondAttribute="leading" id="ixG-FI-mUD"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BbJ-10-nk9" secondAttribute="trailing" constant="60" id="wsH-9q-bL5"/>
                                 </constraints>
                             </view>
