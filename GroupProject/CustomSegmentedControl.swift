@@ -44,7 +44,7 @@ import UIKit
             bottomBorderLayer.removeFromSuperlayer()
             if bottomBorderEnabled {
                 // Edit height property
-                bottomBorderLayer.frame = CGRect(x: 0, y: layer.bounds.height - 1, width: bounds.width, height: 0.5)
+                bottomBorderLayer.frame = CGRect(x: 0, y: layer.bounds.height - 1, width: bounds.width, height: 1)
                 // Edit bottome border color
                 bottomBorderLayer.backgroundColor = UIColor.white.cgColor
                 layer.addSublayer(bottomBorderLayer)
@@ -92,7 +92,7 @@ import UIKit
             if flatStyle{
                 selectedLabelView.frame = CGRect (
                     x: self.bounds.origin.x,
-                    y: self.bounds.maxY - 4,
+                    y: self.bounds.maxY - 5.0,
                     width: self.bounds.width / CGFloat(items.count),
                     height: 5.0)
             }
