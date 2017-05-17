@@ -289,7 +289,7 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let size = self.view.layer.frame.width / 3
+        let size = self.view.layer.frame.width / 3 - 2
         print(size)
         return CGSize(width: size, height: size)
         
@@ -298,13 +298,13 @@ extension PhotoMapViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return 2.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return 2.0
     }
 }
 
