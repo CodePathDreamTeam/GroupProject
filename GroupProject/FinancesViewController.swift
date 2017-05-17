@@ -31,6 +31,10 @@ class FinancesViewController: DashBaseViewController {
     let receiptChartView = PieChartView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let viewReceiptsButton = UIButton(type: .roundedRect)
 
+    // Denomination Table View
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: UITableViewStyle.grouped)
+    var denominationGuide: [Dictionary<String,String>] = []
+
     // Map View
     let mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let locationManager = CLLocationManager()
@@ -132,6 +136,8 @@ class FinancesViewController: DashBaseViewController {
         setupChartView()
         // Fetch saved receipts
         fetchReceipts()
+        // Setup Denomination Guide
+        setupDenominationGuide()
         // Setup Map View
         setupMapView()
         // Fetch nearby Currency Exchanges
@@ -332,6 +338,19 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
 
             cellView.addConstraints(constraints)
 
+        } else if indexPath.row == 1 {
+            // Add Table view as subview
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            cellView.addSubview(tableView)
+            // Setup constraints for table view
+            var constraints: [NSLayoutConstraint] = []
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: .alignAllCenterX, metrics: nil, views: ["tableView":tableView]))
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]|", options: .alignAllCenterY, metrics: nil, views: ["tableView":tableView]))
+
+            cellView.addConstraints(constraints)
+
+            tableView.reloadData()
+
         } else if indexPath.row == 2 {
             // Add Map as subview
             mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -345,7 +364,6 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
 
             currencyExchanges.forEach({ (business) in
                 if let coordinate = business.coordinate {
-                    print("Adding Annotation")
                     addAnnotationAtCoordinate(coordinate, title: (business.name ?? "Currency Exchange"))
                 }
             })
@@ -458,10 +476,49 @@ extension FinancesViewController: ChartViewDelegate {
 }
 
 /* This Extension Manages the following:
-    — Fetch nearby Currency Exchanges.
-    — Display nearby Currency Exchanges in MapKit View
     — Fetch Denomination details of local and native currencies.
     — Display denomination details in view.
+ */
+extension FinancesViewController: UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: Setup
+    func setupDenominationGuide() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+
+        // Create stub data
+        denominationGuide.append(["textLabel":"Penny","detailTextLabel":"1 cent"])
+        denominationGuide.append(["textLabel":"Nickel","detailTextLabel":"5 cents"])
+        denominationGuide.append(["textLabel":"Dime","detailTextLabel":"10 cents"])
+        denominationGuide.append(["textLabel":"Quarter","detailTextLabel":"25 cents"])
+        denominationGuide.append(["textLabel":"Half Dollar","detailTextLabel":"50 cents"])
+        denominationGuide.append(["textLabel":"Dollar","detailTextLabel":"100 cents"])
+    }
+
+    // MARK: UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        let denomination = denominationGuide[indexPath.row]
+
+        cell.textLabel?.text = denomination["textLabel"]
+        cell.detailTextLabel?.text = denomination["detailTextLabel"]
+
+        cell.textLabel?.textColor = UIColor(red: 88/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1.0)
+        cell.detailTextLabel?.textColor = UIColor(red: 151/255.0, green: 151/255.0, blue: 151/255.0, alpha: 1.0)
+
+        return cell
+    }
+}
+
+
+/* This Extension Manages the following:
+    — Fetch nearby Currency Exchanges.
+    — Display nearby Currency Exchanges in MapKit View
 */
 extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -540,22 +597,6 @@ extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         annotation.coordinate = coordinate
         annotation.title = title
         mapView.addAnnotation(annotation)
-    }
-
-    // add an annotation with an address: String
-    func addAnnotationAtAddress(address: String, title: String) {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address) { (placemarks, error) in
-            if let placemarks = placemarks {
-                if placemarks.count != 0 {
-                    let coordinate = placemarks.first!.location!
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate.coordinate
-                    annotation.title = title
-                    self.mapView.addAnnotation(annotation)
-                }
-            }
-        }
     }
 }
 
