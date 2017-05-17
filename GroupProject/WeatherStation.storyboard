@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5C-cK-DcZ">
                                 <rect key="frame" x="-67" y="64" width="522" height="138"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Mk-CUr">
+                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatheranimate_cloud2" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Mk-CUr">
                                         <rect key="frame" x="245" y="33" width="375" height="141"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="141" id="307-PB-V0R"/>
@@ -201,7 +201,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fap-6u-5rc" customClass="NavBarTransparent" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="au3-Ag-3pB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="au3-Ag-3pB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -216,7 +216,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="weatheranimate_cloud1" width="375" height="141"/>
+        <image name="weatheranimate_cloud1" width="3044" height="956"/>
+        <image name="weatheranimate_cloud2" width="821" height="389"/>
         <image name="weathericon_sunnycloudy" width="28" height="20"/>
     </resources>
 </document>
