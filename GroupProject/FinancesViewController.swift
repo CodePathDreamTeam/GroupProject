@@ -9,6 +9,8 @@
 import UIKit
 import Charts
 import CoreData
+import MapKit
+import CoreLocation
 
 class FinancesViewController: DashBaseViewController {
 
@@ -25,9 +27,14 @@ class FinancesViewController: DashBaseViewController {
     @IBOutlet weak var pageControl: ScrollableSegmentControl!
     @IBOutlet weak var pageView: UICollectionView!
 
-    // Receipt Chart, Table view outlets
+    // Receipt Chart outlet
     let receiptChartView = PieChartView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let viewReceiptsButton = UIButton(type: .roundedRect)
+
+    // Map View
+    let mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let locationManager = CLLocationManager()
+//    var currencyExchanges = [Business]()
 
     // Create receipt
     var receiptSource: ReceiptSource = .manual
@@ -125,6 +132,10 @@ class FinancesViewController: DashBaseViewController {
         setupChartView()
         // Fetch saved receipts
         fetchReceipts()
+        // Setup Map View
+        setupMapView()
+        // Fetch nearby Currency Exchanges
+        fetchCurrencyExchanges()
         
         // SET BG GRADIENT
         let background = CAGradientLayer().creymeColor()
@@ -297,7 +308,7 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
 
-        let colors: [UIColor] = [.white,.blue,.yellow]
+        let colors: [UIColor] = [.white,.blue,.white]
         cellView.backgroundColor = colors[indexPath.row]
 
         if indexPath.row == 0 {
@@ -320,6 +331,17 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             constraints.append(NSLayoutConstraint(item: receiptChartView, attribute: .centerX, relatedBy: .equal, toItem: cellView, attribute: .centerX, multiplier: 1.0, constant: 0))
             constraints.append(NSLayoutConstraint(item: receiptChartView, attribute: .centerY, relatedBy: .equal, toItem: cellView, attribute: .centerY, multiplier: 1.0, constant: -20))
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[chartView(height)]-[viewReceiptsButton]", options: .alignAllCenterX, metrics: ["height":chartViewDimension], views: ["chartView":receiptChartView,"viewReceiptsButton":viewReceiptsButton]))
+
+            cellView.addConstraints(constraints)
+
+        } else if indexPath.row == 2 {
+            // Add Map as subview
+            mapView.translatesAutoresizingMaskIntoConstraints = false
+            cellView.addSubview(mapView)
+            // Setup Constraints for map view
+            var constraints: [NSLayoutConstraint] = []
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|[mapView]|", options: .alignAllCenterX, metrics: nil, views: ["mapView":mapView]))
+            constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[mapView]|", options: .alignAllCenterY, metrics: nil, views: ["mapView":mapView]))
 
             cellView.addConstraints(constraints)
         }
@@ -427,6 +449,111 @@ extension FinancesViewController: ChartViewDelegate {
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         // End view editing, if any
         view.endEditing(true)
+    }
+}
+
+/* This Extension Manages the following:
+    — Fetch nearby Currency Exchanges.
+    — Display nearby Currency Exchanges in MapKit View
+    — Fetch Denomination details of local and native currencies.
+    — Display denomination details in view.
+*/
+extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
+
+    func setupMapView() {
+
+        // Setup MapView traits
+        mapView.showsUserLocation = true
+
+        // Setup location manager to display user's current location
+        /*
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 10
+        locationManager.requestWhenInUseAuthorization()
+         */
+
+        // Set starting center location in San Francisco
+        let latitude: CLLocationDegrees = 37.7833
+        let longitude: CLLocationDegrees = -122.4167
+        goToLocation(CLLocation(latitude: latitude, longitude: longitude))
+        addAnnotationAtCoordinate(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+
+    }
+
+    func goToLocation(_ location: CLLocation) {
+        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(location.coordinate, span)
+        mapView.setRegion(region, animated: false)
+    }
+
+    // MARK: CLLocationManagerDelegate
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let span = MKCoordinateSpanMake(0.014, 0.014)
+            let region = MKCoordinateRegionMake(location.coordinate, span)
+            mapView.setRegion(region, animated: false)
+        }
+    }
+
+    // MARK: MKMapViewDelegate
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "annotation"
+        // custom pin annotation
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        if (annotationView == nil) {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        annotationView!.pinTintColor = .red
+        
+        return annotationView
+    }
+
+    // MARK: Annotations
+
+    // Map Annotations Data
+    func fetchCurrencyExchanges() {
+        /*
+        Business.searchWithTerm(term: text, sort: sort, categories: categories, deals: dealsOnly, radius: radius) {[weak weakSelf = self] (businesses: [Business]!, error: Error!) in
+            print("Error: \(String(describing: error))")
+            weakSelf?.businesses = businesses
+        }
+ */
+    }
+
+    // add an Annotation with a coordinate: CLLocationCoordinate2D
+    func addAnnotationAtCoordinate(coordinate: CLLocationCoordinate2D) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = "An annotation!"
+        mapView.addAnnotation(annotation)
+    }
+
+    // add an annotation with an address: String
+    func addAnnotationAtAddress(address: String, title: String) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            if let placemarks = placemarks {
+                if placemarks.count != 0 {
+                    let coordinate = placemarks.first!.location!
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate.coordinate
+                    annotation.title = title
+                    self.mapView.addAnnotation(annotation)
+                }
+            }
+        }
     }
 }
 
