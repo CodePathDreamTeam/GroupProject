@@ -344,6 +344,13 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[mapView]|", options: .alignAllCenterY, metrics: nil, views: ["mapView":mapView]))
 
             cellView.addConstraints(constraints)
+
+            currencyExchanges.forEach({ (business) in
+                if let coordinate = business.coordinate {
+                    print("Adding Annotation")
+                    addAnnotationAtCoordinate(coordinate, title: (business.name ?? "Currency Exchange"))
+                }
+            })
         }
 
         return cellView
@@ -477,8 +484,6 @@ extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         let latitude: CLLocationDegrees = 37.7833
         let longitude: CLLocationDegrees = -122.4167
         goToLocation(CLLocation(latitude: latitude, longitude: longitude))
-        addAnnotationAtCoordinate(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-
     }
 
     func goToLocation(_ location: CLLocation) {
@@ -525,17 +530,17 @@ extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     // Map Annotations Data
     func fetchCurrencyExchanges() {
 
-        Business.searchWithTerm(term: "Currency Exchange", sort: .distance, categories: nil, deals: nil, radius: 5) {[weak weakSelf = self] (businesses: [Business]!, error: Error!) in
+        Business.searchWithTerm(term: "Currency Exchange", sort: .distance, categories: nil, deals: nil, radius: 5) {[weak weakSelf = self] (businesses: [Business]?, error: Error!) in
             print("Error: \(String(describing: error))")
-            weakSelf?.currencyExchanges = businesses
+            weakSelf?.currencyExchanges = businesses ?? []
         }
     }
 
     // add an Annotation with a coordinate: CLLocationCoordinate2D
-    func addAnnotationAtCoordinate(coordinate: CLLocationCoordinate2D) {
+    func addAnnotationAtCoordinate(_ coordinate: CLLocationCoordinate2D, title: String) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        annotation.title = "An annotation!"
+        annotation.title = title
         mapView.addAnnotation(annotation)
     }
 
