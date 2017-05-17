@@ -33,8 +33,8 @@ class MenuViewController: UIViewController {
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
     var currentIndex = 0
-    let titles = ["Home","To-Do","Finances","Weather","Near Me","Photo Map","Geo Journal"]
-    let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "checkbox"),#imageLiteral(resourceName: "calculator"),#imageLiteral(resourceName: "weather"),#imageLiteral(resourceName: "pin"),#imageLiteral(resourceName: "camera"),#imageLiteral(resourceName: "message")]
+    let titles = ["Home","To-Do","Finances","Weather","Near Me","Geo Journal"]
+    let icons = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "checkbox"),#imageLiteral(resourceName: "calculator"),#imageLiteral(resourceName: "weather"),#imageLiteral(resourceName: "pin"),#imageLiteral(resourceName: "message")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +63,7 @@ class MenuViewController: UIViewController {
         viewControllers.append(financesNaveController)
         viewControllers.append(weatherStationNavController)
         viewControllers.append(poisNavController)
-        viewControllers.append(photoMapNavController)
+        //viewControllers.append(photoMapNavController)
         viewControllers.append(theWallNavController)
         
         hamburgerViewController.contentViewController = homeNavController

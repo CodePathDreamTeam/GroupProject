@@ -676,46 +676,18 @@ extension FinancesViewController: UIImagePickerControllerDelegate, UINavigationC
     // Parse imported text and extract the local currency and amount
     func extractCurrencyDetails(from importText: String) -> (currency: String, country: String, amount: Double)? {
 
-//        // Locate the range of first currency sign or code.
-//        var rangeOfCurrencyIdentifier: Range<String.Index>? = nil
-//        var currencyCode: String? = nil
-//        var currencySign: String? = nil
-//
-//        for aCurrencyCode in [User.sharedInstance.destinationCurrency ?? "USD", User.sharedInstance.destinationCurrency ?? "USD"] {
-//
-//            let aCurrencySign = currencyCodeBasedTuple[aCurrencyCode]?.sign ?? "$"
-//            rangeOfCurrencyIdentifier = importText.range(of: aCurrencySign, options: .caseInsensitive, range: nil, locale: nil)
-//            if rangeOfCurrencyIdentifier == nil {
-//                rangeOfCurrencyIdentifier = importText.range(of: aCurrencyCode, options: .caseInsensitive, range: nil, locale: nil)
-//            }
-//
-//            if rangeOfCurrencyIdentifier != nil {
-//                currencyCode = aCurrencyCode
-//                currencySign = aCurrencySign
-//                break
-//            }
-//        }
-//
-//        // If range is still empty, then imported text doesn't have any detectable local currency amounts
-//        if rangeOfCurrencyIdentifier == nil || rangeOfCurrencyIdentifier?.isEmpty == true || currencyCode == nil || currencySign == nil {
-//            return nil
-//        } else {
-//
-//            // Extract the string following this range unless limited by characters other than numbers or dot (decimals)
-//            var validCharacters = CharacterSet.decimalDigits
-//            validCharacters.formUnion(.whitespaces)
-//            let rangeOfAmount = importText.rangeOfCharacter(from: validCharacters, options: .literal, range: rangeOfCurrencyIdentifier)
-//            print("rangeOfAmount: \(String(describing: rangeOfAmount))")
-//
-//            // Note: Dots aren't always the decimal separator, it depends on the currency locale but assuming for now.
-//
-//            // Extract Sign, Code, Country name from the extracted currency sign or code.
-//
-//            // Create a tuple to return. If any of required values are missing, return empty tuple.
-//
-//        }
+        let delimiter = currencyConverter.localCurrencySign
+        var components = importText.components(separatedBy: delimiter)
 
-        return ("USD", "United States", 12.35)
+        if components.count > 1 {
+            components = components[1].components(separatedBy: .whitespacesAndNewlines)
+
+            if let importedAmountStr = components.first, let localAmount = Double(importedAmountStr) {
+                return (currencyConverter.localCurrencyCode, currencyConverter.localCountry, localAmount)
+            }
+        }
+        
+        return nil
     }
 
     // Scaling image for better recognition
