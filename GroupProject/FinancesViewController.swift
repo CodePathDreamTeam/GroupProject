@@ -307,9 +307,7 @@ extension FinancesViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-
-        let colors: [UIColor] = [.white,.blue,.white]
-        cellView.backgroundColor = colors[indexPath.row]
+        cellView.backgroundColor = .white
 
         if indexPath.row == 0 {
             // Add Chart as subview
