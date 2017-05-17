@@ -48,7 +48,7 @@ class HamburgerViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        User.sharedInstance.updateUser()
+        //User.sharedInstance.updateUser()
         if User.sharedInstance.nativeCountry == nil {
             
             let storyboard = UIStoryboard(name: "ChooseLocation", bundle: nil)

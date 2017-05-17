@@ -14,6 +14,16 @@ class MapCollectionViewCell: UICollectionViewCell {
     
     func bind(country: (String, String)) {
         mapImage.image = UIImage(named: country.0)
+        mapImage.asCircle()
         countryLabel.text = country.1
     }
+}
+
+extension UIImageView{
+    
+    func asCircle(){
+        self.layer.cornerRadius = self.frame.width / 4;
+        self.layer.masksToBounds = true
+    }
+    
 }
