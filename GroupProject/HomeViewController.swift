@@ -66,7 +66,20 @@ class HomeViewController: DashBaseViewController, UIScrollViewDelegate {
     var sliderValue = Int()
     var counter = Int()
     
+    let thumnailImages: [UIImage] = {
+        var images: [UIImage] = []
+        images.append(UIImage(named: "AdobeStock_40603639.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_81911936.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_4210443.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_142665835.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_22434647.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_48574331.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_54850653.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_78473061.jpeg")!)
+        images.append(UIImage(named: "AdobeStock_134137494.jpeg")!)
 
+        return images
+    }()
     
     
     
@@ -442,7 +455,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     // cell numb
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 6
+        return thumnailImages.count
     }
     
     
@@ -452,7 +465,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         // define cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeLocationsCell", for: indexPath) as! HomeLocationsCell
-        cell.locationImages.image = UIImage(named: "AdobeStock_40603639.jpeg")
+        cell.locationImages.image = thumnailImages[indexPath.row]
         // create imageView in cell to show pictures
         //let posterImage = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height: cell.frame.size.height))
         //cell.addSubview(posterImage)
