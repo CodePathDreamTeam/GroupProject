@@ -328,6 +328,7 @@
 		39452CEC1EB6BE4800DE9080 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CCA52641EC7CCDE00214976 /* SampleImages */,
 				39452CED1EB6BEC700DE9080 /* tessdata */,
 				3909F0C31EB3028100029E44 /* art.scnassets */,
 				3946020A1EAD33DD00BAAC4F /* Assets.xcassets */,
@@ -357,7 +358,6 @@
 		394602021EAD33DD00BAAC4F /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
-				4CCA52641EC7CCDE00214976 /* SampleImages */,
 				39934DB11EBB0C5200D54797 /* Common */,
 				3920BEB21EAEE4A000DE76C1 /* Model */,
 				3920BEB11EAEE49A00DE76C1 /* View */,
