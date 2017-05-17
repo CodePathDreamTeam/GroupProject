@@ -36,8 +36,8 @@ class PhotoMapViewController: DashBaseViewController {
         
         let manual = UIButton(frame: buttonFrame)
         manual.addTarget(self, action: #selector(importPhoto(_:)), for: .touchUpInside)
-        manual.setImage(UIImage(named:"cbutton_pencil"), for: .normal)
-        manual.setImage(UIImage(named:"cbutton_pencil-tap"), for: .highlighted)
+        manual.setImage(UIImage(named:"cbutton_album"), for: .normal)
+        manual.setImage(UIImage(named:"cbutton_album-tap"), for: .highlighted)
         
         return [camera, manual]
     }

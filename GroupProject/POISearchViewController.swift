@@ -81,6 +81,7 @@ extension POISearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell?.textLabel?.text = filtersArray[indexPath.section].values.0
         }
+        cell?.textLabel?.font = UIFont(name: "Callout", size: 30.0)//UIFont(descriptor: UIFont., size: 20.0)
         return cell!
     }
 }

@@ -34,7 +34,7 @@ class PoisViewController: DashBaseViewController {
         let search = UIButton(frame: buttonFrame)
         search.addTarget(self, action: #selector(filters(_:)), for: .touchUpInside)
         search.setImage(UIImage(named:"cbutton_search"), for: .normal)
-        search.setImage(UIImage(named:"cbutton_search"), for: .highlighted)
+        search.setImage(UIImage(named:"cbutton_search-tap"), for: .highlighted)
         
         return [camera, search]
     }
