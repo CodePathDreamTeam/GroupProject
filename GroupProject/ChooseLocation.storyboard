@@ -138,7 +138,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Let's Go">
+                                <state key="normal" title="GO!">
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -146,6 +146,10 @@
                                     <segue destination="gE1-1S-0cO" kind="show" id="NHi-vh-mdl"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Trippin" translatesAutoresizingMaskIntoConstraints="NO" id="WQ3-VG-yrb">
+                                <rect key="frame" x="97" y="132" width="180" height="54"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
@@ -247,4 +251,7 @@
             <point key="canvasLocation" x="2040.8" y="154.27286356821591"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Trippin" width="78" height="23"/>
+    </resources>
 </document>
