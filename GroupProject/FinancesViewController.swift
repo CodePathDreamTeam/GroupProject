@@ -34,7 +34,7 @@ class FinancesViewController: DashBaseViewController {
     // Map View
     let mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let locationManager = CLLocationManager()
-//    var currencyExchanges = [Business]()
+    var currencyExchanges = [Business]()
 
     // Create receipt
     var receiptSource: ReceiptSource = .manual
@@ -524,12 +524,11 @@ extension FinancesViewController: MKMapViewDelegate, CLLocationManagerDelegate {
 
     // Map Annotations Data
     func fetchCurrencyExchanges() {
-        /*
-        Business.searchWithTerm(term: text, sort: sort, categories: categories, deals: dealsOnly, radius: radius) {[weak weakSelf = self] (businesses: [Business]!, error: Error!) in
+
+        Business.searchWithTerm(term: "Currency Exchange", sort: .distance, categories: nil, deals: nil, radius: 5) {[weak weakSelf = self] (businesses: [Business]!, error: Error!) in
             print("Error: \(String(describing: error))")
-            weakSelf?.businesses = businesses
+            weakSelf?.currencyExchanges = businesses
         }
- */
     }
 
     // add an Annotation with a coordinate: CLLocationCoordinate2D
