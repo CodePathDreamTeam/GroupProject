@@ -61,7 +61,7 @@ class WeatherStationViewController: DashBaseViewController, UITableViewDelegate,
                     self.tableView.reloadData()
                     self.cloudsView.alpha = 1
                     UIView.animate(withDuration: 10) {
-                        self.cloudsView.frame.origin.x -= 50
+                        self.cloudsView.frame.origin.x -= 100
                     }
                 }
             }
