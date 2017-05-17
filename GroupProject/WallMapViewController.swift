@@ -24,12 +24,12 @@ class WallMapViewController: DashBaseViewController {
     }
     
     func setupLocations() {
-        let firstTarget = ARItem(itemDescription: "wall", location: CLLocation(latitude: 34.180222, longitude: -118.311038), itemNode: nil)
+        let firstTarget = ARItem(itemDescription: "test_liberty", location: CLLocation(latitude: 34.159736, longitude: -118.333006), itemNode: nil)
         //let firstTarget = ARItem(itemDescription: "bridge", location: CLLocation(latitude: 34.159634, longitude: -118.333418), itemNode: nil)
         targets.append(firstTarget)
         
-        let secondTarget = ARItem(itemDescription: "wolf", location: CLLocation(latitude: 50.5184, longitude: 8.3895), itemNode: nil)
-        targets.append(secondTarget)
+        //let secondTarget = ARItem(itemDescription: "wolf", location: CLLocation(latitude: 50.5184, longitude: 8.3895), itemNode: nil)
+        //targets.append(secondTarget)
         
         //let thirdTarget = ARItem(itemDescription: "dragon", location: CLLocation(latitude: 50.5181, longitude: 8.3882), itemNode: nil)
         //targets.append(thirdTarget)
