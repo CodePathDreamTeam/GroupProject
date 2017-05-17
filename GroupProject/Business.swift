@@ -85,7 +85,6 @@ class Business: NSObject {
     }
     
     class func businesses(array: [NSDictionary]) -> [Business] {
-        print("array: \(array)")
         var businesses = [Business]()
         for dictionary in array {
             let business = Business(dictionary: dictionary)

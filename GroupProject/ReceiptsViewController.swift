@@ -19,7 +19,6 @@ class ReceiptsViewController: UIViewController {
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         formatter.locale = Locale.autoupdatingCurrent
-        print("Prepared dateFormatter")
         return formatter
     }()
 
