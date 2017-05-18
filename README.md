@@ -2,68 +2,42 @@
 
 Tripping is the must have travel companion. Complete with currency conversions, a weather station, photo journals of your travels with mapped out positions of your photos, points of interest near you. This app makes your travel experience and sharing much easier.
 
-Menu and Weather Station list:
- * [x] Quick currency conversions / Home Screen
- * [x] Current weather / Home Screen
- * [x] Current location displayed / Home Screen
- * [x] Showcase weather for next 10 days
- * [ ] Show 10 hours forecast
- * [ ] Improve UI
+Problem – 
+When traveling you need to switch between multiple apps such as
+A currency converter, your photos, directions (places to go to)( and it is hard to no which direction to go to), weather, and possibly reminders.
 
-[![Menu:Weather.gif](https://s23.postimg.org/f4dhz2cy3/Menu_Weather.gif)](https://postimg.org/image/hygncif47/)
- 
-To-Do list:
- * [x] Pull down to create new task
- * [x] Pull apart cells to insert new task
- * [x] Swipe Right to finish a task, cross out, and bring to bottom
- * [x] Swipe left to remove a task
- * [ ] Move tasks around by dragging cells
- * [ ] Improve UI
+Solution A one stop app for all your travel need.
 
-[![ToDoGif.gif](https://s2.postimg.org/bll3o8nft/To_Do_Gif.gif)](https://postimg.org/image/syve33iqt/)
 
-Photo Journal
- * [x] This allows you to save your photos location. 
- * [x] You can drag you photo to any location you want.
- * [x] Images are saved in Core data and automatically updated after you are done dragging.
- * [x] Image URL in photo asset is saved not actual photo making it memory safe.
- * [x] See all photos in UICollection view that are within the mapviews bounds.
- * [ ] Full size image when selecting collectionView cell
- * [ ] High Quality image for annotation
 
-[![PhotoMapGif.gif](https://s14.postimg.org/5g17evg1t/Photo_Map_Gif.gif)](https://postimg.org/image/uytjrvzlp/)
+[![TrippinLogin.gif](https://s15.postimg.org/yyy2ujvdn/Trippin_Login.gif)](https://postimg.org/image/xjwi5tuaf/)
 
-Points of Interest
- * [x] See points of interest on mapview around you via google places API
- * [x] See where each location is in Augmented Reality
- * [ ] Filter search by search string, location type, or distance
- * [ ] Give directions to POI
- * [ ] Clean up UI/ add constraints
 
-[![PoisGif.gif](https://s29.postimg.org/ewoo9fy2v/Pois_Gif.gif)](https://postimg.org/image/nrpijymv7/)
+1.	A to-do list for you to cross off things you planned on doing that day
 
-Geo Journal
+[![To-Do.gif](https://s12.postimg.org/b9s95uwsd/To-_Do.gif)](https://postimg.org/image/js1pa73ax/)
 
-Ideal I describe the Geo-Journal as Pokemon-Go mixed with Yik-Yak (with a sprinkle of the custom location based snapchat filters). If you are near a Geo-Journal you can look at it in your app and its exclusive image (Think of location based filters from snapchat). After tapping on it you can write on the custom wall for the location to prove you have been to that location.
- * [x] User can see Geo-Journal in AR when close to it
- * [x] By tapping on Geo-Journal object (currently just a wall) user gets access to a message board exclusive to that location
- * [x] User can write on message board and see what others have written (parse/heroku backend.
- * [ ] Custom Images per location
- * [ ] Geo Fencing to tell users when they are near a geo-journal
+1.	A weather station to see the forecast for the next 10 days
 
-[![GeoJournalGif.gif](https://s22.postimg.org/qs6igvs0h/Geo_Journal_Gif.gif)](https://postimg.org/image/ltj02co7h/)
+[![Weather.gif](https://s16.postimg.org/77imzeoet/Weather.gif)](https://postimg.org/image/mszyjd0cx/)
 
-Finance
-* [x] Quick converter from user's current location to native location currency. 
-* [x] You can log expense receipt from converted amount by selecting category.
-* [x] You can import expense receipt from Photo library or snap it via camera.
-* [x] View saved receipts synopsis and Pie chart distribution.
-* [ ] View receipt details.
-* [ ] Delete/Update receipt details.
-* [ ] View nearby currency exchanges.
-* [ ] View local currency denomination guide.
+1.	A finances section to do simple currency conversions, see what you have spent your money on(categories), upload or take pictures of receipts with OCR, and find nearby places to convert currency
 
-[![Finance-UserStory.gif](https://s10.postimg.org/p1b7d21tl/Finance-_User_Story.gif)](https://postimg.org/image/qgcs1s2wl/)
+[![Finance.gif](https://s3.postimg.org/9rvqgn9kj/Finance.gif)](https://postimg.org/image/tz968y71r/)
+
+1.	A photo map which allows you to take pictures or import pictures and drag and drop them on your map so you can remember where that picture was taken. Photos are saved in core data by their URL location in your phones memory and is updated whenever photo is dragged. All photos within your map can be viewed in a gallery or enlarged to full screen
+
+[![Photos.gif](https://s10.postimg.org/ssifgie49/Photos.gif)](https://postimg.org/image/ux2shlfqt/)
+
+1.	A section for seeing what is near me with option to filter by distance and category
+a.	Additional problem, not knowing what direction something is in. Solution AR mapping which shows what direction all points of interest around you are at so you know which direction to head into instead of checking you map to see if you are going the right way.
+
+[![POI1.png](https://s22.postimg.org/6wzmzuva9/POI1.png)](https://postimg.org/image/qrlolzahp/)
+[![POI2.png](https://s7.postimg.org/v4z2hoywb/POI2.png)](https://postimg.org/image/m9y876a3r/)
+[![POI3.png](https://s13.postimg.org/ar9wqepk7/POI3.png)](https://postimg.org/image/mgdwedgir/)
+
+1.	Problem, being able to leave you mark on a special location you have visited. Solution whenever you a near a special location you will have access to a location based message board to write a small message but can only be read or accessed when near location.
+
 
  
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
