@@ -32,7 +32,7 @@ Solution A one stop app for all your travel need.
 1.	A section for seeing what is near me with option to filter by distance and category
 a.	Additional problem, not knowing what direction something is in. Solution AR mapping which shows what direction all points of interest around you are at so you know which direction to head into instead of checking you map to see if you are going the right way.
 
-[![POI1.png](https://s22.postimg.org/6wzmzuva9/POI1.png)](https://postimg.org/image/qrlolzahp/)
+[![POI1.png](https://s7.postimg.org/d8tffcc97/POI1.png)](https://postimg.org/image/xg6v7n9qf/)
 
 [![POI2.png](https://s7.postimg.org/v4z2hoywb/POI2.png)](https://postimg.org/image/m9y876a3r/)
 
