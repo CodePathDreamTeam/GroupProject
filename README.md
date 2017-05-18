@@ -39,12 +39,6 @@ Solution A one stop app for all your travel need.
 
 [![POI3.png](https://s13.postimg.org/ar9wqepk7/POI3.png)](https://postimg.org/image/mgdwedgir/)
 
-[url=https://postimg.org/image/ixapfqjyl/][img]https://s30.postimg.org/ixapfqjyl/POI1.png[/img][/url]
-
-[url=https://postimg.org/image/i91uwsl8t/][img]https://s30.postimg.org/i91uwsl8t/POI2.png[/img][/url]
-
-[url=https://postimg.org/image/5vp0pvvkd/][img]https://s30.postimg.org/5vp0pvvkd/POI3.png[/img][/url]
-
 
 1.	Problem, being able to leave you mark on a special location you have visited. Solution whenever you a near a special location you will have access to a location based message board to write a small message but can only be read or accessed when near location.
 
