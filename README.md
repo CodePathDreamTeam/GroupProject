@@ -33,7 +33,9 @@ Solution A one stop app for all your travel need.
 a.	Additional problem, not knowing what direction something is in. Solution AR mapping which shows what direction all points of interest around you are at so you know which direction to head into instead of checking you map to see if you are going the right way.
 
 [![POI1.png](https://s22.postimg.org/6wzmzuva9/POI1.png)](https://postimg.org/image/qrlolzahp/)
+
 [![POI2.png](https://s7.postimg.org/v4z2hoywb/POI2.png)](https://postimg.org/image/m9y876a3r/)
+
 [![POI3.png](https://s13.postimg.org/ar9wqepk7/POI3.png)](https://postimg.org/image/mgdwedgir/)
 
 1.	Problem, being able to leave you mark on a special location you have visited. Solution whenever you a near a special location you will have access to a location based message board to write a small message but can only be read or accessed when near location.
